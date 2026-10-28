@@ -85,6 +85,46 @@ def main(cat_path: Path) -> None:
     cat_path.write_text(yaml.safe_dump(doc, sort_keys=False, allow_unicode=True, width=120))
 
 
+# Second pass for entries the first pass left short: identity entries searched by account (commit search's
+# author-email/committer-email qualifiers), co-author entries by an alternative literal.
+SUPPLEMENT = {
+    "codex-connector-identity": [
+        "author-email:199175422+chatgpt-codex-connector[bot]@users.noreply.github.com"
+    ],
+    "openhands-identity": ["author-email:openhands@all-hands.dev", "committer-email:openhands@all-hands.dev"],
+    "jules-identity": ["author-email:161369871+google-labs-jules[bot]@users.noreply.github.com"],
+    "amazon-q-identity": ["author-email:208079219+amazon-q-developer[bot]@users.noreply.github.com"],
+    "factory-droid-identity": ["author-email:138933559+factory-droid[bot]@users.noreply.github.com"],
+    "replit-agent-identity": ["author-email:agent@replit.com", "committer-email:agent@replit.com"],
+    "lovable-identity": ["author-email:159125892+lovable-dev[bot]@users.noreply.github.com"],
+    "coderabbit-identity": ["author-email:136622811+coderabbitai[bot]@users.noreply.github.com"],
+    "aider-author-suffix": ["author-name:aider", "committer-name:aider"],
+    "kiro-coauthor": ['"kiro-agent[bot]"', '"245459735+kiro-agent"'],
+    "lovable-coauthor": ['"lovable-dev[bot]"', '"159125892+lovable-dev"'],
+    "sweep-coauthor": ['"sweep-ai@users.noreply.github.com"', '"236279702+sweep-ai"'],
+}
+
+
+def main_supplement(cat_path: Path) -> None:
+    doc = yaml.safe_load(cat_path.read_text())
+    for raw in doc["signatures"]:
+        if raw["id"] not in SUPPLEMENT or len(raw.get("evidence", [])) >= WANT:
+            continue
+        sig = Signature.model_validate(raw)
+        urls = [(u.split("/")[3] + "/" + u.split("/")[4], u) for u in raw.get("evidence", [])]
+        for q in SUPPLEMENT[raw["id"]]:
+            for it in search(q):
+                c = it["commit"]
+                a = Identity(c["author"]["name"], c["author"]["email"])
+                k = Identity(c["committer"]["name"], c["committer"]["email"])
+                if hits_signature(sig, a, k, c["message"]) and it["html_url"] not in {u for _, u in urls}:
+                    urls.append((it["repository"]["full_name"], it["html_url"]))
+            time.sleep(10)
+        raw["evidence"] = pick(urls)
+        print(f"{raw['id']:34s} {len(raw['evidence'])}", file=sys.stderr)
+        cat_path.write_text(yaml.safe_dump(doc, sort_keys=False, allow_unicode=True, width=120))
+
+
 def main_bots(path: Path) -> None:
     doc = yaml.safe_load(path.read_text())
     for raw in doc["bots"]:
@@ -104,5 +144,7 @@ def main_bots(path: Path) -> None:
 if __name__ == "__main__":
     if sys.argv[1] == "--bots":
         main_bots(Path(sys.argv[2]))
+    elif sys.argv[1] == "--supplement":
+        main_supplement(Path(sys.argv[2]))
     else:
         main(Path(sys.argv[1]))

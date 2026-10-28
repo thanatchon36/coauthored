@@ -543,3 +543,348 @@ excluded:
 - repo: smol-ai/developer
   stratum: s2
   reason: commits_12m 0 < 200
+s3:
+- repo: pwndbg/pwndbg
+  matched_to: axolotl-ai-cloud/axolotl
+  language: Python
+  stars: 11120
+  commits_2024: 427
+  commits_12m: 591
+  caliper_violated: false
+  rationale: Exploit Development and Reverse Engineering with GDB & LLDB Made Easy
+- repo: sherlock-project/sherlock
+  matched_to: hiyouga/LlamaFactory
+  language: Python
+  stars: 95121
+  commits_2024: 414
+  commits_12m: 254
+  caliper_violated: false
+  rationale: Hunt down social media accounts by username across social networks
+- repo: kovidgoyal/calibre
+  matched_to: NVIDIA/Megatron-LM
+  language: Python
+  stars: 26270
+  commits_2024: 2040
+  commits_12m: 2641
+  caliper_violated: false
+  rationale: The official source code repository for the calibre ebook manager
+- repo: python/cpython
+  matched_to: unslothai/unsloth
+  language: Python
+  stars: 77748
+  commits_2024: 4743
+  commits_12m: 4866
+  caliper_violated: false
+  rationale: The Python programming language
+- repo: fastapi/sqlmodel
+  matched_to: NVIDIA-NeMo/Speech
+  language: Python
+  stars: 18514
+  commits_2024: 235
+  commits_12m: 574
+  caliper_violated: false
+  rationale: SQL databases in Python, designed for simplicity, compatibility, and robustness.
+- repo: GAM-team/GAM
+  matched_to: pytorch/ao
+  language: Python
+  stars: 4359
+  commits_2024: 560
+  commits_12m: 944
+  caliper_violated: false
+  rationale: command line management for Google Workspace
+- repo: tornadoweb/tornado
+  matched_to: huggingface/datasets
+  language: Python
+  stars: 22166
+  commits_2024: 125
+  commits_12m: 239
+  caliper_violated: false
+  rationale: Tornado is a Python web framework and asynchronous networking library, originally developed at FriendFeed.
+- repo: soxoj/maigret
+  matched_to: deepspeedai/DeepSpeed
+  language: Python
+  stars: 39446
+  commits_2024: 119
+  commits_12m: 554
+  caliper_violated: false
+  rationale: 🕵️‍♂️ Collect a dossier on a person by username from 6K websites
+- repo: organicmaps/organicmaps
+  matched_to: ggml-org/ggml
+  language: C++
+  stars: 15796
+  commits_2024: 2061
+  commits_12m: 1918
+  caliper_violated: false
+  rationale: 🍃 Organic Maps is a free Android & iOS offline maps app for more than 6M travelers, tourists, hikers, and cyclists.
+    It uses crowd-sourced OpenStreetMap data and
+- repo: saleor/saleor
+  matched_to: huggingface/peft
+  language: Python
+  stars: 23485
+  commits_2024: 695
+  commits_12m: 493
+  caliper_violated: false
+  rationale: 'Saleor Core: the high performance, composable, headless commerce API.'
+- repo: frappe/erpnext
+  matched_to: jax-ml/jax
+  language: Python
+  stars: 40700
+  commits_2024: 3642
+  commits_12m: 7060
+  caliper_violated: false
+  rationale: Free and Open Source Enterprise Resource Planning (ERP)
+- repo: eclipse-sumo/sumo
+  matched_to: pytorch/executorch
+  language: Python
+  stars: 4250
+  commits_2024: 5467
+  commits_12m: 4897
+  caliper_violated: false
+  rationale: Eclipse SUMO is an open source, highly portable, microscopic and continuous traffic simulation package designed
+    to handle large networks. It allows for intermod
+- repo: fastapi/fastapi
+  matched_to: huggingface/transformers
+  language: Python
+  stars: 104243
+  commits_2024: 1999
+  commits_12m: 1630
+  caliper_violated: true
+  rationale: FastAPI framework, high performance, easy to learn, fast to code, ready for production
+- repo: mongodb/mongo
+  matched_to: modular/modular
+  language: C++
+  stars: 28661
+  commits_2024: 8338
+  commits_12m: 11231
+  caliper_violated: false
+  rationale: The MongoDB Database
+- repo: python-poetry/poetry
+  matched_to: Lightning-AI/pytorch-lightning
+  language: Python
+  stars: 34323
+  commits_2024: 380
+  commits_12m: 245
+  caliper_violated: false
+  rationale: Python packaging and dependency management made easy
+- repo: moraroy/NonSteamLaunchers-On-Steam-Deck
+  matched_to: ml-explore/mlx-lm
+  language: Python
+  stars: 4410
+  commits_2024: 890
+  commits_12m: 363
+  caliper_violated: false
+  rationale: 'Installs the latest UMU/GE-Proton and Non Steam Launchers under 1 Proton prefix folder and adds them to your
+    steam library. Installs... Battle.net, Epic Games, '
+- repo: wesnoth/wesnoth
+  matched_to: flashinfer-ai/flashinfer
+  language: C++
+  stars: 6963
+  commits_2024: 1858
+  commits_12m: 1720
+  caliper_violated: false
+  rationale: An open source, turn-based strategy game with a high fantasy theme.
+- repo: ccxt/ccxt
+  matched_to: sgl-project/sglang
+  language: Python
+  stars: 44609
+  commits_2024: 3706
+  commits_12m: 10139
+  caliper_violated: false
+  rationale: A unified trading API with more than 100 crypto exchanges and prediction markets in JavaScript / TypeScript /
+    Python / C# / PHP / Go / Java / Rust
+- repo: microsoft/TypeScript
+  matched_to: ollama/ollama
+  language: Go
+  stars: 111651
+  commits_2024: 1085
+  commits_12m: 1832
+  caliper_violated: true
+  rationale: TypeScript is a superset of JavaScript that compiles to clean JavaScript output.
+- repo: argotorg/solidity
+  matched_to: ml-explore/mlx
+  language: C++
+  stars: 25762
+  commits_2024: 1096
+  commits_12m: 983
+  caliper_violated: false
+  rationale: Solidity, the Smart Contract Programming Language
+- repo: home-assistant/core
+  matched_to: pytorch/pytorch
+  language: Python
+  stars: 91796
+  commits_2024: 17315
+  commits_12m: 18625
+  caliper_violated: false
+  rationale: ':house_with_garden: Open source home automation that puts local control and privacy first.'
+- repo: django/django
+  matched_to: keras-team/keras
+  language: Python
+  stars: 91532
+  commits_2024: 885
+  commits_12m: 1044
+  caliper_violated: false
+  rationale: The Web framework for perfectionists with deadlines.
+- repo: redis/redis-py
+  matched_to: EleutherAI/lm-evaluation-harness
+  language: Python
+  stars: 13651
+  commits_2024: 129
+  commits_12m: 290
+  caliper_violated: false
+  rationale: Redis Python client
+- repo: aio-libs/aiohttp
+  matched_to: huggingface/trl
+  language: Python
+  stars: 16595
+  commits_2024: 1914
+  commits_12m: 1919
+  caliper_violated: false
+  rationale: Asynchronous HTTP client/server framework for asyncio and Python
+- repo: grpc/grpc-rust
+  matched_to: huggingface/tokenizers
+  language: Rust
+  stars: 12512
+  commits_2024: 308
+  commits_12m: 268
+  caliper_violated: false
+  rationale: A native gRPC client & server implementation with async/await support.
+- repo: ansible/ansible-lint
+  matched_to: huggingface/datatrove
+  language: Python
+  stars: 3926
+  commits_2024: 237
+  commits_12m: 226
+  caliper_violated: false
+  rationale: ansible-lint checks playbooks for practices and behavior that could potentially be improved and can fix some
+    of the most common ones for you
+- repo: pgadmin-org/pgadmin4
+  matched_to: NVIDIA/TransformerEngine
+  language: Python
+  stars: 3910
+  commits_2024: 670
+  commits_12m: 715
+  caliper_violated: false
+  rationale: pgAdmin is the most popular and feature rich Open Source administration and development platform for PostgreSQL,
+    the most advanced Open Source database in the w
+- repo: RPCS3/rpcs3
+  matched_to: microsoft/onnxruntime
+  language: C++
+  stars: 20230
+  commits_2024: 1410
+  commits_12m: 1963
+  caliper_violated: false
+  rationale: PlayStation 3 emulator and debugger
+- repo: nicolargo/glances
+  matched_to: huggingface/diffusers
+  language: Python
+  stars: 33871
+  commits_2024: 804
+  commits_12m: 1248
+  caliper_violated: false
+  rationale: Glances an Eye on your system. A top/htop alternative for GNU/Linux, BSD, macOS and Windows operating systems.
+- repo: WebODM/WebODM
+  matched_to: allenai/open-instruct
+  language: Python
+  stars: 4240
+  commits_2024: 240
+  commits_12m: 551
+  caliper_violated: false
+  rationale: User-friendly, commercial-grade software for processing aerial imagery. ✈️ Download it for free!
+- repo: conan-io/conan
+  matched_to: google/flax
+  language: Python
+  stars: 9547
+  commits_2024: 686
+  commits_12m: 542
+  caliper_violated: false
+  rationale: Conan - The open-source C and C++ package manager
+- repo: locustio/locust
+  matched_to: Dao-AILab/flash-attention
+  language: Python
+  stars: 28246
+  commits_2024: 1133
+  commits_12m: 560
+  caliper_violated: false
+  rationale: Write scalable load tests in plain Python 🚗💨
+- repo: bridgecrewio/checkov
+  matched_to: huggingface/accelerate
+  language: Python
+  stars: 9117
+  commits_2024: 1141
+  commits_12m: 239
+  caliper_violated: false
+  rationale: 'Prevent cloud misconfigurations and find vulnerabilities during build-time in infrastructure as code, container
+    images and open source packages with Checkov by '
+- repo: qutebrowser/qutebrowser
+  matched_to: bitsandbytes-foundation/bitsandbytes
+  language: Python
+  stars: 11732
+  commits_2024: 483
+  commits_12m: 224
+  caliper_violated: false
+  rationale: A keyboard-driven, vim-like browser based on Python and Qt.
+- repo: LibreOffice/core
+  matched_to: openxla/xla
+  language: C++
+  stars: 4574
+  commits_2024: 10853
+  commits_12m: 10530
+  caliper_violated: false
+  rationale: Read-only LibreOffice core repo - no pull request (use gerrit instead https://gerrit.libreoffice.org/) - don't
+    download zip, use https://dev-www.libreoffice.org
+- repo: godotengine/godot
+  matched_to: tensorflow/tensorflow
+  language: C++
+  stars: 119213
+  commits_2024: 10633
+  commits_12m: 9348
+  caliper_violated: false
+  rationale: Godot Engine – Multi-platform 2D and 3D game engine
+- repo: bitcoin/bitcoin
+  matched_to: ggml-org/llama.cpp
+  language: C++
+  stars: 90527
+  commits_2024: 3749
+  commits_12m: 4605
+  caliper_violated: false
+  rationale: Bitcoin Core integration/staging tree
+- repo: odoo/odoo
+  matched_to: vllm-project/vllm
+  language: Python
+  stars: 55387
+  commits_2024: 11654
+  commits_12m: 17443
+  caliper_violated: false
+  rationale: Odoo. Open Source Apps To Grow Your Business.
+- repo: saulpw/visidata
+  matched_to: InternLM/lmdeploy
+  language: Python
+  stars: 9428
+  commits_2024: 527
+  commits_12m: 576
+  caliper_violated: false
+  rationale: A terminal spreadsheet multitool for discovering and arranging data
+- repo: mikumifa/biliTickerBuy
+  matched_to: stanford-crfm/helm
+  language: Python
+  stars: 4264
+  commits_2024: 342
+  commits_12m: 298
+  caliper_violated: false
+  rationale: b站会员购购票辅助工具
+- repo: enjoy-digital/litex
+  matched_to: pytorch/torchtitan
+  language: Python
+  stars: 4178
+  commits_2024: 745
+  commits_12m: 1372
+  caliper_violated: false
+  rationale: Build your hardware, easily!
+- repo: libsdl-org/SDL
+  matched_to: triton-lang/triton
+  language: C
+  stars: 16912
+  commits_2024: 4132
+  commits_12m: 2304
+  caliper_violated: false
+  rationale: Simple DirectMedia Layer

@@ -1,17 +1,22 @@
 # Status
 
-**Phase 0 — scoping: done (2026-10-28).**
+**Phase 3 — pilot run: done (2026-10-29). Waiting at STOP 1 for approval to take the S1–S3 snapshot.**
 
 ## Done
-- Environment: `gh` logged in as `thanatchon36`; git 2.43.0; uv 0.13.1; Python 3.12.3; 616 GB free; pandoc 3.8.3,
-  typst 0.15.1, tectonic 0.15.0 in `~/.local/bin`; `bq` not installed (Phase 6 only, after STOP 1).
-- Names: PyPI `coauthored` free; GitHub `thanatchon36/coauthored` free → created private.
-- Skeleton: package, CLI with paid-key guard, tests, CI, house README header, logo, `.zenodo.json`,
-  `CITATION.cff`, Apache-2.0 + CC-BY-4.0.
+- Phase 0 — scoping (2026-10-28): environment, names, skeleton, private repository.
+- Phase 1 — instrument and pre-registration (2026-10-29): scanner on three pilot repositories; signature catalogue
+  (52 entries, 28 tools, three evidence URLs each); bot list (4); trailer rule validated against
+  `git interpret-trailers` (1,565/1,565); blind validation sample of 200 pilot commits (precision 1.00, recall
+  1.00); S1 = 42, S2 = 12 by rule; S3 = 42 matched and hand-screened controls; literature review (35 sources);
+  `PREREGISTRATION.md` frozen at tag `prereg-v1`. Report: `docs/phase-1-report.md`.
+- Phase 2 — scanner: CLI (`scan`, `aggregate`, `report`, `signatures --verify`), manifest with head SHAs, timings
+  and sizes; policy classifier; survival classifier; 60 tests, coverage 95% (CI gate 85%).
+- Phase 3 — pilot run: 6,147 commits in 7.4 s; snapshot estimate 2.85M commits, about 2 hours, about 3.5 GB.
+  Report: `docs/phase-3-report.md`.
 
-## Next
-Phase 1: scanner core on three pilot repos (D2) → signature discovery and qualification → bot list → S1/S2 by
-rule → S3 matching → literature review → `PREREGISTRATION.md` → tag `prereg-v1`.
+## Next (after STOP 1 approval)
+Phase 4: snapshot of all 96 repositories on one day → aggregates → policy files. Phase 5: survival sampler.
+Phase 6 (GH Archive) needs the Google Cloud SDK, which is not installed.
 
 ## Open issues
-- None.
+- `bq`/`gcloud` not installed: no BigQuery dry-run estimate yet.

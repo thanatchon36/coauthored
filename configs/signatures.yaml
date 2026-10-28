@@ -4,183 +4,479 @@ signatures:
   tool: Claude Code
   kind: coauthor
   email: noreply@anthropic\.com
-  name: claude( [a-z0-9][a-z0-9. -]*)?
+  name: claude( [a-z0-9][a-z0-9. ()-]*)?
   query: '"noreply@anthropic.com"'
-  notes: Default trailer; model-named variants (e.g. "Claude Opus 4.5") since 2025.
+  notes: Default trailer; model-named variants (e.g. "Claude Opus 5.5 (1M context)", "Claude Code").
+  evidence:
+  - https://github.com/openai/openai-agents-python/commit/71306bffa78f3aa8e12aff62b9c09ccfa4ec8ae8
+  - https://github.com/modelcontextprotocol/python-sdk/commit/d639cf7f97f77388fa7da60c0f9b04f8837b77fd
+  - https://github.com/scrml-lang/scrml/commit/25677da7264ad81b24e0452c1fc26b94c97e5fad
 - id: claude-code-generated-marker
   tool: Claude Code
   kind: marker
   text: Generated with [Claude Code]
   query: '"Generated with Claude Code"'
+  evidence:
+  - https://github.com/modelcontextprotocol/python-sdk/commit/9d0f2daddb5a70f57beb43391bb52158c3f021c7
+  - https://github.com/usenotra/notra-cli/commit/dfaad20e783e8859493b1f377eb1697c0b2a7af4
+  - https://github.com/drn/argus/commit/450a5c7c698897e4865bb4005d18024e89494320
 - id: claude-code-session-marker
   tool: Claude Code
   kind: marker
   text: 'Claude-Session: https://claude.ai/'
   query: '"Claude-Session"'
+  evidence:
+  - https://github.com/openai/openai-agents-python/commit/08e5c431eb85d243b62d904f21bc57b6db1682a1
+  - https://github.com/JeSuisDodo/projet_jeu_prof/commit/a922d905654e71594c264e24aaa40f90332335b5
+  - https://github.com/rhawk117/mightymodels/commit/d9caf974beea66d2427482a506fd37fa3dbf10f8
 - id: claude-app-identity
   tool: Claude Code
   kind: identity
-  email: 209825114\+claude\[bot\]@users\.noreply\.github\.com
+  email: (209825114\+|41898282\+)?claude\[bot\]@users\.noreply\.github\.com
   query: '"claude[bot]"'
-  notes: Claude GitHub app (Claude Code in GitHub Actions).
+  notes: Claude GitHub app / claude-code-action; also committed under the github-actions user id (41898282).
+  name: claude\[bot\]
+  evidence:
+  - https://github.com/modelcontextprotocol/python-sdk/commit/d639cf7f97f77388fa7da60c0f9b04f8837b77fd
+  - https://github.com/lobito42/cee/commit/a21942ed6a5e3c392830832c8c0bd8d86830d44d
+  - https://github.com/animo/paradym-wallet/commit/c61b1d442c91ca28e04981e210365e53a6d345f5
 - id: claude-app-coauthor
   tool: Claude Code
   kind: coauthor
-  email: 209825114\+claude\[bot\]@users\.noreply\.github\.com
+  email: (209825114\+|41898282\+)?claude\[bot\]@users\.noreply\.github\.com
   query: '"209825114+claude[bot]"'
+  name: claude\[bot\]
+  evidence:
+  - https://github.com/modelcontextprotocol/python-sdk/commit/883d89309755def3048d2c8b6ad85a2b9861130b
+  - https://github.com/cultuurnet/apidocs/commit/9185aed50d9092b3ff9b16cc8108e05424b2e601
+  - https://github.com/percona/pmm-qa/commit/76e8d7637363083b3d87354d8b0c1fb1a45dd00b
 - id: copilot-agent-identity
   tool: GitHub Copilot
   kind: identity
-  email: 198982749\+copilot@users\.noreply\.github\.com
+  email: ((198982749|223556219)\+copilot|copilot-swe-agent(\[bot\])?)@users\.noreply\.github\.com|copilot-swe-agent@github\.com
   query: '"198982749+Copilot"'
   notes: Copilot coding agent; authors commits as "Copilot", co-authored as copilot-swe-agent[bot].
+  evidence:
+  - https://github.com/microsoft/typescript-go/commit/65535b2038f285dcb98703769bf08002b25ca5a7
+  - https://github.com/Rovinos-AI/rovinos-ai-harness/commit/0404ef074ba27e2a9f74a2d90ed47fcfc12d8722
+  - https://github.com/nikolausnold/NIKNOLIG-Monorepo/commit/2f97623b63c8e2424cd65d8cbdbe33d5d654f388
 - id: copilot-agent-coauthor
   tool: GitHub Copilot
   kind: coauthor
-  email: 198982749\+copilot@users\.noreply\.github\.com
+  email: ((198982749|223556219)\+copilot|copilot-swe-agent(\[bot\])?)@users\.noreply\.github\.com|copilot-swe-agent@github\.com
   query: '"copilot-swe-agent[bot]"'
+  evidence:
+  - https://github.com/modelcontextprotocol/python-sdk/commit/2693fb95ae1462a3135da3c6099048783c60b012
+  - https://github.com/microsoft/typescript-go/commit/65535b2038f285dcb98703769bf08002b25ca5a7
+  - https://github.com/kubestellar/console/commit/8a078a0b7b464bc9987a36db8d2914204fa30dcd
 - id: copilot-coauthor
   tool: GitHub Copilot
   kind: coauthor
   email: 175728472\+copilot@users\.noreply\.github\.com
   query: '"175728472+Copilot"'
   notes: Copilot account used when Copilot code-review suggestions or Copilot Autofix are applied.
+  evidence:
+  - https://github.com/microsoft/typescript-go/commit/0f714a5386993872feb5ab81795ec8e22c4638bd
+  - https://github.com/navikt/pensjonsbrev/commit/526f4d3130e68aff20f3bdf6f91703b1486d7c86
+  - https://github.com/RubixML/ML/commit/38372ffbd2e1022a5a4fa7762d6ded35fb9334f0
 - id: codex-noreply-coauthor
   tool: OpenAI Codex
   kind: coauthor
   email: noreply@openai\.com
   query: '"noreply@openai.com"'
   notes: Names vary ("Codex", "Codex (gpt-5)", "OpenAI Codex", model names); the email is not a person's.
+  evidence:
+  - https://github.com/openai/openai-agents-python/commit/2d665c9a67fdf3198a0daa0f9978b8239d78e78b
+  - https://github.com/SinhyeokKang/bugshot-2/commit/d96b07efcc735283019d226cf1c4d7f2ad71053f
+  - https://github.com/s977043/river-review/commit/d819c42a5ef7ef7217201dedcd9b546735ac270a
 - id: codex-coauthor
   tool: OpenAI Codex
   kind: coauthor
   email: codex@openai\.com
   query: '"codex@openai.com"'
+  evidence:
+  - https://github.com/microsoft/typescript-go/commit/4eb214d42c5cad01c798cd5fd625aa26e8565934
+  - https://github.com/tmt-ninja/tmt/commit/9b71cff69521928ac43671c6cc33e840a98c7e3a
+  - https://github.com/escoffier-labs/brigade/commit/898ad34e0d6065fa6f4d49cd629c80e89e669486
 - id: codex-connector-coauthor
   tool: OpenAI Codex
   kind: coauthor
   email: 199175422\+chatgpt-codex-connector\[bot\]@users\.noreply\.github\.com
   query: '"chatgpt-codex-connector"'
+  evidence:
+  - https://github.com/trvny/trvny/commit/34d3010827c37873724c858d59fac14e44071548
+  - https://github.com/leon0399/llame/commit/9310c7a7eb449b644ccb8324766a611758d12e33
+  - https://github.com/marshiyar/oneTake/commit/d129ac5538be7dde6db380f953bb27d724b8a0fb
 - id: codex-connector-identity
   tool: OpenAI Codex
   kind: identity
   email: 199175422\+chatgpt-codex-connector\[bot\]@users\.noreply\.github\.com
   query: '"chatgpt-codex-connector[bot]"'
+  evidence:
+  - https://github.com/gitpython-developers/GitPython/commit/e4ad410ac3baf2046bd4043394e7cbb119045cc1
+  - https://github.com/rust-lang/libz-sys/commit/b123c95cd6b83cff8163ac4dba310de65eff575d
+  - https://github.com/rachel-ylcs/ylcs-kmp/commit/97664192a56c2703380b8b8f581a05409ad28e9c
 - id: cursor-coauthor
   tool: Cursor
   kind: coauthor
   email: cursoragent@cursor\.com
   query: '"cursoragent@cursor.com"'
+  evidence:
+  - https://github.com/content-hive/content-hive/commit/0075ed12de4869079e4ceee07ff92599bab45ef5
+  - https://github.com/QuietAgencyDev/Sullys1943/commit/9e3a768a6be38b1719ff63e323a6cfc513bd0683
+  - https://github.com/molxno/renta-vehiculos/commit/9e09208672c6fc70af512ccbaa552278e9eb4552
 - id: aider-coauthor
   tool: Aider
   kind: coauthor
   email: aider@aider\.chat
   query: '"aider@aider.chat"'
   notes: Name carries the model, e.g. "aider (deepseek/deepseek-chat)".
+  evidence:
+  - https://github.com/acmota2/musmgr/commit/6dbca52cf18bfe57f11de12ff38178157f0d27a9
+  - https://github.com/proveo-ca/casbinjs/commit/373da219f28ce41dc64c56a7419a9e0c66de2a43
+  - https://github.com/MaleeshaKumarage/readysetsiivous/commit/2f22f700c2857e2f83198ddb9bf2815a2bc19daa
 - id: aider-author-suffix
   tool: Aider
   kind: identity
   name: .+ \(aider\)
   query: '"(aider)"'
   notes: Aider's --attribute-author / --attribute-committer append " (aider)" to the git name.
+  evidence:
+  - https://github.com/awanneyeo/6MIG841-dev1/commit/9e2b27e0099ad523ffafabf499cd6c4fd4ae0267
+  - https://github.com/uwislab/urobot-mcp/commit/478a4e9c25d5cc475e48023253eb11236ea94f60
+  - https://github.com/uwislab/urobot-mcp/commit/aa31f734ebcc07267a24f62b40440b0cbf22ee4f
 - id: openhands-coauthor
   tool: OpenHands
   kind: coauthor
   email: openhands@all-hands\.dev
   query: '"openhands@all-hands.dev"'
+  evidence:
+  - https://github.com/Citr0sCo/home-app/commit/aefb6bfb611f37f68a993ed25028add8f0e7ffe7
+  - https://github.com/raviwithu/cybersec-career-intelligence/commit/8d091e9f73aeae6f971eaea640cfbdfc9739df6f
+  - https://github.com/Conxian/conxius-enclave-sdk/commit/09dee22e548cdce1477a9183fdcc5b0d9905d998
 - id: openhands-identity
   tool: OpenHands
   kind: identity
   email: openhands@all-hands\.dev
   query: '"openhands@all-hands.dev"'
+  evidence:
+  - https://github.com/tomascupr/codexMCP/commit/918286deeaa89333a1e0cb8ffccbc40abb55d6a9
+  - https://github.com/caoruihua/TaokeEms/commit/d3687bcf17b4310bcb3caa9146aa10b02d93aa21
+  - https://github.com/posix4e/chrome-hyperdb-history-extension/commit/813b0f36fc9dc8f47402a08ee0ad5173e3e22fc2
 - id: jules-coauthor
   tool: Google Jules
   kind: coauthor
   email: 161369871\+google-labs-jules\[bot\]@users\.noreply\.github\.com
   query: '"google-labs-jules"'
+  evidence:
+  - https://github.com/area44/workflows/commit/98c17d7b5cca10a195b6c940b9c8d0b56f37fc9b
+  - https://github.com/BasedHardware/omi/commit/ee19799b346dbea4a3a18245ae3bc3c1029e5269
+  - https://github.com/snackdriven/al80-studio/commit/926bf583d6aca171c425cbe842ef577d994439e0
 - id: jules-identity
   tool: Google Jules
   kind: identity
   email: 161369871\+google-labs-jules\[bot\]@users\.noreply\.github\.com
   query: '"google-labs-jules[bot]"'
+  evidence:
+  - https://github.com/makarono/camera-scan/commit/015163e25282f7f0859dcf2d3dc276601929c38f
+  - https://github.com/unimib-whattadata/LLMPatients-App/commit/73ad81b17357a879fdfb924a67f0078fc5d90f19
+  - https://github.com/danfeigin/uGSEA/commit/97359a3617c36ca9e6e1176e0a3a9f73449a33fb
 - id: devin-coauthor
   tool: Devin
   kind: coauthor
   email: 158243242\+devin-ai-integration\[bot\]@users\.noreply\.github\.com
   query: '"devin-ai-integration"'
+  evidence:
+  - https://github.com/wemilabs/whatherust/commit/b947211bb607f5c220ab95ff87e30fed6736913c
+  - https://github.com/shellenwangece/internal-tools-platform/commit/63ce9f2f0edf8f072d505d225e4f13641d1817b1
+  - https://github.com/0seti0/Founder-Fellowship-WWB/commit/b32f4bef035b2793c48670c96cc1e7397bd0635f
 - id: devin-identity
   tool: Devin
   kind: identity
   email: 158243242\+devin-ai-integration\[bot\]@users\.noreply\.github\.com
   query: '"devin-ai-integration[bot]"'
+  evidence:
+  - https://github.com/wemilabs/whatherust/commit/b947211bb607f5c220ab95ff87e30fed6736913c
+  - https://github.com/agluszak/whizzardry-8/commit/70e24008738876c2d38ff512e80b141643d9da6d
+  - https://github.com/adm01-debug/Singu_V2/commit/828813e2cbb9b157c3bbaa793f765de2ec851df9
 - id: gemini-cli-coauthor
   tool: Gemini CLI
   kind: coauthor
-  email: gemini-cli@google\.com
+  email: gemini-cli@google\.com|218312386\+gemini-cli\[bot\]@users\.noreply\.github\.com
   query: '"gemini-cli@google.com"'
+  evidence:
+  - https://github.com/Samsung/starfish/commit/b8d80ed106c41b07b9ec7cc90686b7bbdeecee95
+  - https://github.com/Q7DF1/XrayFA/commit/ff9c8069bfe3cabaddf2997ec9fdd0e0e4d5c53b
+  - https://github.com/molhokwai/gemini/commit/4073b67b9fd30c7a4fb511bbbb7ebdf2930e034a
 - id: gemini-cli-identity
   tool: Gemini CLI
   kind: identity
-  email: gemini-cli@google\.com
+  email: gemini-cli@google\.com|218312386\+gemini-cli\[bot\]@users\.noreply\.github\.com
   query: '"gemini-cli@google.com"'
+  evidence:
+  - https://github.com/Samsung/starfish/commit/b8d80ed106c41b07b9ec7cc90686b7bbdeecee95
+  - https://github.com/yideng-xl/CalendarAssistant/commit/34920c021218f9e7c1881ee9ffa3ccad39d02f6d
+  - https://github.com/Samsung/starfish/commit/1e73b62047728a441f1146974a2eb488186841ab
 - id: gemini-code-assist-coauthor
   tool: Gemini Code Assist
   kind: coauthor
   email: (176961590\+)?gemini-code-assist\[bot\]@users\.noreply\.github\.com
   query: '"gemini-code-assist[bot]"'
   notes: Applied review suggestions.
+  evidence:
+  - https://github.com/GoogleCloudPlatform/cloud-spanner-samples/commit/b96092e7605dbacbcf65f6a69076a8db9f623674
+  - https://github.com/Adyen/adyen-magento2/commit/e2572995b9b91b0df2ba1958288646fcd6909391
+  - https://github.com/google/timesketch/commit/6858e4b18b8f385bfd3b29169dfce7d98262dfd7
 - id: amazon-q-coauthor
   tool: Amazon Q Developer
   kind: coauthor
   email: 208079219\+amazon-q-developer\[bot\]@users\.noreply\.github\.com
   query: '"amazon-q-developer"'
+  evidence:
+  - https://github.com/numan-cli/numan-registry/commit/e38d353f80c70a47d904ed9a0faaf16c6423711a
+  - https://github.com/numan-cli/numan/commit/bfc9f292767d953f551f43e94d579ee1ee0be6a5
+  - https://github.com/GLORIFIER7/GLORIFIER/commit/f11c2ec64170b4106c7368372bf330886c83876e
 - id: amazon-q-identity
   tool: Amazon Q Developer
   kind: identity
   email: 208079219\+amazon-q-developer\[bot\]@users\.noreply\.github\.com
   query: '"amazon-q-developer[bot]"'
+  evidence:
+  - https://github.com/iamaanahmad/html-file-runner/commit/3c0474e35ffcb5d813c8988b6e523df8c59beba4
+  - https://github.com/HyperionGray/tinycorelinux-x86_64_unikernel_edition/commit/189ad577f81df0dfcff35547363f5308dbd4c1d0
+  - https://github.com/Anorlondo448/hello_app/commit/b0debacde9f52b5e6c9b3e563ae27a28833026bd
 - id: kiro-coauthor
   tool: Kiro
   kind: coauthor
   email: 245459735\+kiro-agent\[bot\]@users\.noreply\.github\.com
   query: '"kiro-agent"'
+  evidence:
+  - https://github.com/SMOSTAFAH1/AI/commit/0a33274c6da765ecf53b176ae159123c1c8384b2
+  - https://github.com/rmems/cortex-tensor/commit/fce61b8911bb4c62d28f9f53d6d551b46d814f9c
+  - https://github.com/Limen-Neural/myelin-accelerator/commit/d4f699b0a32ac7d8faf28c7ef978b0bd814f1f68
 - id: kiro-identity
   tool: Kiro
   kind: identity
   email: 245459735\+kiro-agent\[bot\]@users\.noreply\.github\.com
   query: '"kiro-agent[bot]"'
+  evidence:
+  - https://github.com/exafyltd/vitana-platform/commit/5018675c91adc0bd33a1a252b6d077bae8ce396b
+  - https://github.com/exafyltd/vitana-platform/commit/c1f0b0847e1add12fd6949ed02198a5d3cc9c7c3
+  - https://github.com/exafyltd/vitana-platform/commit/48418671e5d95d075f430d514f45d721fc29f245
 - id: amp-coauthor
   tool: Amp
   kind: coauthor
   email: amp@ampcode\.com
   query: '"amp@ampcode.com"'
+  evidence:
+  - https://github.com/unkeyed/unkey/commit/6e0b07b1b1fc7c6115f9fcc4db02cb80f600b9e3
+  - https://github.com/lox/amp-mcp-gateway/commit/258238a994b1c52014a12512e8f5b3f34e2316ea
+  - https://github.com/dvydra/claude-tail/commit/fe8490574e5c0f82ebf4bf828520e29df7a918ed
 - id: amp-thread-marker
   tool: Amp
   kind: marker
   text: 'Amp-Thread-ID: https://ampcode.com/threads/'
   query: '"Amp-Thread-ID"'
+  evidence:
+  - https://github.com/unkeyed/unkey/commit/6e0b07b1b1fc7c6115f9fcc4db02cb80f600b9e3
+  - https://github.com/dvydra/claude-tail/commit/fe8490574e5c0f82ebf4bf828520e29df7a918ed
+  - https://github.com/el-apps/Daily-Manna/commit/afa7e0eedf1c3285d0c7bb05c3c1a670eb65e3bc
 - id: opencode-coauthor
   tool: OpenCode
   kind: coauthor
   email: noreply@opencode\.ai
   query: '"noreply@opencode.ai"'
+  evidence:
+  - https://github.com/bashrusakh/hfdesk/commit/fde6172713e53d3e7f8cd69a3eb06088bc55c46a
+  - https://github.com/DokuroMitsukai/UniXNU-hero2lte/commit/53ccc853aefa388215504ddc75ca8f602917e6e3
+  - https://github.com/RedHatProductSecurity/ai-guardian/commit/36ccacc7a76c17dbdc55456d81715f7e56bf1615
 - id: cline-coauthor
   tool: Cline
   kind: coauthor
   email: (noreply@cline\.bot|cline@cline\.ai)
   query: '"noreply@cline.bot"'
+  evidence:
+  - https://github.com/tkz96/x-factory/commit/bf12b8a225254a159a99cf3d31fdd74b358f1fdb
+  - https://github.com/jmacego/jmacego.github.io/commit/7f9e7957873debfaaf56cd5e9afaad53f9831a90
+  - https://github.com/Open-Gates-Tech/Ola-Code/commit/5dea21ab89f7d5a719a532a07f7d13db37a68bd8
 - id: kilo-coauthor
   tool: Kilo Code
   kind: coauthor
   email: kilocode@kilocode\.ai
   query: '"kilocode@kilocode.ai"'
+  evidence:
+  - https://github.com/jafdevfux/xaigoo-portal/commit/067bf9b8cbde048ec295b441398e24dac2067b32
+  - https://github.com/jafdevfux/xaigoo-portal/commit/2937a8a159a068202c5025908fc8c67f0a1dfe62
+  - https://github.com/jafdevfux/xaigoo-portal/commit/ab3d90e174e3f5d7bf8624e214d6f28c2585863b
 - id: letta-coauthor
   tool: Letta Code
   kind: coauthor
   email: noreply@letta\.com
   query: '"noreply@letta.com"'
+  evidence:
+  - https://github.com/microsoft/typescript-go/commit/83ef4c16ca4e9fe58affb931522af0969d35d135
+  - https://github.com/justoneanotherprogger/justoneanotherprogger.github.io/commit/fbb830abfccbe75ec8e2b0c060fc0bd08c2f3f77
+  - https://github.com/Ripnrip/Andromeda/commit/5f22386ecd20890500be3c648ae9be70f755ecd9
 - id: codeium-coauthor
   tool: Windsurf (Codeium)
   kind: coauthor
   email: noreply@codeium\.com
   query: '"noreply@codeium.com"'
+  evidence:
+  - https://github.com/AlexMobiCraft/PROCONTENT/commit/bf1be0237e5b9a2e55c5f6b5391ce1f7664ed40e
+  - https://github.com/openduet/openduet/commit/de76c1440c040d765f23aa1d575f18824c88b965
+  - https://github.com/oiov/keep.video/commit/a7e526cca5dfcbb7eeec5c6decf8ee723b398cf8
+- id: copilot-session-marker
+  tool: GitHub Copilot
+  kind: marker
+  text: 'Copilot-Session:'
+  query: '"Copilot-Session"'
+  evidence:
+  - https://github.com/microsoft/typescript-go/commit/04f7f3db2bf2b3fe51eedba2aafcb05a907ffa94
+  - https://github.com/microsoft/testfx/commit/ea83725b61878d8398d0cd5289d1aebcdf0ccd8b
+  - https://github.com/github/docs/commit/dfe0a1665aacbed34a1bdbb344e3c0f284ba0354
+- id: warp-coauthor
+  tool: Warp
+  kind: coauthor
+  email: (agent|oz-agent)@warp\.dev
+  query: '"agent@warp.dev"'
+  evidence:
+  - https://github.com/warpdotdev/docs/commit/87a03ca587988fca82c4556324b3595f13a24967
+  - https://github.com/greatstrength/tiferet/commit/ea0528dfa286b671883bede183359199cff7c575
+  - https://github.com/hmcts/et-sya-frontend/commit/a3190e730c02537abb6f524131ba86b7f1d9d36b
+- id: junie-coauthor
+  tool: JetBrains Junie
+  kind: coauthor
+  email: junie@jetbrains\.com
+  query: '"junie@jetbrains.com"'
+  evidence:
+  - https://github.com/waggi/timeline/commit/25cf98b6f94d3c123fe2e54967e6766357af312d
+  - https://github.com/nawaphonOHM/resume-api/commit/cea6ccecb3f8daf4e565ff35a71a6b580ab06f5e
+  - https://github.com/nawaphonOHM/whatever/commit/628e91b93c669b7277be3120662346367aa972e8
+- id: factory-droid-coauthor
+  tool: Factory Droid
+  kind: coauthor
+  email: 138933559\+factory-droid\[bot\]@users\.noreply\.github\.com
+  query: '"factory-droid"'
+  evidence:
+  - https://github.com/dwojtaszek/zipper/commit/32096d14f22186a4db624256ee123b0fc7322400
+  - https://github.com/Jason-Holt-Digital/factory-droid-workflows/commit/76c29f7c37f5057109dc0645ee7305deb3e4fcc8
+  - https://github.com/Buqisir/english-question-bank/commit/3e793fea3078bf2275e6121500ccfb7f1d95f4c2
+- id: factory-droid-identity
+  tool: Factory Droid
+  kind: identity
+  email: 138933559\+factory-droid\[bot\]@users\.noreply\.github\.com
+  query: '"factory-droid[bot]"'
+  evidence:
+  - https://github.com/qiangweihewu/sboard/commit/89153c6cc20fec9bdcef2555d5bbd99f2f3b49b4
+  - https://github.com/zorguiala/DomDom/commit/cbb4e892be804d13c92721eaeb31dbefd5edfd78
+  - https://github.com/ShaoRou459/OpenWebUI-Agentic-Tooling/commit/2e710ba5a538fddec58a37cd0f95e67ae4427367
+- id: letta-generated-marker
+  tool: Letta Code
+  kind: marker
+  text: Generated with [Letta Code]
+  query: '"Generated with Letta Code"'
+  evidence:
+  - https://github.com/Ripnrip/Andromeda/commit/5f22386ecd20890500be3c648ae9be70f755ecd9
+  - https://github.com/antstanley/oidc-exchange/commit/9869965a88c4506e6abc9999ee818c79167388d8
+  - https://github.com/etalab-ia/just-code/commit/d11db6723fd3efec10eac7f6b353ce5aa46e3feb
+- id: qwen-code-coauthor
+  tool: Qwen Code
+  kind: coauthor
+  email: qwen-coder@alibabacloud\.com
+  query: '"qwen-coder@alibabacloud.com"'
+  evidence:
+  - https://github.com/UynajGI/EviMesh/commit/92aca0be62f2d201dd9b2f7bdbd252cebc3f8f89
+  - https://github.com/KHAEntertainment/showrunner/commit/8cd34fd0ce2b7708e88cd47e3a4097f0c1e457ea
+  - https://github.com/Yaoisss/TayBellow/commit/3133e835e6da5a37b682aad50e927d8d13ebdb8d
+- id: trae-cli-coauthor
+  tool: TRAE
+  kind: coauthor
+  email: (noreply|traecli)@bytedance\.com
+  name: trae cli
+  query: '"TRAE CLI"'
+  evidence:
+  - https://github.com/MengEn-Ink/cili-cycling-miniapp/commit/22ab5a5b2def858cafd5c36f5bea3330f2d4be0f
+  - https://github.com/iryzhkov/openviking-homelab/commit/4c976135a3f4a78f1df755dcdca07eae8c39f19c
+  - https://github.com/deepcoldy/botmux/commit/78289b228d616ce47c1f8dee92640d49971d33d3
+- id: replit-agent-identity
+  tool: Replit Agent
+  kind: identity
+  email: agent@replit\.com
+  query: '"agent@replit.com"'
+  evidence:
+  - https://github.com/XoticArmory/market-hub-app/commit/5f8fdaf0d282000e5102498d814ab939aa972b41
+  - https://github.com/utkarshyadav3436-afk/deepfake-detector/commit/1de22a6979a3e7a7598542200aa25a2a6c1b2214
+  - https://github.com/Tolu23456/Rex/commit/e64bf2033c49e264af868d0ed81e64448817c2cc
+- id: replit-agent-coauthor
+  tool: Replit Agent
+  kind: coauthor
+  email: agent@replit\.com
+  query: '"agent@replit.com"'
+  evidence:
+  - https://github.com/obrienben202/My-School-Attendance-Manager/commit/6074f658fa1426a5caf2235eeff519d624f3afe2
+  - https://github.com/halittayyar0/Agentic-Company-OS/commit/e592a0ec661f90db14cc9467bf667f179f2f6375
+  - https://github.com/Ewchandana33/wal-katha-net/commit/980762b61aeb2d1691102f20b91da938cec804f0
+- id: v0-identity
+  tool: v0
+  kind: identity
+  email: it\+v0agent@vercel\.com
+  query: '"v0agent"'
+  evidence:
+  - https://github.com/pixelqrypt/ForevertechLLC/commit/8fc72f1bd1dfb1db21189be47407430cb29ce2e8
+  - https://github.com/OpenSIN-Code/SIN-Code/commit/d098288a0e731043c8e9bc70a549dc07b284b312
+  - https://github.com/pae-stela/v0-maszyna/commit/b5353133ff125740999afc7cbc067f678fbad9c7
+- id: lovable-identity
+  tool: Lovable
+  kind: identity
+  email: 159125892\+lovable-dev\[bot\]@users\.noreply\.github\.com
+  query: '"lovable-dev[bot]"'
+  evidence:
+  - https://github.com/solsticedigitalcompany/broward-build/commit/041ce18f961831db5eaa10a6ac6766e3e7a1c53a
+  - https://github.com/Heroshimakisatsu/cozy-crib-chat/commit/cdf0badd1e487d96c04fd1a7d3d18ea9629c79c6
+  - https://github.com/Sundar-Eswaran/rohith-kr-ai-portfolio/commit/9ff11d9d55e4ae7d743569507bf3ddf38ab5eb98
+- id: lovable-coauthor
+  tool: Lovable
+  kind: coauthor
+  email: 159125892\+lovable-dev\[bot\]@users\.noreply\.github\.com
+  query: '"lovable-dev"'
+  evidence:
+  - https://github.com/tanishqmudaliar/Weather-Monitoring-System/commit/105207202c01cc28c176c71cfc0ef11fec080e42
+  - https://github.com/SMOSTAFAH1/AI/commit/257ac85c27b05cbbb70e357c95764433f2d9d1a5
+  - https://github.com/notakeith/ai-contributors-test/commit/7808d218789c27732915d884d27e4c1a507fd279
+- id: qodo-identity
+  tool: Qodo
+  kind: identity
+  email: 151058649\+qodo-code-review\[bot\]@users\.noreply\.github\.com
+  query: '"qodo-code-review"'
+  evidence:
+  - https://github.com/gosuda/bitcoin-rs/commit/4dfcea183907a15c7b0c41c644d9f9aadd63b132
+  - https://github.com/gosuda/bitcoin-rs/commit/d16c96e0970a498f73a88f8d6a5d1b687843ed36
+  - https://github.com/gosuda/bitcoin-rs/commit/1fdd20fbb6a630df2ece0edc47e6943b546e1821
+- id: qodo-coauthor
+  tool: Qodo
+  kind: coauthor
+  email: 151058649\+qodo-code-review\[bot\]@users\.noreply\.github\.com
+  query: '"qodo-code-review[bot]"'
+  evidence:
+  - https://github.com/fleekdash/extensions/commit/734483cc837d15aa8c1420665b5706b1f812793e
+  - https://github.com/wang-yi-bit64/dsh-desktop/commit/f94732e7b342097647652961c4ccaeb4b51b4e82
+  - https://github.com/TQSY114514/Aether/commit/90ae320c161d6e19e914274e73cd78412ff09289
+- id: coderabbit-identity
+  tool: CodeRabbit
+  kind: identity
+  email: 136622811\+coderabbitai\[bot\]@users\.noreply\.github\.com
+  query: '"coderabbitai[bot]"'
+  evidence:
+  - https://github.com/palmbeach05/android_packages_apps_AeroControl/commit/bec2b5f3faefa756df384c138f0d3a57a0cbb5b9
+  - https://github.com/ll7/robot_sf_ll7/commit/0d9e3643472c2392f0dccf7e1264803bc800e126
+  - https://github.com/devpoole2907/Anvil-for-OpenCode/commit/4bcb277d2edcd5aadfde76083c1154e5de0cd7a0
+- id: coderabbit-coauthor
+  tool: CodeRabbit
+  kind: coauthor
+  email: 136622811\+coderabbitai\[bot\]@users\.noreply\.github\.com|noreply@coderabbit\.ai
+  query: '"coderabbitai"'
+  evidence:
+  - https://github.com/Ferrocite/ferrox/commit/bd6e8b4fb0f21746d577cfc4856f48dbd027f857
+  - https://github.com/arasu-rrk/rameshkannan.github.io/commit/c2d36d0dd59059a0b9cd4a5bef2de7dba9c6c86b
+  - https://github.com/project-kessel/inventory-api/commit/b03b7937d5574651500326f945249267f2dad9e5

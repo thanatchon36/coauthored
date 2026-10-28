@@ -64,6 +64,9 @@ def main() -> None:
     exclude = {r["repo"] for k in ("s1", "s2") for r in repos_cfg[k]}
     exclude |= {r["repo"] for r in repos_cfg["excluded"]}
     exclude |= set(yaml.safe_load(Path("configs/pilot.yaml").read_text())["pilots"])
+    screen = Path("configs/s3_screen.yaml")
+    if screen.exists():
+        exclude |= {r["repo"] for r in yaml.safe_load(screen.read_text())["screened_out"]}
 
     raw_path = Path("cache/s3_search.json")
     raw: dict[str, dict] = json.loads(raw_path.read_text()) if raw_path.exists() else {}

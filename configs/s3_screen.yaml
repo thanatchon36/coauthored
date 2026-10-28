@@ -1,0 +1,17 @@
+# Hand screen of matched S3 controls (DECISIONS D14), done on repository metadata and README only, before
+# prereg-v1 and before any S3 commit was read. A control is screened out when it is not a software project
+# (its main content is data, a playlist or a specification) or ships a model-training or ML-inference
+# subsystem as a core component. Screened-out repositories leave the pool and the seeded match is re-run.
+screened_out:
+  - repo: Free-TV/IPTV
+    reason: M3U playlist of TV channels; data, not software.
+  - repo: dr5hn/countries-states-cities-database
+    reason: Geographic dataset; data, not software.
+  - repo: freqtrade/freqtrade
+    reason: Ships FreqAI, a machine-learning training and prediction subsystem.
+  - repo: ethereum/consensus-specs
+    reason: Protocol specification (Markdown with executable reference code), not a software product.
+  - repo: JerBouma/FinanceDatabase
+    reason: Database of financial symbols with a thin Python accessor; data, not software.
+  - repo: pymc-devs/pymc
+    reason: Probabilistic programming and Bayesian model fitting; a statistical-modelling library close to ML.

@@ -1,0 +1,49 @@
+{
+ "repos": {
+  "microsoft/typescript-go": {
+   "bots_version": "1",
+   "catalogue_version": "1",
+   "clone_bytes": 3793859,
+   "clone_seconds": 1.6,
+   "default_branch": "main",
+   "git_version": "git version 2.43.0",
+   "head_sha": "89d5d5b2849a0db0957065889ca58536fa6d2e4a",
+   "n_attributed_all": 381,
+   "n_commits_all": 2491,
+   "raw_bytes": 95593,
+   "repo": "microsoft/typescript-go",
+   "scan_seconds": 1.4,
+   "scanned_at": "2026-10-28T16:45:24+00:00"
+  },
+  "modelcontextprotocol/python-sdk": {
+   "bots_version": "1",
+   "catalogue_version": "1",
+   "clone_bytes": 987760,
+   "clone_seconds": 1.1,
+   "default_branch": "main",
+   "git_version": "git version 2.43.0",
+   "head_sha": "d7845c073a2b9ba5ab2817ecf93d3e45ef24cd14",
+   "n_attributed_all": 32,
+   "n_commits_all": 1109,
+   "raw_bytes": 42941,
+   "repo": "modelcontextprotocol/python-sdk",
+   "scan_seconds": 0.8,
+   "scanned_at": "2026-10-28T16:45:21+00:00"
+  },
+  "openai/openai-agents-python": {
+   "bots_version": "1",
+   "catalogue_version": "1",
+   "clone_bytes": 2269677,
+   "clone_seconds": 1.2,
+   "default_branch": "main",
+   "git_version": "git version 2.43.0",
+   "head_sha": "cd26bbbc52847845fde73b9952b51e62e2bcbdc0",
+   "n_attributed_all": 6,
+   "n_commits_all": 2547,
+   "raw_bytes": 98500,
+   "repo": "openai/openai-agents-python",
+   "scan_seconds": 1.0,
+   "scanned_at": "2026-10-28T16:45:26+00:00"
+  }
+ }
+}

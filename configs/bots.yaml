@@ -1,18 +1,32 @@
 version: '1'
-# Rule (DECISIONS D7): an author whose name ends in [bot] and is not an AI-agent account in the signature
-# catalogue is a maintenance bot. Listed below: automation identities without the suffix.
 bot_suffix_rule: true
 bots:
 - id: github-action-legacy
   email: action@github\.com
-  query: 'author-email:action@github.com'
+  query: author-email:action@github.com
   notes: Identity commonly configured in workflows ("GitHub Action").
+  evidence:
+  - https://github.com/dennislee928/Smart_Zone/commit/6cb40c79aedbbe76b4e2e9685a400d45ebcdf470
+  - https://github.com/Brantford-Data/arena-tracker/commit/53b0a7bbe20c775acc2c847333c376aa9c45b259
+  - https://github.com/aikyalabs-dev/AikyaLabs-Simple-ChordTrack/commit/e576bb8488d4675d9ced513caf3b35dc63ab9edf
 - id: renovate-bot
   email: bot@renovateapp\.com
-  query: 'author-email:bot@renovateapp.com'
+  query: author-email:bot@renovateapp.com
+  evidence:
+  - https://github.com/andrew-soltan-peloton/next-netlify-isr-test/commit/46bfeb349592979aa26d224c8987270f5650ac99
+  - https://github.com/Patocity/CityTech-blog-theme/commit/03a0fe91b0cb9ad1df290bd72039b0aebd6e0e47
+  - https://github.com/Coleus99/gatsby-starter-netlify-cms-2024/commit/187f832ee136dd61eb5d58a92bd03859a783a7a0
 - id: snyk-bot
   email: snyk-bot@snyk\.io
-  query: 'author-email:snyk-bot@snyk.io'
+  query: author-email:snyk-bot@snyk.io
+  evidence:
+  - https://github.com/Cratis/Chronicle/commit/3db80b1845545acd2dcdfd727c7bba028d6e9c53
+  - https://github.com/mhoerche/dashy/commit/7990401be6ddde6af00dc0db7f493553e621ab2e
+  - https://github.com/KabriAcid/jambite/commit/d05416b7474a55dd0feca128dfcce4d9c6cd7e3e
 - id: semantic-release-bot
   email: semantic-release-bot@martynus\.net
-  query: 'author-email:semantic-release-bot@martynus.net'
+  query: author-email:semantic-release-bot@martynus.net
+  evidence:
+  - https://github.com/HanseltimeIndustries/pkgtest-setup-action/commit/3789ef26d183435efa7db6a0e2f2463c998644a3
+  - https://github.com/revenuebee/revenuebee.github.io/commit/e44c048aef1ab3201eff05450614a32e6ce4b6bb
+  - https://github.com/jimcullenaus/lemmy-daily-games-bot/commit/445b578f0d38b660aa077b0e78c4ba69a6d56672

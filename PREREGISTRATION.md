@@ -71,8 +71,10 @@ not archived, not a fork, ≥ 2,000 stars, ≥ 200 default-branch commits 2025-1
   (7 languages × 4 star bands, pushed since 2026-09-01), excluding AI/ML topics and AI terms in name or
   description, non-software repositories and every S1/S2/pilot/excluded candidate. Seeded greedy nearest-neighbour
   match within the same language group, caliper ±50% on stars and on last-12-month commits, distance
-  `|log stars ratio| + |log commits ratio|`, seed 20261028; outside-caliper matches are flagged. Output:
-  `data/s3_match.json`.
+  `|log stars ratio| + |log commits ratio|`, seed 20261028; outside-caliper matches are flagged. Each matched
+  control was then screened by hand on metadata and README (software project; no model training or ML inference
+  at its core); six were screened out with reasons (`configs/s3_screen.yaml`) and the match re-run until all
+  passed. Output: `data/s3_match.json`.
 - **Pilot repositories (excluded):** modelcontextprotocol/python-sdk, microsoft/typescript-go,
   openai/openai-agents-python.
 
@@ -151,10 +153,11 @@ S3 matches removed; a binomial GLMM with a random intercept and slope per reposi
 
 | File | SHA-256 |
 |---|---|
-| `configs/signatures.yaml` | `TBD-at-tag` |
-| `configs/bots.yaml` | `TBD-at-tag` |
-| `configs/repos.yaml` | `TBD-at-tag` |
-| `data/s3_match.json` | `TBD-at-tag` |
+| `configs/signatures.yaml` | `0b3094d666c465c652150a2aa15b86e796e3e2cfc4347fe3484c439c16a736f7` |
+| `configs/bots.yaml` | `349e42668b3a4ed7d76f0103aca7985f244fba516c3c9ed9c99ae57125df1210` |
+| `configs/repos.yaml` | `36f50a3f7534e7ad627a5777681f8e9aaa103bc49af71eca200e6723c5337d9d` |
+| `configs/s3_screen.yaml` | `b595c0c3a6409171210b22a983970df187868a0a7e9e749c7c964cca1078ede7` |
+| `data/s3_match.json` | `ee18d2cd605679b1ce49587f7d7924f63a79633be6e068c2a5cfb51f33863f39` |
 
 A signature found after freezing may be added only as a logged deviation, after which every number is recomputed
 and both versions are reported.

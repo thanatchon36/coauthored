@@ -22,3 +22,4 @@ markers; MISSION §1.6 forbids free-text matching.
 | `qwen-code-dev-bot`, `letta-integration[bot]` | author, co-author | Project CI/integration automation; maintenance bots under the `[bot]` rule or not AI attribution. |
 | `Replit-Commit-*` trailers | trailer | Replit workspace checkpoints; they also mark human edits made in Replit. `Replit Agent <agent@replit.com>` is kept. |
 | `Lab: kimi`, `Order: …/kimi-*` | trailer | One user's workflow convention. |
+| `Sweep <236279702+sweep-ai@users.noreply.github.com>` | co-author | Only one public commit found by two searches (2026-10-29); fewer than the three evidence URLs required. |
