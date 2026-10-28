@@ -349,7 +349,9 @@ def run_all(
 # --- Sensitivity analyses (PREREGISTRATION §8) ---------------------------------------------------
 def largest(full: pl.DataFrame, k: int = 3) -> set[str]:
     """The ``k`` repositories with most window commits in each stratum."""
-    sizes = full.group_by("stratum", "repo").agg(pl.col("n").sum()).sort("n", descending=True)
+    sizes = (
+        full.group_by("stratum", "repo").agg(pl.col("n").sum()).sort(["n", "repo"], descending=[True, False])
+    )
     return {
         r
         for s in sizes["stratum"].unique().to_list()
