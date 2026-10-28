@@ -33,3 +33,14 @@ def test_window_and_tools(fixture_repo: Path, tmp_path: Path) -> None:
     assert repo_month(df, Spec(start="2025-03", end="2025-04"))["n"].sum() == 2
     tools = repo_month_tool(df, Spec())
     assert set(tools["tool"]) == {"Claude Code", "Cursor", "GitHub Copilot"}
+
+
+def test_zulu_and_offset_dates_agree() -> None:
+    import polars as pl
+
+    from coauthored.analysis.aggregate import month_utc
+
+    df = pl.DataFrame(
+        {"d": ["2025-03-31T23:30:00Z", "2025-04-01T06:30:00+07:00", "2025-04-01T00:00:00+00:00"]}
+    )
+    assert df.select(month_utc("d"))["month"].to_list() == ["2025-03", "2025-03", "2025-04"]

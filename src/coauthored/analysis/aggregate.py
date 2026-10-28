@@ -44,14 +44,20 @@ def load_commits(path: Path, repo: str) -> pl.DataFrame:
     return df.with_columns(pl.lit(repo).alias("repo"))
 
 
-def filter_commits(df: pl.DataFrame, spec: Spec) -> pl.DataFrame:
-    month = (
-        pl.col(spec.date)
+def month_utc(column: str) -> pl.Expr:
+    """UTC calendar month of an ISO-8601 git date."""
+    return (
+        pl.col(column)
+        # newer git writes a UTC offset as "Z" in --date=iso-strict output, older git as "+00:00"
+        .str.replace(r"Z$", "+00:00")
         .str.to_datetime("%Y-%m-%dT%H:%M:%S%:z", time_zone="UTC")
         .dt.strftime("%Y-%m")
         .alias("month")
     )
-    out = df.with_columns(month)
+
+
+def filter_commits(df: pl.DataFrame, spec: Spec) -> pl.DataFrame:
+    out = df.with_columns(month_utc(spec.date))
     if not spec.merges:
         out = out.filter(pl.col("n_parents") <= 1)
     if spec.first_parent_only:
