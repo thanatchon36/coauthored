@@ -54,3 +54,6 @@ files = ["src/coauthored"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-q"
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["E501"]  # literal commit messages in fixtures

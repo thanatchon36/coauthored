@@ -1,0 +1,6 @@
+# Pilot repositories (MISSION §3.5): scanner debugging, signature discovery and the hand-labelled validation
+# set only. Excluded from every analysis and from S1–S3. Chosen 2026-10-28 for diverse AI-tool use.
+pilots:
+  - modelcontextprotocol/python-sdk
+  - microsoft/typescript-go
+  - openai/openai-agents-python

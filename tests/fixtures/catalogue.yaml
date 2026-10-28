@@ -1,0 +1,19 @@
+version: test
+signatures:
+  - id: claude-code-coauthor
+    tool: Claude Code
+    kind: coauthor
+    email: 'noreply@anthropic\.com'
+    name: 'claude( [a-z0-9. ]+)?'
+  - id: claude-code-generated-marker
+    tool: Claude Code
+    kind: marker
+    text: 'Generated with [Claude Code]'
+  - id: cursor-coauthor
+    tool: Cursor
+    kind: coauthor
+    email: 'cursoragent@cursor\.com'
+  - id: copilot-agent-identity
+    tool: GitHub Copilot
+    kind: identity
+    email: '198982749\+copilot@users\.noreply\.github\.com'

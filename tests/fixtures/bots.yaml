@@ -1,0 +1,5 @@
+version: test
+bot_suffix_rule: true
+bots:
+  - id: snyk
+    email: 'snyk-bot@snyk\.io'

@@ -1,0 +1,27 @@
+# Candidate pools for S1 and S2 (MISSION §3.5). Inclusion is decided by rule in scripts/resolve_candidates.py;
+# this file only lists what is considered. Layer is recorded for S1.
+s1:
+  training_frameworks: [pytorch/pytorch, jax-ml/jax, google/flax, keras-team/keras]
+  model_libraries: [huggingface/transformers, huggingface/peft, huggingface/trl, huggingface/accelerate,
+                    huggingface/datasets, huggingface/diffusers, huggingface/tokenizers, huggingface/safetensors]
+  distributed_training: [microsoft/DeepSpeed, NVIDIA/Megatron-LM, NVIDIA/NeMo, pytorch/torchtitan,
+                         Lightning-AI/pytorch-lightning, mosaicml/composer, mosaicml/llm-foundry]
+  finetuning_rl: [axolotl-ai-cloud/axolotl, hiyouga/LLaMA-Factory, unslothai/unsloth, OpenRLHF/OpenRLHF,
+                  volcengine/verl, allenai/open-instruct]
+  inference_serving: [vllm-project/vllm, sgl-project/sglang, NVIDIA/TensorRT-LLM, ggml-org/llama.cpp, ggml-org/ggml,
+                      ml-explore/mlx, ml-explore/mlx-lm, ollama/ollama, huggingface/text-generation-inference]
+  kernels_compilers: [triton-lang/triton, Dao-AILab/flash-attention, facebookresearch/xformers,
+                      bitsandbytes-foundation/bitsandbytes]
+  evaluation_data: [EleutherAI/lm-evaluation-harness, huggingface/lighteval, openai/evals, EleutherAI/gpt-neox,
+                    huggingface/datatrove, allenai/dolma, NVIDIA/NeMo-Curator, openai/tiktoken, google/sentencepiece]
+  # added beyond the MISSION list to reach >= 40 after the rule; same inclusion rule, chosen before any count
+  extra: [pytorch/ao, pytorch/torchtune, pytorch/executorch, huggingface/optimum, huggingface/huggingface_hub,
+          NVIDIA/TransformerEngine, flashinfer-ai/flashinfer, deepspeedai/DeepSpeed, InternLM/lmdeploy,
+          mlc-ai/mlc-llm, microsoft/onnxruntime, openxla/xla, tensorflow/tensorflow, deepseek-ai/DeepEP,
+          modular/modular, huggingface/nanotron, stanford-crfm/helm, EleutherAI/lm-eval-overview]
+s2:
+  harnesses: [openai/codex, google-gemini/gemini-cli, All-Hands-AI/OpenHands, Aider-AI/aider, block/goose,
+              cline/cline, sst/opencode, RooCodeInc/Roo-Code, continuedev/continue, Kilo-Org/kilocode,
+              charmbracelet/crush, QwenLM/qwen-code, anomalyco/opencode, Factory-AI/factory, zed-industries/zed,
+              anthropics/claude-code, github/copilot-cli, warpdotdev/Warp, OpenInterpreter/open-interpreter,
+              plandex-ai/plandex, SWE-agent/SWE-agent, smol-ai/developer]

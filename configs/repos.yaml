@@ -1,0 +1,545 @@
+rule:
+  min_stars: 2000
+  min_commits_12m: 200
+  min_commits_2024_s1_s3: 100
+  window_12m: 2025-10-01..2026-10-01
+  counted_via: GitHub REST commits API, default branch
+s1:
+- repo: pytorch/pytorch
+  layer: training_frameworks
+  language: Python
+  stars: 105142
+  commits_2024: 14895
+  commits_12m: 17878
+  created_at: '2016-08-13'
+  rationale: Tensors and Dynamic neural networks in Python with strong GPU acceleration
+- repo: jax-ml/jax
+  layer: training_frameworks
+  language: Python
+  stars: 36517
+  commits_2024: 6127
+  commits_12m: 7883
+  created_at: '2018-10-25'
+  rationale: 'Composable transformations of Python+NumPy programs: differentiate, vectorize, JIT to GPU/TPU, and more'
+- repo: google/flax
+  layer: training_frameworks
+  language: Jupyter Notebook
+  stars: 7359
+  commits_2024: 843
+  commits_12m: 545
+  created_at: '2020-01-10'
+  rationale: Flax is a neural network library for JAX that is designed for flexibility.
+- repo: keras-team/keras
+  layer: training_frameworks
+  language: Python
+  stars: 64391
+  commits_2024: 1056
+  commits_12m: 1072
+  created_at: '2015-03-28'
+  rationale: Deep Learning for humans
+- repo: huggingface/transformers
+  layer: model_libraries
+  language: Python
+  stars: 168277
+  commits_2024: 2850
+  commits_12m: 3527
+  created_at: '2018-10-29'
+  rationale: '🤗 Transformers: the model-definition framework for state-of-the-art machine learning models in text, vision,
+    audio, and multimodal models, for both inference an'
+- repo: huggingface/peft
+  layer: model_libraries
+  language: Python
+  stars: 21855
+  commits_2024: 418
+  commits_12m: 496
+  created_at: '2022-11-25'
+  rationale: '🤗 PEFT: State-of-the-art Parameter-Efficient Fine-Tuning.'
+- repo: huggingface/trl
+  layer: model_libraries
+  language: Python
+  stars: 19621
+  commits_2024: 583
+  commits_12m: 1847
+  created_at: '2020-03-27'
+  rationale: Train transformer language models with reinforcement learning.
+- repo: huggingface/accelerate
+  layer: model_libraries
+  language: Python
+  stars: 9927
+  commits_2024: 423
+  commits_12m: 203
+  created_at: '2020-10-30'
+  rationale: 🚀 A simple way to launch, train, and use PyTorch models on almost any device and distributed configuration, automatic
+    mixed precision (including fp8), and easy-
+- repo: huggingface/datasets
+  layer: model_libraries
+  language: Python
+  stars: 22092
+  commits_2024: 296
+  commits_12m: 241
+  created_at: '2020-03-26'
+  rationale: 🤗 The largest hub of ready-to-use datasets for AI models with fast, easy-to-use and efficient data manipulation
+    tools
+- repo: huggingface/diffusers
+  layer: model_libraries
+  language: Python
+  stars: 34823
+  commits_2024: 1466
+  commits_12m: 1063
+  created_at: '2022-05-30'
+  rationale: '🤗 Diffusers: State-of-the-art diffusion models for image, video, and audio generation in PyTorch.'
+- repo: huggingface/tokenizers
+  layer: model_libraries
+  language: Rust
+  stars: 11206
+  commits_2024: 101
+  commits_12m: 257
+  created_at: '2019-11-01'
+  rationale: 💥 Fast State-of-the-Art Tokenizers optimized for Research and Production
+- repo: deepspeedai/DeepSpeed
+  layer: distributed_training
+  language: Python
+  stars: 43268
+  commits_2024: 615
+  commits_12m: 567
+  created_at: '2020-01-23'
+  rationale: DeepSpeed is a deep learning optimization library that makes distributed training and inference easy, efficient,
+    and effective.
+- repo: NVIDIA/Megatron-LM
+  layer: distributed_training
+  language: Python
+  stars: 18288
+  commits_2024: 2144
+  commits_12m: 2730
+  created_at: '2019-03-21'
+  rationale: Ongoing research training transformer models at scale
+- repo: NVIDIA-NeMo/Speech
+  layer: distributed_training
+  language: Python
+  stars: 18628
+  commits_2024: 1735
+  commits_12m: 585
+  created_at: '2019-08-05'
+  rationale: A scalable generative AI framework built for researchers and developers working on Large Language Models, Multimodal,
+    and Speech AI (Automatic Speech Recognitio
+- repo: pytorch/torchtitan
+  layer: distributed_training
+  language: Python
+  stars: 5856
+  commits_2024: 386
+  commits_12m: 1463
+  created_at: '2023-12-13'
+  rationale: A PyTorch native platform for training generative AI models
+- repo: Lightning-AI/pytorch-lightning
+  layer: distributed_training
+  language: Python
+  stars: 31432
+  commits_2024: 463
+  commits_12m: 271
+  created_at: '2019-03-31'
+  rationale: Pretrain, finetune ANY AI model of ANY size on 1 or 10,000+ GPUs with zero code changes.
+- repo: axolotl-ai-cloud/axolotl
+  layer: finetuning_rl
+  language: Python
+  stars: 12640
+  commits_2024: 662
+  commits_12m: 591
+  created_at: '2023-04-14'
+  rationale: Go ahead and axolotl questions
+- repo: hiyouga/LlamaFactory
+  layer: finetuning_rl
+  language: Python
+  stars: 75759
+  commits_2024: 1666
+  commits_12m: 322
+  created_at: '2023-05-28'
+  rationale: Unified Efficient Fine-Tuning of 100+ LLMs & VLMs (ACL 2024)
+- repo: unslothai/unsloth
+  layer: finetuning_rl
+  language: Python
+  stars: 78674
+  commits_2024: 975
+  commits_12m: 6864
+  created_at: '2023-11-29'
+  rationale: Local UI to run and train LLMs and diffusion models. Supports GGUF, MLX, Qwen3.8, DeepSeek-V4.1, MiniMax-H3,
+    Gemma 4, FLUX and more.
+- repo: allenai/open-instruct
+  layer: finetuning_rl
+  language: Python
+  stars: 3913
+  commits_2024: 408
+  commits_12m: 510
+  created_at: '2023-06-09'
+  rationale: AllenAI's post-training codebase
+- repo: vllm-project/vllm
+  layer: inference_serving
+  language: Python
+  stars: 95774
+  commits_2024: 3354
+  commits_12m: 12248
+  created_at: '2023-02-09'
+  rationale: A high-throughput and memory-efficient inference and serving engine for LLMs
+- repo: sgl-project/sglang
+  layer: inference_serving
+  language: Python
+  stars: 38315
+  commits_2024: 1619
+  commits_12m: 13559
+  created_at: '2024-01-08'
+  rationale: SGLang is a high-performance serving framework for large language models and multimodal models.
+- repo: ggml-org/llama.cpp
+  layer: inference_serving
+  language: C++
+  stars: 132631
+  commits_2024: 2662
+  commits_12m: 4658
+  created_at: '2023-03-10'
+  rationale: LLM inference in C/C++
+- repo: ggml-org/ggml
+  layer: inference_serving
+  language: C++
+  stars: 15549
+  commits_2024: 1091
+  commits_12m: 2004
+  created_at: '2022-09-18'
+  rationale: Tensor library for machine learning
+- repo: ml-explore/mlx
+  layer: inference_serving
+  language: C++
+  stars: 28964
+  commits_2024: 747
+  commits_12m: 928
+  created_at: '2023-11-28'
+  rationale: 'MLX: An array framework for Apple silicon'
+- repo: ml-explore/mlx-lm
+  layer: inference_serving
+  language: Python
+  stars: 7495
+  commits_2024: 281
+  commits_12m: 372
+  created_at: '2025-03-11'
+  rationale: Run LLMs with MLX
+- repo: ollama/ollama
+  layer: inference_serving
+  language: Go
+  stars: 185112
+  commits_2024: 2097
+  commits_12m: 1220
+  created_at: '2023-06-26'
+  rationale: Get up and running with Kimi, GLM, MiniMax, DeepSeek, gpt-oss, Qwen, Gemma and other models.
+- repo: triton-lang/triton
+  layer: kernels_compilers
+  language: MLIR
+  stars: 20473
+  commits_2024: 1568
+  commits_12m: 2177
+  created_at: '2014-08-30'
+  rationale: Development repository for the Triton language and compiler
+- repo: Dao-AILab/flash-attention
+  layer: kernels_compilers
+  language: Python
+  stars: 25216
+  commits_2024: 202
+  commits_12m: 567
+  created_at: '2022-05-19'
+  rationale: Fast and memory-efficient exact attention
+- repo: bitsandbytes-foundation/bitsandbytes
+  layer: kernels_compilers
+  language: Python
+  stars: 8535
+  commits_2024: 266
+  commits_12m: 216
+  created_at: '2021-06-04'
+  rationale: Accessible large language models via k-bit quantization for PyTorch.
+- repo: EleutherAI/lm-evaluation-harness
+  layer: evaluation_data
+  language: Python
+  stars: 14338
+  commits_2024: 432
+  commits_12m: 267
+  created_at: '2020-08-28'
+  rationale: A framework for few-shot evaluation of language models.
+- repo: huggingface/datatrove
+  layer: evaluation_data
+  language: Python
+  stars: 3409
+  commits_2024: 198
+  commits_12m: 249
+  created_at: '2023-06-14'
+  rationale: Freeing data processing from scripting madness by providing a set of platform-agnostic customizable pipeline
+    processing blocks.
+- repo: pytorch/ao
+  layer: kernels_compilers
+  language: Python
+  stars: 3018
+  commits_2024: 830
+  commits_12m: 936
+  created_at: '2023-11-03'
+  rationale: PyTorch native quantization for training and inference
+- repo: pytorch/executorch
+  layer: inference_serving
+  language: Python
+  stars: 5136
+  commits_2024: 3856
+  commits_12m: 4821
+  created_at: '2022-02-25'
+  rationale: On-device AI across mobile, embedded and edge for PyTorch
+- repo: NVIDIA/TransformerEngine
+  layer: kernels_compilers
+  language: Python
+  stars: 3598
+  commits_2024: 464
+  commits_12m: 837
+  created_at: '2022-09-20'
+  rationale: A library for accelerating Transformer models on NVIDIA GPUs, including using 8-bit and 4-bit floating point
+    (FP8 and FP4) precision on Hopper, Ada and Blackwel
+- repo: flashinfer-ai/flashinfer
+  layer: kernels_compilers
+  language: Cuda
+  stars: 6806
+  commits_2024: 485
+  commits_12m: 1827
+  created_at: '2023-07-22'
+  rationale: 'FlashInfer: Kernel Library for LLM Serving'
+- repo: InternLM/lmdeploy
+  layer: inference_serving
+  language: Python
+  stars: 8124
+  commits_2024: 749
+  commits_12m: 585
+  created_at: '2023-06-15'
+  rationale: LMDeploy is a toolkit for compressing, deploying, and serving LLMs.
+- repo: microsoft/onnxruntime
+  layer: inference_serving
+  language: C++
+  stars: 22183
+  commits_2024: 1906
+  commits_12m: 2063
+  created_at: '2018-11-10'
+  rationale: 'ONNX Runtime: cross-platform, high performance ML inferencing and training accelerator'
+- repo: openxla/xla
+  layer: kernels_compilers
+  language: C++
+  stars: 4620
+  commits_2024: 9720
+  commits_12m: 10776
+  created_at: '2022-08-09'
+  rationale: A machine learning compiler for GPUs, CPUs, and ML accelerators
+- repo: tensorflow/tensorflow
+  layer: training_frameworks
+  language: C++
+  stars: 201273
+  commits_2024: 16198
+  commits_12m: 14763
+  created_at: '2015-11-07'
+  rationale: An Open Source Machine Learning Framework for Everyone
+- repo: modular/modular
+  layer: inference_serving
+  language: Mojo
+  stars: 30066
+  commits_2024: 19601
+  commits_12m: 18733
+  created_at: '2023-04-28'
+  rationale: The Modular Platform (includes MAX & Mojo)
+- repo: stanford-crfm/helm
+  layer: evaluation_data
+  language: Python
+  stars: 2960
+  commits_2024: 828
+  commits_12m: 310
+  created_at: '2021-11-29'
+  rationale: 'Holistic Evaluation of Language Models (HELM) is an open source Python framework created by the Center for Research
+    on Foundation Models (CRFM) at Stanford for '
+s2:
+- repo: openai/codex
+  layer: harness
+  language: Rust
+  stars: 131414
+  commits_2024: 0
+  commits_12m: 10252
+  created_at: '2025-04-13'
+  rationale: Lightweight coding agent that runs in your terminal
+- repo: google-gemini/gemini-cli
+  layer: harness
+  language: TypeScript
+  stars: 108596
+  commits_2024: 0
+  commits_12m: 3847
+  created_at: '2025-04-17'
+  rationale: An open-source AI agent that brings the power of Gemini directly into your terminal.
+- repo: OpenHands/OpenHands
+  layer: harness
+  language: TypeScript
+  stars: 92094
+  commits_2024: 2995
+  commits_12m: 3097
+  created_at: '2024-03-13'
+  rationale: '🙌 OpenHands: AI-Driven Development'
+- repo: aaif-goose/goose
+  layer: harness
+  language: Rust
+  stars: 55863
+  commits_2024: 187
+  commits_12m: 3407
+  created_at: '2024-08-23'
+  rationale: an open source, extensible AI agent that goes beyond code suggestions - install, execute, edit, and test with
+    any LLM
+- repo: cline/cline
+  layer: harness
+  language: TypeScript
+  stars: 70980
+  commits_2024: 1067
+  commits_12m: 3871
+  created_at: '2024-07-06'
+  rationale: Autonomous coding agent as an SDK, IDE extension, or CLI assistant.
+- repo: anomalyco/opencode
+  layer: harness
+  language: TypeScript
+  stars: 222654
+  commits_2024: 0
+  commits_12m: 16926
+  created_at: '2025-04-30'
+  rationale: The open source coding agent.
+- repo: continuedev/continue
+  layer: harness
+  language: TypeScript
+  stars: 36360
+  commits_2024: 5929
+  commits_12m: 2221
+  created_at: '2023-05-24'
+  rationale: open-source coding agent
+- repo: Kilo-Org/kilocode
+  layer: harness
+  language: TypeScript
+  stars: 27779
+  commits_2024: 0
+  commits_12m: 29918
+  created_at: '2025-03-10'
+  rationale: Kilo is the all-in-one agentic engineering platform. Build, ship, and iterate faster with the most popular open
+    source coding agent.
+- repo: charmbracelet/crush
+  layer: harness
+  language: Go
+  stars: 28849
+  commits_2024: 0
+  commits_12m: 2569
+  created_at: '2025-05-21'
+  rationale: Glamourous agentic coding for all 💘
+- repo: QwenLM/qwen-code
+  layer: harness
+  language: TypeScript
+  stars: 28773
+  commits_2024: 0
+  commits_12m: 7890
+  created_at: '2025-06-26'
+  rationale: An open-source AI coding agent that lives in your terminal.
+- repo: warpdotdev/warp
+  layer: harness
+  language: Rust
+  stars: 65743
+  commits_2024: 0
+  commits_12m: 2453
+  created_at: '2021-07-08'
+  rationale: Warp is an agentic development environment, born out of the terminal.
+- repo: openinterpreter/openinterpreter
+  layer: harness
+  language: Rust
+  stars: 68709
+  commits_2024: 0
+  commits_12m: 9356
+  created_at: '2023-07-14'
+  rationale: A coding agent for open models like Kimi K3 and GLM 5.3
+excluded:
+- repo: safetensors/safetensors
+  stratum: s1
+  reason: commits_12m 72 < 200; commits_2024 38 < 100
+- repo: mosaicml/composer
+  stratum: s1
+  reason: commits_12m 2 < 200; archived or fork
+- repo: mosaicml/llm-foundry
+  stratum: s1
+  reason: commits_12m 1 < 200; archived or fork
+- repo: OpenRLHF/OpenRLHF
+  stratum: s1
+  reason: commits_12m 156 < 200
+- repo: verl-project/verl
+  stratum: s1
+  reason: commits_2024 50 < 100
+- repo: NVIDIA/TensorRT-LLM
+  stratum: s1
+  reason: commits_2024 82 < 100
+- repo: huggingface/text-generation-inference
+  stratum: s1
+  reason: commits_12m 8 < 200; archived or fork
+- repo: facebookresearch/xformers
+  stratum: s1
+  reason: commits_12m 63 < 200
+- repo: huggingface/lighteval
+  stratum: s1
+  reason: commits_12m 99 < 200
+- repo: openai/evals
+  stratum: s1
+  reason: commits_12m 3 < 200; commits_2024 48 < 100
+- repo: EleutherAI/gpt-neox
+  stratum: s1
+  reason: commits_12m 13 < 200
+- repo: allenai/dolma
+  stratum: s1
+  reason: stars 1562 < 2000; commits_12m 0 < 200; commits_2024 79 < 100
+- repo: NVIDIA-NeMo/Curator
+  stratum: s1
+  reason: stars 1831 < 2000
+- repo: openai/tiktoken
+  stratum: s1
+  reason: commits_12m 13 < 200; commits_2024 19 < 100
+- repo: google/sentencepiece
+  stratum: s1
+  reason: commits_2024 89 < 100
+- repo: meta-pytorch/torchtune
+  stratum: s1
+  reason: commits_12m 12 < 200
+- repo: huggingface/optimum
+  stratum: s1
+  reason: commits_12m 45 < 200
+- repo: huggingface/huggingface_hub
+  stratum: s1
+  reason: 'S1 scope: a Hub client for distributing models and datasets, not training, fine-tuning, evaluating or serving'
+- repo: mlc-ai/mlc-llm
+  stratum: s1
+  reason: commits_12m 97 < 200
+- repo: deepseek-ai/DeepEP
+  stratum: s1
+  reason: commits_12m 34 < 200; commits_2024 0 < 100
+- repo: huggingface/nanotron
+  stratum: s1
+  reason: commits_12m 7 < 200
+- repo: EleutherAI/lm-eval-overview
+  stratum: s1
+  reason: not found
+- repo: Aider-AI/aider
+  stratum: s2
+  reason: commits_12m 116 < 200
+- repo: RooCodeInc/Roo-Code
+  stratum: s2
+  reason: archived or fork
+- repo: Factory-AI/factory
+  stratum: s2
+  reason: stars 69 < 2000
+- repo: zed-industries/zed
+  stratum: s2
+  reason: 'S2 scope: describes itself as a code editor; the agent is a feature, not the product'
+- repo: anthropics/claude-code
+  stratum: s2
+  reason: 'S2 scope: harness source is not in the repository (plugins, examples, changelog)'
+- repo: github/copilot-cli
+  stratum: s2
+  reason: 'S2 scope: harness source is not in the repository (issues and releases only)'
+- repo: plandex-ai/plandex
+  stratum: s2
+  reason: commits_12m 2 < 200
+- repo: SWE-agent/SWE-agent
+  stratum: s2
+  reason: commits_12m 56 < 200
+- repo: smol-ai/developer
+  stratum: s2
+  reason: commits_12m 0 < 200
