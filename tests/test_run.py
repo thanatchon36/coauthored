@@ -151,3 +151,13 @@ def test_clean_handles_nan_and_numpy() -> None:
     import numpy as np
 
     assert run._clean({"x": float("nan"), "y": (np.float64(1.5), np.int64(2))}) == {"x": None, "y": [1.5, 2]}
+
+
+def test_analyze_is_byte_reproducible(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    _inputs(tmp_path)
+    monkeypatch.chdir(tmp_path)
+    paths = ["results/numbers.json", "results/figures/f1_monthly_share.svg", "results/figures/f6_policy.svg"]
+    run.analyze(b=10, out=Path("results"))
+    first = [Path(p).read_bytes() for p in paths]
+    run.analyze(b=10, out=Path("results"))
+    assert [Path(p).read_bytes() for p in paths] == first

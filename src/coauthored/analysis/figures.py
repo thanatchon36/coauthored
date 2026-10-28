@@ -52,6 +52,7 @@ def setup() -> None:
         font_manager.fontManager.addfont(str(p))
     plt.rcParams.update(
         {
+            "svg.hashsalt": "coauthored",  # stable element ids: byte-identical SVGs across runs
             "font.family": "Libertinus Serif",
             "font.size": 8.5,
             "axes.labelsize": 8.5,

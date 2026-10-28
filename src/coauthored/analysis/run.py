@@ -175,8 +175,10 @@ def _per_repo_q3(df: pl.DataFrame) -> pl.DataFrame:
         .agg((pl.col("authors_attr") / pl.col("authors")).mean().alias("breadth"))
     )
     agg = q.group_by("stratum", "repo").agg(pl.col("n").sum(), pl.col("n_attr").sum())
-    return agg.join(breadth, on=["stratum", "repo"], how="left").with_columns(
-        (pl.col("n_attr") / pl.col("n")).alias("share")
+    return (
+        agg.join(breadth, on=["stratum", "repo"], how="left")
+        .with_columns((pl.col("n_attr") / pl.col("n")).alias("share"))
+        .sort("stratum", "repo")  # stable row order: deterministic numbers.json and figure jitter
     )
 
 
@@ -309,5 +311,7 @@ def analyze(b: int = h.B, out: Path = RESULTS) -> dict[str, Any]:
         "size": sizes,
     }
     numbers = _clean(numbers)
-    (out / "numbers.json").write_text(json.dumps(numbers, indent=1, ensure_ascii=False), encoding="utf-8")
+    (out / "numbers.json").write_text(
+        json.dumps(numbers, indent=1, ensure_ascii=False, sort_keys=True), encoding="utf-8"
+    )
     return numbers
