@@ -17,4 +17,4 @@ jobs:
       - run: uv sync --all-extras
       - run: uv run ruff check . && uv run ruff format --check .
       - run: uv run mypy
-      - run: uv run pytest --cov=coauthored
+      - run: uv run pytest --cov=coauthored --cov-fail-under=85

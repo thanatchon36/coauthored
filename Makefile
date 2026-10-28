@@ -1,7 +1,7 @@
 .PHONY: test lint check reproduce
 
 test:
-	uv run pytest --cov=coauthored
+	uv run pytest --cov=coauthored --cov-fail-under=85
 
 lint:
 	uv run ruff check . && uv run ruff format --check . && uv run mypy

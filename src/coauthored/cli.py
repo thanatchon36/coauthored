@@ -66,6 +66,7 @@ def scan(
     manifest: Path = Path("data/manifest.json"),
     workdir: Path = WORK,
     rawdir: Path = RAW,
+    url_template: str = typer.Option("https://github.com/{repo}.git", help="clone URL; {repo} = owner/repo"),
 ) -> None:
     """Clone (commit objects only), match and write hashed per-commit records."""
     cat = cat_mod.load(catalogue)
@@ -73,7 +74,7 @@ def scan(
     salt = load_salt()
     entries = json.loads(manifest.read_text()) if manifest.exists() else {"repos": {}}
     for repo in _repos_from(config, repos or []):
-        entry = scan_repo(repo, cat, botlist, salt, workdir, rawdir)
+        entry = scan_repo(repo, cat, botlist, salt, workdir, rawdir, url=url_template.format(repo=repo))
         entries["repos"][repo] = entry
         manifest.parent.mkdir(parents=True, exist_ok=True)
         manifest.write_text(json.dumps(entries, indent=1, sort_keys=True))

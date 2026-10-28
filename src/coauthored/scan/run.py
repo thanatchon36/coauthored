@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import io
 import json
+import time
 from collections.abc import Iterator
 from datetime import UTC, datetime
 from pathlib import Path
@@ -31,7 +32,9 @@ def scan_repo(
     url: str | None = None,
     ref: str = "HEAD",
 ) -> dict[str, Any]:
+    t0 = time.monotonic()
     repo = gitlog.clone(url or f"https://github.com/{owner_repo}.git", workdir / (slug(owner_repo) + ".git"))
+    t1 = time.monotonic()
     sha = gitlog.head_sha(repo, ref)
     first_parent = gitlog.first_parent_shas(repo, sha)
     out = rawdir / slug(owner_repo) / "commits.jsonl.zst"
@@ -55,8 +58,17 @@ def scan_repo(
         "catalogue_version": catalogue.version,
         "bots_version": bots.version,
         "git_version": gitlog.git_version(),
+        # pilot throughput for the Phase 3 estimate; the clone is reused when it already exists
+        "clone_seconds": round(t1 - t0, 1),
+        "scan_seconds": round(time.monotonic() - t1, 1),
+        "clone_bytes": _du(repo),
+        "raw_bytes": out.stat().st_size,
         "scanned_at": datetime.now(UTC).isoformat(timespec="seconds"),
     }
+
+
+def _du(path: Path) -> int:
+    return sum(f.stat().st_size for f in path.rglob("*") if f.is_file())
 
 
 def read_records(path: Path) -> Iterator[dict[str, Any]]:
