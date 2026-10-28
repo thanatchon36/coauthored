@@ -41,7 +41,43 @@ def load_commits(path: Path, repo: str) -> pl.DataFrame:
     if not rows:
         return pl.DataFrame()
     df = pl.DataFrame(rows, infer_schema_length=None)
+    if "bare_assisted" not in df.columns:  # records written before the indicator existed
+        df = df.with_columns(pl.lit(False).alias("bare_assisted"))
     return df.with_columns(pl.lit(repo).alias("repo"))
+
+
+def mark_shared(frames: list[pl.DataFrame]) -> list[pl.DataFrame]:
+    """Flag commits already seen in an earlier repository of the list (PREREGISTRATION §3, shared history).
+
+    ``frames`` must be ordered by repository creation date; the earliest repository keeps the commit.
+    """
+    seen: set[str] = set()
+    out = []
+    for df in frames:
+        shas = df["sha"].to_list()
+        out.append(df.with_columns(pl.Series("shared", [sha in seen for sha in shas])))
+        seen.update(shas)
+    return out
+
+
+def reverts(df: pl.DataFrame, spec: Spec) -> pl.DataFrame:
+    """Per repository and attribution status: window commits and how many were later reverted (RQ6)."""
+    reverted = {r for r in df["reverted_sha"].to_list() if r}
+    prefixes = {r[:7] for r in reverted}
+    c = filter_commits(df, spec).with_columns(
+        pl.col("sha")
+        .map_elements(
+            lambda sha: sha[:7] in prefixes and any(sha.startswith(r) for r in reverted),
+            return_dtype=pl.Boolean,
+        )
+        .alias("was_reverted")
+    )
+    return (
+        c.group_by("repo", "attr")
+        .agg(pl.len().alias("n"), pl.col("was_reverted").sum().alias("n_reverted"))
+        .with_columns(pl.lit(spec.name).alias("spec"))
+        .sort("repo", "attr")
+    )
 
 
 def month_utc(column: str) -> pl.Expr:
@@ -82,6 +118,7 @@ def repo_month(df: pl.DataFrame, spec: Spec) -> pl.DataFrame:
             pl.col("author_h").n_unique().alias("authors"),
             pl.col("author_h").filter(pl.col("attr")).n_unique().alias("authors_attr"),
             pl.col("mirror_export").sum().alias("n_mirror"),
+            pl.col("bare_assisted").sum().alias("n_bare_assisted"),
         )
         .sort("repo", "month")
         .with_columns(pl.lit(spec.name).alias("spec"))

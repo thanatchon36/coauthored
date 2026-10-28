@@ -11,7 +11,15 @@ import yaml
 
 from coauthored import __version__, guard
 from coauthored import bots as bots_mod
-from coauthored.analysis.aggregate import SENSITIVITY, Spec, load_commits, repo_month, repo_month_tool
+from coauthored.analysis.aggregate import (
+    SENSITIVITY,
+    Spec,
+    load_commits,
+    mark_shared,
+    repo_month,
+    repo_month_tool,
+    reverts,
+)
 from coauthored.scan.identity import load_salt
 from coauthored.scan.run import scan_repo, slug
 from coauthored.signatures import catalogue as cat_mod
@@ -90,17 +98,46 @@ def aggregate(
     rawdir: Path = RAW,
     out: Path = Path("data/aggregated"),
 ) -> None:
-    """Repo-month aggregates for every pre-registered specification (parquet)."""
+    """Repo-month aggregates for every pre-registered specification (parquet).
+
+    Each stratum's repositories are read in creation order; ``dedup`` rows drop commits already present in an
+    earlier repository of the same stratum (pooled figures), ``dedup = false`` rows keep full histories.
+    """
     out.mkdir(parents=True, exist_ok=True)
-    rm, tools = [], []
-    for repo in _repos_from(config, repos or []):
-        df = load_commits(rawdir / slug(repo) / "commits.jsonl.zst", repo)
-        for spec in SENSITIVITY:
-            rm.append(repo_month(df, spec))
-            tools.append(repo_month_tool(df, spec))
+    rm, tools, rev = [], [], []
+    for stratum, members in _strata_from(config, repos or []).items():
+        frames = [load_commits(rawdir / slug(r) / "commits.jsonl.zst", r) for r in members]
+        for df in mark_shared(frames):
+            if df.is_empty():
+                continue
+            for spec in SENSITIVITY:
+                for dedup, part in ((False, df), (True, df.filter(~pl.col("shared")))):
+                    tag = {"dedup": pl.lit(dedup), "stratum": pl.lit(stratum)}
+                    rm.append(repo_month(part, spec).with_columns(**tag))
+                    tools.append(repo_month_tool(part, spec).with_columns(**tag))
+            rev.append(reverts(df, SENSITIVITY[0]).with_columns(stratum=pl.lit(stratum)))
     pl.concat(rm).write_parquet(out / "repo_month.parquet")
     pl.concat(tools).write_parquet(out / "repo_month_tool.parquet")
-    typer.echo(f"wrote {out}/repo_month.parquet and repo_month_tool.parquet")
+    pl.concat(rev).write_parquet(out / "reverts.parquet")
+    typer.echo(f"wrote {out}/repo_month.parquet, repo_month_tool.parquet and reverts.parquet")
+
+
+def _strata_from(config: Path | None, repos: list[str]) -> dict[str, list[str]]:
+    """Stratum -> repositories ordered by creation date (unknown dates last, then by name)."""
+    out: dict[str, list[str]] = {}
+    if repos:
+        out["adhoc"] = list(repos)
+    if config:
+        cfg = yaml.safe_load(config.read_text(encoding="utf-8"))
+        for key in ("pilots", "s1", "s2", "s3"):
+            entries = cfg.get(key) or []
+            rows = [
+                (r, "9999") if isinstance(r, str) else (r["repo"], str(r.get("created_at", "9999")))
+                for r in entries
+            ]
+            if rows:
+                out[key.upper()] = [r for r, _ in sorted(rows, key=lambda x: (x[1], x[0]))]
+    return out
 
 
 @app.command()

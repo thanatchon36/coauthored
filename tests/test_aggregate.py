@@ -44,3 +44,23 @@ def test_zulu_and_offset_dates_agree() -> None:
         {"d": ["2025-03-31T23:30:00Z", "2025-04-01T06:30:00+07:00", "2025-04-01T00:00:00+00:00"]}
     )
     assert df.select(month_utc("d"))["month"].to_list() == ["2025-03", "2025-03", "2025-04"]
+
+
+def test_mark_shared_keeps_earliest() -> None:
+    import polars as pl
+
+    from coauthored.analysis.aggregate import mark_shared
+
+    a = pl.DataFrame({"sha": ["x", "y"]})
+    b = pl.DataFrame({"sha": ["y", "z"]})
+    out = mark_shared([a, b])
+    assert out[0]["shared"].to_list() == [False, False]
+    assert out[1]["shared"].to_list() == [True, False]
+
+
+def test_reverts_counted_by_attribution(fixture_repo: Path, tmp_path: Path) -> None:
+    from coauthored.analysis.aggregate import Spec, reverts
+
+    r = reverts(_df(fixture_repo, tmp_path), Spec())
+    assert r["n_reverted"].sum() == 1
+    assert r["n"].sum() == len(COMMITS) + 3 - 1 - 1  # same denominator as the primary spec
