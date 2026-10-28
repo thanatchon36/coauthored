@@ -344,3 +344,40 @@ def run_all(
     if policy is not None:
         out.append(h7(full, policy))
     return out
+
+
+# --- Sensitivity analyses (PREREGISTRATION §8) ---------------------------------------------------
+def largest(full: pl.DataFrame, k: int = 3) -> set[str]:
+    """The ``k`` repositories with most window commits in each stratum."""
+    sizes = full.group_by("stratum", "repo").agg(pl.col("n").sum()).sort("n", descending=True)
+    return {
+        r
+        for s in sizes["stratum"].unique().to_list()
+        for r in sizes.filter(pl.col("stratum") == s)["repo"][:k]
+    }
+
+
+def mirrored(full: pl.DataFrame, threshold: float = 0.5) -> set[str]:
+    """Repositories where at least half of the window commits carry a mirror-export trailer."""
+    s = full.group_by("repo").agg(pl.col("n_mirror").sum(), pl.col("n").sum())
+    return set(s.filter(pl.col("n_mirror") >= threshold * pl.col("n"))["repo"].to_list())
+
+
+def core(rm: pl.DataFrame, spec: str = "primary", drop: set[str] | None = None, b: int = B) -> list[Result]:
+    pool, full = _primary(rm, True, spec), _primary(rm, False, spec)
+    if drop:
+        pool, full = (
+            pool.filter(~pl.col("repo").is_in(list(drop))),
+            full.filter(~pl.col("repo").is_in(list(drop))),
+        )
+    draws = Bootstrap(pool, b=b).draws()
+    return [h1(pool, draws, full), h2(pool, draws), h3(pool, draws), h4(pool, draws)]
+
+
+def sensitivity(rm: pl.DataFrame, caliper_violations: set[str], b: int = B) -> dict[str, list[Result]]:
+    full = _primary(rm, dedup=False)
+    out = {s: core(rm, spec=s, b=b) for s in sorted(rm["spec"].unique().to_list()) if s != "primary"}
+    out["largest_3_removed"] = core(rm, drop=largest(full), b=b)
+    out["mirror_removed"] = core(rm, drop=mirrored(full), b=b)
+    out["outside_caliper_removed"] = core(rm, drop=caliper_violations, b=b)
+    return out

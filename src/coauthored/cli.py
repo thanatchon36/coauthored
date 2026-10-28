@@ -185,3 +185,16 @@ def report(
     for row in t.iter_rows(named=True):
         typer.echo(f"| {row['month']} | {row['n']} | {row['n_attr']} | {row['n_attr'] / row['n']:.1%} |")
     typer.echo("\nAttributed commits are a lower bound: tools can be configured not to attribute.")
+
+
+@app.command()
+def analyze(draws: int = 2000) -> None:
+    """Every table, figure and number in the paper, from committed aggregates (no network)."""
+    from coauthored.analysis.run import analyze as run
+
+    numbers = run(b=draws)
+    for r in numbers["hypotheses"]:
+        verdict = "supported" if r["supported"] else "not supported"
+        if "exploratory" in r["statement"]:
+            verdict = "exploratory, " + ("positive" if r["supported"] else "not positive")
+        typer.echo(f"{r['hypothesis']}: {verdict} (estimate {r['estimate']})")

@@ -1,0 +1,579 @@
+# Hand check of the first-pass policy classes (PREREGISTRATION §6), from the fetched files only.
+checked: 96
+repos:
+  - repo: pytorch/pytorch
+    first_pass: mentions
+    final: mentions
+    quote: "The PR must follow the [AI policy](AI_POLICY.md)."
+    file: CONTRIBUTING.md
+    note: "links to AI_POLICY.md (not fetched); PR template has an optional 'Agent details (if applicable)' section and a 'human written only' summary, but no disclosure rule"
+  - repo: jax-ml/jax
+    first_pass: mentions
+    final: mentions
+    quote: "If applicable, read our policy on AI generated code: https://docs.jax.dev/en/latest/contributing.html#can-i-contribute-ai-generated-code"
+    file: .github/PULL_REQUEST_TEMPLATE.md
+    note: "links to external AI policy (docs.jax.dev)"
+  - repo: google/flax
+    first_pass: silent
+    final: silent
+    quote: ""
+    file: 
+    note: ""
+  - repo: keras-team/keras
+    first_pass: mentions
+    final: requires_disclosure
+    quote: "If you used an AI coding agent in any capacity in the process of creating the pull request, you must disclose this in the PR description."
+    file: CONTRIBUTING.md
+    note: ""
+  - repo: huggingface/transformers
+    first_pass: requires_disclosure
+    final: requires_disclosure
+    quote: "If AI tools were used, disclose this in the PR description and include: coordination link, differentiation from existing PRs (if applicable), and test commands/results."
+    file: CONTRIBUTING.md
+    note: "also bars first-time contributors from using code agents (PR-template checkbox, first-timers only); scoped ban, not a ban on AI code as such"
+  - repo: huggingface/peft
+    first_pass: mentions
+    final: requires_disclosure
+    quote: "If this PR was authored by a human, add the following line verbatim (without quotation marks) to the description:"
+    file: .github/PULL_REQUEST_TEMPLATE.md
+    note: "human-authorship attestation that must be omitted if the PR was mainly written by an AI (disclosure by omission)"
+  - repo: huggingface/trl
+    first_pass: requires_disclosure
+    final: requires_disclosure
+    quote: "For transparency and to help us improve our review process, please indicate the level of AI involvement in this PR."
+    file: .github/PULL_REQUEST_TEMPLATE.md
+    note: "CONTRIBUTING.md also: fully AI-generated PRs from first-time contributors are not reviewed"
+  - repo: huggingface/accelerate
+    first_pass: silent
+    final: silent
+    quote: ""
+    file: 
+    note: ""
+  - repo: huggingface/datasets
+    first_pass: silent
+    final: silent
+    quote: ""
+    file: 
+    note: ""
+  - repo: huggingface/diffusers
+    first_pass: mentions
+    final: requires_disclosure
+    quote: "Did you use an AI agent (Claude Code, Codex, Cursor, etc.) to help with this PR? If so:"
+    file: .github/PULL_REQUEST_TEMPLATE.md
+    note: "checklist item; AI-agent users are also asked to share self-review notes"
+  - repo: huggingface/tokenizers
+    first_pass: mentions
+    final: mentions
+    quote: "Using a model to help is fine."
+    file: CONTRIBUTING.md
+    note: ""
+  - repo: deepspeedai/DeepSpeed
+    first_pass: mentions
+    final: silent
+    quote: ""
+    file: 
+    note: "first-pass hit was the deepspeed.ai URL"
+  - repo: NVIDIA/Megatron-LM
+    first_pass: silent
+    final: silent
+    quote: ""
+    file: 
+    note: ""
+  - repo: NVIDIA-NeMo/Speech
+    first_pass: mentions
+    final: silent
+    quote: ""
+    file: 
+    note: "only describes the project's AI PR-review service, not contributor AI use"
+  - repo: pytorch/torchtitan
+    first_pass: silent
+    final: silent
+    quote: ""
+    file: 
+    note: ""
+  - repo: Lightning-AI/pytorch-lightning
+    first_pass: mentions
+    final: silent
+    quote: ""
+    file: 
+    note: "first-pass hit was lightning.ai / Lightning-AI URLs"
+  - repo: axolotl-ai-cloud/axolotl
+    first_pass: requires_disclosure
+    final: requires_disclosure
+    quote: "**AI Usage Disclaimer:** Which tools you used and what they did."
+    file: .github/CONTRIBUTING.md
+    note: "PR template has an 'AI Usage Disclaimer' section"
+  - repo: hiyouga/LlamaFactory
+    first_pass: mentions
+    final: silent
+    quote: ""
+    file: 
+    note: "copilot-instructions only describe the LLM fine-tuning product"
+  - repo: unslothai/unsloth
+    first_pass: silent
+    final: silent
+    quote: ""
+    file: 
+    note: ""
+  - repo: allenai/open-instruct
+    first_pass: silent
+    final: silent
+    quote: ""
+    file: 
+    note: ""
+  - repo: vllm-project/vllm
+    first_pass: mentions
+    final: requires_disclosure
+    quote: "- [ ] AI assistance was used during the creation of this PR."
+    file: .github/PULL_REQUEST_TEMPLATE.md
+    note: ".github/CONTRIBUTING.md only links to docs.vllm.ai; disclosure is a PR-template checkbox"
+  - repo: sgl-project/sglang
+    first_pass: silent
+    final: silent
+    quote: ""
+    file: 
+    note: ""
+  - repo: ggml-org/llama.cpp
+    first_pass: requires_disclosure
+    final: requires_disclosure
+    quote: "Explicitly disclose the manner in which AI was employed."
+    file: CONTRIBUTING.md
+    note: "AI may not write posts/PR descriptions, but AI-generated code is allowed"
+  - repo: ggml-org/ggml
+    first_pass: silent
+    final: silent
+    quote: ""
+    file: 
+    note: ""
+  - repo: ml-explore/mlx
+    first_pass: requires_disclosure
+    final: requires_disclosure
+    quote: "- AI usage disclosure:"
+    file: .github/pull_request_template.md
+    note: "template also prohibits AI-written PR descriptions; code is allowed"
+  - repo: ml-explore/mlx-lm
+    first_pass: requires_disclosure
+    final: requires_disclosure
+    quote: "You are 100% responsible for every line, however it was produced, and must explicitly disclose the manner in which AI was employed."
+    file: CONTRIBUTING.md
+    note: ""
+  - repo: ollama/ollama
+    first_pass: mentions
+    final: silent
+    quote: ""
+    file: 
+    note: "first-pass hit was an 'llm/backend' path in a commit-message example"
+  - repo: triton-lang/triton
+    first_pass: silent
+    final: silent
+    quote: ""
+    file: 
+    note: ""
+  - repo: Dao-AILab/flash-attention
+    first_pass: silent
+    final: silent
+    quote: ""
+    file: 
+    note: ""
+  - repo: bitsandbytes-foundation/bitsandbytes
+    first_pass: silent
+    final: silent
+    quote: ""
+    file: 
+    note: ""
+  - repo: EleutherAI/lm-evaluation-harness
+    first_pass: silent
+    final: silent
+    quote: ""
+    file: 
+    note: ""
+  - repo: huggingface/datatrove
+    first_pass: mentions
+    final: mentions
+    quote: "You are welcome to use AI tools."
+    file: CONTRIBUTING.md
+    note: ""
+  - repo: pytorch/ao
+    first_pass: silent
+    final: silent
+    quote: ""
+    file: 
+    note: ""
+  - repo: pytorch/executorch
+    first_pass: mentions
+    final: silent
+    quote: ""
+    file: 
+    note: "LLM mentions are the product (extension/llm)"
+  - repo: NVIDIA/TransformerEngine
+    first_pass: silent
+    final: silent
+    quote: ""
+    file: 
+    note: ""
+  - repo: flashinfer-ai/flashinfer
+    first_pass: mentions
+    final: mentions
+    quote: "We support AI-assisted contributions, but we expect authors to understand the idea and rationale of their changes."
+    file: CONTRIBUTING.md
+    note: ""
+  - repo: InternLM/lmdeploy
+    first_pass: silent
+    final: silent
+    quote: ""
+    file: 
+    note: ""
+  - repo: microsoft/onnxruntime
+    first_pass: mentions
+    final: silent
+    quote: ""
+    file: 
+    note: "hits were onnxruntime.ai URLs and the Windows.AI namespace; copilot-instructions only point to AGENTS.md"
+  - repo: openxla/xla
+    first_pass: silent
+    final: silent
+    quote: ""
+    file: 
+    note: ""
+  - repo: tensorflow/tensorflow
+    first_pass: silent
+    final: silent
+    quote: ""
+    file: 
+    note: ""
+  - repo: modular/modular
+    first_pass: requires_disclosure
+    final: requires_disclosure
+    quote: "- [ ] If AI tools assisted with this contribution, I have included an `Assisted-by:` trailer in my commit message or this PR description"
+    file: .github/PULL_REQUEST_TEMPLATE.md
+    note: "links to AI_TOOL_POLICY.md (not fetched)"
+  - repo: stanford-crfm/helm
+    first_pass: silent
+    final: silent
+    quote: ""
+    file: 
+    note: ""
+  - repo: openai/codex
+    first_pass: silent
+    final: silent
+    quote: ""
+    file: 
+    note: ""
+  - repo: google-gemini/gemini-cli
+    first_pass: mentions
+    final: mentions
+    quote: "Consult [GEMINI.md](https://github.com/google-gemini/gemini-cli/blob/main/GEMINI.md) (typically found in the project root) for specific instructions related to AI-assisted development, including conventions for React, comments, and Git usage."
+    file: CONTRIBUTING.md
+    note: "points to GEMINI.md (agent-context file, not fetched) for AI-assisted development conventions; no contributor rule"
+  - repo: OpenHands/OpenHands
+    first_pass: mentions
+    final: mentions
+    quote: "AI/LLM agents: Do not edit the HUMAN section."
+    file: .github/pull_request_template.md
+    note: "PR template has separate HUMAN and AGENT sections, but no explicit disclosure requirement"
+  - repo: aaif-goose/goose
+    first_pass: requires_disclosure
+    final: mentions
+    quote: "There's no need to tell us you used AI in your work."
+    file: CONTRIBUTING.md
+    note: "explicitly does not require disclosure; vibe-coded submissions that skip self-review are closed"
+  - repo: cline/cline
+    first_pass: mentions
+    final: silent
+    quote: ""
+    file: 
+    note: "only AI mention is the product mission ('future of AI-assisted development')"
+  - repo: anomalyco/opencode
+    first_pass: mentions
+    final: mentions
+    quote: "Long, AI-generated PR descriptions and issues may be ignored."
+    file: CONTRIBUTING.md
+    note: ""
+  - repo: continuedev/continue
+    first_pass: mentions
+    final: silent
+    quote: ""
+    file: 
+    note: "AI code review for team members and LLM-provider docs are product/tooling, not a contributor rule"
+  - repo: Kilo-Org/kilocode
+    first_pass: mentions
+    final: requires_disclosure
+    quote: "For each piece of evidence make clear if the test was executed by the agent or by a human"
+    file: .github/pull_request_template.md
+    note: "disclosure limited to who ran the tests (agent vs human), in a PR-template comment"
+  - repo: charmbracelet/crush
+    first_pass: silent
+    final: silent
+    quote: ""
+    file: 
+    note: ""
+  - repo: QwenLM/qwen-code
+    first_pass: silent
+    final: silent
+    quote: ""
+    file: 
+    note: ""
+  - repo: warpdotdev/warp
+    first_pass: mentions
+    final: requires_disclosure
+    quote: "- [ ] Warp Agent Mode - This PR was created via Warp's AI Agent Mode"
+    file: .github/pull_request_template.md
+    note: "PR-template 'Agent Mode' checkbox; covers only Warp's own agent"
+  - repo: openinterpreter/openinterpreter
+    first_pass: mentions
+    final: silent
+    quote: ""
+    file: 
+    note: "Codex mentions refer to the upstream product"
+  - repo: pwndbg/pwndbg
+    first_pass: silent
+    final: silent
+    quote: ""
+    file: 
+    note: ""
+  - repo: sherlock-project/sherlock
+    first_pass: silent
+    final: silent
+    quote: ""
+    file: 
+    note: ""
+  - repo: kovidgoyal/calibre
+    first_pass: silent
+    final: silent
+    quote: ""
+    file: 
+    note: ""
+  - repo: python/cpython
+    first_pass: silent
+    final: silent
+    quote: ""
+    file: 
+    note: ""
+  - repo: fastapi/sqlmodel
+    first_pass: silent
+    final: silent
+    quote: ""
+    file: 
+    note: ""
+  - repo: GAM-team/GAM
+    first_pass: silent
+    final: silent
+    quote: ""
+    file: 
+    note: ""
+  - repo: tornadoweb/tornado
+    first_pass: mentions
+    final: mentions
+    quote: "Tornado has a neutral stance towards AI-generated code."
+    file: CONTRIBUTING.md
+    note: ""
+  - repo: soxoj/maigret
+    first_pass: silent
+    final: silent
+    quote: ""
+    file: 
+    note: ""
+  - repo: organicmaps/organicmaps
+    first_pass: mentions
+    final: silent
+    quote: ""
+    file: 
+    note: ".github/copilot-instructions.md is a symlink to CLAUDE.md (content '../CLAUDE.md')"
+  - repo: saleor/saleor
+    first_pass: silent
+    final: silent
+    quote: ""
+    file: 
+    note: ""
+  - repo: frappe/erpnext
+    first_pass: silent
+    final: silent
+    quote: ""
+    file: 
+    note: ""
+  - repo: eclipse-sumo/sumo
+    first_pass: silent
+    final: silent
+    quote: ""
+    file: 
+    note: ""
+  - repo: fastapi/fastapi
+    first_pass: silent
+    final: silent
+    quote: ""
+    file: 
+    note: ""
+  - repo: mongodb/mongo
+    first_pass: mentions
+    final: silent
+    quote: ""
+    file: 
+    note: "copilot-instructions are Copilot review rules for CVE fixes, not contributor AI use"
+  - repo: python-poetry/poetry
+    first_pass: silent
+    final: silent
+    quote: ""
+    file: 
+    note: ""
+  - repo: moraroy/NonSteamLaunchers-On-Steam-Deck
+    first_pass: silent
+    final: silent
+    quote: ""
+    file: 
+    note: ""
+  - repo: wesnoth/wesnoth
+    first_pass: mentions
+    final: mentions
+    quote: "Additionally, for machine generated or machine assisted code, if you open a pull request you are expected to be able to explain what the code you're submitting does and why it's done this way."
+    file: CONTRIBUTING.md
+    note: ""
+  - repo: ccxt/ccxt
+    first_pass: silent
+    final: silent
+    quote: ""
+    file: 
+    note: ""
+  - repo: microsoft/TypeScript
+    first_pass: requires_disclosure
+    final: requires_disclosure
+    quote: "However, we ask that you disclose this in the PR description."
+    file: CONTRIBUTING.md
+    note: ""
+  - repo: argotorg/solidity
+    first_pass: requires_disclosure
+    final: requires_disclosure
+    quote: "If you used AI tools in any part of this PR you MUST disclose it below."
+    file: .github/PULL_REQUEST_TEMPLATE.md
+    note: "also links to external AI policy (docs.soliditylang.org)"
+  - repo: home-assistant/core
+    first_pass: mentions
+    final: mentions
+    quote: "AI tools are welcome as an aid, but you must fully understand and be able to explain every change you submit."
+    file: CONTRIBUTING.md
+    note: "links to AI_POLICY.md / external Open Home Foundation AI policy (not fetched); autonomous-agent contributions not accepted"
+  - repo: django/django
+    first_pass: requires_disclosure
+    final: requires_disclosure
+    quote: "#### AI Assistance Disclosure (REQUIRED)"
+    file: .github/pull_request_template.md
+    note: ""
+  - repo: redis/redis-py
+    first_pass: mentions
+    final: mentions
+    quote: "Redis-py defines a list of custom Claude commands (skills) that may simplify your contribution by enriching the agent's context with necessary information and repository best practices."
+    file: CONTRIBUTING.md
+    note: ""
+  - repo: aio-libs/aiohttp
+    first_pass: silent
+    final: silent
+    quote: ""
+    file: 
+    note: ""
+  - repo: grpc/grpc-rust
+    first_pass: mentions
+    final: mentions
+    quote: "If the code was produced by generative AI, the author is expected to have reviewed and understood it in its entirety before submitting it for review."
+    file: CONTRIBUTING.md
+    note: "links to external Linux Foundation Generative AI Policy"
+  - repo: ansible/ansible-lint
+    first_pass: silent
+    final: silent
+    quote: ""
+    file: 
+    note: ""
+  - repo: pgadmin-org/pgadmin4
+    first_pass: mentions
+    final: mentions
+    quote: "Contributors are responsible for understanding, testing, and standing behind everything they submit, whether or not AI tools were used."
+    file: CONTRIBUTING.md
+    note: ""
+  - repo: RPCS3/rpcs3
+    first_pass: requires_disclosure
+    final: requires_disclosure
+    quote: "Pull requests opened by AI agents or automated tools must include a disclosure in the PR description"
+    file: .github/CONTRIBUTING.md
+    note: "disclosure applies to PRs opened by AI agents/automated tools"
+  - repo: nicolargo/glances
+    first_pass: silent
+    final: silent
+    quote: ""
+    file: 
+    note: ""
+  - repo: WebODM/WebODM
+    first_pass: requires_disclosure
+    final: requires_disclosure
+    quote: "New contributors must disclose AI usage and how long it took them to write the contribution."
+    file: CONTRIBUTING.md
+    note: ""
+  - repo: conan-io/conan
+    first_pass: silent
+    final: silent
+    quote: ""
+    file: 
+    note: ""
+  - repo: locustio/locust
+    first_pass: silent
+    final: silent
+    quote: ""
+    file: 
+    note: ""
+  - repo: bridgecrewio/checkov
+    first_pass: silent
+    final: silent
+    quote: ""
+    file: 
+    note: ""
+  - repo: qutebrowser/qutebrowser
+    first_pass: silent
+    final: silent
+    quote: ""
+    file: 
+    note: ""
+  - repo: LibreOffice/core
+    first_pass: silent
+    final: silent
+    quote: ""
+    file: 
+    note: ""
+  - repo: godotengine/godot
+    first_pass: requires_disclosure
+    final: requires_disclosure
+    quote: "Use of AI must be disclosed and should include a description of how it was used."
+    file: .github/PULL_REQUEST_TEMPLATE.md
+    note: "CONTRIBUTING.md also requires AI agents to add a robot-emoji title marker"
+  - repo: bitcoin/bitcoin
+    first_pass: mentions
+    final: mentions
+    quote: "Contributors are responsible for understanding and explaining their own work in their own words."
+    file: CONTRIBUTING.md
+    note: "links to doc/AI_POLICY.md (not fetched)"
+  - repo: odoo/odoo
+    first_pass: silent
+    final: silent
+    quote: ""
+    file: 
+    note: ""
+  - repo: saulpw/visidata
+    first_pass: mentions
+    final: requires_disclosure
+    quote: "- [ ]  Model and version of AI used (required for AI levels 4+):"
+    file: .github/PULL_REQUEST_TEMPLATE.md
+    note: "AI Level (0-10) self-rating links to visidata.org/ai"
+  - repo: mikumifa/biliTickerBuy
+    first_pass: silent
+    final: silent
+    quote: ""
+    file: 
+    note: ""
+  - repo: enjoy-digital/litex
+    first_pass: silent
+    final: silent
+    quote: ""
+    file: 
+    note: ""
+  - repo: libsdl-org/SDL
+    first_pass: mentions
+    final: bans
+    quote: "- [ ] I confirm that I am the author of this code and release it to the SDL project under the zlib license. This contribution does not contain code from other sources, including code generated by a Large Language Model (\"AI\")."
+    file: .github/PULL_REQUEST_TEMPLATE.md
+    note: ""

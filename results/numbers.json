@@ -1,0 +1,3164 @@
+{
+ "bootstrap_draws": 100,
+ "seed": 20261028,
+ "snapshot": "2026-10-28 (UTC) / 2026-10-29 (local)",
+ "commits_in_window": {
+  "S1": 407527,
+  "S2": 93359,
+  "S3": 374109
+ },
+ "attributed_in_window": {
+  "S1": 6785,
+  "S2": 6889,
+  "S3": 5220
+ },
+ "bare_assisted_in_window": {
+  "S1": 140,
+  "S2": 62,
+  "S3": 0
+ },
+ "hypotheses": [
+  {
+   "hypothesis": "H1",
+   "statement": "Pooled S1 attributed share, 2026-07..09, is at least 5%",
+   "estimate": 0.08704,
+   "ci": [
+    0.047861,
+    0.149654
+   ],
+   "supported": true,
+   "p_one_sided": 0.069307,
+   "detail": {
+    "repo_weighted": 0.105142
+   },
+   "p_holm": 0.346535
+  },
+  {
+   "hypothesis": "H2",
+   "statement": "S1 > S3 in every month 2026-04..09, and the 2026-Q3 odds ratio S1:S3 is at least 2 (CI excludes 1)",
+   "estimate": 1.242983,
+   "ci": [
+    0.474345,
+    3.443841
+   ],
+   "supported": false,
+   "p_one_sided": 0.306931,
+   "detail": {
+    "monthly_s1_s3": {
+     "2026-04": [
+      0.044115,
+      0.053633
+     ],
+     "2026-05": [
+      0.048639,
+      0.058542
+     ],
+     "2026-06": [
+      0.056165,
+      0.088671
+     ],
+     "2026-07": [
+      0.070531,
+      0.073751
+     ],
+     "2026-08": [
+      0.074095,
+      0.056332
+     ],
+     "2026-09": [
+      0.111575,
+      0.084325
+     ]
+    },
+    "every_month": false
+   },
+   "p_holm": 1.0
+  },
+  {
+   "hypothesis": "H3",
+   "statement": "Positive monthly logit slope in S1 and in S2, and S1 slope > S3 slope (CIs exclude 0)",
+   "estimate": 0.024551,
+   "ci": [
+    -0.080175,
+    0.073535
+   ],
+   "supported": false,
+   "p_one_sided": 0.306931,
+   "detail": {
+    "slopes": {
+     "S1": 0.238781,
+     "S2": 0.077938,
+     "S3": 0.21423
+    },
+    "slope_ci": {
+     "S1": [
+      0.195615,
+      0.276017
+     ],
+     "S2": [
+      -0.020602,
+      0.182005
+     ],
+     "S3": [
+      0.185579,
+      0.301766
+     ]
+    }
+   },
+   "p_holm": 1.0
+  },
+  {
+   "hypothesis": "H4",
+   "statement": "Pooled 2026-Q3 share in S2 exceeds that in S1 (CI of the difference excludes 0)",
+   "estimate": 0.01614,
+   "ci": [
+    -0.096512,
+    0.156162
+   ],
+   "supported": false,
+   "p_one_sided": 0.39604,
+   "detail": {},
+   "p_holm": 1.0
+  },
+  {
+   "hypothesis": "H5",
+   "statement": "Claude Code has the plurality of attributed commits in S1 ∪ S2 every quarter 2025-Q2..2026-Q3",
+   "estimate": -0.758454,
+   "ci": [
+    -0.971271,
+    -0.392011
+   ],
+   "supported": false,
+   "p_one_sided": 1.0,
+   "detail": {
+    "quarterly_shares": {
+     "2024-Q4": {
+      "OpenHands": 1.0
+     },
+     "2025-Q3": {
+      "CodeRabbit": 0.001595,
+      "OpenHands": 0.393939,
+      "Qwen Code": 0.009569,
+      "Claude Code": 0.130781,
+      "Google Jules": 0.007974,
+      "Gemini CLI": 0.001595,
+      "OpenAI Codex": 0.004785,
+      "Gemini Code Assist": 0.347687,
+      "OpenCode": 0.017544,
+      "GitHub Copilot": 0.08453
+     },
+     "2026-Q2": {
+      "Cursor": 0.03909,
+      "Warp": 0.1349,
+      "GitHub Copilot": 0.058763,
+      "Google Jules": 0.000511,
+      "Gemini Code Assist": 0.040368,
+      "Amp": 0.000511,
+      "CodeRabbit": 0.000255,
+      "OpenCode": 0.000255,
+      "Claude Code": 0.423863,
+      "Qwen Code": 0.054931,
+      "Gemini CLI": 0.000766,
+      "OpenAI Codex": 0.070772,
+      "OpenHands": 0.175013
+     },
+     "2025-Q2": {
+      "OpenHands": 0.768116,
+      "Claude Code": 0.009662,
+      "OpenCode": 0.157005,
+      "Google Jules": 0.002415,
+      "GitHub Copilot": 0.043478,
+      "Gemini Code Assist": 0.019324
+     },
+     "2026-Q1": {
+      "CodeRabbit": 0.002681,
+      "OpenHands": 0.142091,
+      "GitHub Copilot": 0.090259,
+      "Gemini Code Assist": 0.117516,
+      "Google Jules": 0.000894,
+      "Claude Code": 0.340483,
+      "Warp": 0.000894,
+      "Cursor": 0.030831,
+      "Qwen Code": 0.205987,
+      "Amp": 0.004468,
+      "OpenAI Codex": 0.063896
+     },
+     "2024-Q3": {
+      "Aider": 1.0
+     },
+     "2025-Q1": {
+      "Claude Code": 0.005587,
+      "OpenHands": 0.98324,
+      "GitHub Copilot": 0.011173
+     },
+     "2026-Q3": {
+      "Claude Code": 0.518226,
+      "Qwen Code": 0.154067,
+      "Gemini Code Assist": 0.00808,
+      "OpenCode": 0.000718,
+      "Cline": 0.00018,
+      "Devin": 0.000359,
+      "TRAE": 0.000359,
+      "OpenAI Codex": 0.097145,
+      "Amp": 0.00018,
+      "CodeRabbit": 0.000359,
+      "OpenHands": 0.051176,
+      "Cursor": 0.04956,
+      "Warp": 0.059616,
+      "Factory Droid": 0.00018,
+      "GitHub Copilot": 0.059795
+     },
+     "2025-Q4": {
+      "CodeRabbit": 0.006202,
+      "Cursor": 0.00155,
+      "GitHub Copilot": 0.187597,
+      "Amp": 0.00155,
+      "Factory Droid": 0.00155,
+      "Google Jules": 0.009302,
+      "Gemini Code Assist": 0.415504,
+      "OpenHands": 0.215504,
+      "Qwen Code": 0.003101,
+      "Claude Code": 0.15814
+     }
+    }
+   },
+   "p_holm": 1.0
+  },
+  {
+   "hypothesis": "H7",
+   "statement": "Repositories requiring disclosure have a higher attributed share than those banning or silent (exploratory)",
+   "estimate": 0.032057,
+   "ci": [
+    null,
+    null
+   ],
+   "supported": true,
+   "p_one_sided": null,
+   "detail": {
+    "by_policy": {
+     "requires_disclosure": 0.095859,
+     "silent": 0.06434,
+     "bans": 0.0,
+     "mentions": 0.11661
+    }
+   },
+   "p_holm": null
+  }
+ ],
+ "sensitivity": {
+  "author_date": [
+   {
+    "hypothesis": "H1",
+    "statement": "Pooled S1 attributed share, 2026-07..09, is at least 5%",
+    "estimate": 0.087089,
+    "ci": [
+     0.048015,
+     0.149693
+    ],
+    "supported": true,
+    "p_one_sided": 0.059406,
+    "detail": {
+     "repo_weighted": 0.105173
+    },
+    "p_holm": null
+   },
+   {
+    "hypothesis": "H2",
+    "statement": "S1 > S3 in every month 2026-04..09, and the 2026-Q3 odds ratio S1:S3 is at least 2 (CI excludes 1)",
+    "estimate": 1.188628,
+    "ci": [
+     0.470875,
+     3.252768
+    ],
+    "supported": false,
+    "p_one_sided": 0.326733,
+    "detail": {
+     "monthly_s1_s3": {
+      "2026-04": [
+       0.043993,
+       0.053282
+      ],
+      "2026-05": [
+       0.048755,
+       0.061204
+      ],
+      "2026-06": [
+       0.055848,
+       0.091007
+      ],
+      "2026-07": [
+       0.070447,
+       0.075024
+      ],
+      "2026-08": [
+       0.074658,
+       0.058998
+      ],
+      "2026-09": [
+       0.111111,
+       0.090025
+      ]
+     },
+     "every_month": false
+    },
+    "p_holm": null
+   },
+   {
+    "hypothesis": "H3",
+    "statement": "Positive monthly logit slope in S1 and in S2, and S1 slope > S3 slope (CIs exclude 0)",
+    "estimate": 0.020099,
+    "ci": [
+     -0.083972,
+     0.06609
+    ],
+    "supported": false,
+    "p_one_sided": 0.346535,
+    "detail": {
+     "slopes": {
+      "S1": 0.238678,
+      "S2": 0.077791,
+      "S3": 0.218579
+     },
+     "slope_ci": {
+      "S1": [
+       0.195601,
+       0.276045
+      ],
+      "S2": [
+       -0.020672,
+       0.181973
+      ],
+      "S3": [
+       0.188616,
+       0.311147
+      ]
+     }
+    },
+    "p_holm": null
+   },
+   {
+    "hypothesis": "H4",
+    "statement": "Pooled 2026-Q3 share in S2 exceeds that in S1 (CI of the difference excludes 0)",
+    "estimate": 0.016009,
+    "ci": [
+     -0.096168,
+     0.157236
+    ],
+    "supported": false,
+    "p_one_sided": 0.39604,
+    "detail": {},
+    "p_holm": null
+   }
+  ],
+  "bots_included": [
+   {
+    "hypothesis": "H1",
+    "statement": "Pooled S1 attributed share, 2026-07..09, is at least 5%",
+    "estimate": 0.08663,
+    "ci": [
+     0.047706,
+     0.148893
+    ],
+    "supported": true,
+    "p_one_sided": 0.069307,
+    "detail": {
+     "repo_weighted": 0.102917
+    },
+    "p_holm": null
+   },
+   {
+    "hypothesis": "H2",
+    "statement": "S1 > S3 in every month 2026-04..09, and the 2026-Q3 odds ratio S1:S3 is at least 2 (CI excludes 1)",
+    "estimate": 1.433469,
+    "ci": [
+     0.510794,
+     4.124142
+    ],
+    "supported": false,
+    "p_one_sided": 0.257426,
+    "detail": {
+     "monthly_s1_s3": {
+      "2026-04": [
+       0.043763,
+       0.049651
+      ],
+      "2026-05": [
+       0.048526,
+       0.053269
+      ],
+      "2026-06": [
+       0.055889,
+       0.079753
+      ],
+      "2026-07": [
+       0.070234,
+       0.065999
+      ],
+      "2026-08": [
+       0.073888,
+       0.047371
+      ],
+      "2026-09": [
+       0.110828,
+       0.074279
+      ]
+     },
+     "every_month": false
+    },
+    "p_holm": null
+   },
+   {
+    "hypothesis": "H3",
+    "statement": "Positive monthly logit slope in S1 and in S2, and S1 slope > S3 slope (CIs exclude 0)",
+    "estimate": 0.031482,
+    "ci": [
+     -0.059608,
+     0.074946
+    ],
+    "supported": false,
+    "p_one_sided": 0.257426,
+    "detail": {
+     "slopes": {
+      "S1": 0.238737,
+      "S2": 0.082121,
+      "S3": 0.207255
+     },
+     "slope_ci": {
+      "S1": [
+       0.195538,
+       0.275859
+      ],
+      "S2": [
+       -0.020196,
+       0.197122
+      ],
+      "S3": [
+       0.17743,
+       0.293802
+      ]
+     }
+    },
+    "p_holm": null
+   },
+   {
+    "hypothesis": "H4",
+    "statement": "Pooled 2026-Q3 share in S2 exceeds that in S1 (CI of the difference excludes 0)",
+    "estimate": 0.022706,
+    "ci": [
+     -0.08759,
+     0.179702
+    ],
+    "supported": false,
+    "p_one_sided": 0.376238,
+    "detail": {},
+    "p_holm": null
+   }
+  ],
+  "first_parent": [
+   {
+    "hypothesis": "H1",
+    "statement": "Pooled S1 attributed share, 2026-07..09, is at least 5%",
+    "estimate": 0.091,
+    "ci": [
+     0.051951,
+     0.145777
+    ],
+    "supported": true,
+    "p_one_sided": 0.019802,
+    "detail": {
+     "repo_weighted": 0.104336
+    },
+    "p_holm": null
+   },
+   {
+    "hypothesis": "H2",
+    "statement": "S1 > S3 in every month 2026-04..09, and the 2026-Q3 odds ratio S1:S3 is at least 2 (CI excludes 1)",
+    "estimate": 1.26794,
+    "ci": [
+     0.4844,
+     8.050447
+    ],
+    "supported": false,
+    "p_one_sided": 0.29703,
+    "detail": {
+     "monthly_s1_s3": {
+      "2026-04": [
+       0.045127,
+       0.057871
+      ],
+      "2026-05": [
+       0.050083,
+       0.048335
+      ],
+      "2026-06": [
+       0.054711,
+       0.054485
+      ],
+      "2026-07": [
+       0.073508,
+       0.078479
+      ],
+      "2026-08": [
+       0.078243,
+       0.062246
+      ],
+      "2026-09": [
+       0.115253,
+       0.078947
+      ]
+     },
+     "every_month": false
+    },
+    "p_holm": null
+   },
+   {
+    "hypothesis": "H3",
+    "statement": "Positive monthly logit slope in S1 and in S2, and S1 slope > S3 slope (CIs exclude 0)",
+    "estimate": 0.020245,
+    "ci": [
+     -0.053732,
+     0.072225
+    ],
+    "supported": false,
+    "p_one_sided": 0.287129,
+    "detail": {
+     "slopes": {
+      "S1": 0.235606,
+      "S2": 0.116835,
+      "S3": 0.215361
+     },
+     "slope_ci": {
+      "S1": [
+       0.198608,
+       0.269687
+      ],
+      "S2": [
+       0.030879,
+       0.263155
+      ],
+      "S3": [
+       0.184339,
+       0.283153
+      ]
+     }
+    },
+    "p_holm": null
+   },
+   {
+    "hypothesis": "H4",
+    "statement": "Pooled 2026-Q3 share in S2 exceeds that in S1 (CI of the difference excludes 0)",
+    "estimate": 0.123131,
+    "ci": [
+     -0.062539,
+     0.251967
+    ],
+    "supported": false,
+    "p_one_sided": 0.128713,
+    "detail": {},
+    "p_holm": null
+   }
+  ],
+  "merges_included": [
+   {
+    "hypothesis": "H1",
+    "statement": "Pooled S1 attributed share, 2026-07..09, is at least 5%",
+    "estimate": 0.085202,
+    "ci": [
+     0.045656,
+     0.148866
+    ],
+    "supported": true,
+    "p_one_sided": 0.108911,
+    "detail": {
+     "repo_weighted": 0.104024
+    },
+    "p_holm": null
+   },
+   {
+    "hypothesis": "H2",
+    "statement": "S1 > S3 in every month 2026-04..09, and the 2026-Q3 odds ratio S1:S3 is at least 2 (CI excludes 1)",
+    "estimate": 1.336872,
+    "ci": [
+     0.489107,
+     3.95226
+    ],
+    "supported": false,
+    "p_one_sided": 0.277228,
+    "detail": {
+     "monthly_s1_s3": {
+      "2026-04": [
+       0.043511,
+       0.049461
+      ],
+      "2026-05": [
+       0.048243,
+       0.054834
+      ],
+      "2026-06": [
+       0.055481,
+       0.081062
+      ],
+      "2026-07": [
+       0.069081,
+       0.066523
+      ],
+      "2026-08": [
+       0.072306,
+       0.05208
+      ],
+      "2026-09": [
+       0.109473,
+       0.07727
+      ]
+     },
+     "every_month": false
+    },
+    "p_holm": null
+   },
+   {
+    "hypothesis": "H3",
+    "statement": "Positive monthly logit slope in S1 and in S2, and S1 slope > S3 slope (CIs exclude 0)",
+    "estimate": 0.024355,
+    "ci": [
+     -0.078083,
+     0.07396
+    ],
+    "supported": false,
+    "p_one_sided": 0.29703,
+    "detail": {
+     "slopes": {
+      "S1": 0.238498,
+      "S2": 0.076947,
+      "S3": 0.214143
+     },
+     "slope_ci": {
+      "S1": [
+       0.194518,
+       0.275822
+      ],
+      "S2": [
+       -0.027612,
+       0.176909
+      ],
+      "S3": [
+       0.18553,
+       0.300322
+      ]
+     }
+    },
+    "p_holm": null
+   },
+   {
+    "hypothesis": "H4",
+    "statement": "Pooled 2026-Q3 share in S2 exceeds that in S1 (CI of the difference excludes 0)",
+    "estimate": 0.007712,
+    "ci": [
+     -0.098845,
+     0.15493
+    ],
+    "supported": false,
+    "p_one_sided": 0.435644,
+    "detail": {},
+    "p_holm": null
+   }
+  ],
+  "strict_trailers": [
+   {
+    "hypothesis": "H1",
+    "statement": "Pooled S1 attributed share, 2026-07..09, is at least 5%",
+    "estimate": 0.080737,
+    "ci": [
+     0.039045,
+     0.143038
+    ],
+    "supported": true,
+    "p_one_sided": 0.128713,
+    "detail": {
+     "repo_weighted": 0.09966
+    },
+    "p_holm": null
+   },
+   {
+    "hypothesis": "H2",
+    "statement": "S1 > S3 in every month 2026-04..09, and the 2026-Q3 odds ratio S1:S3 is at least 2 (CI excludes 1)",
+    "estimate": 1.149417,
+    "ci": [
+     0.387917,
+     3.30307
+    ],
+    "supported": false,
+    "p_one_sided": 0.366337,
+    "detail": {
+     "monthly_s1_s3": {
+      "2026-04": [
+       0.041855,
+       0.053633
+      ],
+      "2026-05": [
+       0.046964,
+       0.058542
+      ],
+      "2026-06": [
+       0.052166,
+       0.088388
+      ],
+      "2026-07": [
+       0.062612,
+       0.073647
+      ],
+      "2026-08": [
+       0.068988,
+       0.056332
+      ],
+      "2026-09": [
+       0.105476,
+       0.083651
+      ]
+     },
+     "every_month": false
+    },
+    "p_holm": null
+   },
+   {
+    "hypothesis": "H3",
+    "statement": "Positive monthly logit slope in S1 and in S2, and S1 slope > S3 slope (CIs exclude 0)",
+    "estimate": 0.02099,
+    "ci": [
+     -0.082314,
+     0.064235
+    ],
+    "supported": false,
+    "p_one_sided": 0.326733,
+    "detail": {
+     "slopes": {
+      "S1": 0.234932,
+      "S2": 0.079111,
+      "S3": 0.213943
+     },
+     "slope_ci": {
+      "S1": [
+       0.188382,
+       0.268476
+      ],
+      "S2": [
+       -0.018456,
+       0.182784
+      ],
+      "S3": [
+       0.185564,
+       0.30092
+      ]
+     }
+    },
+    "p_holm": null
+   },
+   {
+    "hypothesis": "H4",
+    "statement": "Pooled 2026-Q3 share in S2 exceeds that in S1 (CI of the difference excludes 0)",
+    "estimate": 0.021857,
+    "ci": [
+     -0.091634,
+     0.164927
+    ],
+    "supported": false,
+    "p_one_sided": 0.376238,
+    "detail": {},
+    "p_holm": null
+   }
+  ],
+  "largest_3_removed": [
+   {
+    "hypothesis": "H1",
+    "statement": "Pooled S1 attributed share, 2026-07..09, is at least 5%",
+    "estimate": 0.109028,
+    "ci": [
+     0.042365,
+     0.190587
+    ],
+    "supported": true,
+    "p_one_sided": 0.069307,
+    "detail": {
+     "repo_weighted": 0.111295
+    },
+    "p_holm": null
+   },
+   {
+    "hypothesis": "H2",
+    "statement": "S1 > S3 in every month 2026-04..09, and the 2026-Q3 odds ratio S1:S3 is at least 2 (CI excludes 1)",
+    "estimate": 1.898795,
+    "ci": [
+     0.750252,
+     4.345841
+    ],
+    "supported": false,
+    "p_one_sided": 0.09901,
+    "detail": {
+     "monthly_s1_s3": {
+      "2026-04": [
+       0.068859,
+       0.030757
+      ],
+      "2026-05": [
+       0.076135,
+       0.042902
+      ],
+      "2026-06": [
+       0.07258,
+       0.118352
+      ],
+      "2026-07": [
+       0.095767,
+       0.068641
+      ],
+      "2026-08": [
+       0.095513,
+       0.041442
+      ],
+      "2026-09": [
+       0.1295,
+       0.070345
+      ]
+     },
+     "every_month": false
+    },
+    "p_holm": null
+   },
+   {
+    "hypothesis": "H3",
+    "statement": "Positive monthly logit slope in S1 and in S2, and S1 slope > S3 slope (CIs exclude 0)",
+    "estimate": -0.026878,
+    "ci": [
+     -0.120205,
+     0.053713
+    ],
+    "supported": false,
+    "p_one_sided": 0.762376,
+    "detail": {
+     "slopes": {
+      "S1": 0.216405,
+      "S2": 0.087752,
+      "S3": 0.243283
+     },
+     "slope_ci": {
+      "S1": [
+       0.160842,
+       0.252937
+      ],
+      "S2": [
+       0.013577,
+       0.196466
+      ],
+      "S3": [
+       0.173899,
+       0.323111
+      ]
+     }
+    },
+    "p_holm": null
+   },
+   {
+    "hypothesis": "H4",
+    "statement": "Pooled 2026-Q3 share in S2 exceeds that in S1 (CI of the difference excludes 0)",
+    "estimate": 0.063086,
+    "ci": [
+     -0.091553,
+     0.182559
+    ],
+    "supported": false,
+    "p_one_sided": 0.247525,
+    "detail": {},
+    "p_holm": null
+   }
+  ],
+  "mirror_removed": [
+   {
+    "hypothesis": "H1",
+    "statement": "Pooled S1 attributed share, 2026-07..09, is at least 5%",
+    "estimate": 0.121975,
+    "ci": [
+     0.066106,
+     0.189784
+    ],
+    "supported": true,
+    "p_one_sided": 0.019802,
+    "detail": {
+     "repo_weighted": 0.117326
+    },
+    "p_holm": null
+   },
+   {
+    "hypothesis": "H2",
+    "statement": "S1 > S3 in every month 2026-04..09, and the 2026-Q3 odds ratio S1:S3 is at least 2 (CI excludes 1)",
+    "estimate": 1.808316,
+    "ci": [
+     0.754076,
+     8.873423
+    ],
+    "supported": false,
+    "p_one_sided": 0.138614,
+    "detail": {
+     "monthly_s1_s3": {
+      "2026-04": [
+       0.075337,
+       0.060796
+      ],
+      "2026-05": [
+       0.07473,
+       0.059018
+      ],
+      "2026-06": [
+       0.079475,
+       0.091216
+      ],
+      "2026-07": [
+       0.105586,
+       0.07379
+      ],
+      "2026-08": [
+       0.104893,
+       0.054872
+      ],
+      "2026-09": [
+       0.147178,
+       0.085809
+      ]
+     },
+     "every_month": false
+    },
+    "p_holm": null
+   },
+   {
+    "hypothesis": "H3",
+    "statement": "Positive monthly logit slope in S1 and in S2, and S1 slope > S3 slope (CIs exclude 0)",
+    "estimate": 0.017245,
+    "ci": [
+     -0.074503,
+     0.064568
+    ],
+    "supported": false,
+    "p_one_sided": 0.336634,
+    "detail": {
+     "slopes": {
+      "S1": 0.223605,
+      "S2": 0.077938,
+      "S3": 0.20636
+     },
+     "slope_ci": {
+      "S1": [
+       0.157373,
+       0.268989
+      ],
+      "S2": [
+       -0.007483,
+       0.183436
+      ],
+      "S3": [
+       0.17076,
+       0.270511
+      ]
+     }
+    },
+    "p_holm": null
+   },
+   {
+    "hypothesis": "H4",
+    "statement": "Pooled 2026-Q3 share in S2 exceeds that in S1 (CI of the difference excludes 0)",
+    "estimate": -0.018795,
+    "ci": [
+     -0.152913,
+     0.112068
+    ],
+    "supported": false,
+    "p_one_sided": 0.663366,
+    "detail": {},
+    "p_holm": null
+   }
+  ],
+  "outside_caliper_removed": [
+   {
+    "hypothesis": "H1",
+    "statement": "Pooled S1 attributed share, 2026-07..09, is at least 5%",
+    "estimate": 0.08704,
+    "ci": [
+     0.039882,
+     0.13721
+    ],
+    "supported": true,
+    "p_one_sided": 0.069307,
+    "detail": {
+     "repo_weighted": 0.105142
+    },
+    "p_holm": null
+   },
+   {
+    "hypothesis": "H2",
+    "statement": "S1 > S3 in every month 2026-04..09, and the 2026-Q3 odds ratio S1:S3 is at least 2 (CI excludes 1)",
+    "estimate": 1.266791,
+    "ci": [
+     0.542024,
+     5.987033
+    ],
+    "supported": false,
+    "p_one_sided": 0.306931,
+    "detail": {
+     "monthly_s1_s3": {
+      "2026-04": [
+       0.044115,
+       0.051561
+      ],
+      "2026-05": [
+       0.048639,
+       0.051697
+      ],
+      "2026-06": [
+       0.056165,
+       0.084389
+      ],
+      "2026-07": [
+       0.070531,
+       0.073054
+      ],
+      "2026-08": [
+       0.074095,
+       0.054258
+      ],
+      "2026-09": [
+       0.111575,
+       0.0834
+      ]
+     },
+     "every_month": false
+    },
+    "p_holm": null
+   },
+   {
+    "hypothesis": "H3",
+    "statement": "Positive monthly logit slope in S1 and in S2, and S1 slope > S3 slope (CIs exclude 0)",
+    "estimate": 0.013015,
+    "ci": [
+     -0.103212,
+     0.059441
+    ],
+    "supported": false,
+    "p_one_sided": 0.435644,
+    "detail": {
+     "slopes": {
+      "S1": 0.238781,
+      "S2": 0.077938,
+      "S3": 0.225766
+     },
+     "slope_ci": {
+      "S1": [
+       0.196165,
+       0.279022
+      ],
+      "S2": [
+       -0.005444,
+       0.162998
+      ],
+      "S3": [
+       0.199219,
+       0.329689
+      ]
+     }
+    },
+    "p_holm": null
+   },
+   {
+    "hypothesis": "H4",
+    "statement": "Pooled 2026-Q3 share in S2 exceeds that in S1 (CI of the difference excludes 0)",
+    "estimate": 0.01614,
+    "ci": [
+     -0.083484,
+     0.15297
+    ],
+    "supported": false,
+    "p_one_sided": 0.405941,
+    "detail": {},
+    "p_holm": null
+   }
+  ]
+ },
+ "monthly": [
+  {
+   "stratum": "S1",
+   "month": "2023-01",
+   "n": 5284,
+   "n_attr": 0,
+   "share": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  {
+   "stratum": "S1",
+   "month": "2023-02",
+   "n": 5314,
+   "n_attr": 0,
+   "share": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  {
+   "stratum": "S1",
+   "month": "2023-03",
+   "n": 7035,
+   "n_attr": 0,
+   "share": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  {
+   "stratum": "S1",
+   "month": "2023-04",
+   "n": 6700,
+   "n_attr": 0,
+   "share": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  {
+   "stratum": "S1",
+   "month": "2023-05",
+   "n": 5917,
+   "n_attr": 0,
+   "share": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  {
+   "stratum": "S1",
+   "month": "2023-06",
+   "n": 6273,
+   "n_attr": 0,
+   "share": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  {
+   "stratum": "S1",
+   "month": "2023-07",
+   "n": 6739,
+   "n_attr": 0,
+   "share": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  {
+   "stratum": "S1",
+   "month": "2023-08",
+   "n": 7919,
+   "n_attr": 0,
+   "share": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  {
+   "stratum": "S1",
+   "month": "2023-09",
+   "n": 6385,
+   "n_attr": 0,
+   "share": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  {
+   "stratum": "S1",
+   "month": "2023-10",
+   "n": 6919,
+   "n_attr": 0,
+   "share": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  {
+   "stratum": "S1",
+   "month": "2023-11",
+   "n": 7199,
+   "n_attr": 0,
+   "share": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  {
+   "stratum": "S1",
+   "month": "2023-12",
+   "n": 5594,
+   "n_attr": 0,
+   "share": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  {
+   "stratum": "S1",
+   "month": "2024-01",
+   "n": 7907,
+   "n_attr": 0,
+   "share": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  {
+   "stratum": "S1",
+   "month": "2024-02",
+   "n": 8308,
+   "n_attr": 0,
+   "share": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  {
+   "stratum": "S1",
+   "month": "2024-03",
+   "n": 8527,
+   "n_attr": 0,
+   "share": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  {
+   "stratum": "S1",
+   "month": "2024-04",
+   "n": 8547,
+   "n_attr": 0,
+   "share": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  {
+   "stratum": "S1",
+   "month": "2024-05",
+   "n": 9277,
+   "n_attr": 0,
+   "share": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  {
+   "stratum": "S1",
+   "month": "2024-06",
+   "n": 8070,
+   "n_attr": 0,
+   "share": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  {
+   "stratum": "S1",
+   "month": "2024-07",
+   "n": 9309,
+   "n_attr": 0,
+   "share": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  {
+   "stratum": "S1",
+   "month": "2024-08",
+   "n": 9027,
+   "n_attr": 0,
+   "share": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  {
+   "stratum": "S1",
+   "month": "2024-09",
+   "n": 8218,
+   "n_attr": 0,
+   "share": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  {
+   "stratum": "S1",
+   "month": "2024-10",
+   "n": 9521,
+   "n_attr": 0,
+   "share": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  {
+   "stratum": "S1",
+   "month": "2024-11",
+   "n": 8505,
+   "n_attr": 0,
+   "share": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  {
+   "stratum": "S1",
+   "month": "2024-12",
+   "n": 7493,
+   "n_attr": 0,
+   "share": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  {
+   "stratum": "S1",
+   "month": "2025-01",
+   "n": 8524,
+   "n_attr": 2,
+   "share": 0.000235,
+   "lo": 0.0,
+   "hi": 0.000707
+  },
+  {
+   "stratum": "S1",
+   "month": "2025-02",
+   "n": 8937,
+   "n_attr": 2,
+   "share": 0.000224,
+   "lo": 0.0,
+   "hi": 0.000899
+  },
+  {
+   "stratum": "S1",
+   "month": "2025-03",
+   "n": 10453,
+   "n_attr": 1,
+   "share": 9.6e-05,
+   "lo": 0.0,
+   "hi": 0.000384
+  },
+  {
+   "stratum": "S1",
+   "month": "2025-04",
+   "n": 10945,
+   "n_attr": 2,
+   "share": 0.000183,
+   "lo": 0.0,
+   "hi": 0.000494
+  },
+  {
+   "stratum": "S1",
+   "month": "2025-05",
+   "n": 9826,
+   "n_attr": 1,
+   "share": 0.000102,
+   "lo": 0.0,
+   "hi": 0.00036
+  },
+  {
+   "stratum": "S1",
+   "month": "2025-06",
+   "n": 8979,
+   "n_attr": 24,
+   "share": 0.002673,
+   "lo": 0.000727,
+   "hi": 0.006128
+  },
+  {
+   "stratum": "S1",
+   "month": "2025-07",
+   "n": 9982,
+   "n_attr": 44,
+   "share": 0.004408,
+   "lo": 0.001557,
+   "hi": 0.009896
+  },
+  {
+   "stratum": "S1",
+   "month": "2025-08",
+   "n": 10152,
+   "n_attr": 68,
+   "share": 0.006698,
+   "lo": 0.001627,
+   "hi": 0.014264
+  },
+  {
+   "stratum": "S1",
+   "month": "2025-09",
+   "n": 10089,
+   "n_attr": 63,
+   "share": 0.006244,
+   "lo": 0.001656,
+   "hi": 0.013497
+  },
+  {
+   "stratum": "S1",
+   "month": "2025-10",
+   "n": 10767,
+   "n_attr": 110,
+   "share": 0.010216,
+   "lo": 0.002912,
+   "hi": 0.019252
+  },
+  {
+   "stratum": "S1",
+   "month": "2025-11",
+   "n": 9188,
+   "n_attr": 88,
+   "share": 0.009578,
+   "lo": 0.003329,
+   "hi": 0.018999
+  },
+  {
+   "stratum": "S1",
+   "month": "2025-12",
+   "n": 9569,
+   "n_attr": 141,
+   "share": 0.014735,
+   "lo": 0.006088,
+   "hi": 0.027803
+  },
+  {
+   "stratum": "S1",
+   "month": "2026-01",
+   "n": 10041,
+   "n_attr": 182,
+   "share": 0.018126,
+   "lo": 0.008016,
+   "hi": 0.037608
+  },
+  {
+   "stratum": "S1",
+   "month": "2026-02",
+   "n": 9992,
+   "n_attr": 264,
+   "share": 0.026421,
+   "lo": 0.013466,
+   "hi": 0.046259
+  },
+  {
+   "stratum": "S1",
+   "month": "2026-03",
+   "n": 13322,
+   "n_attr": 422,
+   "share": 0.031677,
+   "lo": 0.014557,
+   "hi": 0.051892
+  },
+  {
+   "stratum": "S1",
+   "month": "2026-04",
+   "n": 11946,
+   "n_attr": 527,
+   "share": 0.044115,
+   "lo": 0.020819,
+   "hi": 0.077072
+  },
+  {
+   "stratum": "S1",
+   "month": "2026-05",
+   "n": 11349,
+   "n_attr": 552,
+   "share": 0.048639,
+   "lo": 0.021119,
+   "hi": 0.08989
+  },
+  {
+   "stratum": "S1",
+   "month": "2026-06",
+   "n": 11751,
+   "n_attr": 660,
+   "share": 0.056165,
+   "lo": 0.030456,
+   "hi": 0.084123
+  },
+  {
+   "stratum": "S1",
+   "month": "2026-07",
+   "n": 12250,
+   "n_attr": 864,
+   "share": 0.070531,
+   "lo": 0.036143,
+   "hi": 0.120095
+  },
+  {
+   "stratum": "S1",
+   "month": "2026-08",
+   "n": 13901,
+   "n_attr": 1030,
+   "share": 0.074095,
+   "lo": 0.035828,
+   "hi": 0.127552
+  },
+  {
+   "stratum": "S1",
+   "month": "2026-09",
+   "n": 15577,
+   "n_attr": 1738,
+   "share": 0.111575,
+   "lo": 0.058035,
+   "hi": 0.203127
+  },
+  {
+   "stratum": "S2",
+   "month": "2023-05",
+   "n": 68,
+   "n_attr": 0,
+   "share": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  {
+   "stratum": "S2",
+   "month": "2023-06",
+   "n": 676,
+   "n_attr": 0,
+   "share": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  {
+   "stratum": "S2",
+   "month": "2023-07",
+   "n": 567,
+   "n_attr": 0,
+   "share": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  {
+   "stratum": "S2",
+   "month": "2023-08",
+   "n": 349,
+   "n_attr": 0,
+   "share": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  {
+   "stratum": "S2",
+   "month": "2023-09",
+   "n": 160,
+   "n_attr": 0,
+   "share": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  {
+   "stratum": "S2",
+   "month": "2023-10",
+   "n": 207,
+   "n_attr": 0,
+   "share": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  {
+   "stratum": "S2",
+   "month": "2023-11",
+   "n": 215,
+   "n_attr": 0,
+   "share": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  {
+   "stratum": "S2",
+   "month": "2023-12",
+   "n": 264,
+   "n_attr": 0,
+   "share": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  {
+   "stratum": "S2",
+   "month": "2024-01",
+   "n": 305,
+   "n_attr": 0,
+   "share": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  {
+   "stratum": "S2",
+   "month": "2024-02",
+   "n": 308,
+   "n_attr": 0,
+   "share": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  {
+   "stratum": "S2",
+   "month": "2024-03",
+   "n": 455,
+   "n_attr": 0,
+   "share": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  {
+   "stratum": "S2",
+   "month": "2024-04",
+   "n": 609,
+   "n_attr": 0,
+   "share": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  {
+   "stratum": "S2",
+   "month": "2024-05",
+   "n": 571,
+   "n_attr": 0,
+   "share": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  {
+   "stratum": "S2",
+   "month": "2024-06",
+   "n": 407,
+   "n_attr": 0,
+   "share": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  {
+   "stratum": "S2",
+   "month": "2024-07",
+   "n": 609,
+   "n_attr": 0,
+   "share": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  {
+   "stratum": "S2",
+   "month": "2024-08",
+   "n": 818,
+   "n_attr": 3,
+   "share": 0.003667,
+   "lo": 0.0,
+   "hi": 0.007576
+  },
+  {
+   "stratum": "S2",
+   "month": "2024-09",
+   "n": 979,
+   "n_attr": 0,
+   "share": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  {
+   "stratum": "S2",
+   "month": "2024-10",
+   "n": 994,
+   "n_attr": 14,
+   "share": 0.014085,
+   "lo": 0.0,
+   "hi": 0.047297
+  },
+  {
+   "stratum": "S2",
+   "month": "2024-11",
+   "n": 958,
+   "n_attr": 22,
+   "share": 0.022965,
+   "lo": 0.0,
+   "hi": 0.089431
+  },
+  {
+   "stratum": "S2",
+   "month": "2024-12",
+   "n": 994,
+   "n_attr": 49,
+   "share": 0.049296,
+   "lo": 0.0,
+   "hi": 0.182836
+  },
+  {
+   "stratum": "S2",
+   "month": "2025-01",
+   "n": 1075,
+   "n_attr": 51,
+   "share": 0.047442,
+   "lo": 0.0,
+   "hi": 0.143541
+  },
+  {
+   "stratum": "S2",
+   "month": "2025-02",
+   "n": 1192,
+   "n_attr": 42,
+   "share": 0.035235,
+   "lo": 0.0,
+   "hi": 0.158093
+  },
+  {
+   "stratum": "S2",
+   "month": "2025-03",
+   "n": 1350,
+   "n_attr": 81,
+   "share": 0.06,
+   "lo": 0.0,
+   "hi": 0.250774
+  },
+  {
+   "stratum": "S2",
+   "month": "2025-04",
+   "n": 2163,
+   "n_attr": 91,
+   "share": 0.042071,
+   "lo": 0.00037,
+   "hi": 0.139463
+  },
+  {
+   "stratum": "S2",
+   "month": "2025-05",
+   "n": 2128,
+   "n_attr": 142,
+   "share": 0.066729,
+   "lo": 0.0,
+   "hi": 0.207297
+  },
+  {
+   "stratum": "S2",
+   "month": "2025-06",
+   "n": 3049,
+   "n_attr": 154,
+   "share": 0.050508,
+   "lo": 0.001134,
+   "hi": 0.169118
+  },
+  {
+   "stratum": "S2",
+   "month": "2025-07",
+   "n": 4181,
+   "n_attr": 163,
+   "share": 0.038986,
+   "lo": 0.011765,
+   "hi": 0.118545
+  },
+  {
+   "stratum": "S2",
+   "month": "2025-08",
+   "n": 3959,
+   "n_attr": 199,
+   "share": 0.050265,
+   "lo": 0.011521,
+   "hi": 0.14073
+  },
+  {
+   "stratum": "S2",
+   "month": "2025-09",
+   "n": 2977,
+   "n_attr": 90,
+   "share": 0.030232,
+   "lo": 0.00755,
+   "hi": 0.071669
+  },
+  {
+   "stratum": "S2",
+   "month": "2025-10",
+   "n": 3152,
+   "n_attr": 96,
+   "share": 0.030457,
+   "lo": 0.003922,
+   "hi": 0.094979
+  },
+  {
+   "stratum": "S2",
+   "month": "2025-11",
+   "n": 2685,
+   "n_attr": 91,
+   "share": 0.033892,
+   "lo": 0.011013,
+   "hi": 0.096774
+  },
+  {
+   "stratum": "S2",
+   "month": "2025-12",
+   "n": 3508,
+   "n_attr": 119,
+   "share": 0.033922,
+   "lo": 0.011784,
+   "hi": 0.128252
+  },
+  {
+   "stratum": "S2",
+   "month": "2026-01",
+   "n": 4839,
+   "n_attr": 245,
+   "share": 0.05063,
+   "lo": 0.017439,
+   "hi": 0.159268
+  },
+  {
+   "stratum": "S2",
+   "month": "2026-02",
+   "n": 5374,
+   "n_attr": 393,
+   "share": 0.07313,
+   "lo": 0.029827,
+   "hi": 0.213316
+  },
+  {
+   "stratum": "S2",
+   "month": "2026-03",
+   "n": 5543,
+   "n_attr": 732,
+   "share": 0.132058,
+   "lo": 0.051275,
+   "hi": 0.325782
+  },
+  {
+   "stratum": "S2",
+   "month": "2026-04",
+   "n": 5362,
+   "n_attr": 696,
+   "share": 0.129802,
+   "lo": 0.048654,
+   "hi": 0.34625
+  },
+  {
+   "stratum": "S2",
+   "month": "2026-05",
+   "n": 5898,
+   "n_attr": 845,
+   "share": 0.143269,
+   "lo": 0.034335,
+   "hi": 0.349519
+  },
+  {
+   "stratum": "S2",
+   "month": "2026-06",
+   "n": 5638,
+   "n_attr": 634,
+   "share": 0.112451,
+   "lo": 0.033431,
+   "hi": 0.292868
+  },
+  {
+   "stratum": "S2",
+   "month": "2026-07",
+   "n": 6169,
+   "n_attr": 677,
+   "share": 0.109742,
+   "lo": 0.02995,
+   "hi": 0.247466
+  },
+  {
+   "stratum": "S2",
+   "month": "2026-08",
+   "n": 6273,
+   "n_attr": 572,
+   "share": 0.091184,
+   "lo": 0.016469,
+   "hi": 0.240523
+  },
+  {
+   "stratum": "S2",
+   "month": "2026-09",
+   "n": 6331,
+   "n_attr": 688,
+   "share": 0.108672,
+   "lo": 0.014119,
+   "hi": 0.276525
+  },
+  {
+   "stratum": "S3",
+   "month": "2023-01",
+   "n": 9065,
+   "n_attr": 0,
+   "share": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  {
+   "stratum": "S3",
+   "month": "2023-02",
+   "n": 8425,
+   "n_attr": 0,
+   "share": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  {
+   "stratum": "S3",
+   "month": "2023-03",
+   "n": 9171,
+   "n_attr": 0,
+   "share": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  {
+   "stratum": "S3",
+   "month": "2023-04",
+   "n": 7605,
+   "n_attr": 0,
+   "share": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  {
+   "stratum": "S3",
+   "month": "2023-05",
+   "n": 7701,
+   "n_attr": 0,
+   "share": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  {
+   "stratum": "S3",
+   "month": "2023-06",
+   "n": 8088,
+   "n_attr": 0,
+   "share": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  {
+   "stratum": "S3",
+   "month": "2023-07",
+   "n": 7958,
+   "n_attr": 0,
+   "share": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  {
+   "stratum": "S3",
+   "month": "2023-08",
+   "n": 7980,
+   "n_attr": 0,
+   "share": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  {
+   "stratum": "S3",
+   "month": "2023-09",
+   "n": 7439,
+   "n_attr": 0,
+   "share": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  {
+   "stratum": "S3",
+   "month": "2023-10",
+   "n": 8900,
+   "n_attr": 0,
+   "share": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  {
+   "stratum": "S3",
+   "month": "2023-11",
+   "n": 8707,
+   "n_attr": 0,
+   "share": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  {
+   "stratum": "S3",
+   "month": "2023-12",
+   "n": 6655,
+   "n_attr": 0,
+   "share": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  {
+   "stratum": "S3",
+   "month": "2024-01",
+   "n": 7833,
+   "n_attr": 0,
+   "share": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  {
+   "stratum": "S3",
+   "month": "2024-02",
+   "n": 8585,
+   "n_attr": 0,
+   "share": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  {
+   "stratum": "S3",
+   "month": "2024-03",
+   "n": 9333,
+   "n_attr": 0,
+   "share": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  {
+   "stratum": "S3",
+   "month": "2024-04",
+   "n": 7703,
+   "n_attr": 0,
+   "share": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  {
+   "stratum": "S3",
+   "month": "2024-05",
+   "n": 8353,
+   "n_attr": 0,
+   "share": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  {
+   "stratum": "S3",
+   "month": "2024-06",
+   "n": 7868,
+   "n_attr": 0,
+   "share": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  {
+   "stratum": "S3",
+   "month": "2024-07",
+   "n": 8536,
+   "n_attr": 0,
+   "share": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  {
+   "stratum": "S3",
+   "month": "2024-08",
+   "n": 8211,
+   "n_attr": 0,
+   "share": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  {
+   "stratum": "S3",
+   "month": "2024-09",
+   "n": 9385,
+   "n_attr": 4,
+   "share": 0.000426,
+   "lo": 0.0,
+   "hi": 0.001972
+  },
+  {
+   "stratum": "S3",
+   "month": "2024-10",
+   "n": 8286,
+   "n_attr": 0,
+   "share": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  {
+   "stratum": "S3",
+   "month": "2024-11",
+   "n": 8150,
+   "n_attr": 1,
+   "share": 0.000123,
+   "lo": 0.0,
+   "hi": 0.0006
+  },
+  {
+   "stratum": "S3",
+   "month": "2024-12",
+   "n": 7587,
+   "n_attr": 0,
+   "share": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  {
+   "stratum": "S3",
+   "month": "2025-01",
+   "n": 8565,
+   "n_attr": 0,
+   "share": 0.0,
+   "lo": 0.0,
+   "hi": 0.0
+  },
+  {
+   "stratum": "S3",
+   "month": "2025-02",
+   "n": 7475,
+   "n_attr": 1,
+   "share": 0.000134,
+   "lo": 0.0,
+   "hi": 0.00058
+  },
+  {
+   "stratum": "S3",
+   "month": "2025-03",
+   "n": 7521,
+   "n_attr": 2,
+   "share": 0.000266,
+   "lo": 0.0,
+   "hi": 0.001291
+  },
+  {
+   "stratum": "S3",
+   "month": "2025-04",
+   "n": 9244,
+   "n_attr": 4,
+   "share": 0.000433,
+   "lo": 0.0,
+   "hi": 0.001857
+  },
+  {
+   "stratum": "S3",
+   "month": "2025-05",
+   "n": 7903,
+   "n_attr": 8,
+   "share": 0.001012,
+   "lo": 0.000129,
+   "hi": 0.003095
+  },
+  {
+   "stratum": "S3",
+   "month": "2025-06",
+   "n": 7440,
+   "n_attr": 16,
+   "share": 0.002151,
+   "lo": 0.000227,
+   "hi": 0.007291
+  },
+  {
+   "stratum": "S3",
+   "month": "2025-07",
+   "n": 7789,
+   "n_attr": 48,
+   "share": 0.006163,
+   "lo": 0.000181,
+   "hi": 0.014678
+  },
+  {
+   "stratum": "S3",
+   "month": "2025-08",
+   "n": 6893,
+   "n_attr": 34,
+   "share": 0.004933,
+   "lo": 0.000407,
+   "hi": 0.011531
+  },
+  {
+   "stratum": "S3",
+   "month": "2025-09",
+   "n": 7883,
+   "n_attr": 51,
+   "share": 0.00647,
+   "lo": 0.000165,
+   "hi": 0.016231
+  },
+  {
+   "stratum": "S3",
+   "month": "2025-10",
+   "n": 8204,
+   "n_attr": 64,
+   "share": 0.007801,
+   "lo": 0.000199,
+   "hi": 0.017288
+  },
+  {
+   "stratum": "S3",
+   "month": "2025-11",
+   "n": 7543,
+   "n_attr": 75,
+   "share": 0.009943,
+   "lo": 0.000561,
+   "hi": 0.025623
+  },
+  {
+   "stratum": "S3",
+   "month": "2025-12",
+   "n": 8039,
+   "n_attr": 140,
+   "share": 0.017415,
+   "lo": 0.00024,
+   "hi": 0.041479
+  },
+  {
+   "stratum": "S3",
+   "month": "2026-01",
+   "n": 7879,
+   "n_attr": 78,
+   "share": 0.0099,
+   "lo": 0.000859,
+   "hi": 0.022488
+  },
+  {
+   "stratum": "S3",
+   "month": "2026-02",
+   "n": 8594,
+   "n_attr": 267,
+   "share": 0.031068,
+   "lo": 0.004018,
+   "hi": 0.060531
+  },
+  {
+   "stratum": "S3",
+   "month": "2026-03",
+   "n": 9939,
+   "n_attr": 536,
+   "share": 0.053929,
+   "lo": 0.013259,
+   "hi": 0.103807
+  },
+  {
+   "stratum": "S3",
+   "month": "2026-04",
+   "n": 8726,
+   "n_attr": 468,
+   "share": 0.053633,
+   "lo": 0.005464,
+   "hi": 0.107374
+  },
+  {
+   "stratum": "S3",
+   "month": "2026-05",
+   "n": 8370,
+   "n_attr": 490,
+   "share": 0.058542,
+   "lo": 0.006557,
+   "hi": 0.110095
+  },
+  {
+   "stratum": "S3",
+   "month": "2026-06",
+   "n": 10601,
+   "n_attr": 940,
+   "share": 0.088671,
+   "lo": 0.042555,
+   "hi": 0.159129
+  },
+  {
+   "stratum": "S3",
+   "month": "2026-07",
+   "n": 9627,
+   "n_attr": 710,
+   "share": 0.073751,
+   "lo": 0.028946,
+   "hi": 0.130679
+  },
+  {
+   "stratum": "S3",
+   "month": "2026-08",
+   "n": 9444,
+   "n_attr": 532,
+   "share": 0.056332,
+   "lo": 0.019296,
+   "hi": 0.100559
+  },
+  {
+   "stratum": "S3",
+   "month": "2026-09",
+   "n": 8906,
+   "n_attr": 751,
+   "share": 0.084325,
+   "lo": 0.034136,
+   "hi": 0.156444
+  }
+ ],
+ "per_repo_2026q3": [
+  {
+   "stratum": "S3",
+   "repo": "organicmaps/organicmaps",
+   "n": 457,
+   "n_attr": 10,
+   "breadth": 0.063636,
+   "share": 0.021882,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S1",
+   "repo": "ml-explore/mlx-lm",
+   "n": 119,
+   "n_attr": 8,
+   "breadth": 0.083333,
+   "share": 0.067227,
+   "policy": "requires_disclosure"
+  },
+  {
+   "stratum": "S3",
+   "repo": "moraroy/NonSteamLaunchers-On-Steam-Deck",
+   "n": 26,
+   "n_attr": 2,
+   "breadth": 0.125,
+   "share": 0.076923,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S1",
+   "repo": "huggingface/tokenizers",
+   "n": 135,
+   "n_attr": 17,
+   "breadth": 0.166667,
+   "share": 0.125926,
+   "policy": "mentions"
+  },
+  {
+   "stratum": "S1",
+   "repo": "huggingface/datasets",
+   "n": 62,
+   "n_attr": 8,
+   "breadth": 0.171569,
+   "share": 0.129032,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S1",
+   "repo": "pytorch/ao",
+   "n": 132,
+   "n_attr": 3,
+   "breadth": 0.052632,
+   "share": 0.022727,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S1",
+   "repo": "Dao-AILab/flash-attention",
+   "n": 69,
+   "n_attr": 13,
+   "breadth": 0.130545,
+   "share": 0.188406,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S1",
+   "repo": "triton-lang/triton",
+   "n": 655,
+   "n_attr": 10,
+   "breadth": 0.0375,
+   "share": 0.015267,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S3",
+   "repo": "saulpw/visidata",
+   "n": 31,
+   "n_attr": 16,
+   "breadth": 0.625,
+   "share": 0.516129,
+   "policy": "requires_disclosure"
+  },
+  {
+   "stratum": "S1",
+   "repo": "ml-explore/mlx",
+   "n": 400,
+   "n_attr": 5,
+   "breadth": 0.02188,
+   "share": 0.0125,
+   "policy": "requires_disclosure"
+  },
+  {
+   "stratum": "S1",
+   "repo": "jax-ml/jax",
+   "n": 1614,
+   "n_attr": 0,
+   "breadth": 0.0,
+   "share": 0.0,
+   "policy": "mentions"
+  },
+  {
+   "stratum": "S3",
+   "repo": "redis/redis-py",
+   "n": 99,
+   "n_attr": 6,
+   "breadth": 0.07619,
+   "share": 0.060606,
+   "policy": "mentions"
+  },
+  {
+   "stratum": "S1",
+   "repo": "huggingface/trl",
+   "n": 613,
+   "n_attr": 23,
+   "breadth": 0.255935,
+   "share": 0.03752,
+   "policy": "requires_disclosure"
+  },
+  {
+   "stratum": "S3",
+   "repo": "godotengine/godot",
+   "n": 1086,
+   "n_attr": 0,
+   "breadth": 0.0,
+   "share": 0.0,
+   "policy": "requires_disclosure"
+  },
+  {
+   "stratum": "S1",
+   "repo": "ggml-org/llama.cpp",
+   "n": 1460,
+   "n_attr": 20,
+   "breadth": 0.033337,
+   "share": 0.013699,
+   "policy": "requires_disclosure"
+  },
+  {
+   "stratum": "S3",
+   "repo": "bitcoin/bitcoin",
+   "n": 921,
+   "n_attr": 1,
+   "breadth": 0.007407,
+   "share": 0.001086,
+   "policy": "mentions"
+  },
+  {
+   "stratum": "S3",
+   "repo": "pwndbg/pwndbg",
+   "n": 154,
+   "n_attr": 10,
+   "breadth": 0.157725,
+   "share": 0.064935,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S3",
+   "repo": "fastapi/fastapi",
+   "n": 135,
+   "n_attr": 1,
+   "breadth": 0.071429,
+   "share": 0.007407,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S3",
+   "repo": "saleor/saleor",
+   "n": 114,
+   "n_attr": 54,
+   "breadth": 0.25,
+   "share": 0.473684,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S3",
+   "repo": "microsoft/TypeScript",
+   "n": 396,
+   "n_attr": 71,
+   "breadth": 0.275977,
+   "share": 0.179293,
+   "policy": "requires_disclosure"
+  },
+  {
+   "stratum": "S3",
+   "repo": "GAM-team/GAM",
+   "n": 147,
+   "n_attr": 0,
+   "breadth": 0.0,
+   "share": 0.0,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S1",
+   "repo": "bitsandbytes-foundation/bitsandbytes",
+   "n": 45,
+   "n_attr": 8,
+   "breadth": 0.25,
+   "share": 0.177778,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S3",
+   "repo": "home-assistant/core",
+   "n": 5368,
+   "n_attr": 1069,
+   "breadth": 0.324814,
+   "share": 0.199143,
+   "policy": "mentions"
+  },
+  {
+   "stratum": "S1",
+   "repo": "flashinfer-ai/flashinfer",
+   "n": 923,
+   "n_attr": 344,
+   "breadth": 0.365146,
+   "share": 0.372698,
+   "policy": "mentions"
+  },
+  {
+   "stratum": "S3",
+   "repo": "ansible/ansible-lint",
+   "n": 38,
+   "n_attr": 11,
+   "breadth": 0.173942,
+   "share": 0.289474,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S2",
+   "repo": "openai/codex",
+   "n": 3735,
+   "n_attr": 1,
+   "breadth": 0.002976,
+   "share": 0.000268,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S3",
+   "repo": "qutebrowser/qutebrowser",
+   "n": 43,
+   "n_attr": 0,
+   "breadth": 0.0,
+   "share": 0.0,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S2",
+   "repo": "anomalyco/opencode",
+   "n": 3942,
+   "n_attr": 8,
+   "breadth": 0.033161,
+   "share": 0.002029,
+   "policy": "mentions"
+  },
+  {
+   "stratum": "S3",
+   "repo": "wesnoth/wesnoth",
+   "n": 391,
+   "n_attr": 0,
+   "breadth": 0.0,
+   "share": 0.0,
+   "policy": "mentions"
+  },
+  {
+   "stratum": "S3",
+   "repo": "nicolargo/glances",
+   "n": 319,
+   "n_attr": 88,
+   "breadth": 0.150327,
+   "share": 0.275862,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S1",
+   "repo": "huggingface/accelerate",
+   "n": 66,
+   "n_attr": 2,
+   "breadth": 0.030303,
+   "share": 0.030303,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S2",
+   "repo": "openinterpreter/openinterpreter",
+   "n": 2686,
+   "n_attr": 3,
+   "breadth": 0.008197,
+   "share": 0.001117,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S3",
+   "repo": "libsdl-org/SDL",
+   "n": 424,
+   "n_attr": 0,
+   "breadth": 0.0,
+   "share": 0.0,
+   "policy": "bans"
+  },
+  {
+   "stratum": "S1",
+   "repo": "openxla/xla",
+   "n": 2612,
+   "n_attr": 5,
+   "breadth": 0.00207,
+   "share": 0.001914,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S3",
+   "repo": "WebODM/WebODM",
+   "n": 63,
+   "n_attr": 0,
+   "breadth": 0.0,
+   "share": 0.0,
+   "policy": "requires_disclosure"
+  },
+  {
+   "stratum": "S3",
+   "repo": "mikumifa/biliTickerBuy",
+   "n": 34,
+   "n_attr": 0,
+   "breadth": 0.0,
+   "share": 0.0,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S1",
+   "repo": "keras-team/keras",
+   "n": 269,
+   "n_attr": 10,
+   "breadth": 0.063492,
+   "share": 0.037175,
+   "policy": "requires_disclosure"
+  },
+  {
+   "stratum": "S1",
+   "repo": "EleutherAI/lm-evaluation-harness",
+   "n": 88,
+   "n_attr": 7,
+   "breadth": 0.174772,
+   "share": 0.079545,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S2",
+   "repo": "charmbracelet/crush",
+   "n": 589,
+   "n_attr": 15,
+   "breadth": 0.106667,
+   "share": 0.025467,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S1",
+   "repo": "NVIDIA-NeMo/Speech",
+   "n": 168,
+   "n_attr": 8,
+   "breadth": 0.071473,
+   "share": 0.047619,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S1",
+   "repo": "InternLM/lmdeploy",
+   "n": 176,
+   "n_attr": 8,
+   "breadth": 0.163876,
+   "share": 0.045455,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S1",
+   "repo": "tensorflow/tensorflow",
+   "n": 3618,
+   "n_attr": 15,
+   "breadth": 0.011809,
+   "share": 0.004146,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S1",
+   "repo": "huggingface/peft",
+   "n": 187,
+   "n_attr": 1,
+   "breadth": 0.010101,
+   "share": 0.005348,
+   "policy": "requires_disclosure"
+  },
+  {
+   "stratum": "S1",
+   "repo": "huggingface/transformers",
+   "n": 870,
+   "n_attr": 149,
+   "breadth": 0.170442,
+   "share": 0.171264,
+   "policy": "requires_disclosure"
+  },
+  {
+   "stratum": "S3",
+   "repo": "eclipse-sumo/sumo",
+   "n": 757,
+   "n_attr": 0,
+   "breadth": 0.0,
+   "share": 0.0,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S1",
+   "repo": "deepspeedai/DeepSpeed",
+   "n": 298,
+   "n_attr": 56,
+   "breadth": 0.190896,
+   "share": 0.187919,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S1",
+   "repo": "axolotl-ai-cloud/axolotl",
+   "n": 182,
+   "n_attr": 5,
+   "breadth": 0.137879,
+   "share": 0.027473,
+   "policy": "requires_disclosure"
+  },
+  {
+   "stratum": "S3",
+   "repo": "LibreOffice/core",
+   "n": 2465,
+   "n_attr": 0,
+   "breadth": 0.0,
+   "share": 0.0,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S2",
+   "repo": "continuedev/continue",
+   "n": 2,
+   "n_attr": 1,
+   "breadth": null,
+   "share": 0.5,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S3",
+   "repo": "grpc/grpc-rust",
+   "n": 106,
+   "n_attr": 2,
+   "breadth": 0.030303,
+   "share": 0.018868,
+   "policy": "mentions"
+  },
+  {
+   "stratum": "S3",
+   "repo": "django/django",
+   "n": 219,
+   "n_attr": 0,
+   "breadth": 0.0,
+   "share": 0.0,
+   "policy": "requires_disclosure"
+  },
+  {
+   "stratum": "S3",
+   "repo": "kovidgoyal/calibre",
+   "n": 701,
+   "n_attr": 26,
+   "breadth": 0.084465,
+   "share": 0.03709,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S1",
+   "repo": "hiyouga/LlamaFactory",
+   "n": 49,
+   "n_attr": 9,
+   "breadth": 0.197511,
+   "share": 0.183673,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S3",
+   "repo": "pgadmin-org/pgadmin4",
+   "n": 251,
+   "n_attr": 6,
+   "breadth": 0.083333,
+   "share": 0.023904,
+   "policy": "mentions"
+  },
+  {
+   "stratum": "S3",
+   "repo": "python-poetry/poetry",
+   "n": 59,
+   "n_attr": 0,
+   "breadth": 0.0,
+   "share": 0.0,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S1",
+   "repo": "ollama/ollama",
+   "n": 305,
+   "n_attr": 1,
+   "breadth": 0.030303,
+   "share": 0.003279,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S3",
+   "repo": "sherlock-project/sherlock",
+   "n": 7,
+   "n_attr": 0,
+   "breadth": null,
+   "share": 0.0,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S1",
+   "repo": "sgl-project/sglang",
+   "n": 4497,
+   "n_attr": 641,
+   "breadth": 0.18097,
+   "share": 0.142539,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S1",
+   "repo": "huggingface/datatrove",
+   "n": 25,
+   "n_attr": 18,
+   "breadth": 0.4,
+   "share": 0.72,
+   "policy": "mentions"
+  },
+  {
+   "stratum": "S1",
+   "repo": "google/flax",
+   "n": 22,
+   "n_attr": 0,
+   "breadth": 0.0,
+   "share": 0.0,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S1",
+   "repo": "Lightning-AI/pytorch-lightning",
+   "n": 37,
+   "n_attr": 1,
+   "breadth": 0.083333,
+   "share": 0.027027,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S1",
+   "repo": "modular/modular",
+   "n": 4755,
+   "n_attr": 59,
+   "breadth": 0.037311,
+   "share": 0.012408,
+   "policy": "requires_disclosure"
+  },
+  {
+   "stratum": "S3",
+   "repo": "aio-libs/aiohttp",
+   "n": 239,
+   "n_attr": 0,
+   "breadth": 0.0,
+   "share": 0.0,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S3",
+   "repo": "tornadoweb/tornado",
+   "n": 86,
+   "n_attr": 46,
+   "breadth": 0.111111,
+   "share": 0.534884,
+   "policy": "mentions"
+  },
+  {
+   "stratum": "S3",
+   "repo": "python/cpython",
+   "n": 1350,
+   "n_attr": 243,
+   "breadth": 0.050425,
+   "share": 0.18,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S3",
+   "repo": "fastapi/sqlmodel",
+   "n": 30,
+   "n_attr": 0,
+   "breadth": 0.0,
+   "share": 0.0,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S3",
+   "repo": "enjoy-digital/litex",
+   "n": 257,
+   "n_attr": 13,
+   "breadth": 0.130952,
+   "share": 0.050584,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S2",
+   "repo": "QwenLM/qwen-code",
+   "n": 3564,
+   "n_attr": 1111,
+   "breadth": 0.379248,
+   "share": 0.311728,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S1",
+   "repo": "NVIDIA/TransformerEngine",
+   "n": 269,
+   "n_attr": 13,
+   "breadth": 0.079225,
+   "share": 0.048327,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S1",
+   "repo": "ggml-org/ggml",
+   "n": 640,
+   "n_attr": 13,
+   "breadth": 0.034278,
+   "share": 0.020313,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S3",
+   "repo": "ccxt/ccxt",
+   "n": 1144,
+   "n_attr": 79,
+   "breadth": 0.347009,
+   "share": 0.069056,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S1",
+   "repo": "microsoft/onnxruntime",
+   "n": 717,
+   "n_attr": 242,
+   "breadth": 0.361375,
+   "share": 0.337517,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S1",
+   "repo": "pytorch/torchtitan",
+   "n": 511,
+   "n_attr": 9,
+   "breadth": 0.058417,
+   "share": 0.017613,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S1",
+   "repo": "pytorch/pytorch",
+   "n": 4922,
+   "n_attr": 458,
+   "breadth": 0.113996,
+   "share": 0.093052,
+   "policy": "mentions"
+  },
+  {
+   "stratum": "S3",
+   "repo": "locustio/locust",
+   "n": 92,
+   "n_attr": 2,
+   "breadth": 0.088889,
+   "share": 0.021739,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S3",
+   "repo": "odoo/odoo",
+   "n": 4932,
+   "n_attr": 3,
+   "breadth": 0.001435,
+   "share": 0.000608,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S3",
+   "repo": "conan-io/conan",
+   "n": 124,
+   "n_attr": 0,
+   "breadth": 0.0,
+   "share": 0.0,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S2",
+   "repo": "aaif-goose/goose",
+   "n": 696,
+   "n_attr": 53,
+   "breadth": 0.177778,
+   "share": 0.076149,
+   "policy": "mentions"
+  },
+  {
+   "stratum": "S3",
+   "repo": "soxoj/maigret",
+   "n": 159,
+   "n_attr": 7,
+   "breadth": 0.111111,
+   "share": 0.044025,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S1",
+   "repo": "vllm-project/vllm",
+   "n": 4000,
+   "n_attr": 1192,
+   "breadth": 0.380364,
+   "share": 0.298,
+   "policy": "requires_disclosure"
+  },
+  {
+   "stratum": "S2",
+   "repo": "OpenHands/OpenHands",
+   "n": 598,
+   "n_attr": 324,
+   "breadth": 0.483333,
+   "share": 0.541806,
+   "policy": "mentions"
+  },
+  {
+   "stratum": "S3",
+   "repo": "RPCS3/rpcs3",
+   "n": 605,
+   "n_attr": 5,
+   "breadth": 0.02381,
+   "share": 0.008264,
+   "policy": "requires_disclosure"
+  },
+  {
+   "stratum": "S3",
+   "repo": "frappe/erpnext",
+   "n": 1444,
+   "n_attr": 49,
+   "breadth": 0.133267,
+   "share": 0.033934,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S2",
+   "repo": "cline/cline",
+   "n": 1061,
+   "n_attr": 67,
+   "breadth": 0.188637,
+   "share": 0.063148,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S1",
+   "repo": "NVIDIA/Megatron-LM",
+   "n": 827,
+   "n_attr": 109,
+   "breadth": 0.286921,
+   "share": 0.131802,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S1",
+   "repo": "unslothai/unsloth",
+   "n": 3673,
+   "n_attr": 36,
+   "breadth": 0.122343,
+   "share": 0.009801,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S2",
+   "repo": "Kilo-Org/kilocode",
+   "n": 4268,
+   "n_attr": 11,
+   "breadth": 0.030036,
+   "share": 0.002577,
+   "policy": "requires_disclosure"
+  },
+  {
+   "stratum": "S3",
+   "repo": "mongodb/mongo",
+   "n": 2452,
+   "n_attr": 172,
+   "breadth": 0.17506,
+   "share": 0.070147,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S3",
+   "repo": "argotorg/solidity",
+   "n": 210,
+   "n_attr": 1,
+   "breadth": 0.041667,
+   "share": 0.004762,
+   "policy": "requires_disclosure"
+  },
+  {
+   "stratum": "S2",
+   "repo": "google-gemini/gemini-cli",
+   "n": 170,
+   "n_attr": 9,
+   "breadth": 0.122222,
+   "share": 0.052941,
+   "policy": "mentions"
+  },
+  {
+   "stratum": "S1",
+   "repo": "allenai/open-instruct",
+   "n": 39,
+   "n_attr": 35,
+   "breadth": 0.833333,
+   "share": 0.897436,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S1",
+   "repo": "huggingface/diffusers",
+   "n": 301,
+   "n_attr": 54,
+   "breadth": 0.290354,
+   "share": 0.179402,
+   "policy": "requires_disclosure"
+  },
+  {
+   "stratum": "S3",
+   "repo": "bridgecrewio/checkov",
+   "n": 42,
+   "n_attr": 0,
+   "breadth": 0.0,
+   "share": 0.0,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S2",
+   "repo": "warpdotdev/warp",
+   "n": 517,
+   "n_attr": 340,
+   "breadth": 0.630224,
+   "share": 0.65764,
+   "policy": "requires_disclosure"
+  },
+  {
+   "stratum": "S1",
+   "repo": "pytorch/executorch",
+   "n": 1378,
+   "n_attr": 17,
+   "breadth": 0.045395,
+   "share": 0.012337,
+   "policy": "silent"
+  }
+ ],
+ "reverts": [
+  {
+   "stratum": "S1",
+   "attr": false,
+   "n": 400742,
+   "n_reverted": 5638,
+   "rate": "0.0141"
+  },
+  {
+   "stratum": "S1",
+   "attr": true,
+   "n": 6785,
+   "n_reverted": 79,
+   "rate": "0.0116"
+  },
+  {
+   "stratum": "S2",
+   "attr": false,
+   "n": 111229,
+   "n_reverted": 404,
+   "rate": "0.0036"
+  },
+  {
+   "stratum": "S2",
+   "attr": true,
+   "n": 7443,
+   "n_reverted": 7,
+   "rate": "0.0009"
+  },
+  {
+   "stratum": "S3",
+   "attr": false,
+   "n": 368889,
+   "n_reverted": 1496,
+   "rate": "0.0041"
+  },
+  {
+   "stratum": "S3",
+   "attr": true,
+   "n": 5220,
+   "n_reverted": 2,
+   "rate": "0.0004"
+  }
+ ]
+}
