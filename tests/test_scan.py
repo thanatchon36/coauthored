@@ -49,3 +49,17 @@ def test_no_identities_stored(fixture_repo: Path, tmp_path: Path) -> None:
     text = zstandard.ZstdDecompressor().stream_reader(blob).read().decode()
     for needle in ("ada@example.org", "Ada Human", "bob@example.org", "Pair work"):
         assert needle not in text
+
+
+def test_rescan_fetches_new_commits(fixture_repo: Path, tmp_path: Path) -> None:
+    import subprocess
+
+    src = tmp_path / "src"
+    subprocess.run(["git", "clone", "-q", str(fixture_repo), str(src)], check=True)
+    cat = cat_mod.load(FIXTURES / "catalogue.yaml")
+    bots = bots_mod.load(FIXTURES / "bots.yaml")
+    first = scan_repo("f/r", cat, bots, "s", tmp_path / "w", tmp_path / "raw", url=str(src))
+    env = ["-c", "user.name=A", "-c", "user.email=a@example.org"]
+    subprocess.run(["git", *env, "commit", "-q", "--allow-empty", "-m", "new"], cwd=src, check=True)
+    second = scan_repo("f/r", cat, bots, "s", tmp_path / "w", tmp_path / "raw", url=str(src))
+    assert second["n_commits_all"] == first["n_commits_all"] + 1

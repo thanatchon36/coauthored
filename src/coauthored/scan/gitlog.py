@@ -32,7 +32,10 @@ def _git(*args: str, cwd: Path | None = None) -> str:
 def clone(url: str, dest: Path, blob_filter: str = "tree:0") -> Path:
     """Bare, single-branch, partial clone of the default branch; fetch if it already exists."""
     if (dest / "HEAD").exists():
-        _git("fetch", "--quiet", "--filter=" + blob_filter, "origin", cwd=dest)
+        # a bare clone has no fetch refspec; update the default branch explicitly
+        branch = default_branch(dest)
+        refspec = f"+refs/heads/{branch}:refs/heads/{branch}"
+        _git("fetch", "--quiet", "--filter=" + blob_filter, "origin", refspec, cwd=dest)
         return dest
     dest.parent.mkdir(parents=True, exist_ok=True)
     _git("clone", "--quiet", "--bare", "--single-branch", "--filter=" + blob_filter, url, str(dest))
