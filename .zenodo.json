@@ -1,0 +1,21 @@
+{
+  "title": "coauthored: AI co-authorship trailers in AI infrastructure repositories, 2023–2026",
+  "upload_type": "software",
+  "description": "Who Writes the Code That Trains the Models? coauthored counts commits that carry an explicit AI attribution (Co-authored-by trailers naming an AI tool, AI-agent bot accounts, generated-with markers) and the accompanying pre-registered study measures that share month by month in open-source AI infrastructure repositories, matched non-AI repositories and open-source coding-agent harnesses. Attribution is a lower bound; the study measures how much it hides. Repository-month aggregates only; no personal identities. Independent personal research; does not represent the views of any employer or institution. Code: Apache-2.0. Data: CC-BY-4.0.",
+  "creators": [
+    {
+      "name": "Chongmankhong, Thanatchon"
+    }
+  ],
+  "license": "apache-2.0",
+  "keywords": [
+    "mining software repositories",
+    "AI coding agents",
+    "co-authored-by",
+    "software provenance",
+    "open source",
+    "AI infrastructure",
+    "pre-registration"
+  ],
+  "version": "0.0.1"
+}

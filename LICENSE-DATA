@@ -1,0 +1,11 @@
+The aggregated data in this repository (data/aggregated/, results/) is licensed under the
+Creative Commons Attribution 4.0 International License (CC BY 4.0).
+
+Full legal code: https://creativecommons.org/licenses/by/4.0/legalcode
+
+Attribution: Chongmankhong, Thanatchon. coauthored. https://github.com/thanatchon36/coauthored
+
+The aggregates are derived from the public git histories of the repositories listed in
+configs/repos.yaml. Commit metadata remains subject to each repository's own terms. No
+personal identities are included: author and committer identities are replaced by salted
+hashes at ingest and only repository-month aggregates are published.

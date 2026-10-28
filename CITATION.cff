@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use this software or its data, please cite it as below. The paper will be the preferred citation once it is released."
+title: "coauthored: AI co-authorship trailers in AI infrastructure repositories, 2023–2026"
+abstract: >-
+  Counts commits that carry an explicit AI attribution and measures that share
+  month by month in open-source AI infrastructure repositories, matched non-AI
+  repositories and coding-agent harnesses. Code: Apache-2.0. Data: CC-BY-4.0.
+type: software
+authors:
+  - family-names: Chongmankhong
+    given-names: Thanatchon
+version: 0.0.1
+license: Apache-2.0
+repository-code: "https://github.com/thanatchon36/coauthored"
+keywords:
+  - mining software repositories
+  - AI coding agents
+  - co-authored-by
+  - software provenance

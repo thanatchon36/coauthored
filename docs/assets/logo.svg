@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" role="img" aria-label="coauthored logo">
+  <rect width="120" height="120" rx="22" fill="#1d2b4f"/>
+  <path d="M30 18 V102" stroke="#9fb3d9" stroke-width="6" stroke-linecap="round"/>
+  <path d="M30 60 C30 44 60 44 72 40" fill="none" stroke="#9fb3d9" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="30" cy="30" r="9" fill="#9fb3d9"/>
+  <circle cx="30" cy="90" r="9" fill="#9fb3d9"/>
+  <circle cx="30" cy="60" r="11" fill="#f4a259"/>
+  <circle cx="82" cy="38" r="15" fill="none" stroke="#f4a259" stroke-width="6"/>
+  <circle cx="82" cy="38" r="5" fill="#f4a259"/>
+  <path d="M64 78 H98 M64 90 H90" stroke="#e7ecf5" stroke-width="5" stroke-linecap="round"/>
+</svg>

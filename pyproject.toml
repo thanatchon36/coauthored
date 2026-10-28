@@ -1,0 +1,56 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "coauthored"
+version = "0.1.0.dev0"
+description = "Count AI-attributed commits (Co-authored-by trailers, AI-agent accounts, generated-with markers) in any git history, and the pre-registered study of AI co-authorship in the repositories that build AI."
+readme = "README.md"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+requires-python = ">=3.11"
+authors = [{ name = "Thanatchon Chongmankhong" }]
+keywords = ["git", "co-authored-by", "ai-attribution", "coding-agents", "mining-software-repositories", "provenance"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: Apache Software License",
+  "Topic :: Software Development :: Version Control :: Git",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+  "typer>=0.12",
+  "pydantic>=2.7",
+  "pyyaml>=6",
+  "polars>=1.0",
+  "zstandard>=0.22",
+]
+
+[project.optional-dependencies]
+analysis = ["numpy>=1.26", "scipy>=1.13", "statsmodels>=0.14", "matplotlib>=3.9"]
+
+[project.scripts]
+coauthored = "coauthored.cli:app"
+
+[dependency-groups]
+dev = ["pytest>=8", "pytest-cov>=5", "ruff>=0.6", "mypy>=1.11", "types-PyYAML"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/coauthored"]
+
+[tool.ruff]
+line-length = 110
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+ignore_missing_imports = true
+files = ["src/coauthored"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

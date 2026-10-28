@@ -1,0 +1,21 @@
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+dist/
+build/
+*.egg-info/
+.env
+.env.*
+# clones and raw per-commit logs never enter git (aggregates only; raw goes to the HF dataset)
+work/
+data/raw/
+cache/
+
+# planning files stay private (lesson from sandbank/cpilens history rewrites)
+MISSION.md
+DECISIONS.md
