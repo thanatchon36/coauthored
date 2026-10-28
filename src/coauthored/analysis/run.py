@@ -15,6 +15,7 @@ from typing import Any
 import numpy as np
 import polars as pl
 import yaml
+from scipy.stats import chi2
 
 from coauthored.analysis import figures as fig
 from coauthored.analysis import hypotheses as h
@@ -64,6 +65,81 @@ def load_survival() -> pl.DataFrame | None:
         .replace({"": None})
         .replace_strict({"True": True, "False": False}, default=None, return_dtype=pl.Boolean),
     )
+
+
+def load_size() -> pl.DataFrame | None:
+    path = DATA / "size_sample.csv"
+    if not path.exists():
+        return None
+    s = pl.read_csv(path).filter(pl.col("files").is_not_null())
+    return s.with_columns(
+        pl.col("attr").cast(pl.String).str.to_lowercase().eq("true").alias("attr"),
+        (pl.col("insertions") + pl.col("deletions")).alias("lines"),
+    )
+
+
+def size_rows(size: pl.DataFrame, b: int, seed: int = h.SEED) -> list[dict[str, Any]]:
+    """Median lines changed (insertions + deletions) by stratum and attribution; bootstrap CI of the ratio of
+    medians (attributed ÷ unattributed), commits resampled within each cell. ``2026`` rows restrict both
+    groups to 2026-01..09, against the time trend in commit size."""
+    rng = np.random.default_rng(seed)
+    out = []
+    for period, d in (("all", size), ("2026", size.filter(pl.col("month") >= "2026-01"))):
+        for stratum in ("S1", "S2", "S3"):
+            a = d.filter((pl.col("stratum") == stratum) & pl.col("attr"))["lines"].to_numpy()
+            u = d.filter((pl.col("stratum") == stratum) & ~pl.col("attr"))["lines"].to_numpy()
+            if not (a.size and u.size):
+                continue
+            ratios = [
+                np.median(rng.choice(a, a.size)) / max(np.median(rng.choice(u, u.size)), 1) for _ in range(b)
+            ]
+            out.append(
+                {
+                    "period": period,
+                    "stratum": stratum,
+                    "n_attr": int(a.size),
+                    "n_unattr": int(u.size),
+                    "median_attr": float(np.median(a)),
+                    "iqr_attr": [float(np.percentile(a, 25)), float(np.percentile(a, 75))],
+                    "median_unattr": float(np.median(u)),
+                    "iqr_unattr": [float(np.percentile(u, 25)), float(np.percentile(u, 75))],
+                    "ratio": float(np.median(a) / max(np.median(u), 1)),
+                    "ratio_ci": list(h._ci(ratios)),
+                }
+            )
+    return out
+
+
+def revert_standardised(reverts: pl.DataFrame, end: str = "2026-06") -> list[dict[str, Any]]:
+    """Reverted attributed commits, observed vs. expected at the unattributed revert rate of the same
+    repository and month (indirect standardisation). Attributed commits are recent, with less time to be
+    reverted, and concentrated in some repositories; both would bias a crude comparison."""
+    d = reverts.filter(pl.col("month") <= end)
+    rate = d.filter(~pl.col("attr")).select(
+        "stratum", "repo", "month", (pl.col("n_reverted") / pl.col("n")).alias("rate")
+    )
+    a = d.filter(pl.col("attr")).join(rate, on=["stratum", "repo", "month"], how="left")
+    out = []
+    for (stratum,), g in sorted(a.group_by(["stratum"]), key=lambda x: str(x[0][0])):
+        known = g.filter(pl.col("rate").is_not_null())  # repo-months with unattributed commits
+        observed, expected = int(known["n_reverted"].sum()), float((known["n"] * known["rate"]).sum())
+        lo = chi2.ppf(0.025, 2 * observed) / 2 / expected if observed and expected else 0.0
+        hi = chi2.ppf(0.975, 2 * observed + 2) / 2 / expected if expected else float("nan")
+        out.append(
+            {
+                "stratum": stratum,
+                "n_attr": int(known["n"].sum()),
+                "observed": observed,
+                "expected": expected,
+                "ratio": observed / expected if expected else float("nan"),
+                "ratio_ci": [float(lo), float(hi)],  # exact Poisson interval for O / E
+            }
+        )
+    return out
+
+
+def _median_iqr(median: float, iqr: list[float]) -> str:
+    return f"{median:.0f} [{iqr[0]:.0f}, {iqr[1]:.0f}]"
 
 
 def monthly_series(pool: pl.DataFrame, draws: list[pl.DataFrame]) -> pl.DataFrame:
@@ -127,7 +203,7 @@ def analyze(b: int = h.B, out: Path = RESULTS) -> dict[str, Any]:
     tools = pl.read_parquet(DATA / "aggregated" / "repo_month_tool.parquet")
     reverts = pl.read_parquet(DATA / "aggregated" / "reverts.parquet")
     cfg = yaml.safe_load((CONFIGS / "repos.yaml").read_text())
-    survival, policy = load_survival(), load_policy()
+    survival, policy, size = load_survival(), load_policy(), load_size()
 
     results = h.run_all(rm, tools, survival, policy, b=b)
     viol = {r["repo"] for r in cfg["s3"] if r.get("caliper_violated")}
@@ -175,8 +251,40 @@ def analyze(b: int = h.B, out: Path = RESULTS) -> dict[str, Any]:
     rev_rows = [
         {**r, "rate": f"{r['n_reverted'] / r['n']:.4f}" if r["n"] else "–"} for r in rev.iter_rows(named=True)
     ]
+    std = revert_standardised(reverts)
     (tables / "reverts.md").write_text(
-        _md_table(rev_rows, ["stratum", "attr", "n", "n_reverted", "rate"]), encoding="utf-8"
+        _md_table(rev_rows, ["stratum", "attr", "n", "n_reverted", "rate"])
+        + "\nStandardised by repository and month, commits 2023-01..2026-06 (at least three months before the"
+        " snapshot):\n\n"
+        + _md_table(
+            [
+                {
+                    **r,
+                    "expected": f"{r['expected']:.1f}",
+                    "O/E (95% CI)": f"{r['ratio']:.2f} [{r['ratio_ci'][0]:.2f}, {r['ratio_ci'][1]:.2f}]",
+                }
+                for r in std
+            ],
+            ["stratum", "n_attr", "observed", "expected", "O/E (95% CI)"],
+        ),
+        encoding="utf-8",
+    )
+
+    sizes = size_rows(size, b) if size is not None else []
+    (tables / "size.md").write_text(
+        _md_table(
+            [
+                {
+                    **r,
+                    "attributed": _median_iqr(r["median_attr"], r["iqr_attr"]),
+                    "unattributed": _median_iqr(r["median_unattr"], r["iqr_unattr"]),
+                    "ratio (95% CI)": f"{r['ratio']:.2f} [{r['ratio_ci'][0]:.2f}, {r['ratio_ci'][1]:.2f}]",
+                }
+                for r in sizes
+            ],
+            ["period", "stratum", "n_attr", "n_unattr", "attributed", "unattributed", "ratio (95% CI)"],
+        ),
+        encoding="utf-8",
     )
 
     numbers: dict[str, Any] = {
@@ -197,6 +305,8 @@ def analyze(b: int = h.B, out: Path = RESULTS) -> dict[str, Any]:
         "monthly": series.to_dicts(),
         "per_repo_2026q3": per_repo.to_dicts(),
         "reverts": rev_rows,
+        "reverts_standardised": std,
+        "size": sizes,
     }
     numbers = _clean(numbers)
     (out / "numbers.json").write_text(json.dumps(numbers, indent=1, ensure_ascii=False), encoding="utf-8")

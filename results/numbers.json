@@ -132,93 +132,93 @@
    "p_one_sided": 1.0,
    "detail": {
     "quarterly_shares": {
-     "2024-Q4": {
-      "OpenHands": 1.0
-     },
-     "2025-Q3": {
-      "CodeRabbit": 0.001595,
-      "OpenHands": 0.393939,
-      "Qwen Code": 0.009569,
-      "Claude Code": 0.130781,
-      "Google Jules": 0.007974,
-      "Gemini CLI": 0.001595,
-      "OpenAI Codex": 0.004785,
-      "Gemini Code Assist": 0.347687,
-      "OpenCode": 0.017544,
-      "GitHub Copilot": 0.08453
-     },
-     "2026-Q2": {
-      "Cursor": 0.03909,
-      "Warp": 0.1349,
-      "GitHub Copilot": 0.058763,
-      "Google Jules": 0.000511,
-      "Gemini Code Assist": 0.040368,
-      "Amp": 0.000511,
-      "CodeRabbit": 0.000255,
-      "OpenCode": 0.000255,
-      "Claude Code": 0.423863,
-      "Qwen Code": 0.054931,
-      "Gemini CLI": 0.000766,
-      "OpenAI Codex": 0.070772,
-      "OpenHands": 0.175013
+     "2025-Q4": {
+      "Claude Code": 0.15814,
+      "GitHub Copilot": 0.187597,
+      "Google Jules": 0.009302,
+      "Qwen Code": 0.003101,
+      "Amp": 0.00155,
+      "OpenHands": 0.215504,
+      "Gemini Code Assist": 0.415504,
+      "Cursor": 0.00155,
+      "Factory Droid": 0.00155,
+      "CodeRabbit": 0.006202
      },
      "2025-Q2": {
+      "GitHub Copilot": 0.043478,
+      "Gemini Code Assist": 0.019324,
       "OpenHands": 0.768116,
       "Claude Code": 0.009662,
       "OpenCode": 0.157005,
-      "Google Jules": 0.002415,
-      "GitHub Copilot": 0.043478,
-      "Gemini Code Assist": 0.019324
+      "Google Jules": 0.002415
      },
-     "2026-Q1": {
-      "CodeRabbit": 0.002681,
-      "OpenHands": 0.142091,
-      "GitHub Copilot": 0.090259,
-      "Gemini Code Assist": 0.117516,
-      "Google Jules": 0.000894,
-      "Claude Code": 0.340483,
-      "Warp": 0.000894,
-      "Cursor": 0.030831,
-      "Qwen Code": 0.205987,
-      "Amp": 0.004468,
-      "OpenAI Codex": 0.063896
+     "2026-Q3": {
+      "CodeRabbit": 0.000359,
+      "Devin": 0.000359,
+      "Warp": 0.059616,
+      "Cline": 0.00018,
+      "Amp": 0.00018,
+      "Factory Droid": 0.00018,
+      "OpenAI Codex": 0.097145,
+      "OpenHands": 0.051176,
+      "Gemini Code Assist": 0.00808,
+      "GitHub Copilot": 0.059795,
+      "Cursor": 0.04956,
+      "OpenCode": 0.000718,
+      "Qwen Code": 0.154067,
+      "TRAE": 0.000359,
+      "Claude Code": 0.518226
+     },
+     "2025-Q1": {
+      "GitHub Copilot": 0.011173,
+      "OpenHands": 0.98324,
+      "Claude Code": 0.005587
+     },
+     "2025-Q3": {
+      "Gemini Code Assist": 0.347687,
+      "Qwen Code": 0.009569,
+      "Claude Code": 0.130781,
+      "OpenAI Codex": 0.004785,
+      "GitHub Copilot": 0.08453,
+      "CodeRabbit": 0.001595,
+      "OpenHands": 0.393939,
+      "OpenCode": 0.017544,
+      "Google Jules": 0.007974,
+      "Gemini CLI": 0.001595
+     },
+     "2024-Q4": {
+      "OpenHands": 1.0
+     },
+     "2026-Q2": {
+      "CodeRabbit": 0.000255,
+      "Cursor": 0.03909,
+      "GitHub Copilot": 0.058763,
+      "OpenAI Codex": 0.070772,
+      "Gemini CLI": 0.000766,
+      "OpenHands": 0.175013,
+      "Claude Code": 0.423863,
+      "Gemini Code Assist": 0.040368,
+      "OpenCode": 0.000255,
+      "Google Jules": 0.000511,
+      "Warp": 0.1349,
+      "Qwen Code": 0.054931,
+      "Amp": 0.000511
      },
      "2024-Q3": {
       "Aider": 1.0
      },
-     "2025-Q1": {
-      "Claude Code": 0.005587,
-      "OpenHands": 0.98324,
-      "GitHub Copilot": 0.011173
-     },
-     "2026-Q3": {
-      "Claude Code": 0.518226,
-      "Qwen Code": 0.154067,
-      "Gemini Code Assist": 0.00808,
-      "OpenCode": 0.000718,
-      "Cline": 0.00018,
-      "Devin": 0.000359,
-      "TRAE": 0.000359,
-      "OpenAI Codex": 0.097145,
-      "Amp": 0.00018,
-      "CodeRabbit": 0.000359,
-      "OpenHands": 0.051176,
-      "Cursor": 0.04956,
-      "Warp": 0.059616,
-      "Factory Droid": 0.00018,
-      "GitHub Copilot": 0.059795
-     },
-     "2025-Q4": {
-      "CodeRabbit": 0.006202,
-      "Cursor": 0.00155,
-      "GitHub Copilot": 0.187597,
-      "Amp": 0.00155,
-      "Factory Droid": 0.00155,
-      "Google Jules": 0.009302,
-      "Gemini Code Assist": 0.415504,
-      "OpenHands": 0.215504,
-      "Qwen Code": 0.003101,
-      "Claude Code": 0.15814
+     "2026-Q1": {
+      "OpenHands": 0.142091,
+      "Cursor": 0.030831,
+      "Google Jules": 0.000894,
+      "CodeRabbit": 0.002681,
+      "Amp": 0.004468,
+      "Qwen Code": 0.205987,
+      "Claude Code": 0.340483,
+      "OpenAI Codex": 0.063896,
+      "Gemini Code Assist": 0.117516,
+      "GitHub Copilot": 0.090259,
+      "Warp": 0.000894
      }
     }
    },
@@ -236,10 +236,10 @@
    "p_one_sided": null,
    "detail": {
     "by_policy": {
-     "requires_disclosure": 0.095859,
      "silent": 0.06434,
-     "bans": 0.0,
-     "mentions": 0.11661
+     "requires_disclosure": 0.095859,
+     "mentions": 0.11661,
+     "bans": 0.0
     }
    },
    "p_holm": null
@@ -1075,6 +1075,57 @@
     "supported": false,
     "p_one_sided": 0.405941,
     "detail": {},
+    "p_holm": null
+   }
+  ],
+  "glmm": [
+   {
+    "hypothesis": "H3",
+    "statement": "H3 under a binomial GLMM with random intercept and slope per repository (Wald CIs)",
+    "estimate": -0.02394,
+    "ci": [
+     -0.105419,
+     0.057538
+    ],
+    "supported": false,
+    "p_one_sided": null,
+    "detail": {
+     "slopes": {
+      "S1": 0.241589,
+      "S2": 0.122252,
+      "S3": 0.26553,
+      "S1-S3": -0.02394
+     },
+     "ci": {
+      "S1": [
+       0.193308,
+       0.289871
+      ],
+      "S2": [
+       0.030781,
+       0.213723
+      ],
+      "S3": [
+       0.197417,
+       0.333643
+      ],
+      "S1-S3": [
+       -0.105419,
+       0.057538
+      ]
+     },
+     "converged": true,
+     "sigma": [
+      [
+       5.466098,
+       -0.267272
+      ],
+      [
+       -0.267272,
+       0.633341
+      ]
+     ]
+    },
     "p_holm": null
    }
   ]
@@ -2262,175 +2313,13 @@
  ],
  "per_repo_2026q3": [
   {
-   "stratum": "S3",
-   "repo": "organicmaps/organicmaps",
-   "n": 457,
-   "n_attr": 10,
-   "breadth": 0.063636,
-   "share": 0.021882,
-   "policy": "silent"
-  },
-  {
-   "stratum": "S1",
-   "repo": "ml-explore/mlx-lm",
-   "n": 119,
-   "n_attr": 8,
-   "breadth": 0.083333,
-   "share": 0.067227,
-   "policy": "requires_disclosure"
-  },
-  {
-   "stratum": "S3",
-   "repo": "moraroy/NonSteamLaunchers-On-Steam-Deck",
-   "n": 26,
-   "n_attr": 2,
-   "breadth": 0.125,
-   "share": 0.076923,
-   "policy": "silent"
-  },
-  {
-   "stratum": "S1",
-   "repo": "huggingface/tokenizers",
-   "n": 135,
-   "n_attr": 17,
-   "breadth": 0.166667,
-   "share": 0.125926,
+   "stratum": "S2",
+   "repo": "aaif-goose/goose",
+   "n": 696,
+   "n_attr": 53,
+   "breadth": 0.177778,
+   "share": 0.076149,
    "policy": "mentions"
-  },
-  {
-   "stratum": "S1",
-   "repo": "huggingface/datasets",
-   "n": 62,
-   "n_attr": 8,
-   "breadth": 0.171569,
-   "share": 0.129032,
-   "policy": "silent"
-  },
-  {
-   "stratum": "S1",
-   "repo": "pytorch/ao",
-   "n": 132,
-   "n_attr": 3,
-   "breadth": 0.052632,
-   "share": 0.022727,
-   "policy": "silent"
-  },
-  {
-   "stratum": "S1",
-   "repo": "Dao-AILab/flash-attention",
-   "n": 69,
-   "n_attr": 13,
-   "breadth": 0.130545,
-   "share": 0.188406,
-   "policy": "silent"
-  },
-  {
-   "stratum": "S1",
-   "repo": "triton-lang/triton",
-   "n": 655,
-   "n_attr": 10,
-   "breadth": 0.0375,
-   "share": 0.015267,
-   "policy": "silent"
-  },
-  {
-   "stratum": "S3",
-   "repo": "saulpw/visidata",
-   "n": 31,
-   "n_attr": 16,
-   "breadth": 0.625,
-   "share": 0.516129,
-   "policy": "requires_disclosure"
-  },
-  {
-   "stratum": "S1",
-   "repo": "ml-explore/mlx",
-   "n": 400,
-   "n_attr": 5,
-   "breadth": 0.02188,
-   "share": 0.0125,
-   "policy": "requires_disclosure"
-  },
-  {
-   "stratum": "S1",
-   "repo": "jax-ml/jax",
-   "n": 1614,
-   "n_attr": 0,
-   "breadth": 0.0,
-   "share": 0.0,
-   "policy": "mentions"
-  },
-  {
-   "stratum": "S3",
-   "repo": "redis/redis-py",
-   "n": 99,
-   "n_attr": 6,
-   "breadth": 0.07619,
-   "share": 0.060606,
-   "policy": "mentions"
-  },
-  {
-   "stratum": "S1",
-   "repo": "huggingface/trl",
-   "n": 613,
-   "n_attr": 23,
-   "breadth": 0.255935,
-   "share": 0.03752,
-   "policy": "requires_disclosure"
-  },
-  {
-   "stratum": "S3",
-   "repo": "godotengine/godot",
-   "n": 1086,
-   "n_attr": 0,
-   "breadth": 0.0,
-   "share": 0.0,
-   "policy": "requires_disclosure"
-  },
-  {
-   "stratum": "S1",
-   "repo": "ggml-org/llama.cpp",
-   "n": 1460,
-   "n_attr": 20,
-   "breadth": 0.033337,
-   "share": 0.013699,
-   "policy": "requires_disclosure"
-  },
-  {
-   "stratum": "S3",
-   "repo": "bitcoin/bitcoin",
-   "n": 921,
-   "n_attr": 1,
-   "breadth": 0.007407,
-   "share": 0.001086,
-   "policy": "mentions"
-  },
-  {
-   "stratum": "S3",
-   "repo": "pwndbg/pwndbg",
-   "n": 154,
-   "n_attr": 10,
-   "breadth": 0.157725,
-   "share": 0.064935,
-   "policy": "silent"
-  },
-  {
-   "stratum": "S3",
-   "repo": "fastapi/fastapi",
-   "n": 135,
-   "n_attr": 1,
-   "breadth": 0.071429,
-   "share": 0.007407,
-   "policy": "silent"
-  },
-  {
-   "stratum": "S3",
-   "repo": "saleor/saleor",
-   "n": 114,
-   "n_attr": 54,
-   "breadth": 0.25,
-   "share": 0.473684,
-   "policy": "silent"
   },
   {
    "stratum": "S3",
@@ -2443,11 +2332,38 @@
   },
   {
    "stratum": "S3",
-   "repo": "GAM-team/GAM",
-   "n": 147,
+   "repo": "fastapi/fastapi",
+   "n": 135,
+   "n_attr": 1,
+   "breadth": 0.071429,
+   "share": 0.007407,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S1",
+   "repo": "pytorch/torchtitan",
+   "n": 511,
+   "n_attr": 9,
+   "breadth": 0.058417,
+   "share": 0.017613,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S3",
+   "repo": "conan-io/conan",
+   "n": 124,
    "n_attr": 0,
    "breadth": 0.0,
    "share": 0.0,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S1",
+   "repo": "InternLM/lmdeploy",
+   "n": 176,
+   "n_attr": 8,
+   "breadth": 0.163876,
+   "share": 0.045455,
    "policy": "silent"
   },
   {
@@ -2461,74 +2377,47 @@
   },
   {
    "stratum": "S3",
-   "repo": "home-assistant/core",
-   "n": 5368,
-   "n_attr": 1069,
-   "breadth": 0.324814,
-   "share": 0.199143,
+   "repo": "pgadmin-org/pgadmin4",
+   "n": 251,
+   "n_attr": 6,
+   "breadth": 0.083333,
+   "share": 0.023904,
    "policy": "mentions"
   },
   {
    "stratum": "S1",
-   "repo": "flashinfer-ai/flashinfer",
-   "n": 923,
-   "n_attr": 344,
-   "breadth": 0.365146,
-   "share": 0.372698,
-   "policy": "mentions"
-  },
-  {
-   "stratum": "S3",
-   "repo": "ansible/ansible-lint",
-   "n": 38,
-   "n_attr": 11,
-   "breadth": 0.173942,
-   "share": 0.289474,
+   "repo": "ggml-org/ggml",
+   "n": 640,
+   "n_attr": 13,
+   "breadth": 0.034278,
+   "share": 0.020313,
    "policy": "silent"
   },
   {
-   "stratum": "S2",
-   "repo": "openai/codex",
-   "n": 3735,
-   "n_attr": 1,
-   "breadth": 0.002976,
-   "share": 0.000268,
-   "policy": "silent"
-  },
-  {
-   "stratum": "S3",
-   "repo": "qutebrowser/qutebrowser",
-   "n": 43,
-   "n_attr": 0,
-   "breadth": 0.0,
-   "share": 0.0,
-   "policy": "silent"
-  },
-  {
-   "stratum": "S2",
-   "repo": "anomalyco/opencode",
-   "n": 3942,
+   "stratum": "S1",
+   "repo": "NVIDIA-NeMo/Speech",
+   "n": 168,
    "n_attr": 8,
-   "breadth": 0.033161,
-   "share": 0.002029,
-   "policy": "mentions"
+   "breadth": 0.071473,
+   "share": 0.047619,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S1",
+   "repo": "huggingface/transformers",
+   "n": 870,
+   "n_attr": 149,
+   "breadth": 0.170442,
+   "share": 0.171264,
+   "policy": "requires_disclosure"
   },
   {
    "stratum": "S3",
-   "repo": "wesnoth/wesnoth",
-   "n": 391,
+   "repo": "fastapi/sqlmodel",
+   "n": 30,
    "n_attr": 0,
    "breadth": 0.0,
    "share": 0.0,
-   "policy": "mentions"
-  },
-  {
-   "stratum": "S3",
-   "repo": "nicolargo/glances",
-   "n": 319,
-   "n_attr": 88,
-   "breadth": 0.150327,
-   "share": 0.275862,
    "policy": "silent"
   },
   {
@@ -2542,11 +2431,11 @@
   },
   {
    "stratum": "S2",
-   "repo": "openinterpreter/openinterpreter",
-   "n": 2686,
-   "n_attr": 3,
-   "breadth": 0.008197,
-   "share": 0.001117,
+   "repo": "continuedev/continue",
+   "n": 2,
+   "n_attr": 1,
+   "breadth": null,
+   "share": 0.5,
    "policy": "silent"
   },
   {
@@ -2560,12 +2449,255 @@
   },
   {
    "stratum": "S1",
+   "repo": "NVIDIA/Megatron-LM",
+   "n": 827,
+   "n_attr": 109,
+   "breadth": 0.286921,
+   "share": 0.131802,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S3",
+   "repo": "soxoj/maigret",
+   "n": 159,
+   "n_attr": 7,
+   "breadth": 0.111111,
+   "share": 0.044025,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S2",
+   "repo": "QwenLM/qwen-code",
+   "n": 3564,
+   "n_attr": 1111,
+   "breadth": 0.379248,
+   "share": 0.311728,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S1",
+   "repo": "flashinfer-ai/flashinfer",
+   "n": 923,
+   "n_attr": 344,
+   "breadth": 0.365146,
+   "share": 0.372698,
+   "policy": "mentions"
+  },
+  {
+   "stratum": "S1",
    "repo": "openxla/xla",
    "n": 2612,
    "n_attr": 5,
    "breadth": 0.00207,
    "share": 0.001914,
    "policy": "silent"
+  },
+  {
+   "stratum": "S1",
+   "repo": "axolotl-ai-cloud/axolotl",
+   "n": 182,
+   "n_attr": 5,
+   "breadth": 0.137879,
+   "share": 0.027473,
+   "policy": "requires_disclosure"
+  },
+  {
+   "stratum": "S3",
+   "repo": "eclipse-sumo/sumo",
+   "n": 757,
+   "n_attr": 0,
+   "breadth": 0.0,
+   "share": 0.0,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S3",
+   "repo": "RPCS3/rpcs3",
+   "n": 605,
+   "n_attr": 5,
+   "breadth": 0.02381,
+   "share": 0.008264,
+   "policy": "requires_disclosure"
+  },
+  {
+   "stratum": "S2",
+   "repo": "google-gemini/gemini-cli",
+   "n": 170,
+   "n_attr": 9,
+   "breadth": 0.122222,
+   "share": 0.052941,
+   "policy": "mentions"
+  },
+  {
+   "stratum": "S3",
+   "repo": "mikumifa/biliTickerBuy",
+   "n": 34,
+   "n_attr": 0,
+   "breadth": 0.0,
+   "share": 0.0,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S1",
+   "repo": "huggingface/trl",
+   "n": 613,
+   "n_attr": 23,
+   "breadth": 0.255935,
+   "share": 0.03752,
+   "policy": "requires_disclosure"
+  },
+  {
+   "stratum": "S1",
+   "repo": "unslothai/unsloth",
+   "n": 3673,
+   "n_attr": 36,
+   "breadth": 0.122343,
+   "share": 0.009801,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S3",
+   "repo": "argotorg/solidity",
+   "n": 210,
+   "n_attr": 1,
+   "breadth": 0.041667,
+   "share": 0.004762,
+   "policy": "requires_disclosure"
+  },
+  {
+   "stratum": "S1",
+   "repo": "triton-lang/triton",
+   "n": 655,
+   "n_attr": 10,
+   "breadth": 0.0375,
+   "share": 0.015267,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S2",
+   "repo": "openai/codex",
+   "n": 3735,
+   "n_attr": 1,
+   "breadth": 0.002976,
+   "share": 0.000268,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S1",
+   "repo": "pytorch/pytorch",
+   "n": 4922,
+   "n_attr": 458,
+   "breadth": 0.113996,
+   "share": 0.093052,
+   "policy": "mentions"
+  },
+  {
+   "stratum": "S2",
+   "repo": "openinterpreter/openinterpreter",
+   "n": 2686,
+   "n_attr": 3,
+   "breadth": 0.008197,
+   "share": 0.001117,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S1",
+   "repo": "tensorflow/tensorflow",
+   "n": 3618,
+   "n_attr": 15,
+   "breadth": 0.011809,
+   "share": 0.004146,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S1",
+   "repo": "huggingface/datatrove",
+   "n": 25,
+   "n_attr": 18,
+   "breadth": 0.4,
+   "share": 0.72,
+   "policy": "mentions"
+  },
+  {
+   "stratum": "S1",
+   "repo": "sgl-project/sglang",
+   "n": 4497,
+   "n_attr": 641,
+   "breadth": 0.18097,
+   "share": 0.142539,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S3",
+   "repo": "mongodb/mongo",
+   "n": 2452,
+   "n_attr": 172,
+   "breadth": 0.17506,
+   "share": 0.070147,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S3",
+   "repo": "qutebrowser/qutebrowser",
+   "n": 43,
+   "n_attr": 0,
+   "breadth": 0.0,
+   "share": 0.0,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S3",
+   "repo": "LibreOffice/core",
+   "n": 2465,
+   "n_attr": 0,
+   "breadth": 0.0,
+   "share": 0.0,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S1",
+   "repo": "huggingface/datasets",
+   "n": 62,
+   "n_attr": 8,
+   "breadth": 0.171569,
+   "share": 0.129032,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S2",
+   "repo": "warpdotdev/warp",
+   "n": 517,
+   "n_attr": 340,
+   "breadth": 0.630224,
+   "share": 0.65764,
+   "policy": "requires_disclosure"
+  },
+  {
+   "stratum": "S3",
+   "repo": "redis/redis-py",
+   "n": 99,
+   "n_attr": 6,
+   "breadth": 0.07619,
+   "share": 0.060606,
+   "policy": "mentions"
+  },
+  {
+   "stratum": "S1",
+   "repo": "deepspeedai/DeepSpeed",
+   "n": 298,
+   "n_attr": 56,
+   "breadth": 0.190896,
+   "share": 0.187919,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S1",
+   "repo": "jax-ml/jax",
+   "n": 1614,
+   "n_attr": 0,
+   "breadth": 0.0,
+   "share": 0.0,
+   "policy": "mentions"
   },
   {
    "stratum": "S3",
@@ -2577,9 +2709,315 @@
    "policy": "requires_disclosure"
   },
   {
+   "stratum": "S1",
+   "repo": "ml-explore/mlx-lm",
+   "n": 119,
+   "n_attr": 8,
+   "breadth": 0.083333,
+   "share": 0.067227,
+   "policy": "requires_disclosure"
+  },
+  {
+   "stratum": "S1",
+   "repo": "pytorch/executorch",
+   "n": 1378,
+   "n_attr": 17,
+   "breadth": 0.045395,
+   "share": 0.012337,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S1",
+   "repo": "allenai/open-instruct",
+   "n": 39,
+   "n_attr": 35,
+   "breadth": 0.833333,
+   "share": 0.897436,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S1",
+   "repo": "Lightning-AI/pytorch-lightning",
+   "n": 37,
+   "n_attr": 1,
+   "breadth": 0.083333,
+   "share": 0.027027,
+   "policy": "silent"
+  },
+  {
    "stratum": "S3",
-   "repo": "mikumifa/biliTickerBuy",
-   "n": 34,
+   "repo": "pwndbg/pwndbg",
+   "n": 154,
+   "n_attr": 10,
+   "breadth": 0.157725,
+   "share": 0.064935,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S3",
+   "repo": "moraroy/NonSteamLaunchers-On-Steam-Deck",
+   "n": 26,
+   "n_attr": 2,
+   "breadth": 0.125,
+   "share": 0.076923,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S2",
+   "repo": "OpenHands/OpenHands",
+   "n": 598,
+   "n_attr": 324,
+   "breadth": 0.483333,
+   "share": 0.541806,
+   "policy": "mentions"
+  },
+  {
+   "stratum": "S3",
+   "repo": "frappe/erpnext",
+   "n": 1444,
+   "n_attr": 49,
+   "breadth": 0.133267,
+   "share": 0.033934,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S1",
+   "repo": "NVIDIA/TransformerEngine",
+   "n": 269,
+   "n_attr": 13,
+   "breadth": 0.079225,
+   "share": 0.048327,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S2",
+   "repo": "cline/cline",
+   "n": 1061,
+   "n_attr": 67,
+   "breadth": 0.188637,
+   "share": 0.063148,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S3",
+   "repo": "godotengine/godot",
+   "n": 1086,
+   "n_attr": 0,
+   "breadth": 0.0,
+   "share": 0.0,
+   "policy": "requires_disclosure"
+  },
+  {
+   "stratum": "S3",
+   "repo": "organicmaps/organicmaps",
+   "n": 457,
+   "n_attr": 10,
+   "breadth": 0.063636,
+   "share": 0.021882,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S3",
+   "repo": "saleor/saleor",
+   "n": 114,
+   "n_attr": 54,
+   "breadth": 0.25,
+   "share": 0.473684,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S3",
+   "repo": "tornadoweb/tornado",
+   "n": 86,
+   "n_attr": 46,
+   "breadth": 0.111111,
+   "share": 0.534884,
+   "policy": "mentions"
+  },
+  {
+   "stratum": "S1",
+   "repo": "modular/modular",
+   "n": 4755,
+   "n_attr": 59,
+   "breadth": 0.037311,
+   "share": 0.012408,
+   "policy": "requires_disclosure"
+  },
+  {
+   "stratum": "S3",
+   "repo": "sherlock-project/sherlock",
+   "n": 7,
+   "n_attr": 0,
+   "breadth": null,
+   "share": 0.0,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S3",
+   "repo": "locustio/locust",
+   "n": 92,
+   "n_attr": 2,
+   "breadth": 0.088889,
+   "share": 0.021739,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S3",
+   "repo": "saulpw/visidata",
+   "n": 31,
+   "n_attr": 16,
+   "breadth": 0.625,
+   "share": 0.516129,
+   "policy": "requires_disclosure"
+  },
+  {
+   "stratum": "S3",
+   "repo": "enjoy-digital/litex",
+   "n": 257,
+   "n_attr": 13,
+   "breadth": 0.130952,
+   "share": 0.050584,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S3",
+   "repo": "nicolargo/glances",
+   "n": 319,
+   "n_attr": 88,
+   "breadth": 0.150327,
+   "share": 0.275862,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S1",
+   "repo": "EleutherAI/lm-evaluation-harness",
+   "n": 88,
+   "n_attr": 7,
+   "breadth": 0.174772,
+   "share": 0.079545,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S3",
+   "repo": "GAM-team/GAM",
+   "n": 147,
+   "n_attr": 0,
+   "breadth": 0.0,
+   "share": 0.0,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S3",
+   "repo": "kovidgoyal/calibre",
+   "n": 701,
+   "n_attr": 26,
+   "breadth": 0.084465,
+   "share": 0.03709,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S1",
+   "repo": "huggingface/diffusers",
+   "n": 301,
+   "n_attr": 54,
+   "breadth": 0.290354,
+   "share": 0.179402,
+   "policy": "requires_disclosure"
+  },
+  {
+   "stratum": "S1",
+   "repo": "pytorch/ao",
+   "n": 132,
+   "n_attr": 3,
+   "breadth": 0.052632,
+   "share": 0.022727,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S3",
+   "repo": "odoo/odoo",
+   "n": 4932,
+   "n_attr": 3,
+   "breadth": 0.001435,
+   "share": 0.000608,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S2",
+   "repo": "anomalyco/opencode",
+   "n": 3942,
+   "n_attr": 8,
+   "breadth": 0.033161,
+   "share": 0.002029,
+   "policy": "mentions"
+  },
+  {
+   "stratum": "S3",
+   "repo": "bitcoin/bitcoin",
+   "n": 921,
+   "n_attr": 1,
+   "breadth": 0.007407,
+   "share": 0.001086,
+   "policy": "mentions"
+  },
+  {
+   "stratum": "S1",
+   "repo": "vllm-project/vllm",
+   "n": 4000,
+   "n_attr": 1192,
+   "breadth": 0.380364,
+   "share": 0.298,
+   "policy": "requires_disclosure"
+  },
+  {
+   "stratum": "S3",
+   "repo": "ccxt/ccxt",
+   "n": 1144,
+   "n_attr": 79,
+   "breadth": 0.347009,
+   "share": 0.069056,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S1",
+   "repo": "Dao-AILab/flash-attention",
+   "n": 69,
+   "n_attr": 13,
+   "breadth": 0.130545,
+   "share": 0.188406,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S3",
+   "repo": "home-assistant/core",
+   "n": 5368,
+   "n_attr": 1069,
+   "breadth": 0.324814,
+   "share": 0.199143,
+   "policy": "mentions"
+  },
+  {
+   "stratum": "S3",
+   "repo": "wesnoth/wesnoth",
+   "n": 391,
+   "n_attr": 0,
+   "breadth": 0.0,
+   "share": 0.0,
+   "policy": "mentions"
+  },
+  {
+   "stratum": "S2",
+   "repo": "Kilo-Org/kilocode",
+   "n": 4268,
+   "n_attr": 11,
+   "breadth": 0.030036,
+   "share": 0.002577,
+   "policy": "requires_disclosure"
+  },
+  {
+   "stratum": "S3",
+   "repo": "aio-libs/aiohttp",
+   "n": 239,
    "n_attr": 0,
    "breadth": 0.0,
    "share": 0.0,
@@ -2596,47 +3034,29 @@
   },
   {
    "stratum": "S1",
-   "repo": "EleutherAI/lm-evaluation-harness",
-   "n": 88,
-   "n_attr": 7,
-   "breadth": 0.174772,
-   "share": 0.079545,
-   "policy": "silent"
-  },
-  {
-   "stratum": "S2",
-   "repo": "charmbracelet/crush",
-   "n": 589,
-   "n_attr": 15,
-   "breadth": 0.106667,
-   "share": 0.025467,
+   "repo": "google/flax",
+   "n": 22,
+   "n_attr": 0,
+   "breadth": 0.0,
+   "share": 0.0,
    "policy": "silent"
   },
   {
    "stratum": "S1",
-   "repo": "NVIDIA-NeMo/Speech",
-   "n": 168,
-   "n_attr": 8,
-   "breadth": 0.071473,
-   "share": 0.047619,
-   "policy": "silent"
+   "repo": "ggml-org/llama.cpp",
+   "n": 1460,
+   "n_attr": 20,
+   "breadth": 0.033337,
+   "share": 0.013699,
+   "policy": "requires_disclosure"
   },
   {
    "stratum": "S1",
-   "repo": "InternLM/lmdeploy",
-   "n": 176,
-   "n_attr": 8,
-   "breadth": 0.163876,
-   "share": 0.045455,
-   "policy": "silent"
-  },
-  {
-   "stratum": "S1",
-   "repo": "tensorflow/tensorflow",
-   "n": 3618,
-   "n_attr": 15,
-   "breadth": 0.011809,
-   "share": 0.004146,
+   "repo": "ollama/ollama",
+   "n": 305,
+   "n_attr": 1,
+   "breadth": 0.030303,
+   "share": 0.003279,
    "policy": "silent"
   },
   {
@@ -2649,193 +3069,13 @@
    "policy": "requires_disclosure"
   },
   {
-   "stratum": "S1",
-   "repo": "huggingface/transformers",
-   "n": 870,
-   "n_attr": 149,
-   "breadth": 0.170442,
-   "share": 0.171264,
-   "policy": "requires_disclosure"
-  },
-  {
    "stratum": "S3",
-   "repo": "eclipse-sumo/sumo",
-   "n": 757,
+   "repo": "bridgecrewio/checkov",
+   "n": 42,
    "n_attr": 0,
    "breadth": 0.0,
    "share": 0.0,
    "policy": "silent"
-  },
-  {
-   "stratum": "S1",
-   "repo": "deepspeedai/DeepSpeed",
-   "n": 298,
-   "n_attr": 56,
-   "breadth": 0.190896,
-   "share": 0.187919,
-   "policy": "silent"
-  },
-  {
-   "stratum": "S1",
-   "repo": "axolotl-ai-cloud/axolotl",
-   "n": 182,
-   "n_attr": 5,
-   "breadth": 0.137879,
-   "share": 0.027473,
-   "policy": "requires_disclosure"
-  },
-  {
-   "stratum": "S3",
-   "repo": "LibreOffice/core",
-   "n": 2465,
-   "n_attr": 0,
-   "breadth": 0.0,
-   "share": 0.0,
-   "policy": "silent"
-  },
-  {
-   "stratum": "S2",
-   "repo": "continuedev/continue",
-   "n": 2,
-   "n_attr": 1,
-   "breadth": null,
-   "share": 0.5,
-   "policy": "silent"
-  },
-  {
-   "stratum": "S3",
-   "repo": "grpc/grpc-rust",
-   "n": 106,
-   "n_attr": 2,
-   "breadth": 0.030303,
-   "share": 0.018868,
-   "policy": "mentions"
-  },
-  {
-   "stratum": "S3",
-   "repo": "django/django",
-   "n": 219,
-   "n_attr": 0,
-   "breadth": 0.0,
-   "share": 0.0,
-   "policy": "requires_disclosure"
-  },
-  {
-   "stratum": "S3",
-   "repo": "kovidgoyal/calibre",
-   "n": 701,
-   "n_attr": 26,
-   "breadth": 0.084465,
-   "share": 0.03709,
-   "policy": "silent"
-  },
-  {
-   "stratum": "S1",
-   "repo": "hiyouga/LlamaFactory",
-   "n": 49,
-   "n_attr": 9,
-   "breadth": 0.197511,
-   "share": 0.183673,
-   "policy": "silent"
-  },
-  {
-   "stratum": "S3",
-   "repo": "pgadmin-org/pgadmin4",
-   "n": 251,
-   "n_attr": 6,
-   "breadth": 0.083333,
-   "share": 0.023904,
-   "policy": "mentions"
-  },
-  {
-   "stratum": "S3",
-   "repo": "python-poetry/poetry",
-   "n": 59,
-   "n_attr": 0,
-   "breadth": 0.0,
-   "share": 0.0,
-   "policy": "silent"
-  },
-  {
-   "stratum": "S1",
-   "repo": "ollama/ollama",
-   "n": 305,
-   "n_attr": 1,
-   "breadth": 0.030303,
-   "share": 0.003279,
-   "policy": "silent"
-  },
-  {
-   "stratum": "S3",
-   "repo": "sherlock-project/sherlock",
-   "n": 7,
-   "n_attr": 0,
-   "breadth": null,
-   "share": 0.0,
-   "policy": "silent"
-  },
-  {
-   "stratum": "S1",
-   "repo": "sgl-project/sglang",
-   "n": 4497,
-   "n_attr": 641,
-   "breadth": 0.18097,
-   "share": 0.142539,
-   "policy": "silent"
-  },
-  {
-   "stratum": "S1",
-   "repo": "huggingface/datatrove",
-   "n": 25,
-   "n_attr": 18,
-   "breadth": 0.4,
-   "share": 0.72,
-   "policy": "mentions"
-  },
-  {
-   "stratum": "S1",
-   "repo": "google/flax",
-   "n": 22,
-   "n_attr": 0,
-   "breadth": 0.0,
-   "share": 0.0,
-   "policy": "silent"
-  },
-  {
-   "stratum": "S1",
-   "repo": "Lightning-AI/pytorch-lightning",
-   "n": 37,
-   "n_attr": 1,
-   "breadth": 0.083333,
-   "share": 0.027027,
-   "policy": "silent"
-  },
-  {
-   "stratum": "S1",
-   "repo": "modular/modular",
-   "n": 4755,
-   "n_attr": 59,
-   "breadth": 0.037311,
-   "share": 0.012408,
-   "policy": "requires_disclosure"
-  },
-  {
-   "stratum": "S3",
-   "repo": "aio-libs/aiohttp",
-   "n": 239,
-   "n_attr": 0,
-   "breadth": 0.0,
-   "share": 0.0,
-   "policy": "silent"
-  },
-  {
-   "stratum": "S3",
-   "repo": "tornadoweb/tornado",
-   "n": 86,
-   "n_attr": 46,
-   "breadth": 0.111111,
-   "share": 0.534884,
-   "policy": "mentions"
   },
   {
    "stratum": "S3",
@@ -2848,57 +3088,48 @@
   },
   {
    "stratum": "S3",
-   "repo": "fastapi/sqlmodel",
-   "n": 30,
+   "repo": "grpc/grpc-rust",
+   "n": 106,
+   "n_attr": 2,
+   "breadth": 0.030303,
+   "share": 0.018868,
+   "policy": "mentions"
+  },
+  {
+   "stratum": "S1",
+   "repo": "hiyouga/LlamaFactory",
+   "n": 49,
+   "n_attr": 9,
+   "breadth": 0.197511,
+   "share": 0.183673,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S3",
+   "repo": "ansible/ansible-lint",
+   "n": 38,
+   "n_attr": 11,
+   "breadth": 0.173942,
+   "share": 0.289474,
+   "policy": "silent"
+  },
+  {
+   "stratum": "S3",
+   "repo": "django/django",
+   "n": 219,
    "n_attr": 0,
    "breadth": 0.0,
    "share": 0.0,
-   "policy": "silent"
-  },
-  {
-   "stratum": "S3",
-   "repo": "enjoy-digital/litex",
-   "n": 257,
-   "n_attr": 13,
-   "breadth": 0.130952,
-   "share": 0.050584,
-   "policy": "silent"
-  },
-  {
-   "stratum": "S2",
-   "repo": "QwenLM/qwen-code",
-   "n": 3564,
-   "n_attr": 1111,
-   "breadth": 0.379248,
-   "share": 0.311728,
-   "policy": "silent"
+   "policy": "requires_disclosure"
   },
   {
    "stratum": "S1",
-   "repo": "NVIDIA/TransformerEngine",
-   "n": 269,
-   "n_attr": 13,
-   "breadth": 0.079225,
-   "share": 0.048327,
-   "policy": "silent"
-  },
-  {
-   "stratum": "S1",
-   "repo": "ggml-org/ggml",
-   "n": 640,
-   "n_attr": 13,
-   "breadth": 0.034278,
-   "share": 0.020313,
-   "policy": "silent"
-  },
-  {
-   "stratum": "S3",
-   "repo": "ccxt/ccxt",
-   "n": 1144,
-   "n_attr": 79,
-   "breadth": 0.347009,
-   "share": 0.069056,
-   "policy": "silent"
+   "repo": "ml-explore/mlx",
+   "n": 400,
+   "n_attr": 5,
+   "breadth": 0.02188,
+   "share": 0.0125,
+   "policy": "requires_disclosure"
   },
   {
    "stratum": "S1",
@@ -2910,210 +3141,30 @@
    "policy": "silent"
   },
   {
-   "stratum": "S1",
-   "repo": "pytorch/torchtitan",
-   "n": 511,
-   "n_attr": 9,
-   "breadth": 0.058417,
-   "share": 0.017613,
-   "policy": "silent"
-  },
-  {
-   "stratum": "S1",
-   "repo": "pytorch/pytorch",
-   "n": 4922,
-   "n_attr": 458,
-   "breadth": 0.113996,
-   "share": 0.093052,
-   "policy": "mentions"
-  },
-  {
    "stratum": "S3",
-   "repo": "locustio/locust",
-   "n": 92,
-   "n_attr": 2,
-   "breadth": 0.088889,
-   "share": 0.021739,
-   "policy": "silent"
-  },
-  {
-   "stratum": "S3",
-   "repo": "odoo/odoo",
-   "n": 4932,
-   "n_attr": 3,
-   "breadth": 0.001435,
-   "share": 0.000608,
-   "policy": "silent"
-  },
-  {
-   "stratum": "S3",
-   "repo": "conan-io/conan",
-   "n": 124,
+   "repo": "python-poetry/poetry",
+   "n": 59,
    "n_attr": 0,
    "breadth": 0.0,
    "share": 0.0,
    "policy": "silent"
   },
   {
-   "stratum": "S2",
-   "repo": "aaif-goose/goose",
-   "n": 696,
-   "n_attr": 53,
-   "breadth": 0.177778,
-   "share": 0.076149,
-   "policy": "mentions"
-  },
-  {
-   "stratum": "S3",
-   "repo": "soxoj/maigret",
-   "n": 159,
-   "n_attr": 7,
-   "breadth": 0.111111,
-   "share": 0.044025,
-   "policy": "silent"
-  },
-  {
    "stratum": "S1",
-   "repo": "vllm-project/vllm",
-   "n": 4000,
-   "n_attr": 1192,
-   "breadth": 0.380364,
-   "share": 0.298,
-   "policy": "requires_disclosure"
-  },
-  {
-   "stratum": "S2",
-   "repo": "OpenHands/OpenHands",
-   "n": 598,
-   "n_attr": 324,
-   "breadth": 0.483333,
-   "share": 0.541806,
-   "policy": "mentions"
-  },
-  {
-   "stratum": "S3",
-   "repo": "RPCS3/rpcs3",
-   "n": 605,
-   "n_attr": 5,
-   "breadth": 0.02381,
-   "share": 0.008264,
-   "policy": "requires_disclosure"
-  },
-  {
-   "stratum": "S3",
-   "repo": "frappe/erpnext",
-   "n": 1444,
-   "n_attr": 49,
-   "breadth": 0.133267,
-   "share": 0.033934,
-   "policy": "silent"
-  },
-  {
-   "stratum": "S2",
-   "repo": "cline/cline",
-   "n": 1061,
-   "n_attr": 67,
-   "breadth": 0.188637,
-   "share": 0.063148,
-   "policy": "silent"
-  },
-  {
-   "stratum": "S1",
-   "repo": "NVIDIA/Megatron-LM",
-   "n": 827,
-   "n_attr": 109,
-   "breadth": 0.286921,
-   "share": 0.131802,
-   "policy": "silent"
-  },
-  {
-   "stratum": "S1",
-   "repo": "unslothai/unsloth",
-   "n": 3673,
-   "n_attr": 36,
-   "breadth": 0.122343,
-   "share": 0.009801,
-   "policy": "silent"
-  },
-  {
-   "stratum": "S2",
-   "repo": "Kilo-Org/kilocode",
-   "n": 4268,
-   "n_attr": 11,
-   "breadth": 0.030036,
-   "share": 0.002577,
-   "policy": "requires_disclosure"
-  },
-  {
-   "stratum": "S3",
-   "repo": "mongodb/mongo",
-   "n": 2452,
-   "n_attr": 172,
-   "breadth": 0.17506,
-   "share": 0.070147,
-   "policy": "silent"
-  },
-  {
-   "stratum": "S3",
-   "repo": "argotorg/solidity",
-   "n": 210,
-   "n_attr": 1,
-   "breadth": 0.041667,
-   "share": 0.004762,
-   "policy": "requires_disclosure"
-  },
-  {
-   "stratum": "S2",
-   "repo": "google-gemini/gemini-cli",
-   "n": 170,
-   "n_attr": 9,
-   "breadth": 0.122222,
-   "share": 0.052941,
-   "policy": "mentions"
-  },
-  {
-   "stratum": "S1",
-   "repo": "allenai/open-instruct",
-   "n": 39,
-   "n_attr": 35,
-   "breadth": 0.833333,
-   "share": 0.897436,
-   "policy": "silent"
-  },
-  {
-   "stratum": "S1",
-   "repo": "huggingface/diffusers",
-   "n": 301,
-   "n_attr": 54,
-   "breadth": 0.290354,
-   "share": 0.179402,
-   "policy": "requires_disclosure"
-  },
-  {
-   "stratum": "S3",
-   "repo": "bridgecrewio/checkov",
-   "n": 42,
-   "n_attr": 0,
-   "breadth": 0.0,
-   "share": 0.0,
-   "policy": "silent"
-  },
-  {
-   "stratum": "S2",
-   "repo": "warpdotdev/warp",
-   "n": 517,
-   "n_attr": 340,
-   "breadth": 0.630224,
-   "share": 0.65764,
-   "policy": "requires_disclosure"
-  },
-  {
-   "stratum": "S1",
-   "repo": "pytorch/executorch",
-   "n": 1378,
+   "repo": "huggingface/tokenizers",
+   "n": 135,
    "n_attr": 17,
-   "breadth": 0.045395,
-   "share": 0.012337,
+   "breadth": 0.166667,
+   "share": 0.125926,
+   "policy": "mentions"
+  },
+  {
+   "stratum": "S2",
+   "repo": "charmbracelet/crush",
+   "n": 589,
+   "n_attr": 15,
+   "breadth": 0.106667,
+   "share": 0.025467,
    "policy": "silent"
   }
  ],
@@ -3160,5 +3211,41 @@
    "n_reverted": 2,
    "rate": "0.0004"
   }
- ]
+ ],
+ "reverts_standardised": [
+  {
+   "stratum": "S1",
+   "n_attr": 3153,
+   "observed": 29,
+   "expected": 24.856144,
+   "ratio": 1.166714,
+   "ratio_ci": [
+    0.781366,
+    1.675595
+   ]
+  },
+  {
+   "stratum": "S2",
+   "n_attr": 5500,
+   "observed": 6,
+   "expected": 7.660409,
+   "ratio": 0.783248,
+   "ratio_ci": [
+    0.287438,
+    1.704801
+   ]
+  },
+  {
+   "stratum": "S3",
+   "n_attr": 3227,
+   "observed": 1,
+   "expected": 2.898539,
+   "ratio": 0.345001,
+   "ratio_ci": [
+    0.008735,
+    1.922224
+   ]
+  }
+ ],
+ "size": []
 }

@@ -374,10 +374,36 @@ def core(rm: pl.DataFrame, spec: str = "primary", drop: set[str] | None = None, 
     return [h1(pool, draws, full), h2(pool, draws), h3(pool, draws), h4(pool, draws)]
 
 
+def h3_glmm(pool: pl.DataFrame) -> Result:
+    """H3 with a binomial GLMM (random intercept and slope per repository) instead of the GLM; Wald CIs."""
+    from coauthored.analysis import glmm
+
+    d = _between(pool, *H3_WINDOW)
+    months = sorted(set(d["month"].to_list()))
+    fit = glmm.fit(d, {m: _month_index(m) for m in months})
+    s = fit.slopes()
+    ok = s["S1"][1] > 0 and s["S2"][1] > 0 and s["S1-S3"][1] > 0
+    return Result(
+        "H3",
+        "H3 under a binomial GLMM with random intercept and slope per repository (Wald CIs)",
+        s["S1-S3"][0],
+        (s["S1-S3"][1], s["S1-S3"][2]),
+        ok,
+        None,
+        {
+            "slopes": {k: v[0] for k, v in s.items()},
+            "ci": {k: v[1:] for k, v in s.items()},
+            "converged": fit.converged,
+            "sigma": fit.sigma.tolist(),
+        },
+    )
+
+
 def sensitivity(rm: pl.DataFrame, caliper_violations: set[str], b: int = B) -> dict[str, list[Result]]:
     full = _primary(rm, dedup=False)
     out = {s: core(rm, spec=s, b=b) for s in sorted(rm["spec"].unique().to_list()) if s != "primary"}
     out["largest_3_removed"] = core(rm, drop=largest(full), b=b)
     out["mirror_removed"] = core(rm, drop=mirrored(full), b=b)
     out["outside_caliper_removed"] = core(rm, drop=caliper_violations, b=b)
+    out["glmm"] = [h3_glmm(_primary(rm, True))]
     return out

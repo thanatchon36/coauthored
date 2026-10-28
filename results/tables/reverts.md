@@ -6,3 +6,11 @@
 | S2 | True | 7443 | 7 | 0.0009 |
 | S3 | False | 368889 | 1496 | 0.0041 |
 | S3 | True | 5220 | 2 | 0.0004 |
+
+Standardised by repository and month, commits 2023-01..2026-06 (at least three months before the snapshot):
+
+| stratum | n_attr | observed | expected | O/E (95% CI) |
+|---|---|---|---|---|
+| S1 | 3153 | 29 | 24.9 | 1.17 [0.78, 1.68] |
+| S2 | 5500 | 6 | 7.7 | 0.78 [0.29, 1.70] |
+| S3 | 3227 | 1 | 2.9 | 0.35 [0.01, 1.92] |

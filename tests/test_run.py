@@ -53,13 +53,14 @@ def _inputs(root: Path) -> None:
                         )
                         for j, tool in enumerate(TOOLS):
                             tools.append({**tag, "tool": tool, "n_attr": k // (j + 1)})
-            for attr in (True, False):
+            for attr, month in ((True, "2026-01"), (False, "2026-01"), (False, "2025-01")):
                 rev.append(
                     {
                         "repo": repo,
+                        "month": month,
                         "attr": attr,
                         "n": 100,
-                        "n_reverted": 2,
+                        "n_reverted": 1 if attr else 4,
                         "spec": "primary",
                         "stratum": stratum,
                     }
@@ -88,6 +89,21 @@ def _inputs(root: Path) -> None:
         for i in range(30)
     ]
     pl.DataFrame(survival).write_csv(root / "data" / "survival.csv")
+    size = [
+        {
+            "stratum": st,
+            "repo": f"{st.lower()}org/repo0",
+            "sha": f"{st}{i:04d}",
+            "month": ["2025-06", "2026-03"][i % 2],
+            "attr": i % 2 == 0,
+            "files": 1,
+            "insertions": 10 + i,
+            "deletions": i % 7,
+        }
+        for st in ("S1", "S2", "S3")
+        for i in range(40)
+    ]
+    pl.DataFrame(size).write_csv(root / "data" / "size_sample.csv")
     (root / "data" / "manifest.json").write_text(json.dumps({"snapshot_date": "2026-10-28", "repos": {}}))
     (root / "configs").mkdir()
     (root / "configs" / "repos.yaml").write_text(yaml.safe_dump(cfg))
@@ -110,12 +126,16 @@ def test_analyze_writes_every_output(tmp_path: Path, monkeypatch: pytest.MonkeyP
         "f6_policy",
         "f8_breadth",
     }
-    for t in ("hypotheses", "sensitivity", "reverts"):
+    for t in ("hypotheses", "sensitivity", "reverts", "size"):
         assert Path(f"results/tables/{t}.md").read_text().startswith("| ")
     assert "exploratory" in Path("results/tables/hypotheses.md").read_text()
     saved = json.loads(Path("results/numbers.json").read_text())
     assert saved["bootstrap_draws"] == 20
     assert "NaN" not in Path("results/numbers.json").read_text()
+    assert {r["stratum"] for r in saved["size"]} == {"S1", "S2", "S3"}
+    std = {r["stratum"]: r for r in saved["reverts_standardised"]}
+    assert std["S1"]["observed"] == 5 and std["S1"]["expected"] == pytest.approx(20.0)  # 5 repos × 100 × 4%
+    assert "glmm" in saved["sensitivity"]
     policy = {r["repo"]: r["policy"] for r in saved["per_repo_2026q3"]}
     assert policy["s1org/repo0"] == "mentions"  # override applied
 

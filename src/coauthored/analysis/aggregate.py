@@ -61,7 +61,9 @@ def mark_shared(frames: list[pl.DataFrame]) -> list[pl.DataFrame]:
 
 
 def reverts(df: pl.DataFrame, spec: Spec) -> pl.DataFrame:
-    """Per repository and attribution status: window commits and how many were later reverted (RQ6)."""
+    """Per repository, month and attribution status: window commits and how many were later reverted (RQ6).
+
+    By month so that attributed and unattributed commits can be compared at equal exposure time."""
     reverted = {r for r in df["reverted_sha"].to_list() if r}
     prefixes = {r[:7] for r in reverted}
     c = filter_commits(df, spec).with_columns(
@@ -73,10 +75,10 @@ def reverts(df: pl.DataFrame, spec: Spec) -> pl.DataFrame:
         .alias("was_reverted")
     )
     return (
-        c.group_by("repo", "attr")
+        c.group_by("repo", "month", "attr")
         .agg(pl.len().alias("n"), pl.col("was_reverted").sum().alias("n_reverted"))
         .with_columns(pl.lit(spec.name).alias("spec"))
-        .sort("repo", "attr")
+        .sort("repo", "month", "attr")
     )
 
 
