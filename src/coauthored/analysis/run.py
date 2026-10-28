@@ -235,6 +235,9 @@ def summary(
     cat = yaml.safe_load((CONFIGS / "signatures.yaml").read_text())["signatures"]
     labels = pl.read_csv(Path("docs/label-sample.csv")) if Path("docs/label-sample.csv").exists() else None
     out: dict[str, Any] = {
+        "strata": {
+            str(k): int(v) for k, v in pool.group_by("stratum").agg(pl.col("repo").n_unique()).iter_rows()
+        },
         "quarterly": quarterly,
         "year": year,
         "repos": repos,

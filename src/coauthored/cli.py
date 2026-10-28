@@ -198,3 +198,11 @@ def analyze(draws: int = 2000) -> None:
         if "exploratory" in r["statement"]:
             verdict = "exploratory, " + ("positive" if r["supported"] else "not positive")
         typer.echo(f"{r['hypothesis']}: {verdict} (estimate {r['estimate']})")
+
+
+@app.command()
+def paper() -> None:
+    """Fill paper/paper.md from results/numbers.json and build paper/coauthored.pdf (pandoc + typst)."""
+    from coauthored.paper import build
+
+    typer.echo(f"wrote {build()}")
