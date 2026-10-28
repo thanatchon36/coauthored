@@ -20,6 +20,7 @@ class Bot(BaseModel):
     id: str
     name: str | None = None
     email: str | None = None
+    query: str | None = None
     evidence: list[str] = Field(default_factory=list)
 
     def matches(self, name: str, email: str) -> bool:

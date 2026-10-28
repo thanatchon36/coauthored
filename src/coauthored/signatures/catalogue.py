@@ -33,6 +33,7 @@ class Signature(BaseModel):
     email: str | None = None
     name: str | None = None
     text: str | None = None
+    query: str | None = None  # GitHub commit-search query used to collect evidence
     evidence: list[str] = Field(default_factory=list)
     notes: str = ""
 

@@ -7,9 +7,14 @@ from dataclasses import dataclass, field
 
 from coauthored.signatures.catalogue import Catalogue
 
-# Lenient primary rule (MISSION §3.3): a co-author line anywhere in the message, optionally inside a
-# Markdown bullet as squash merges produce ("* Co-authored-by: ...").
-COAUTHOR_RE = re.compile(r"^[ \t]*(?:[-*][ \t]+)?co-authored-by:[ \t]*(.*?)[ \t]*<([^<>\n]*)>", re.I | re.M)
+# Lenient primary rule (MISSION §3.3, DECISIONS D13): a co-author line anywhere in the message, optionally
+# inside a Markdown bullet as squash merges produce ("* Co-authored-by: ..."). `Assisted-by` and
+# `Co-developed-by` carry the same attribution in some tools and in the Linux kernel's guidance;
+# `Signed-off-by` (a DCO certification) does not.
+COAUTHOR_KEYS = ("co-authored-by", "assisted-by", "co-developed-by")
+COAUTHOR_RE = re.compile(
+    r"^[ \t]*(?:[-*][ \t]+)?(?:" + "|".join(COAUTHOR_KEYS) + r"):[ \t]*(.*?)[ \t]*<([^<>\n]*)>", re.I | re.M
+)
 _TRAILER_LINE_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9-]*:[ \t]*\S")
 _KIND_RANK = {"coauthor": 0, "identity": 1, "marker": 2}
 

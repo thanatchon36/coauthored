@@ -1,0 +1,186 @@
+version: '1'
+signatures:
+- id: claude-code-coauthor
+  tool: Claude Code
+  kind: coauthor
+  email: noreply@anthropic\.com
+  name: claude( [a-z0-9][a-z0-9. -]*)?
+  query: '"noreply@anthropic.com"'
+  notes: Default trailer; model-named variants (e.g. "Claude Opus 4.5") since 2025.
+- id: claude-code-generated-marker
+  tool: Claude Code
+  kind: marker
+  text: Generated with [Claude Code]
+  query: '"Generated with Claude Code"'
+- id: claude-code-session-marker
+  tool: Claude Code
+  kind: marker
+  text: 'Claude-Session: https://claude.ai/'
+  query: '"Claude-Session"'
+- id: claude-app-identity
+  tool: Claude Code
+  kind: identity
+  email: 209825114\+claude\[bot\]@users\.noreply\.github\.com
+  query: '"claude[bot]"'
+  notes: Claude GitHub app (Claude Code in GitHub Actions).
+- id: claude-app-coauthor
+  tool: Claude Code
+  kind: coauthor
+  email: 209825114\+claude\[bot\]@users\.noreply\.github\.com
+  query: '"209825114+claude[bot]"'
+- id: copilot-agent-identity
+  tool: GitHub Copilot
+  kind: identity
+  email: 198982749\+copilot@users\.noreply\.github\.com
+  query: '"198982749+Copilot"'
+  notes: Copilot coding agent; authors commits as "Copilot", co-authored as copilot-swe-agent[bot].
+- id: copilot-agent-coauthor
+  tool: GitHub Copilot
+  kind: coauthor
+  email: 198982749\+copilot@users\.noreply\.github\.com
+  query: '"copilot-swe-agent[bot]"'
+- id: copilot-coauthor
+  tool: GitHub Copilot
+  kind: coauthor
+  email: 175728472\+copilot@users\.noreply\.github\.com
+  query: '"175728472+Copilot"'
+  notes: Copilot account used when Copilot code-review suggestions or Copilot Autofix are applied.
+- id: codex-noreply-coauthor
+  tool: OpenAI Codex
+  kind: coauthor
+  email: noreply@openai\.com
+  query: '"noreply@openai.com"'
+  notes: Names vary ("Codex", "Codex (gpt-5)", "OpenAI Codex", model names); the email is not a person's.
+- id: codex-coauthor
+  tool: OpenAI Codex
+  kind: coauthor
+  email: codex@openai\.com
+  query: '"codex@openai.com"'
+- id: codex-connector-coauthor
+  tool: OpenAI Codex
+  kind: coauthor
+  email: 199175422\+chatgpt-codex-connector\[bot\]@users\.noreply\.github\.com
+  query: '"chatgpt-codex-connector"'
+- id: codex-connector-identity
+  tool: OpenAI Codex
+  kind: identity
+  email: 199175422\+chatgpt-codex-connector\[bot\]@users\.noreply\.github\.com
+  query: '"chatgpt-codex-connector[bot]"'
+- id: cursor-coauthor
+  tool: Cursor
+  kind: coauthor
+  email: cursoragent@cursor\.com
+  query: '"cursoragent@cursor.com"'
+- id: aider-coauthor
+  tool: Aider
+  kind: coauthor
+  email: aider@aider\.chat
+  query: '"aider@aider.chat"'
+  notes: Name carries the model, e.g. "aider (deepseek/deepseek-chat)".
+- id: aider-author-suffix
+  tool: Aider
+  kind: identity
+  name: .+ \(aider\)
+  query: '"(aider)"'
+  notes: Aider's --attribute-author / --attribute-committer append " (aider)" to the git name.
+- id: openhands-coauthor
+  tool: OpenHands
+  kind: coauthor
+  email: openhands@all-hands\.dev
+  query: '"openhands@all-hands.dev"'
+- id: openhands-identity
+  tool: OpenHands
+  kind: identity
+  email: openhands@all-hands\.dev
+  query: '"openhands@all-hands.dev"'
+- id: jules-coauthor
+  tool: Google Jules
+  kind: coauthor
+  email: 161369871\+google-labs-jules\[bot\]@users\.noreply\.github\.com
+  query: '"google-labs-jules"'
+- id: jules-identity
+  tool: Google Jules
+  kind: identity
+  email: 161369871\+google-labs-jules\[bot\]@users\.noreply\.github\.com
+  query: '"google-labs-jules[bot]"'
+- id: devin-coauthor
+  tool: Devin
+  kind: coauthor
+  email: 158243242\+devin-ai-integration\[bot\]@users\.noreply\.github\.com
+  query: '"devin-ai-integration"'
+- id: devin-identity
+  tool: Devin
+  kind: identity
+  email: 158243242\+devin-ai-integration\[bot\]@users\.noreply\.github\.com
+  query: '"devin-ai-integration[bot]"'
+- id: gemini-cli-coauthor
+  tool: Gemini CLI
+  kind: coauthor
+  email: gemini-cli@google\.com
+  query: '"gemini-cli@google.com"'
+- id: gemini-cli-identity
+  tool: Gemini CLI
+  kind: identity
+  email: gemini-cli@google\.com
+  query: '"gemini-cli@google.com"'
+- id: gemini-code-assist-coauthor
+  tool: Gemini Code Assist
+  kind: coauthor
+  email: (176961590\+)?gemini-code-assist\[bot\]@users\.noreply\.github\.com
+  query: '"gemini-code-assist[bot]"'
+  notes: Applied review suggestions.
+- id: amazon-q-coauthor
+  tool: Amazon Q Developer
+  kind: coauthor
+  email: 208079219\+amazon-q-developer\[bot\]@users\.noreply\.github\.com
+  query: '"amazon-q-developer"'
+- id: amazon-q-identity
+  tool: Amazon Q Developer
+  kind: identity
+  email: 208079219\+amazon-q-developer\[bot\]@users\.noreply\.github\.com
+  query: '"amazon-q-developer[bot]"'
+- id: kiro-coauthor
+  tool: Kiro
+  kind: coauthor
+  email: 245459735\+kiro-agent\[bot\]@users\.noreply\.github\.com
+  query: '"kiro-agent"'
+- id: kiro-identity
+  tool: Kiro
+  kind: identity
+  email: 245459735\+kiro-agent\[bot\]@users\.noreply\.github\.com
+  query: '"kiro-agent[bot]"'
+- id: amp-coauthor
+  tool: Amp
+  kind: coauthor
+  email: amp@ampcode\.com
+  query: '"amp@ampcode.com"'
+- id: amp-thread-marker
+  tool: Amp
+  kind: marker
+  text: 'Amp-Thread-ID: https://ampcode.com/threads/'
+  query: '"Amp-Thread-ID"'
+- id: opencode-coauthor
+  tool: OpenCode
+  kind: coauthor
+  email: noreply@opencode\.ai
+  query: '"noreply@opencode.ai"'
+- id: cline-coauthor
+  tool: Cline
+  kind: coauthor
+  email: (noreply@cline\.bot|cline@cline\.ai)
+  query: '"noreply@cline.bot"'
+- id: kilo-coauthor
+  tool: Kilo Code
+  kind: coauthor
+  email: kilocode@kilocode\.ai
+  query: '"kilocode@kilocode.ai"'
+- id: letta-coauthor
+  tool: Letta Code
+  kind: coauthor
+  email: noreply@letta\.com
+  query: '"noreply@letta.com"'
+- id: codeium-coauthor
+  tool: Windsurf (Codeium)
+  kind: coauthor
+  email: noreply@codeium\.com
+  query: '"noreply@codeium.com"'

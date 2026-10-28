@@ -52,3 +52,12 @@ def test_bad_signature_rejected() -> None:
 
 def test_unqualified_lists_missing_evidence() -> None:
     assert {s.id for s in CAT.unqualified()} == {s.id for s in CAT.signatures}
+
+
+@pytest.mark.parametrize("key", ["Co-authored-by", "Assisted-by", "Co-developed-by", "* Co-Authored-By"])
+def test_attribution_keys(key: str) -> None:
+    assert match_commit(CAT, H, H, f"x\n\n{key}: Cursor <cursoragent@cursor.com>").attributed
+
+
+def test_signed_off_by_is_not_attribution() -> None:
+    assert not match_commit(CAT, H, H, "x\n\nSigned-off-by: Cursor <cursoragent@cursor.com>").attributed
