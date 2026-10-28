@@ -15,6 +15,10 @@ COAUTHOR_KEYS = ("co-authored-by", "assisted-by", "co-developed-by")
 COAUTHOR_RE = re.compile(
     r"^[ \t]*(?:[-*][ \t]+)?(?:" + "|".join(COAUTHOR_KEYS) + r"):[ \t]*(.*?)[ \t]*<([^<>\n]*)>", re.I | re.M
 )
+# The Linux kernel's coding-assistant guidance writes `Assisted-by: AGENT_NAME:MODEL_VERSION [TOOLS]` with
+# no email, so no catalogue identity can match it. Such lines are recorded as a separate indicator and never
+# enter the numerator (PREREGISTRATION §8).
+BARE_ASSISTED_RE = re.compile(r"^[ \t]*(?:[-*][ \t]+)?assisted-by:[ \t]*[^<>\s:]+:[^<>\n]*$", re.I | re.M)
 _TRAILER_LINE_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9-]*:[ \t]*\S")
 _KIND_RANK = {"coauthor": 0, "identity": 1, "marker": 2}
 
@@ -32,6 +36,7 @@ class Match:
     tool: str | None = None
     strict: bool = False  # attributed using strict trailer position only (sensitivity rule)
     coauthors: list[Identity] = field(default_factory=list)
+    bare_assisted: bool = False  # kernel-style Assisted-by line without an email
 
     @property
     def attributed(self) -> bool:
@@ -61,7 +66,7 @@ def trailer_block(message: str) -> list[str]:
 
 
 def match_commit(catalogue: Catalogue, author: Identity, committer: Identity, message: str) -> Match:
-    result = Match(coauthors=coauthor_lines(message))
+    result = Match(coauthors=coauthor_lines(message), bare_assisted=bool(BARE_ASSISTED_RE.search(message)))
     strict_lines = {ln.strip().lower() for ln in trailer_block(message)}
     hits: list[tuple[int, str, str, bool]] = []  # (kind rank, id, tool, strict)
 

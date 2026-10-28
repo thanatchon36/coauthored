@@ -23,6 +23,15 @@ Changes after freezing are logged in [`DEVIATIONS.md`](DEVIATIONS.md) with date,
 - **RQ6 (exploratory).** Do attributed commits differ in size or revert rate, and how broad is adoption (share of
   active authors with at least one attributed commit)?
 
+**Relation to prior work.** Co-author trailers and agent accounts have already been counted at scale:
+Robbes et al. (2026, *TOSEM*) estimate project-level coding-agent adoption on 128,018 GitHub projects from
+trailers, configuration files, branch names and labels, and Horikawa et al. (2026) label agent commits by
+signature on 7.8M commits and show that signature-based counts are a lower bound. This study does not claim the
+signal as new. What it adds is a pre-registered monthly commit-share series for model-building infrastructure
+against matched non-AI controls and coding-agent harnesses, a published signature catalogue with evidence for
+every entry, a direct measurement of how often attribution survives the merge, and the link to repository
+policies. Full review: `docs/literature/REVIEW.md`.
+
 ## 2. Definitions
 
 **Unit.** A commit reachable from the default branch at the snapshot. **Primary:** non-merge commits (≤ 1 parent),
@@ -36,7 +45,13 @@ ignored (merge and export bots commit human work).
 optionally inside a Markdown bullet, whose identity matches a catalogue entry; (b) an author or committer identity
 matching an AI-agent account in the catalogue; (c) a verbatim marker from the catalogue. Identity patterns are
 full matches on lower-cased email and/or name; no free-text keyword is a signature. Tool label precedence:
-co-author trailer > identity > marker.
+co-author trailer > identity > marker. `Assisted-by:` and `Co-developed-by:` lines count like `Co-authored-by:`
+when their identity matches; `Signed-off-by:` (a DCO certification) never counts. Rejected candidates and the
+reason for each: `docs/signatures-rejected.md`.
+
+**Separate indicator, not in the numerator.** `Assisted-by: AGENT:MODEL` lines without an email (the Linux
+kernel's coding-assistant format) cannot be matched to a vendor identity; their monthly count is reported beside
+the main series.
 
 **Lower bound.** The paper reports *attributed* commits. It makes no claim about how much code in unattributed
 commits was produced with AI assistance.
@@ -109,9 +124,13 @@ with Wilson CIs.
 
 At the snapshot, fetch `CONTRIBUTING.md`, `AGENTS.md`, `CLAUDE.md`, `.github/CONTRIBUTING.md`,
 `.github/PULL_REQUEST_TEMPLATE*`, `.github/copilot-instructions.md` for every S1–S3 repository. Classify into
-**bans**, **requires disclosure**, **mentions without a rule**, **silent**. Rule-based first pass; every non-silent
-classification is checked by hand with the quoted sentence in `docs/policy-review.md`. The presence of `AGENTS.md`,
-`CLAUDE.md` or `.github/copilot-instructions.md` is reported separately as an *agent-configuration* indicator.
+**bans**, **requires disclosure**, **mentions without a rule**, **silent**. Rule-based first pass
+(`src/coauthored/policy/classify.py`): sentences that name AI or an AI tool are matched against prohibition and
+disclosure phrasings; a request for an `Assisted-by:`-style trailer counts as disclosure; the strongest class
+found wins (bans > requires disclosure > mentions). `AGENTS.md` and `CLAUDE.md` address agents, not contributors,
+and are not read for policy. Every non-silent classification is checked by hand with the quoted sentence in
+`docs/policy-review.md`; hand corrections are recorded there. The presence of `AGENTS.md`, `CLAUDE.md` or
+`.github/copilot-instructions.md` is reported separately as an *agent-configuration* indicator.
 
 ## 7. Exploratory (RQ6)
 

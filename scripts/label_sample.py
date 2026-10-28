@@ -31,6 +31,18 @@ WORDS = re.compile(
 SEED = 20261028
 
 
+def _who(name: str, email: str) -> str:
+    """Show an identity only if it could be a tool's; people stay masked even in the local sheet."""
+    email = email.strip()
+    if not WORDS.search(f"{name} {email}"):
+        return "[person]"
+    local, _, domain = email.lower().partition("@")
+    tool_like = re.search(r"noreply|bot|agent|codex|copilot|aider|cli|assist", f"{local} {name.lower()}")
+    if domain and not tool_like:
+        return f"[person @{domain}]"  # vendor staff are people, not tools
+    return f"{name} <{email}>"
+
+
 def _commits() -> list[tuple[str, object]]:
     out = []
     for p in sorted(Path("work").glob("*__*.git")):
@@ -57,9 +69,19 @@ def draw() -> None:
         keep = [
             ln.strip() for ln in msg.splitlines()[1:] if WORDS.search(ln) or re.match(r"^\s*[\w-]+-by:", ln)
         ]
+        # trailer lines naming a person are masked the same way
+        keep = [
+            re.sub(
+                r"(-by:\s*)([^<]*<[^>]*>)",
+                lambda m: m.group(1) + _who(*m.group(2)[:-1].split("<", 1)),
+                ln,
+                flags=re.I,
+            )
+            for ln in keep
+        ]
         lines.append(
-            f"[{i}] {repo} {c.sha[:12]}\n  author: {c.author_name} <{c.author_email}>\n"  # type: ignore[attr-defined]
-            f"  committer: {c.committer_name} <{c.committer_email}>\n"  # type: ignore[attr-defined]
+            f"[{i}] {repo} {c.sha[:12]}\n  author: {_who(c.author_name, c.author_email)}\n"  # type: ignore[attr-defined]
+            f"  committer: {_who(c.committer_name, c.committer_email)}\n"  # type: ignore[attr-defined]
             f"  subject: {msg.splitlines()[0][:100] if msg else ''}\n"
             + "".join(f"  | {ln[:140]}\n" for ln in keep[:12])
         )

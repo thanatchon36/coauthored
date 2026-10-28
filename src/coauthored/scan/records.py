@@ -47,6 +47,7 @@ def build(
         "signature_ids": m.signature_ids,
         "tool": m.tool,
         "n_coauthor_lines": len(m.coauthors),
+        "bare_assisted": m.bare_assisted,
         "is_revert": bool(_REVERT_RE.match(raw.message)),
         "mirror_export": bool(MIRROR_RE.search(raw.message)),
         "reverted_sha": reverted.group(1) if reverted else None,

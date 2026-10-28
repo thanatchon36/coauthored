@@ -61,3 +61,18 @@ def test_attribution_keys(key: str) -> None:
 
 def test_signed_off_by_is_not_attribution() -> None:
     assert not match_commit(CAT, H, H, "x\n\nSigned-off-by: Cursor <cursoragent@cursor.com>").attributed
+
+
+@pytest.mark.parametrize(
+    "line,bare",
+    [
+        ("Assisted-by: Claude:claude-opus-4 coccinelle sparse", True),
+        ("Assisted-by: GPT:gpt-5", True),
+        ("Assisted-by: Claude <noreply@anthropic.com>", False),
+        ("Assisted-by: a colleague", False),
+    ],
+)
+def test_bare_assisted_is_flagged_not_counted(line: str, bare: bool) -> None:
+    m = match_commit(CAT, H, H, f"Fix a bug\n\n{line}\n")
+    assert m.bare_assisted is bare
+    assert m.attributed is (not bare and "anthropic" in line)
