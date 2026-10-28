@@ -1,6 +1,6 @@
 import pytest
 
-from coauthored.paper import check, fill, fmt, lookup
+from coauthored.paper import check, crossref, fill, fmt, lookup
 
 DATA = {
     "summary": {
@@ -52,3 +52,24 @@ Threshold of 5% <!-- numbers-ok: pre-registered -->
 1. A list item with a 95% CI, under Apache-2.0, and 95% of something else.
 """
     assert check(text) == [(6, "8.7"), (8, "12"), (9, "95")]
+
+
+def test_fill_accepts_escaped_pipe_in_tables() -> None:
+    assert fill("| {{a.b\\|pct1}} |", {"a": {"b": 0.087}}) == "| 8.7% |"
+
+
+def test_crossref_numbers_in_order_of_appearance() -> None:
+    text = """# Intro
+See Figure @fig:b, Table @tbl:t and Section @sec:m.
+# Method {#sec:m}
+## Detail {#sec:d}
+![x](a.svg){#fig:a width=50%}
+![y](b.svg){#fig:b}
+: cap {#tbl:t}
+# References {-}
+"""
+    out = crossref(text)
+    assert "See Figure 2, Table 1 and Section 2." in out
+    assert crossref("@sec:d\n" + text).startswith("2.1\n")
+    with pytest.raises(SystemExit):
+        crossref("@fig:missing")

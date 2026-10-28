@@ -88,10 +88,14 @@ def test_wilson_and_h6() -> None:
             "head_attributed": [True] * 10 + [False] * 5,
             "survived": [True] * 9 + [False] + [None] * 5,
             "method": ["squash"] * 15,
+            "repo": ["a", "b", "c"] * 5,
         }
     )
-    r = h.h6(s)
+    r = h.h6(s, b=200)
     assert r.estimate == 0.9 and r.supported and r.detail["n"] == 10
+    assert r.detail["repos"] == 3 and r.detail["repos_with_loss"] == 1
+    lo, hi = r.detail["ci_cluster_repo"]
+    assert lo <= 0.9 <= hi
 
 
 def test_holm_is_monotone() -> None:

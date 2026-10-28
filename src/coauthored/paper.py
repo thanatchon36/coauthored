@@ -7,6 +7,9 @@ selectors, e.g. ``{{summary.quarterly[stratum=S1,q=2026-Q3].share|pct1}}``, or b
 fails the build, and so does a number typed by hand in the prose (``check``): every result in the paper comes
 from numbers.json (MISSION §7.3). A line may opt out with ``<!-- numbers-ok: reason -->``, for pre-registered
 thresholds and design constants. ``<!-- include: path -->`` on its own line inserts a generated table.
+``@fig:x``, ``@tbl:x`` and ``@sec:x`` become the number of the figure, table or numbered section labelled
+``{#fig:x}`` etc., counted in order of appearance as Typst numbers them (``crossref``); citeproc would
+otherwise read them as citations.
 """
 
 from __future__ import annotations
@@ -19,7 +22,7 @@ import subprocess
 from pathlib import Path
 from typing import Any
 
-TOKEN = re.compile(r"\{\{\s*([^}|]+?)\s*(?:\|\s*([^}]+?)\s*)?\}\}")
+TOKEN = re.compile(r"\{\{\s*([^}|\\]+?)\s*(?:\\?\|\s*([^}]+?)\s*)?\}\}")  # `\|` inside tables
 STEP = re.compile(r"([^.\[]+)(?:\[([^\]]+)\])?")
 PRAGMA = "<!-- numbers-ok:"
 INCLUDE = re.compile(r"^<!-- include: (\S+) -->$", re.M)  # generated tables, inserted verbatim
@@ -44,6 +47,9 @@ NOT_PROSE = [
     re.compile(r"\b(?:Apache|CC BY|CC-BY) ?-?\d+\.\d+"),  # licence names
 ]
 NUMBER = re.compile(r"(?<![\w.])\d+(?:[.,]\d+)*")
+LABEL = re.compile(r"\{#(fig|tbl|sec):([\w-]+)[^}]*\}")
+REF = re.compile(r"@(fig|tbl|sec):([\w-]+)")
+HEADING = re.compile(r"^(#+) .*$", re.M)
 
 
 def lookup(data: Any, path: str) -> Any:
@@ -114,6 +120,31 @@ def check(text: str) -> list[tuple[int, str]]:
     return found
 
 
+def crossref(text: str) -> str:
+    """Replace ``@fig:x`` / ``@tbl:x`` / ``@sec:x`` by numbers; an unknown label fails the build."""
+    labels: dict[tuple[str, str], str] = {}
+    counts = {"fig": 0, "tbl": 0}
+    sections: list[int] = []
+    body = re.sub(r"```.*?```", "", text, flags=re.S)
+    for line in body.splitlines():
+        h = HEADING.match(line)
+        if h and "{-}" not in line and "{.unnumbered" not in line:
+            level = len(h.group(1))
+            sections = (sections + [0] * level)[:level]
+            sections[-1] += 1
+        for m in LABEL.finditer(line):
+            kind, name = m.groups()
+            if kind == "sec":
+                labels[kind, name] = ".".join(map(str, sections))
+            else:
+                counts[kind] += 1
+                labels[kind, name] = str(counts[kind])
+    unknown = sorted({m.group(0) for m in REF.finditer(text) if m.groups() not in labels})
+    if unknown:
+        raise SystemExit("unknown cross-references: " + ", ".join(unknown))
+    return REF.sub(lambda m: labels[m.group(1), m.group(2)], text)
+
+
 def build(root: Path = Path(".")) -> Path:
     src, numbers = root / "paper" / "paper.md", root / "results" / "numbers.json"
     text = src.read_text(encoding="utf-8")
@@ -124,6 +155,7 @@ def build(root: Path = Path(".")) -> Path:
         )
     filled = fill(text, json.loads(numbers.read_text()))
     filled = INCLUDE.sub(lambda m: (root / m.group(1)).read_text(encoding="utf-8").strip(), filled)
+    filled = crossref(filled)
     out_md, out_pdf = root / "paper" / "paper.filled.md", root / "paper" / "coauthored.pdf"
     out_md.write_text(filled, encoding="utf-8")
     if shutil.which("pandoc") is None or shutil.which("typst") is None:

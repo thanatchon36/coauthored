@@ -270,7 +270,9 @@ def wilson(k: int, n: int, z: float = 1.959963984540054) -> tuple[float, float]:
     return (centre - half, centre + half)
 
 
-def h6(survival: pl.DataFrame) -> Result:
+def h6(survival: pl.DataFrame, b: int = B) -> Result:
+    """Exact test and Wilson CI as pre-registered; ``ci_cluster_repo`` resamples repositories (not
+    pre-registered, a robustness check because a few repositories contribute many pull requests)."""
     from scipy.stats import binomtest
 
     a = survival.filter(pl.col("head_attributed"))
@@ -285,6 +287,14 @@ def h6(survival: pl.DataFrame) -> Result:
         for (m,), g in a.group_by(["method"])
     }
     p = float(binomtest(k, n, 0.8, alternative="greater").pvalue) if n else None
+    per = a.group_by("repo").agg(pl.len().alias("n"), pl.col("survived").cast(pl.Int64).sum().alias("k"))
+    per = per.sort("repo")
+    cluster: tuple[float, float] = (float("nan"), float("nan"))
+    if n:
+        idx = np.random.default_rng(SEED).integers(0, per.height, (b, per.height))
+        r = per["k"].to_numpy()[idx].sum(1) / per["n"].to_numpy()[idx].sum(1)
+        lo, hi = np.percentile(r, [2.5, 97.5])
+        cluster = (float(lo), float(hi))
     return Result(
         "H6",
         "At least 80% of sampled merged PRs with an attributed head commit keep the attribution",
@@ -292,7 +302,15 @@ def h6(survival: pl.DataFrame) -> Result:
         wilson(k, n),
         n > 0 and est >= 0.8,
         p,
-        {"k": k, "n": n, "by_method": by_method, "inspected": survival.height},
+        {
+            "k": k,
+            "n": n,
+            "by_method": by_method,
+            "inspected": survival.height,
+            "repos": per.height,
+            "repos_with_loss": int((per["k"] < per["n"]).sum()),
+            "ci_cluster_repo": cluster,
+        },
     )
 
 
@@ -339,7 +357,7 @@ def run_all(
     tool_draws = Bootstrap(t, b=b).draws()
     out = [h1(pool, draws, full), h2(pool, draws), h3(pool, draws), h4(pool, draws), h5(t, tool_draws)]
     if survival is not None:
-        out.append(h6(survival))
+        out.append(h6(survival, b))
     holm(out)
     if policy is not None:
         out.append(h7(full, policy))

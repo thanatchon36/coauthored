@@ -25,7 +25,7 @@ abstract: |
   tools, each backed by three public example commits. In July–September 2026,
   {{summary.quarterly[stratum=S1,q=2026-Q3].share|pct1}} of commits to AI-infrastructure repositories were
   AI-attributed (95% CI {{summary.quarterly[stratum=S1,q=2026-Q3].lo|pct1}}–{{summary.quarterly[stratum=S1,q=2026-Q3].hi|pct1}}),
-  up from {{summary.year[stratum=S1,year=2024].share|pct1}} in 2024: about one commit in
+  up from {{summary.year[stratum=S1,year=2025].share|pct1}} over 2025 and none in 2024: about one commit in
   {{summary.quarterly[stratum=S1,q=2026-Q3].share|inv}}. But matched non-AI repositories rose just as fast, to
   {{summary.quarterly[stratum=S3,q=2026-Q3].share|pct1}}, and the coding-agent harnesses were not clearly ahead
   ({{summary.quarterly[stratum=S2,q=2026-Q3].share|pct1}}). Of the four pre-registered hypotheses about level,
@@ -192,9 +192,10 @@ with a mixed model with a random intercept and slope per repository.
 
 ## The curve (RQ1–RQ3)
 
-Figure @fig:f1 shows the monthly attributed share. Before 2025 it is close to zero everywhere: in 2024 it was
-{{summary.year[stratum=S1,year=2024].share|pct2}} in S1, {{summary.year[stratum=S2,year=2024].share|pct2}} in S2
-and {{summary.year[stratum=S3,year=2024].share|pct2}} in S3. The harnesses move first, from late 2024, driven by
+Figure @fig:f1 shows the monthly attributed share. Before 2025 it is close to zero everywhere: in 2024,
+{{summary.year[stratum=S1,year=2024].n_attr|,}} of {{summary.year[stratum=S1,year=2024].n|,}} S1 commits were
+attributed, {{summary.year[stratum=S2,year=2024].n_attr|,}} of {{summary.year[stratum=S2,year=2024].n|,}} in S2
+and {{summary.year[stratum=S3,year=2024].n_attr|,}} of {{summary.year[stratum=S3,year=2024].n|,}} in S3. The harnesses move first, from late 2024, driven by
 one project whose agent commits under its own account. S1 and S3 start rising together in mid-2025 and are
 almost indistinguishable afterwards: over the 2025 calendar year the pooled share was
 {{summary.year[stratum=S1,year=2025].share|pct2}} in S1 and {{summary.year[stratum=S3,year=2025].share|pct2}}
@@ -217,7 +218,6 @@ wide intervals reflect how unevenly attribution is spread across repositories (F
 {{summary.repos[stratum=S1].with_attributed_q3}} of the {{summary.repos[stratum=S1].active_q3}} S1 repositories
 active in the quarter had at least one attributed commit, {{summary.repos[stratum=S1].share_ge_10pct_q3}} had a
 share of ten percent or more, and the median repository share was {{summary.repos[stratum=S1].median_share_q3|pct1}}.
-<!-- numbers-ok: "ten percent" names the reporting cut-off, not a result -->
 In S3, {{summary.repos[stratum=S3].with_attributed_q3}} of {{summary.repos[stratum=S3].active_q3}} had any
 attributed commit, and the two largest contributors account for
 {{summary.repos[stratum=S3].top2_attr_fraction_q3|pct}} of the stratum's attributed commits.
@@ -236,7 +236,7 @@ already attributing in 2025. **H4 is {{hypotheses[hypothesis=H4].supported|verdi
 : Pre-registered hypotheses. Estimates and 95% CIs from the cluster bootstrap; one-sided bootstrap p-values (H6: exact binomial test) and Holm-adjusted p-values across H1–H6. H7 is exploratory. {#tbl:hyp}
 
 | | Estimate | 95% CI | p (one-sided) | p (Holm) | Decision |
-|---|---:|---:|---:|---:|---|
+|------------------------------------|---------:|-------------:|---------:|---------:|--------------|
 | H1 S1 share, 2026-Q3 | {{hypotheses[hypothesis=H1].estimate\|pct1}} | {{hypotheses[hypothesis=H1].ci[0]\|pct1}}–{{hypotheses[hypothesis=H1].ci[1]\|pct1}} | {{hypotheses[hypothesis=H1].p_one_sided\|.3f}} | {{hypotheses[hypothesis=H1].p_holm\|.3f}} | {{hypotheses[hypothesis=H1].supported\|verdict}} |
 | H2 odds ratio S1 : S3 | {{hypotheses[hypothesis=H2].estimate\|.2f}} | {{hypotheses[hypothesis=H2].ci[0]\|.2f}}–{{hypotheses[hypothesis=H2].ci[1]\|.2f}} | {{hypotheses[hypothesis=H2].p_one_sided\|.3f}} | {{hypotheses[hypothesis=H2].p_holm\|.3f}} | {{hypotheses[hypothesis=H2].supported\|verdict}} |
 | H3 slope S1 − S3 (logit/month) | {{hypotheses[hypothesis=H3].estimate\|.3f}} | {{hypotheses[hypothesis=H3].ci[0]\|.3f}}–{{hypotheses[hypothesis=H3].ci[1]\|.3f}} | {{hypotheses[hypothesis=H3].p_one_sided\|.3f}} | {{hypotheses[hypothesis=H3].p_holm\|.3f}} | {{hypotheses[hypothesis=H3].supported\|verdict}} |
@@ -269,7 +269,6 @@ its share of *attributed* commits overstates its share of AI-assisted commits by
 ![Attributed commits by tool, as a share of all commits in each stratum, by quarter, 2025-Q1 to 2026-Q3. Tools with
 less than one percent of attributions in every panel are grouped as Other. AI-attributed commits are a lower
 bound.](results/figures/f2_tools.svg){#fig:f2 width=100%}
-<!-- numbers-ok: "one percent" is the grouping rule of the figure -->
 
 # How much does the signal miss? (RQ5) {#sec:undercount}
 
@@ -289,8 +288,11 @@ default squash message lists the messages of the squashed commits, trailers incl
 A loss happens when a repository's squash setting uses the pull request's title and description instead, or
 when the maintainer edits the message at merge time. In these
 repositories, then, the merge is a small leak; the undercount comes mainly from the other two paths, which git
-metadata cannot measure. The sample is clustered, with a few repositories contributing many pull requests, and
-the interval does not account for that.
+metadata cannot measure. The {{hypotheses[hypothesis=H6].detail.n}} pull requests come from
+{{hypotheses[hypothesis=H6].detail.repos}} repositories, a few of which contribute many; resampling repositories
+instead of pull requests gives an interval of {{hypotheses[hypothesis=H6].detail.ci_cluster_repo[0]|pct1}}–{{hypotheses[hypothesis=H6].detail.ci_cluster_repo[1]|pct1}}
+(not pre-registered). Losses are spread over {{hypotheses[hypothesis=H6].detail.repos_with_loss}} repositories
+rather than concentrated in one.
 
 ![Share of sampled merged pull requests with an attributed commit whose attribution reached the default branch,
 by merge method, with Wilson 95% intervals.](results/figures/f5_survival.svg){#fig:f5 width=60%}
@@ -423,4 +425,3 @@ in the quarter. AI-attributed commits are a lower bound.](results/figures/f4_per
 
 ![AI-attributed share per repository and month, 2025-01 to 2026-09; repository-months with fewer than ten commits
 in grey. AI-attributed commits are a lower bound.](results/figures/f3_heatmap.svg){#fig:f3 width=100%}
-<!-- numbers-ok: "ten commits" is the display rule of the figure -->

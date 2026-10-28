@@ -1,5 +1,6 @@
 """End-to-end smoke test of `coauthored analyze` on synthetic aggregates (no network, small bootstrap)."""
 
+import csv
 import json
 from pathlib import Path
 
@@ -88,7 +89,12 @@ def _inputs(root: Path) -> None:
         }
         for i in range(30)
     ]
-    pl.DataFrame(survival).write_csv(root / "data" / "survival.csv")
+    survival.append({**survival[0], "number": 99, "head_attributed": False, "survived": None})
+    # as scripts/survival_sample.py writes it: Python's csv module, True/False and empty cells
+    with (root / "data" / "survival.csv").open("w", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=list(survival[0]))
+        w.writeheader()
+        w.writerows({k: "" if v is None else v for k, v in r.items()} for r in survival)
     size = [
         {
             "stratum": st,
@@ -141,6 +147,8 @@ def test_analyze_writes_every_output(tmp_path: Path, monkeypatch: pytest.MonkeyP
     assert all(r["repos"] == 3 for r in saved["size_within_repo"])
     assert saved["summary"]["validation"] == {"n": 3, "positives": 2, "precision": 1.0, "recall": 0.5}
     assert saved["summary"]["catalogue"]["entries"] > 0
+    h6 = next(r for r in saved["hypotheses"] if r["hypothesis"] == "H6")
+    assert (h6["detail"]["k"], h6["detail"]["n"], h6["detail"]["inspected"]) == (20, 30, 31)
     std = {r["stratum"]: r for r in saved["reverts_standardised"]}
     assert std["S1"]["observed"] == 5 and std["S1"]["expected"] == pytest.approx(20.0)  # 5 repos × 100 × 4%
     assert "glmm" in saved["sensitivity"]

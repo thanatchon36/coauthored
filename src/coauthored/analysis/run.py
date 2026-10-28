@@ -57,13 +57,12 @@ def load_survival() -> pl.DataFrame | None:
     path = DATA / "survival.csv"
     if not path.exists():
         return None
-    s = pl.read_csv(path)
+    # read as text: polars infers Boolean for a column of True/False but not for one with empty cells
+    s = pl.read_csv(path, schema_overrides={"head_attributed": pl.String, "survived": pl.String})
+    flag = {"true": True, "false": False}
     return s.with_columns(
-        pl.col("head_attributed").cast(pl.Boolean),
-        pl.col("survived")
-        .cast(pl.String)
-        .replace({"": None})
-        .replace_strict({"True": True, "False": False}, default=None, return_dtype=pl.Boolean),
+        pl.col(c).str.to_lowercase().replace_strict(flag, default=None, return_dtype=pl.Boolean)
+        for c in ("head_attributed", "survived")
     )
 
 
