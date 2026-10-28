@@ -138,6 +138,38 @@ def revert_standardised(reverts: pl.DataFrame, end: str = "2026-06") -> list[dic
     return out
 
 
+def size_within(size: pl.DataFrame) -> list[dict[str, Any]]:
+    """Within-repository size ratio: OLS of log(1 + lines) on attribution with repository fixed effects,
+    repositories with both kinds of commit in the sample, CI clustered by repository. exp(β) is the ratio of
+    geometric means; it removes the composition effect that attributed commits sit in some repositories."""
+    import statsmodels.api as sm
+
+    out = []
+    for stratum in ("S1", "S2", "S3"):
+        d = size.filter(pl.col("stratum") == stratum)
+        mixed = d.group_by("repo").agg(pl.col("attr").any().alias("a"), (~pl.col("attr")).any().alias("u"))
+        keep = sorted(mixed.filter(pl.col("a") & pl.col("u"))["repo"].to_list())
+        d = d.filter(pl.col("repo").is_in(keep)).sort("repo", "sha")
+        if len(keep) < 2:
+            continue
+        codes = np.asarray([keep.index(r) for r in d["repo"].to_list()])
+        dummies = (codes[:, None] == np.arange(1, len(keep))[None, :]).astype(float)
+        x = np.column_stack([np.ones(d.height), d["attr"].cast(pl.Float64).to_numpy(), dummies])
+        y = np.log1p(d["lines"].to_numpy().astype(float))
+        fit = sm.OLS(y, x).fit(cov_type="cluster", cov_kwds={"groups": codes})
+        lo, hi = fit.conf_int()[1]
+        out.append(
+            {
+                "stratum": stratum,
+                "repos": len(keep),
+                "n": d.height,
+                "ratio": float(np.exp(fit.params[1])),
+                "ratio_ci": [float(np.exp(lo)), float(np.exp(hi))],
+            }
+        )
+    return out
+
+
 def _median_iqr(median: float, iqr: list[float]) -> str:
     return f"{median:.0f} [{iqr[0]:.0f}, {iqr[1]:.0f}]"
 
@@ -273,6 +305,7 @@ def analyze(b: int = h.B, out: Path = RESULTS) -> dict[str, Any]:
     )
 
     sizes = size_rows(size, b) if size is not None else []
+    within = size_within(size) if size is not None else []
     (tables / "size.md").write_text(
         _md_table(
             [
@@ -285,6 +318,15 @@ def analyze(b: int = h.B, out: Path = RESULTS) -> dict[str, Any]:
                 for r in sizes
             ],
             ["period", "stratum", "n_attr", "n_unattr", "attributed", "unattributed", "ratio (95% CI)"],
+        )
+        + "\nWithin repository (ratio of geometric means of 1 + lines, repository fixed effects,"
+        " CI clustered by repository):\n\n"
+        + _md_table(
+            [
+                {**r, "ratio (95% CI)": f"{r['ratio']:.2f} [{r['ratio_ci'][0]:.2f}, {r['ratio_ci'][1]:.2f}]"}
+                for r in within
+            ],
+            ["stratum", "repos", "n", "ratio (95% CI)"],
         ),
         encoding="utf-8",
     )
@@ -309,6 +351,7 @@ def analyze(b: int = h.B, out: Path = RESULTS) -> dict[str, Any]:
         "reverts": rev_rows,
         "reverts_standardised": std,
         "size": sizes,
+        "size_within_repo": within,
     }
     numbers = _clean(numbers)
     (out / "numbers.json").write_text(

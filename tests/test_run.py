@@ -133,6 +133,7 @@ def test_analyze_writes_every_output(tmp_path: Path, monkeypatch: pytest.MonkeyP
     assert saved["bootstrap_draws"] == 20
     assert "NaN" not in Path("results/numbers.json").read_text()
     assert {r["stratum"] for r in saved["size"]} == {"S1", "S2", "S3"}
+    assert all(r["repos"] == 3 for r in saved["size_within_repo"])
     std = {r["stratum"]: r for r in saved["reverts_standardised"]}
     assert std["S1"]["observed"] == 5 and std["S1"]["expected"] == pytest.approx(20.0)  # 5 repos × 100 × 4%
     assert "glmm" in saved["sensitivity"]

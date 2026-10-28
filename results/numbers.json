@@ -3246,6 +3246,165 @@
    }
   ]
  },
- "size": [],
+ "size": [
+  {
+   "iqr_attr": [
+    22.0,
+    359.0
+   ],
+   "iqr_unattr": [
+    7.0,
+    130.0
+   ],
+   "median_attr": 108.0,
+   "median_unattr": 32.0,
+   "n_attr": 334,
+   "n_unattr": 334,
+   "period": "all",
+   "ratio": 3.375,
+   "ratio_ci": [
+    2.011411,
+    4.852044
+   ],
+   "stratum": "S1"
+  },
+  {
+   "iqr_attr": [
+    42.0,
+    665.0
+   ],
+   "iqr_unattr": [
+    16.0,
+    218.0
+   ],
+   "median_attr": 155.0,
+   "median_unattr": 52.0,
+   "n_attr": 333,
+   "n_unattr": 333,
+   "period": "all",
+   "ratio": 2.980769,
+   "ratio_ci": [
+    1.931636,
+    4.421597
+   ],
+   "stratum": "S2"
+  },
+  {
+   "iqr_attr": [
+    20.0,
+    193.0
+   ],
+   "iqr_unattr": [
+    6.0,
+    84.0
+   ],
+   "median_attr": 64.0,
+   "median_unattr": 20.0,
+   "n_attr": 333,
+   "n_unattr": 333,
+   "period": "all",
+   "ratio": 3.2,
+   "ratio_ci": [
+    2.425272,
+    5.132941
+   ],
+   "stratum": "S3"
+  },
+  {
+   "iqr_attr": [
+    22.0,
+    394.5
+   ],
+   "iqr_unattr": [
+    7.75,
+    230.0
+   ],
+   "median_attr": 113.5,
+   "median_unattr": 71.5,
+   "n_attr": 298,
+   "n_unattr": 88,
+   "period": "2026",
+   "ratio": 1.587413,
+   "ratio_ci": [
+    0.858909,
+    3.601339
+   ],
+   "stratum": "S1"
+  },
+  {
+   "iqr_attr": [
+    44.75,
+    931.75
+   ],
+   "iqr_unattr": [
+    21.0,
+    259.5
+   ],
+   "median_attr": 219.5,
+   "median_unattr": 62.5,
+   "n_attr": 256,
+   "n_unattr": 186,
+   "period": "2026",
+   "ratio": 3.512,
+   "ratio_ci": [
+    1.85473,
+    5.369625
+   ],
+   "stratum": "S2"
+  },
+  {
+   "iqr_attr": [
+    21.0,
+    195.75
+   ],
+   "iqr_unattr": [
+    4.0,
+    84.0
+   ],
+   "median_attr": 64.5,
+   "median_unattr": 16.0,
+   "n_attr": 308,
+   "n_unattr": 85,
+   "period": "2026",
+   "ratio": 4.03125,
+   "ratio_ci": [
+    2.383854,
+    7.760833
+   ],
+   "stratum": "S3"
+  }
+ ],
+ "size_within_repo": [
+  {
+   "n": 589,
+   "ratio": 1.764788,
+   "ratio_ci": [
+    1.056248,
+    2.948624
+   ],
+   "repos": 23,
+   "stratum": "S1"
+  },
+  {
+   "n": 639,
+   "ratio": 1.807628,
+   "ratio_ci": [
+    1.391134,
+    2.348817
+   ],
+   "repos": 9,
+   "stratum": "S2"
+  },
+  {
+   "n": 525,
+   "ratio": 2.331297,
+   "ratio_ci": [
+    1.405989,
+    3.865568
+   ],
+   "repos": 14,
+   "stratum": "S3"
+  }
+ ],
  "snapshot": "2026-10-28 (UTC) / 2026-10-29 (local)"
 }
