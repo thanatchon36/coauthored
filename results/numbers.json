@@ -3406,5 +3406,500 @@
    "stratum": "S3"
   }
  ],
- "snapshot": "2026-10-28 (UTC) / 2026-10-29 (local)"
+ "snapshot": "2026-10-28 (UTC) / 2026-10-29 (local)",
+ "summary": {
+  "catalogue": {
+   "bots": 4,
+   "entries": 52,
+   "kind_coauthor": 31,
+   "kind_identity": 16,
+   "kind_marker": 5,
+   "tools": 28
+  },
+  "policy": {
+   "agent_config": 55,
+   "bans": 1,
+   "mentions": 16,
+   "requires_disclosure": 20,
+   "silent": 59
+  },
+  "quarterly": [
+   {
+    "hi": 0.0,
+    "lo": 0.0,
+    "n": 24742,
+    "n_attr": 0,
+    "q": "2024-Q1",
+    "share": 0.0,
+    "stratum": "S1"
+   },
+   {
+    "hi": 0.0,
+    "lo": 0.0,
+    "n": 25894,
+    "n_attr": 0,
+    "q": "2024-Q2",
+    "share": 0.0,
+    "stratum": "S1"
+   },
+   {
+    "hi": 0.0,
+    "lo": 0.0,
+    "n": 26554,
+    "n_attr": 0,
+    "q": "2024-Q3",
+    "share": 0.0,
+    "stratum": "S1"
+   },
+   {
+    "hi": 0.0,
+    "lo": 0.0,
+    "n": 25519,
+    "n_attr": 0,
+    "q": "2024-Q4",
+    "share": 0.0,
+    "stratum": "S1"
+   },
+   {
+    "hi": 0.000435,
+    "lo": 0.0,
+    "n": 27914,
+    "n_attr": 5,
+    "q": "2025-Q1",
+    "share": 0.000179,
+    "stratum": "S1"
+   },
+   {
+    "hi": 0.001939,
+    "lo": 0.000304,
+    "n": 29750,
+    "n_attr": 27,
+    "q": "2025-Q2",
+    "share": 0.000908,
+    "stratum": "S1"
+   },
+   {
+    "hi": 0.012133,
+    "lo": 0.001599,
+    "n": 30223,
+    "n_attr": 175,
+    "q": "2025-Q3",
+    "share": 0.00579,
+    "stratum": "S1"
+   },
+   {
+    "hi": 0.021989,
+    "lo": 0.004331,
+    "n": 29524,
+    "n_attr": 339,
+    "q": "2025-Q4",
+    "share": 0.011482,
+    "stratum": "S1"
+   },
+   {
+    "hi": 0.04176,
+    "lo": 0.01199,
+    "n": 33355,
+    "n_attr": 868,
+    "q": "2026-Q1",
+    "share": 0.026023,
+    "stratum": "S1"
+   },
+   {
+    "hi": 0.081241,
+    "lo": 0.025397,
+    "n": 35046,
+    "n_attr": 1739,
+    "q": "2026-Q2",
+    "share": 0.04962,
+    "stratum": "S1"
+   },
+   {
+    "hi": 0.153573,
+    "lo": 0.047467,
+    "n": 41728,
+    "n_attr": 3632,
+    "q": "2026-Q3",
+    "share": 0.08704,
+    "stratum": "S1"
+   },
+   {
+    "hi": 0.0,
+    "lo": 0.0,
+    "n": 1068,
+    "n_attr": 0,
+    "q": "2024-Q1",
+    "share": 0.0,
+    "stratum": "S2"
+   },
+   {
+    "hi": 0.0,
+    "lo": 0.0,
+    "n": 1587,
+    "n_attr": 0,
+    "q": "2024-Q2",
+    "share": 0.0,
+    "stratum": "S2"
+   },
+   {
+    "hi": 0.002669,
+    "lo": 0.0,
+    "n": 2406,
+    "n_attr": 3,
+    "q": "2024-Q3",
+    "share": 0.001247,
+    "stratum": "S2"
+   },
+   {
+    "hi": 0.101796,
+    "lo": 0.0,
+    "n": 2946,
+    "n_attr": 85,
+    "q": "2024-Q4",
+    "share": 0.028853,
+    "stratum": "S2"
+   },
+   {
+    "hi": 0.184632,
+    "lo": 0.0,
+    "n": 3617,
+    "n_attr": 174,
+    "q": "2025-Q1",
+    "share": 0.048106,
+    "stratum": "S2"
+   },
+   {
+    "hi": 0.179861,
+    "lo": 0.000859,
+    "n": 7340,
+    "n_attr": 387,
+    "q": "2025-Q2",
+    "share": 0.052725,
+    "stratum": "S2"
+   },
+   {
+    "hi": 0.115267,
+    "lo": 0.010858,
+    "n": 11117,
+    "n_attr": 452,
+    "q": "2025-Q3",
+    "share": 0.040658,
+    "stratum": "S2"
+   },
+   {
+    "hi": 0.102124,
+    "lo": 0.01063,
+    "n": 9345,
+    "n_attr": 306,
+    "q": "2025-Q4",
+    "share": 0.032745,
+    "stratum": "S2"
+   },
+   {
+    "hi": 0.238588,
+    "lo": 0.035502,
+    "n": 15756,
+    "n_attr": 1370,
+    "q": "2026-Q1",
+    "share": 0.086951,
+    "stratum": "S2"
+   },
+   {
+    "hi": 0.324815,
+    "lo": 0.044937,
+    "n": 16898,
+    "n_attr": 2175,
+    "q": "2026-Q2",
+    "share": 0.128713,
+    "stratum": "S2"
+   },
+   {
+    "hi": 0.246095,
+    "lo": 0.020988,
+    "n": 18773,
+    "n_attr": 1937,
+    "q": "2026-Q3",
+    "share": 0.10318,
+    "stratum": "S2"
+   },
+   {
+    "hi": 0.0,
+    "lo": 0.0,
+    "n": 25751,
+    "n_attr": 0,
+    "q": "2024-Q1",
+    "share": 0.0,
+    "stratum": "S3"
+   },
+   {
+    "hi": 0.0,
+    "lo": 0.0,
+    "n": 23924,
+    "n_attr": 0,
+    "q": "2024-Q2",
+    "share": 0.0,
+    "stratum": "S3"
+   },
+   {
+    "hi": 0.0007,
+    "lo": 0.0,
+    "n": 26132,
+    "n_attr": 4,
+    "q": "2024-Q3",
+    "share": 0.000153,
+    "stratum": "S3"
+   },
+   {
+    "hi": 0.000194,
+    "lo": 0.0,
+    "n": 24023,
+    "n_attr": 1,
+    "q": "2024-Q4",
+    "share": 4.2e-05,
+    "stratum": "S3"
+   },
+   {
+    "hi": 0.000475,
+    "lo": 0.0,
+    "n": 23561,
+    "n_attr": 3,
+    "q": "2025-Q1",
+    "share": 0.000127,
+    "stratum": "S3"
+   },
+   {
+    "hi": 0.003685,
+    "lo": 0.000116,
+    "n": 24587,
+    "n_attr": 28,
+    "q": "2025-Q2",
+    "share": 0.001139,
+    "stratum": "S3"
+   },
+   {
+    "hi": 0.014258,
+    "lo": 0.000463,
+    "n": 22565,
+    "n_attr": 133,
+    "q": "2025-Q3",
+    "share": 0.005894,
+    "stratum": "S3"
+   },
+   {
+    "hi": 0.028528,
+    "lo": 0.000351,
+    "n": 23786,
+    "n_attr": 279,
+    "q": "2025-Q4",
+    "share": 0.01173,
+    "stratum": "S3"
+   },
+   {
+    "hi": 0.065828,
+    "lo": 0.008158,
+    "n": 26412,
+    "n_attr": 881,
+    "q": "2026-Q1",
+    "share": 0.033356,
+    "stratum": "S3"
+   },
+   {
+    "hi": 0.106644,
+    "lo": 0.02774,
+    "n": 27697,
+    "n_attr": 1898,
+    "q": "2026-Q2",
+    "share": 0.068527,
+    "stratum": "S3"
+   },
+   {
+    "hi": 0.12189,
+    "lo": 0.02788,
+    "n": 27977,
+    "n_attr": 1993,
+    "q": "2026-Q3",
+    "share": 0.071237,
+    "stratum": "S3"
+   }
+  ],
+  "repos": [
+   {
+    "active_q3": 41,
+    "max_share_q3": 0.897436,
+    "median_share_q3": 0.045455,
+    "share_ge_10pct_q3": 15,
+    "stratum": "S1",
+    "top2_attr_fraction_q3": 0.504681,
+    "with_attributed_q3": 39
+   },
+   {
+    "active_q3": 12,
+    "max_share_q3": 0.65764,
+    "median_share_q3": 0.058045,
+    "share_ge_10pct_q3": 4,
+    "stratum": "S2",
+    "top2_attr_fraction_q3": 0.746783,
+    "with_attributed_q3": 12
+   },
+   {
+    "active_q3": 42,
+    "max_share_q3": 0.534884,
+    "median_share_q3": 0.013566,
+    "share_ge_10pct_q3": 8,
+    "stratum": "S3",
+    "top2_attr_fraction_q3": 0.658304,
+    "with_attributed_q3": 26
+   }
+  ],
+  "snapshot": {
+   "attributed_all": 25561,
+   "clone_gb": 1.323784,
+   "commits_all": 2850951,
+   "repositories": 96,
+   "seconds": 631.1
+  },
+  "tool_leaders": [
+   {
+    "claude_code": 0.005587,
+    "copilot": 0.011173,
+    "q": "2025-Q1",
+    "share": 0.98324,
+    "tool": "OpenHands"
+   },
+   {
+    "claude_code": 0.009662,
+    "copilot": 0.043478,
+    "q": "2025-Q2",
+    "share": 0.768116,
+    "tool": "OpenHands"
+   },
+   {
+    "claude_code": 0.130781,
+    "copilot": 0.08453,
+    "q": "2025-Q3",
+    "share": 0.393939,
+    "tool": "OpenHands"
+   },
+   {
+    "claude_code": 0.15814,
+    "copilot": 0.187597,
+    "q": "2025-Q4",
+    "share": 0.415504,
+    "tool": "Gemini Code Assist"
+   },
+   {
+    "claude_code": 0.340483,
+    "copilot": 0.090259,
+    "q": "2026-Q1",
+    "share": 0.340483,
+    "tool": "Claude Code"
+   },
+   {
+    "claude_code": 0.423863,
+    "copilot": 0.058763,
+    "q": "2026-Q2",
+    "share": 0.423863,
+    "tool": "Claude Code"
+   },
+   {
+    "claude_code": 0.518226,
+    "copilot": 0.059795,
+    "q": "2026-Q3",
+    "share": 0.518226,
+    "tool": "Claude Code"
+   }
+  ],
+  "validation": {
+   "n": 200,
+   "positives": 80,
+   "precision": 1.0,
+   "recall": 1.0
+  },
+  "year": [
+   {
+    "n": 77278,
+    "n_attr": 0,
+    "share": 0.0,
+    "stratum": "S1",
+    "year": "2023"
+   },
+   {
+    "n": 102709,
+    "n_attr": 0,
+    "share": 0.0,
+    "stratum": "S1",
+    "year": "2024"
+   },
+   {
+    "n": 117411,
+    "n_attr": 546,
+    "share": 0.00465,
+    "stratum": "S1",
+    "year": "2025"
+   },
+   {
+    "n": 110129,
+    "n_attr": 6239,
+    "share": 0.056652,
+    "stratum": "S1",
+    "year": "2026"
+   },
+   {
+    "n": 2506,
+    "n_attr": 0,
+    "share": 0.0,
+    "stratum": "S2",
+    "year": "2023"
+   },
+   {
+    "n": 8007,
+    "n_attr": 88,
+    "share": 0.01099,
+    "stratum": "S2",
+    "year": "2024"
+   },
+   {
+    "n": 31419,
+    "n_attr": 1319,
+    "share": 0.041981,
+    "stratum": "S2",
+    "year": "2025"
+   },
+   {
+    "n": 51427,
+    "n_attr": 5482,
+    "share": 0.106598,
+    "stratum": "S2",
+    "year": "2026"
+   },
+   {
+    "n": 97694,
+    "n_attr": 0,
+    "share": 0.0,
+    "stratum": "S3",
+    "year": "2023"
+   },
+   {
+    "n": 99830,
+    "n_attr": 5,
+    "share": 5e-05,
+    "stratum": "S3",
+    "year": "2024"
+   },
+   {
+    "n": 94499,
+    "n_attr": 443,
+    "share": 0.004688,
+    "stratum": "S3",
+    "year": "2025"
+   },
+   {
+    "n": 82086,
+    "n_attr": 4772,
+    "share": 0.058134,
+    "stratum": "S3",
+    "year": "2026"
+   }
+  ]
+ }
 }

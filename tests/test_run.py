@@ -107,6 +107,11 @@ def _inputs(root: Path) -> None:
     (root / "data" / "manifest.json").write_text(json.dumps({"snapshot_date": "2026-10-28", "repos": {}}))
     (root / "configs").mkdir()
     (root / "configs" / "repos.yaml").write_text(yaml.safe_dump(cfg))
+    repo_root = Path(__file__).resolve().parents[1]
+    for name in ("signatures.yaml", "bots.yaml"):
+        (root / "configs" / name).write_text((repo_root / "configs" / name).read_text())
+    (root / "docs").mkdir()
+    (root / "docs" / "label-sample.csv").write_text("repo,sha,label,scanner\na,1,1,1\na,2,0,0\na,3,1,0\n")
     overrides = {"repos": [{"repo": "s1org/repo0", "final": "mentions"}]}
     (root / "configs" / "policy_overrides.yaml").write_text(yaml.safe_dump(overrides))
 
@@ -134,6 +139,8 @@ def test_analyze_writes_every_output(tmp_path: Path, monkeypatch: pytest.MonkeyP
     assert "NaN" not in Path("results/numbers.json").read_text()
     assert {r["stratum"] for r in saved["size"]} == {"S1", "S2", "S3"}
     assert all(r["repos"] == 3 for r in saved["size_within_repo"])
+    assert saved["summary"]["validation"] == {"n": 3, "positives": 2, "precision": 1.0, "recall": 0.5}
+    assert saved["summary"]["catalogue"]["entries"] > 0
     std = {r["stratum"]: r for r in saved["reverts_standardised"]}
     assert std["S1"]["observed"] == 5 and std["S1"]["expected"] == pytest.approx(20.0)  # 5 repos × 100 × 4%
     assert "glmm" in saved["sensitivity"]

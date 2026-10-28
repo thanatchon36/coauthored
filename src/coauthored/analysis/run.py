@@ -170,6 +170,109 @@ def size_within(size: pl.DataFrame) -> list[dict[str, Any]]:
     return out
 
 
+def summary(
+    pool: pl.DataFrame,
+    draws: list[pl.DataFrame],
+    per_repo: pl.DataFrame,
+    results: list[h.Result],
+    policy: pl.DataFrame | None,
+) -> dict[str, Any]:
+    """Derived numbers the paper quotes, so that every number in the text traces to numbers.json."""
+
+    def by_q(d: pl.DataFrame) -> pl.DataFrame:
+        return (
+            _quarter_col(d.filter(pl.col("month") >= "2024-01"))
+            .group_by("stratum", "q")
+            .agg(pl.col("n").sum(), pl.col("n_attr").sum())
+            .with_columns((pl.col("n_attr") / pl.col("n")).alias("share"))
+        )
+
+    point = by_q(pool)
+    boot = pl.concat([by_q(d).select("stratum", "q", "share") for d in draws])
+    band = boot.group_by("stratum", "q").agg(
+        pl.col("share").quantile(0.025).alias("lo"), pl.col("share").quantile(0.975).alias("hi")
+    )
+    quarterly = point.join(band, on=["stratum", "q"]).sort("stratum", "q").to_dicts()
+    year = (
+        pool.with_columns(pl.col("month").str.slice(0, 4).alias("year"))
+        .group_by("stratum", "year")
+        .agg(pl.col("n").sum(), pl.col("n_attr").sum())
+        .with_columns((pl.col("n_attr") / pl.col("n")).alias("share"))
+        .sort("stratum", "year")
+        .to_dicts()
+    )
+    repos = []
+    for s in ("S1", "S2", "S3"):
+        d = per_repo.filter(pl.col("stratum") == s)
+        top = d.sort("n_attr", descending=True)
+        repos.append(
+            {
+                "stratum": s,
+                "active_q3": d.height,
+                "with_attributed_q3": int((d["n_attr"] > 0).sum()),
+                "share_ge_10pct_q3": int((d["share"] >= 0.10).sum()),
+                "median_share_q3": float(d["share"].median() or 0.0),  # type: ignore[arg-type]
+                "max_share_q3": float(d["share"].max() or 0.0),  # type: ignore[arg-type]
+                "top2_attr_fraction_q3": float(top["n_attr"][:2].sum() / max(int(d["n_attr"].sum()), 1)),
+            }
+        )
+    h5 = next(r for r in results if r.hypothesis == "H5")
+    leaders = []
+    for q, shares in sorted(h5.detail["quarterly_shares"].items()):
+        if q < "2025-Q1":
+            continue
+        ranked = sorted(shares.items(), key=lambda kv: (-kv[1], kv[0]))
+        leaders.append(
+            {
+                "q": q,
+                "tool": ranked[0][0],
+                "share": ranked[0][1],
+                "claude_code": shares.get("Claude Code", 0.0),
+                "copilot": shares.get("GitHub Copilot", 0.0),
+            }
+        )
+    manifest = json.loads((DATA / "manifest.json").read_text())["repos"]
+    cat = yaml.safe_load((CONFIGS / "signatures.yaml").read_text())["signatures"]
+    labels = pl.read_csv(Path("docs/label-sample.csv")) if Path("docs/label-sample.csv").exists() else None
+    out: dict[str, Any] = {
+        "quarterly": quarterly,
+        "year": year,
+        "repos": repos,
+        "tool_leaders": leaders,
+        "snapshot": {
+            "repositories": len(manifest),
+            "commits_all": sum(int(e["n_commits_all"]) for e in manifest.values()),
+            "attributed_all": sum(int(e["n_attributed_all"]) for e in manifest.values()),
+            "seconds": sum(
+                float(e.get("clone_seconds", 0)) + float(e.get("scan_seconds", 0)) for e in manifest.values()
+            ),
+            "clone_gb": sum(float(e.get("clone_bytes", 0)) for e in manifest.values()) / 1e9,
+        },
+        "catalogue": {
+            "entries": len(cat),
+            "tools": len({c["tool"] for c in cat}),
+            **{f"kind_{k}": sum(c["kind"] == k for c in cat) for k in ("coauthor", "identity", "marker")},
+            "bots": len(yaml.safe_load((CONFIGS / "bots.yaml").read_text())["bots"]),
+        },
+    }
+    if labels is not None:
+        tp = int(((labels["label"] == 1) & (labels["scanner"] == 1)).sum())
+        fp = int(((labels["label"] == 0) & (labels["scanner"] == 1)).sum())
+        fn = int(((labels["label"] == 1) & (labels["scanner"] == 0)).sum())
+        out["validation"] = {
+            "n": labels.height,
+            "positives": tp + fn,
+            "precision": tp / (tp + fp) if tp + fp else None,
+            "recall": tp / (tp + fn) if tp + fn else None,
+        }
+    if policy is not None:
+        out["policy"] = {
+            **{str(k): int(v) for k, v in policy.group_by("policy").len().iter_rows()},
+            "agent_config": int(policy["agent_config"].sum()),
+        }
+    return out
+
+
 def _median_iqr(median: float, iqr: list[float]) -> str:
     return f"{median:.0f} [{iqr[0]:.0f}, {iqr[1]:.0f}]"
 
@@ -332,6 +435,7 @@ def analyze(b: int = h.B, out: Path = RESULTS) -> dict[str, Any]:
     )
 
     numbers: dict[str, Any] = {
+        "summary": summary(pool, draws, per_repo, results, policy),
         "bootstrap_draws": b,
         "seed": h.SEED,
         "snapshot": json.loads((DATA / "manifest.json").read_text()).get("snapshot_date"),
