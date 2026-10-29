@@ -1,7 +1,7 @@
 # Status
 
-**Phase 7 — analysis: in progress (2026-10-29). Survival and size samples running; final run with B = 2,000
-follows.**
+**Phase 9 — adversarial review: in progress (2026-10-29).** Paper drafted and built; final analysis done.
+STOP 2 follows Phases 9–11: nothing is public yet.
 
 ## Done
 - Phase 0 — scoping (2026-10-28): environment, names, skeleton, private repository.
@@ -10,28 +10,28 @@ follows.**
   `git interpret-trailers` (1,565/1,565); blind validation sample of 200 pilot commits (precision 1.00, recall
   1.00); S1 = 42, S2 = 12 by rule; S3 = 42 matched and hand-screened controls; literature review (35 sources);
   `PREREGISTRATION.md` frozen at tag `prereg-v1`. Report: `docs/phase-1-report.md`.
-- Phase 2 — scanner: CLI (`scan`, `aggregate`, `report`, `signatures --verify`, `analyze`), manifest with head
-  SHAs, timings and sizes; policy classifier; survival classifier.
+- Phase 2 — scanner: CLI (`scan`, `aggregate`, `report`, `signatures --verify`, `analyze`, `paper`, `dashboard`),
+  manifest with head SHAs, timings and sizes; policy classifier; survival classifier.
 - Phase 3 — pilot run and snapshot estimate. Report: `docs/phase-3-report.md`. STOP 1 approved 2026-10-29.
 - Phase 4 — snapshot of all 96 repositories on 2026-10-28 (UTC): 2.85M commits, 25,561 attributed (all
-  history), 632 s, 1.32 GB of clones; aggregates in `data/aggregated/`; policy files fetched and hand-checked.
-  Report: `docs/phase-4-report.md`.
-- Phase 7 (partial) — `coauthored analyze` writes `results/numbers.json`, `results/tables/`, `results/figures/`
-  (F1–F6, F8) from committed aggregates, byte-reproducibly; sensitivity analyses including the GLMM for H3;
-  repository-month-standardised revert rates; deviations logged in `DEVIATIONS.md` (7). 76 tests.
-
-## Running
-- Phase 5 survival sampler (`scripts/survival_sample.py`): listing merged PRs of S1 ∪ S2, then up to 4,000 PRs
-  until 200 with an attributed head commit. Output `data/survival.csv` → H6, F5.
-- RQ6 size sample (`scripts/size_sample.py`): 2,000 commits, `git show --shortstat`. Output
-  `data/size_sample.csv` → `results/tables/size.md`.
+  history), 632 s, 1.32 GB of clones; aggregates in `data/aggregated/`; policy files fetched and hand-checked;
+  Hugging Face dataset built in `dist/hf/` (not pushed). Report: `docs/phase-4-report.md`.
+- Phase 5 — survival sample (2,542 PRs inspected, 200 attributed, 184 kept attribution); size sample (2,000
+  commits). Report: `docs/phase-5-report.md`.
+- Phase 6 — skipped: GH Archive needs BigQuery (`bq`, `gcloud` not installed; not approved). F7 omitted.
+- Phase 7 — `coauthored analyze --draws 2000`: `results/numbers.json`, tables, figures F1–F6 and F8,
+  byte-reproducible; sensitivity analyses including the GLMM for H3; 8 deviations logged.
+  H1 supported (point estimate; CI reaches below 5%), H2–H5 not supported, H6 supported, H7 exploratory positive.
+- Phase 8 — `paper/paper.md` → `paper/coauthored.pdf` (8 pages + references and appendix) and
+  `docs/site/paper/index.html`; every number filled from `numbers.json`, hand-typed numbers fail the build.
+- Phase 10 (partial) — `REPRODUCE.md`, `RESPONSIBLE_USE.md`, README with results, `coauthored dashboard` and
+  `.github/workflows/monthly.yml` (runs only once the repository is public).
 
 ## Next
-Final `coauthored analyze --draws 2000`; Phase 5 report; paper draft (Phase 8); adversarial review (Phase 9);
-reproducibility, README and dashboard (Phase 10); announcement drafts (Phase 11). STOP 2 before anything public.
+Phase 9 review → `docs/review.md`, fix blocking items; Phase 11 announcement drafts in `announce/`; CI green on
+the private repository. Then **STOP 2**: ask before making the repository public, cutting a release / minting the
+DOI, pushing the Hugging Face dataset, enabling Pages, or publishing to PyPI.
 
 ## Open issues
-- Phase 6 (GH Archive, F7) needs the Google Cloud SDK (`bq`, `gcloud`), which is not installed, and the user's
-  approval of BigQuery costs. Skipped unless the user installs it; F7 is optional.
 - Survival frame excludes PRs landed by merge bots that close instead of merging (pytorch/pytorch), and PRs
   created before 2024-06-01 (`DEVIATIONS.md` 6–7).
