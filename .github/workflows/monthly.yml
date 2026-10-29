@@ -1,0 +1,42 @@
+# Living dashboard: re-scan the frozen repository lists on the 2nd of each month and publish the web paper
+# and the dashboard to GitHub Pages. Post-registration, not part of the paper: nothing here is committed back.
+name: monthly
+on:
+  schedule:
+    - cron: "0 6 2 * *"
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: false
+jobs:
+  dashboard:
+    # Pages and the scan only make sense once the repository is public
+    if: ${{ !github.event.repository.private }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.12"
+      - run: uv sync --extra analysis
+      # A fresh random salt per run: hashes are only compared within one run, so counts do not depend on it
+      - run: |
+          salt=$(openssl rand -hex 32)
+          echo "::add-mask::$salt"
+          echo "HASH_SALT=$salt" >> "$GITHUB_ENV"
+      - run: uv run coauthored scan --config configs/repos.yaml --manifest work/manifest.json --rawdir work/raw
+      - run: uv run coauthored dashboard --rawdir work/raw --out docs/site/dashboard
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs/site
+      - id: deploy
+        uses: actions/deploy-pages@v4

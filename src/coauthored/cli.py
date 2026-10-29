@@ -201,6 +201,21 @@ def analyze(draws: int = 2000) -> None:
 
 
 @app.command()
+def dashboard(
+    config: Path = typer.Option(Path("configs/repos.yaml")),  # noqa: B008
+    rawdir: Path = RAW,
+    out: Path = Path("docs/site/dashboard"),  # noqa: B008
+) -> None:
+    """Living dashboard from a fresh scan: post-registration, not part of the paper."""
+    from datetime import UTC, datetime
+
+    from coauthored import dashboard as dash
+
+    strata = {k.upper(): v for k, v in _strata_from(config, []).items() if k != "pilots"}
+    typer.echo(f"wrote {dash.write(strata, rawdir, out, datetime.now(UTC).date())}")
+
+
+@app.command()
 def paper() -> None:
     """Fill paper/paper.md from results/numbers.json and build paper/coauthored.pdf (pandoc + typst)."""
     from coauthored.paper import build

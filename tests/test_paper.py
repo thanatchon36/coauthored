@@ -1,6 +1,6 @@
 import pytest
 
-from coauthored.paper import check, crossref, fill, fmt, lookup
+from coauthored.paper import check, crossref, fill, fmt, lookup, number_captions, results
 
 DATA = {
     "summary": {
@@ -73,3 +73,38 @@ See Figure @fig:b, Table @tbl:t and Section @sec:m.
     assert crossref("@sec:d\n" + text).startswith("2.1\n")
     with pytest.raises(SystemExit):
         crossref("@fig:missing")
+
+
+def test_number_captions_matches_typst_order() -> None:
+    body = "![A](a.svg){#fig:a}\n\n: Hyp {#tbl:h}\n\n![B\nwrapped](b.svg){#fig:b width=50%}\n"
+    out = number_captions(body)
+    assert "![Figure 1. A](a.svg)" in out and "![Figure 2. B\nwrapped]" in out
+    assert "**Table 1.** Hyp" in out
+
+
+def test_results_strip_kinds() -> None:
+    data = {
+        "hypotheses": [
+            {
+                "hypothesis": "H1",
+                "statement": "s",
+                "estimate": 0.087,
+                "ci": [0.05, 0.15],
+                "supported": True,
+                "p_holm": 0.4,
+            },
+            {
+                "hypothesis": "H3",
+                "statement": "s",
+                "estimate": 0.025,
+                "ci": [-0.08, 0.07],
+                "supported": False,
+                "p_holm": 1.0,
+            },
+            {"hypothesis": "H7", "statement": "s", "estimate": 0.03, "ci": [None, None], "supported": True},
+        ]
+    }
+    rows = results(data)
+    assert [r[1] for r in rows] == ["pos", "ref", "nf"]
+    assert rows[0][3] == "estimate 8.7%, 95% CI 5.0% to 15.0%, Holm p 0.400"
+    assert rows[1][3].startswith("estimate 0.025, 95% CI -0.080")
