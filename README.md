@@ -4,6 +4,7 @@
 
 [![CI](https://github.com/thanatchon36/coauthored/actions/workflows/ci.yml/badge.svg)](https://github.com/thanatchon36/coauthored/actions/workflows/ci.yml)
 [![PyPI](https://img.shields.io/pypi/v/coauthored)](https://pypi.org/project/coauthored/)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23752989.svg)](https://doi.org/10.5281/zenodo.23752989)
 [![License](https://img.shields.io/badge/license-Apache--2.0-green)](LICENSE)
 [![Data](https://img.shields.io/badge/data-CC--BY--4.0-blue)](LICENSE-DATA)
 [![Status](https://img.shields.io/badge/status-preprint-orange)](STATUS.md)
@@ -89,7 +90,8 @@ no PR numbers or commit SHAs. The [Hugging Face dataset](https://huggingface.co/
 
 ## Citation
 
-See [CITATION.cff](CITATION.cff).
+See [CITATION.cff](CITATION.cff). Archived on Zenodo: [10.5281/zenodo.23752989](https://doi.org/10.5281/zenodo.23752989)
+(concept DOI; it always resolves to the latest release).
 
 ## License
 
