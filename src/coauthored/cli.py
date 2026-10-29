@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 import json
+import secrets
+from importlib.resources import files
 from pathlib import Path
 
 import polars as pl
@@ -27,8 +29,21 @@ from coauthored.signatures import catalogue as cat_mod
 
 app = typer.Typer(no_args_is_help=True, help="Count AI-attributed commits in git history.")
 
-CATALOGUE = Path("configs/signatures.yaml")
-BOTS = Path("configs/bots.yaml")
+
+def _config(name: str) -> Path:
+    """The frozen config: ./configs in a checkout, else the copy in the wheel, else the source tree."""
+    for path in (
+        Path("configs") / name,
+        Path(str(files("coauthored") / "configs" / name)),
+        Path(__file__).resolve().parents[2] / "configs" / name,
+    ):
+        if path.exists():
+            return path
+    raise FileNotFoundError(f"configs/{name} not found")
+
+
+CATALOGUE = _config("signatures.yaml")
+BOTS = _config("bots.yaml")
 WORK = Path("work")
 RAW = Path("data/raw")
 
@@ -177,7 +192,7 @@ def report(
         targets += [r["nameWithOwner"] for r in json.loads(listing)]
     cat = cat_mod.load(CATALOGUE)
     botlist = bots_mod.load(BOTS)
-    salt = load_salt()
+    salt = secrets.token_hex(32)  # hashes are compared within this run only; nothing is written to .env
     frames = []
     for repo in targets:
         scan_repo(repo, cat, botlist, salt, WORK, rawdir)

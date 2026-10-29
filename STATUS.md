@@ -35,8 +35,8 @@ Decided 2026-10-29: public (history rewritten), aggregates-only Hugging Face dat
 the web paper, retitled *How Much of the Code That Trains the Models Declares AI Help?* (DEVIATIONS 14),
 personal-account repository slugs kept. Hugging Face dataset live: <https://huggingface.co/datasets/thanatchon36/coauthored>. The README links to the web
 paper and dashboard come back once Pages is on. Open: a release with a Zenodo DOI (also an independent timestamp for
-`prereg-v1`), Pages (the monthly workflow is disabled until then), PyPI (not needed: `pip install` works from
-the git URL).
+`prereg-v1`), Pages (the monthly workflow is disabled until then), PyPI: approved; `.github/workflows/publish.yml` (Trusted Publishing,
+no token) publishes 0.1.0 once the author adds the pending publisher on PyPI.
 
 ## Open issues
 - Survival frame excludes PRs landed by merge bots that close instead of merging (pytorch/pytorch), and PRs

@@ -18,6 +18,15 @@ def test_version() -> None:
     assert r.exit_code == 0 and r.stdout.strip()
 
 
+def test_config_found_outside_a_checkout(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    from coauthored.cli import _config
+
+    monkeypatch.chdir(tmp_path)
+    assert yaml.safe_load(_config("signatures.yaml").read_text())["signatures"]
+    with pytest.raises(FileNotFoundError):
+        _config("missing.yaml")
+
+
 def test_paid_key_is_refused(monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.setenv("ANTHROPIC_API_KEY", "x")
     assert runner.invoke(app, ["version"]).exit_code != 0
