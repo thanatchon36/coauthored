@@ -107,4 +107,8 @@ def test_results_strip_kinds() -> None:
     rows = results(data)
     assert [r[1] for r in rows] == ["pos", "ref", "nf"]
     assert rows[0][3] == "estimate 8.7%, 95% CI 5.0% to 15.0%, Holm p 0.400"
-    assert rows[1][3].startswith("estimate 0.025, 95% CI -0.080")
+    assert rows[1][3].startswith("estimate 0.025, 95% CI −0.080")
+
+
+def test_fmt_percentage_points() -> None:
+    assert fmt(0.01614, "pp1") == "1.6" and fmt(-0.758, "pp1") == "−75.8"

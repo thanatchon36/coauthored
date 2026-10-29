@@ -9,7 +9,7 @@
   "S2": 62,
   "S3": 0
  },
- "bootstrap_draws": 100,
+ "bootstrap_draws": 2000,
  "commits_in_window": {
   "S1": 407527,
   "S2": 93359,
@@ -18,23 +18,23 @@
  "hypotheses": [
   {
    "ci": [
-    0.047861,
-    0.149654
+    0.040343,
+    0.144737
    ],
    "detail": {
     "repo_weighted": 0.105142
    },
    "estimate": 0.08704,
    "hypothesis": "H1",
-   "p_holm": 0.346535,
-   "p_one_sided": 0.069307,
+   "p_holm": 0.407296,
+   "p_one_sided": 0.081459,
    "statement": "Pooled S1 attributed share, 2026-07..09, is at least 5%",
    "supported": true
   },
   {
    "ci": [
-    0.474345,
-    3.443841
+    0.451233,
+    4.749337
    ],
    "detail": {
     "every_month": false,
@@ -68,28 +68,28 @@
    "estimate": 1.242983,
    "hypothesis": "H2",
    "p_holm": 1.0,
-   "p_one_sided": 0.306931,
+   "p_one_sided": 0.316342,
    "statement": "S1 > S3 in every month 2026-04..09, and the 2026-Q3 odds ratio S1:S3 is at least 2 (CI excludes 1)",
    "supported": false
   },
   {
    "ci": [
-    -0.080175,
-    0.073535
+    -0.079791,
+    0.07678
    ],
    "detail": {
     "slope_ci": {
      "S1": [
-      0.195615,
-      0.276017
+      0.188773,
+      0.276077
      ],
      "S2": [
-      -0.020602,
-      0.182005
+      -0.015404,
+      0.178859
      ],
      "S3": [
-      0.185579,
-      0.301766
+      0.180499,
+      0.308456
      ]
     },
     "slopes": {
@@ -101,27 +101,27 @@
    "estimate": 0.024551,
    "hypothesis": "H3",
    "p_holm": 1.0,
-   "p_one_sided": 0.306931,
+   "p_one_sided": 0.317341,
    "statement": "Positive monthly logit slope in S1 and in S2, and S1 slope > S3 slope (CIs exclude 0)",
    "supported": false
   },
   {
    "ci": [
-    -0.096512,
-    0.156162
+    -0.089932,
+    0.157501
    ],
    "detail": {},
    "estimate": 0.01614,
    "hypothesis": "H4",
    "p_holm": 1.0,
-   "p_one_sided": 0.39604,
+   "p_one_sided": 0.403798,
    "statement": "Pooled 2026-Q3 share in S2 exceeds that in S1 (CI of the difference excludes 0)",
    "supported": false
   },
   {
    "ci": [
-    -0.971271,
-    -0.392011
+    -0.965272,
+    -0.40983
    ],
    "detail": {
     "quarterly_shares": {
@@ -221,6 +221,55 @@
    "p_one_sided": 1.0,
    "statement": "Claude Code has the plurality of attributed commits in S1 ∪ S2 every quarter 2025-Q2..2026-Q3",
    "supported": false
+  },
+  {
+   "ci": [
+    0.874011,
+    0.950159
+   ],
+   "detail": {
+    "by_method": {
+     "merge": [
+      6,
+      6,
+      [
+       0.609666,
+       1.0
+      ]
+     ],
+     "rebase": [
+      2,
+      2,
+      [
+       0.34238,
+       1.0
+      ]
+     ],
+     "squash": [
+      176,
+      192,
+      [
+       0.868931,
+       0.948056
+      ]
+     ]
+    },
+    "ci_cluster_repo": [
+     0.87292,
+     0.961538
+    ],
+    "inspected": 2542,
+    "k": 184,
+    "n": 200,
+    "repos": 41,
+    "repos_with_loss": 10
+   },
+   "estimate": 0.92,
+   "hypothesis": "H6",
+   "p_holm": 1.5e-05,
+   "p_one_sided": 2e-06,
+   "statement": "At least 80% of sampled merged PRs with an attributed head commit keep the attribution",
+   "supported": true
   },
   {
    "ci": [
@@ -461,7 +510,7 @@
    "stratum": "S1"
   },
   {
-   "hi": 0.000707,
+   "hi": 0.000718,
    "lo": 0.0,
    "month": "2025-01",
    "n": 8524,
@@ -470,7 +519,7 @@
    "stratum": "S1"
   },
   {
-   "hi": 0.000899,
+   "hi": 0.000869,
    "lo": 0.0,
    "month": "2025-02",
    "n": 8937,
@@ -488,7 +537,7 @@
    "stratum": "S1"
   },
   {
-   "hi": 0.000494,
+   "hi": 0.000529,
    "lo": 0.0,
    "month": "2025-04",
    "n": 10945,
@@ -497,7 +546,7 @@
    "stratum": "S1"
   },
   {
-   "hi": 0.00036,
+   "hi": 0.000411,
    "lo": 0.0,
    "month": "2025-05",
    "n": 9826,
@@ -506,8 +555,8 @@
    "stratum": "S1"
   },
   {
-   "hi": 0.006128,
-   "lo": 0.000727,
+   "hi": 0.005894,
+   "lo": 0.000751,
    "month": "2025-06",
    "n": 8979,
    "n_attr": 24,
@@ -515,8 +564,8 @@
    "stratum": "S1"
   },
   {
-   "hi": 0.009896,
-   "lo": 0.001557,
+   "hi": 0.009366,
+   "lo": 0.001375,
    "month": "2025-07",
    "n": 9982,
    "n_attr": 44,
@@ -524,8 +573,8 @@
    "stratum": "S1"
   },
   {
-   "hi": 0.014264,
-   "lo": 0.001627,
+   "hi": 0.014354,
+   "lo": 0.001732,
    "month": "2025-08",
    "n": 10152,
    "n_attr": 68,
@@ -533,8 +582,8 @@
    "stratum": "S1"
   },
   {
-   "hi": 0.013497,
-   "lo": 0.001656,
+   "hi": 0.013546,
+   "lo": 0.00148,
    "month": "2025-09",
    "n": 10089,
    "n_attr": 63,
@@ -542,8 +591,8 @@
    "stratum": "S1"
   },
   {
-   "hi": 0.019252,
-   "lo": 0.002912,
+   "hi": 0.019533,
+   "lo": 0.003932,
    "month": "2025-10",
    "n": 10767,
    "n_attr": 110,
@@ -551,8 +600,8 @@
    "stratum": "S1"
   },
   {
-   "hi": 0.018999,
-   "lo": 0.003329,
+   "hi": 0.019158,
+   "lo": 0.003245,
    "month": "2025-11",
    "n": 9188,
    "n_attr": 88,
@@ -560,8 +609,8 @@
    "stratum": "S1"
   },
   {
-   "hi": 0.027803,
-   "lo": 0.006088,
+   "hi": 0.026845,
+   "lo": 0.006098,
    "month": "2025-12",
    "n": 9569,
    "n_attr": 141,
@@ -569,8 +618,8 @@
    "stratum": "S1"
   },
   {
-   "hi": 0.037608,
-   "lo": 0.008016,
+   "hi": 0.035764,
+   "lo": 0.007929,
    "month": "2026-01",
    "n": 10041,
    "n_attr": 182,
@@ -578,8 +627,8 @@
    "stratum": "S1"
   },
   {
-   "hi": 0.046259,
-   "lo": 0.013466,
+   "hi": 0.04611,
+   "lo": 0.014154,
    "month": "2026-02",
    "n": 9992,
    "n_attr": 264,
@@ -587,8 +636,8 @@
    "stratum": "S1"
   },
   {
-   "hi": 0.051892,
-   "lo": 0.014557,
+   "hi": 0.055984,
+   "lo": 0.016122,
    "month": "2026-03",
    "n": 13322,
    "n_attr": 422,
@@ -596,8 +645,8 @@
    "stratum": "S1"
   },
   {
-   "hi": 0.077072,
-   "lo": 0.020819,
+   "hi": 0.080661,
+   "lo": 0.021161,
    "month": "2026-04",
    "n": 11946,
    "n_attr": 527,
@@ -605,8 +654,8 @@
    "stratum": "S1"
   },
   {
-   "hi": 0.08989,
-   "lo": 0.021119,
+   "hi": 0.088278,
+   "lo": 0.020961,
    "month": "2026-05",
    "n": 11349,
    "n_attr": 552,
@@ -614,8 +663,8 @@
    "stratum": "S1"
   },
   {
-   "hi": 0.084123,
-   "lo": 0.030456,
+   "hi": 0.086136,
+   "lo": 0.031605,
    "month": "2026-06",
    "n": 11751,
    "n_attr": 660,
@@ -623,8 +672,8 @@
    "stratum": "S1"
   },
   {
-   "hi": 0.120095,
-   "lo": 0.036143,
+   "hi": 0.118415,
+   "lo": 0.035069,
    "month": "2026-07",
    "n": 12250,
    "n_attr": 864,
@@ -632,8 +681,8 @@
    "stratum": "S1"
   },
   {
-   "hi": 0.127552,
-   "lo": 0.035828,
+   "hi": 0.124098,
+   "lo": 0.031545,
    "month": "2026-08",
    "n": 13901,
    "n_attr": 1030,
@@ -641,8 +690,8 @@
    "stratum": "S1"
   },
   {
-   "hi": 0.203127,
-   "lo": 0.058035,
+   "hi": 0.187948,
+   "lo": 0.046171,
    "month": "2026-09",
    "n": 15577,
    "n_attr": 1738,
@@ -803,7 +852,7 @@
    "stratum": "S2"
   },
   {
-   "hi": 0.047297,
+   "hi": 0.062222,
    "lo": 0.0,
    "month": "2024-10",
    "n": 994,
@@ -812,7 +861,7 @@
    "stratum": "S2"
   },
   {
-   "hi": 0.089431,
+   "hi": 0.09205,
    "lo": 0.0,
    "month": "2024-11",
    "n": 958,
@@ -821,7 +870,7 @@
    "stratum": "S2"
   },
   {
-   "hi": 0.182836,
+   "hi": 0.196787,
    "lo": 0.0,
    "month": "2024-12",
    "n": 994,
@@ -830,7 +879,7 @@
    "stratum": "S2"
   },
   {
-   "hi": 0.143541,
+   "hi": 0.190114,
    "lo": 0.0,
    "month": "2025-01",
    "n": 1075,
@@ -839,7 +888,7 @@
    "stratum": "S2"
   },
   {
-   "hi": 0.158093,
+   "hi": 0.221053,
    "lo": 0.0,
    "month": "2025-02",
    "n": 1192,
@@ -848,7 +897,7 @@
    "stratum": "S2"
   },
   {
-   "hi": 0.250774,
+   "hi": 0.333333,
    "lo": 0.0,
    "month": "2025-03",
    "n": 1350,
@@ -857,8 +906,8 @@
    "stratum": "S2"
   },
   {
-   "hi": 0.139463,
-   "lo": 0.00037,
+   "hi": 0.157742,
+   "lo": 0.0,
    "month": "2025-04",
    "n": 2163,
    "n_attr": 91,
@@ -866,7 +915,7 @@
    "stratum": "S2"
   },
   {
-   "hi": 0.207297,
+   "hi": 0.202186,
    "lo": 0.0,
    "month": "2025-05",
    "n": 2128,
@@ -875,8 +924,8 @@
    "stratum": "S2"
   },
   {
-   "hi": 0.169118,
-   "lo": 0.001134,
+   "hi": 0.153619,
+   "lo": 0.00086,
    "month": "2025-06",
    "n": 3049,
    "n_attr": 154,
@@ -885,7 +934,7 @@
   },
   {
    "hi": 0.118545,
-   "lo": 0.011765,
+   "lo": 0.010911,
    "month": "2025-07",
    "n": 4181,
    "n_attr": 163,
@@ -893,8 +942,8 @@
    "stratum": "S2"
   },
   {
-   "hi": 0.14073,
-   "lo": 0.011521,
+   "hi": 0.139844,
+   "lo": 0.010996,
    "month": "2025-08",
    "n": 3959,
    "n_attr": 199,
@@ -902,8 +951,8 @@
    "stratum": "S2"
   },
   {
-   "hi": 0.071669,
-   "lo": 0.00755,
+   "hi": 0.070485,
+   "lo": 0.007968,
    "month": "2025-09",
    "n": 2977,
    "n_attr": 90,
@@ -911,8 +960,8 @@
    "stratum": "S2"
   },
   {
-   "hi": 0.094979,
-   "lo": 0.003922,
+   "hi": 0.08557,
+   "lo": 0.003774,
    "month": "2025-10",
    "n": 3152,
    "n_attr": 96,
@@ -920,8 +969,8 @@
    "stratum": "S2"
   },
   {
-   "hi": 0.096774,
-   "lo": 0.011013,
+   "hi": 0.0832,
+   "lo": 0.011477,
    "month": "2025-11",
    "n": 2685,
    "n_attr": 91,
@@ -929,8 +978,8 @@
    "stratum": "S2"
   },
   {
-   "hi": 0.128252,
-   "lo": 0.011784,
+   "hi": 0.104439,
+   "lo": 0.011429,
    "month": "2025-12",
    "n": 3508,
    "n_attr": 119,
@@ -938,8 +987,8 @@
    "stratum": "S2"
   },
   {
-   "hi": 0.159268,
-   "lo": 0.017439,
+   "hi": 0.147413,
+   "lo": 0.016837,
    "month": "2026-01",
    "n": 4839,
    "n_attr": 245,
@@ -947,8 +996,8 @@
    "stratum": "S2"
   },
   {
-   "hi": 0.213316,
-   "lo": 0.029827,
+   "hi": 0.224199,
+   "lo": 0.024505,
    "month": "2026-02",
    "n": 5374,
    "n_attr": 393,
@@ -956,8 +1005,8 @@
    "stratum": "S2"
   },
   {
-   "hi": 0.325782,
-   "lo": 0.051275,
+   "hi": 0.329064,
+   "lo": 0.039664,
    "month": "2026-03",
    "n": 5543,
    "n_attr": 732,
@@ -965,8 +1014,8 @@
    "stratum": "S2"
   },
   {
-   "hi": 0.34625,
-   "lo": 0.048654,
+   "hi": 0.365952,
+   "lo": 0.033134,
    "month": "2026-04",
    "n": 5362,
    "n_attr": 696,
@@ -974,8 +1023,8 @@
    "stratum": "S2"
   },
   {
-   "hi": 0.349519,
-   "lo": 0.034335,
+   "hi": 0.370065,
+   "lo": 0.02332,
    "month": "2026-05",
    "n": 5898,
    "n_attr": 845,
@@ -983,8 +1032,8 @@
    "stratum": "S2"
   },
   {
-   "hi": 0.292868,
-   "lo": 0.033431,
+   "hi": 0.311048,
+   "lo": 0.025232,
    "month": "2026-06",
    "n": 5638,
    "n_attr": 634,
@@ -992,8 +1041,8 @@
    "stratum": "S2"
   },
   {
-   "hi": 0.247466,
-   "lo": 0.02995,
+   "hi": 0.258219,
+   "lo": 0.020718,
    "month": "2026-07",
    "n": 6169,
    "n_attr": 677,
@@ -1001,8 +1050,8 @@
    "stratum": "S2"
   },
   {
-   "hi": 0.240523,
-   "lo": 0.016469,
+   "hi": 0.261613,
+   "lo": 0.011667,
    "month": "2026-08",
    "n": 6273,
    "n_attr": 572,
@@ -1010,8 +1059,8 @@
    "stratum": "S2"
   },
   {
-   "hi": 0.276525,
-   "lo": 0.014119,
+   "hi": 0.266521,
+   "lo": 0.010692,
    "month": "2026-09",
    "n": 6331,
    "n_attr": 688,
@@ -1199,7 +1248,7 @@
    "stratum": "S3"
   },
   {
-   "hi": 0.001972,
+   "hi": 0.001669,
    "lo": 0.0,
    "month": "2024-09",
    "n": 9385,
@@ -1217,7 +1266,7 @@
    "stratum": "S3"
   },
   {
-   "hi": 0.0006,
+   "hi": 0.000464,
    "lo": 0.0,
    "month": "2024-11",
    "n": 8150,
@@ -1244,7 +1293,7 @@
    "stratum": "S3"
   },
   {
-   "hi": 0.00058,
+   "hi": 0.000546,
    "lo": 0.0,
    "month": "2025-02",
    "n": 7475,
@@ -1253,7 +1302,7 @@
    "stratum": "S3"
   },
   {
-   "hi": 0.001291,
+   "hi": 0.001151,
    "lo": 0.0,
    "month": "2025-03",
    "n": 7521,
@@ -1262,7 +1311,7 @@
    "stratum": "S3"
   },
   {
-   "hi": 0.001857,
+   "hi": 0.001558,
    "lo": 0.0,
    "month": "2025-04",
    "n": 9244,
@@ -1271,8 +1320,8 @@
    "stratum": "S3"
   },
   {
-   "hi": 0.003095,
-   "lo": 0.000129,
+   "hi": 0.003073,
+   "lo": 0.000115,
    "month": "2025-05",
    "n": 7903,
    "n_attr": 8,
@@ -1280,8 +1329,8 @@
    "stratum": "S3"
   },
   {
-   "hi": 0.007291,
-   "lo": 0.000227,
+   "hi": 0.006716,
+   "lo": 0.000118,
    "month": "2025-06",
    "n": 7440,
    "n_attr": 16,
@@ -1289,8 +1338,8 @@
    "stratum": "S3"
   },
   {
-   "hi": 0.014678,
-   "lo": 0.000181,
+   "hi": 0.014913,
+   "lo": 0.000121,
    "month": "2025-07",
    "n": 7789,
    "n_attr": 48,
@@ -1298,8 +1347,8 @@
    "stratum": "S3"
   },
   {
-   "hi": 0.011531,
-   "lo": 0.000407,
+   "hi": 0.011827,
+   "lo": 0.000324,
    "month": "2025-08",
    "n": 6893,
    "n_attr": 34,
@@ -1307,8 +1356,8 @@
    "stratum": "S3"
   },
   {
-   "hi": 0.016231,
-   "lo": 0.000165,
+   "hi": 0.016058,
+   "lo": 0.000295,
    "month": "2025-09",
    "n": 7883,
    "n_attr": 51,
@@ -1316,8 +1365,8 @@
    "stratum": "S3"
   },
   {
-   "hi": 0.017288,
-   "lo": 0.000199,
+   "hi": 0.017837,
+   "lo": 0.000226,
    "month": "2025-10",
    "n": 8204,
    "n_attr": 64,
@@ -1325,8 +1374,8 @@
    "stratum": "S3"
   },
   {
-   "hi": 0.025623,
-   "lo": 0.000561,
+   "hi": 0.023612,
+   "lo": 0.000461,
    "month": "2025-11",
    "n": 7543,
    "n_attr": 75,
@@ -1334,8 +1383,8 @@
    "stratum": "S3"
   },
   {
-   "hi": 0.041479,
-   "lo": 0.00024,
+   "hi": 0.04113,
+   "lo": 0.000381,
    "month": "2025-12",
    "n": 8039,
    "n_attr": 140,
@@ -1343,8 +1392,8 @@
    "stratum": "S3"
   },
   {
-   "hi": 0.022488,
-   "lo": 0.000859,
+   "hi": 0.022671,
+   "lo": 0.000929,
    "month": "2026-01",
    "n": 7879,
    "n_attr": 78,
@@ -1352,8 +1401,8 @@
    "stratum": "S3"
   },
   {
-   "hi": 0.060531,
-   "lo": 0.004018,
+   "hi": 0.064395,
+   "lo": 0.004134,
    "month": "2026-02",
    "n": 8594,
    "n_attr": 267,
@@ -1361,8 +1410,8 @@
    "stratum": "S3"
   },
   {
-   "hi": 0.103807,
-   "lo": 0.013259,
+   "hi": 0.105461,
+   "lo": 0.012211,
    "month": "2026-03",
    "n": 9939,
    "n_attr": 536,
@@ -1370,8 +1419,8 @@
    "stratum": "S3"
   },
   {
-   "hi": 0.107374,
-   "lo": 0.005464,
+   "hi": 0.117815,
+   "lo": 0.00548,
    "month": "2026-04",
    "n": 8726,
    "n_attr": 468,
@@ -1379,8 +1428,8 @@
    "stratum": "S3"
   },
   {
-   "hi": 0.110095,
-   "lo": 0.006557,
+   "hi": 0.106531,
+   "lo": 0.01286,
    "month": "2026-05",
    "n": 8370,
    "n_attr": 490,
@@ -1388,8 +1437,8 @@
    "stratum": "S3"
   },
   {
-   "hi": 0.159129,
-   "lo": 0.042555,
+   "hi": 0.1517,
+   "lo": 0.037037,
    "month": "2026-06",
    "n": 10601,
    "n_attr": 940,
@@ -1397,8 +1446,8 @@
    "stratum": "S3"
   },
   {
-   "hi": 0.130679,
-   "lo": 0.028946,
+   "hi": 0.131134,
+   "lo": 0.022627,
    "month": "2026-07",
    "n": 9627,
    "n_attr": 710,
@@ -1406,8 +1455,8 @@
    "stratum": "S3"
   },
   {
-   "hi": 0.100559,
-   "lo": 0.019296,
+   "hi": 0.099988,
+   "lo": 0.013657,
    "month": "2026-08",
    "n": 9444,
    "n_attr": 532,
@@ -1415,8 +1464,8 @@
    "stratum": "S3"
   },
   {
-   "hi": 0.156444,
-   "lo": 0.034136,
+   "hi": 0.153878,
+   "lo": 0.024691,
    "month": "2026-09",
    "n": 8906,
    "n_attr": 751,
@@ -2365,8 +2414,8 @@
   "author_date": [
    {
     "ci": [
-     0.048015,
-     0.149693
+     0.040366,
+     0.144453
     ],
     "detail": {
      "repo_weighted": 0.105173
@@ -2374,14 +2423,14 @@
     "estimate": 0.087089,
     "hypothesis": "H1",
     "p_holm": null,
-    "p_one_sided": 0.059406,
+    "p_one_sided": 0.07996,
     "statement": "Pooled S1 attributed share, 2026-07..09, is at least 5%",
     "supported": true
    },
    {
     "ci": [
-     0.470875,
-     3.252768
+     0.435985,
+     4.395573
     ],
     "detail": {
      "every_month": false,
@@ -2415,28 +2464,28 @@
     "estimate": 1.188628,
     "hypothesis": "H2",
     "p_holm": null,
-    "p_one_sided": 0.326733,
+    "p_one_sided": 0.346827,
     "statement": "S1 > S3 in every month 2026-04..09, and the 2026-Q3 odds ratio S1:S3 is at least 2 (CI excludes 1)",
     "supported": false
    },
    {
     "ci": [
-     -0.083972,
-     0.06609
+     -0.086392,
+     0.07106
     ],
     "detail": {
      "slope_ci": {
       "S1": [
-       0.195601,
-       0.276045
+       0.188842,
+       0.275896
       ],
       "S2": [
-       -0.020672,
-       0.181973
+       -0.015533,
+       0.178705
       ],
       "S3": [
-       0.188616,
-       0.311147
+       0.186161,
+       0.315663
       ]
      },
      "slopes": {
@@ -2448,20 +2497,20 @@
     "estimate": 0.020099,
     "hypothesis": "H3",
     "p_holm": null,
-    "p_one_sided": 0.346535,
+    "p_one_sided": 0.352324,
     "statement": "Positive monthly logit slope in S1 and in S2, and S1 slope > S3 slope (CIs exclude 0)",
     "supported": false
    },
    {
     "ci": [
-     -0.096168,
-     0.157236
+     -0.090049,
+     0.157661
     ],
     "detail": {},
     "estimate": 0.016009,
     "hypothesis": "H4",
     "p_holm": null,
-    "p_one_sided": 0.39604,
+    "p_one_sided": 0.405297,
     "statement": "Pooled 2026-Q3 share in S2 exceeds that in S1 (CI of the difference excludes 0)",
     "supported": false
    }
@@ -2469,8 +2518,8 @@
   "bots_included": [
    {
     "ci": [
-     0.047706,
-     0.148893
+     0.040207,
+     0.144047
     ],
     "detail": {
      "repo_weighted": 0.102917
@@ -2478,14 +2527,14 @@
     "estimate": 0.08663,
     "hypothesis": "H1",
     "p_holm": null,
-    "p_one_sided": 0.069307,
+    "p_one_sided": 0.083958,
     "statement": "Pooled S1 attributed share, 2026-07..09, is at least 5%",
     "supported": true
    },
    {
     "ci": [
-     0.510794,
-     4.124142
+     0.501387,
+     5.344263
     ],
     "detail": {
      "every_month": false,
@@ -2519,28 +2568,28 @@
     "estimate": 1.433469,
     "hypothesis": "H2",
     "p_holm": null,
-    "p_one_sided": 0.257426,
+    "p_one_sided": 0.237381,
     "statement": "S1 > S3 in every month 2026-04..09, and the 2026-Q3 odds ratio S1:S3 is at least 2 (CI excludes 1)",
     "supported": false
    },
    {
     "ci": [
-     -0.059608,
-     0.074946
+     -0.072748,
+     0.084675
     ],
     "detail": {
      "slope_ci": {
       "S1": [
-       0.195538,
-       0.275859
+       0.189046,
+       0.275796
       ],
       "S2": [
-       -0.020196,
-       0.197122
+       -0.019249,
+       0.191551
       ],
       "S3": [
-       0.17743,
-       0.293802
+       0.172697,
+       0.301204
       ]
      },
      "slopes": {
@@ -2552,20 +2601,20 @@
     "estimate": 0.031482,
     "hypothesis": "H3",
     "p_holm": null,
-    "p_one_sided": 0.257426,
+    "p_one_sided": 0.253373,
     "statement": "Positive monthly logit slope in S1 and in S2, and S1 slope > S3 slope (CIs exclude 0)",
     "supported": false
    },
    {
     "ci": [
-     -0.08759,
-     0.179702
+     -0.088999,
+     0.18081
     ],
     "detail": {},
     "estimate": 0.022706,
     "hypothesis": "H4",
     "p_holm": null,
-    "p_one_sided": 0.376238,
+    "p_one_sided": 0.372814,
     "statement": "Pooled 2026-Q3 share in S2 exceeds that in S1 (CI of the difference excludes 0)",
     "supported": false
    }
@@ -2573,8 +2622,8 @@
   "first_parent": [
    {
     "ci": [
-     0.051951,
-     0.145777
+     0.03903,
+     0.148444
     ],
     "detail": {
      "repo_weighted": 0.104336
@@ -2582,14 +2631,14 @@
     "estimate": 0.091,
     "hypothesis": "H1",
     "p_holm": null,
-    "p_one_sided": 0.019802,
+    "p_one_sided": 0.064468,
     "statement": "Pooled S1 attributed share, 2026-07..09, is at least 5%",
     "supported": true
    },
    {
     "ci": [
-     0.4844,
-     8.050447
+     0.415355,
+     6.329005
     ],
     "detail": {
      "every_month": false,
@@ -2623,28 +2672,28 @@
     "estimate": 1.26794,
     "hypothesis": "H2",
     "p_holm": null,
-    "p_one_sided": 0.29703,
+    "p_one_sided": 0.336832,
     "statement": "S1 > S3 in every month 2026-04..09, and the 2026-Q3 odds ratio S1:S3 is at least 2 (CI excludes 1)",
     "supported": false
    },
    {
     "ci": [
-     -0.053732,
-     0.072225
+     -0.091755,
+     0.0747
     ],
     "detail": {
      "slope_ci": {
       "S1": [
-       0.198608,
-       0.269687
+       0.18192,
+       0.274995
       ],
       "S2": [
-       0.030879,
-       0.263155
+       0.017734,
+       0.271781
       ],
       "S3": [
-       0.184339,
-       0.283153
+       0.178575,
+       0.308614
       ]
      },
      "slopes": {
@@ -2656,20 +2705,20 @@
     "estimate": 0.020245,
     "hypothesis": "H3",
     "p_holm": null,
-    "p_one_sided": 0.287129,
+    "p_one_sided": 0.348826,
     "statement": "Positive monthly logit slope in S1 and in S2, and S1 slope > S3 slope (CIs exclude 0)",
     "supported": false
    },
    {
     "ci": [
-     -0.062539,
-     0.251967
+     -0.05893,
+     0.246287
     ],
     "detail": {},
     "estimate": 0.123131,
     "hypothesis": "H4",
     "p_holm": null,
-    "p_one_sided": 0.128713,
+    "p_one_sided": 0.091454,
     "statement": "Pooled 2026-Q3 share in S2 exceeds that in S1 (CI of the difference excludes 0)",
     "supported": false
    }
@@ -2728,8 +2777,8 @@
   "largest_3_removed": [
    {
     "ci": [
-     0.042365,
-     0.190587
+     0.04373,
+     0.175562
     ],
     "detail": {
      "repo_weighted": 0.111295
@@ -2737,14 +2786,14 @@
     "estimate": 0.109028,
     "hypothesis": "H1",
     "p_holm": null,
-    "p_one_sided": 0.069307,
+    "p_one_sided": 0.045977,
     "statement": "Pooled S1 attributed share, 2026-07..09, is at least 5%",
     "supported": true
    },
    {
     "ci": [
-     0.750252,
-     4.345841
+     0.639563,
+     4.557914
     ],
     "detail": {
      "every_month": false,
@@ -2778,28 +2827,28 @@
     "estimate": 1.898795,
     "hypothesis": "H2",
     "p_holm": null,
-    "p_one_sided": 0.09901,
+    "p_one_sided": 0.102949,
     "statement": "S1 > S3 in every month 2026-04..09, and the 2026-Q3 odds ratio S1:S3 is at least 2 (CI excludes 1)",
     "supported": false
    },
    {
     "ci": [
-     -0.120205,
-     0.053713
+     -0.132254,
+     0.048039
     ],
     "detail": {
      "slope_ci": {
       "S1": [
-       0.160842,
-       0.252937
+       0.161686,
+       0.251786
       ],
       "S2": [
-       0.013577,
-       0.196466
+       0.009001,
+       0.201363
       ],
       "S3": [
-       0.173899,
-       0.323111
+       0.177404,
+       0.334358
       ]
      },
      "slopes": {
@@ -2811,20 +2860,20 @@
     "estimate": -0.026878,
     "hypothesis": "H3",
     "p_holm": null,
-    "p_one_sided": 0.762376,
+    "p_one_sided": 0.763618,
     "statement": "Positive monthly logit slope in S1 and in S2, and S1 slope > S3 slope (CIs exclude 0)",
     "supported": false
    },
    {
     "ci": [
-     -0.091553,
-     0.182559
+     -0.091158,
+     0.210797
     ],
     "detail": {},
     "estimate": 0.063086,
     "hypothesis": "H4",
     "p_holm": null,
-    "p_one_sided": 0.247525,
+    "p_one_sided": 0.229385,
     "statement": "Pooled 2026-Q3 share in S2 exceeds that in S1 (CI of the difference excludes 0)",
     "supported": false
    }
@@ -2832,8 +2881,8 @@
   "merges_included": [
    {
     "ci": [
-     0.045656,
-     0.148866
+     0.039015,
+     0.143191
     ],
     "detail": {
      "repo_weighted": 0.104024
@@ -2841,14 +2890,14 @@
     "estimate": 0.085202,
     "hypothesis": "H1",
     "p_holm": null,
-    "p_one_sided": 0.108911,
+    "p_one_sided": 0.092954,
     "statement": "Pooled S1 attributed share, 2026-07..09, is at least 5%",
     "supported": true
    },
    {
     "ci": [
-     0.489107,
-     3.95226
+     0.476193,
+     5.199976
     ],
     "detail": {
      "every_month": false,
@@ -2882,28 +2931,28 @@
     "estimate": 1.336872,
     "hypothesis": "H2",
     "p_holm": null,
-    "p_one_sided": 0.277228,
+    "p_one_sided": 0.277861,
     "statement": "S1 > S3 in every month 2026-04..09, and the 2026-Q3 odds ratio S1:S3 is at least 2 (CI excludes 1)",
     "supported": false
    },
    {
     "ci": [
-     -0.078083,
-     0.07396
+     -0.07957,
+     0.075856
     ],
     "detail": {
      "slope_ci": {
       "S1": [
-       0.194518,
-       0.275822
+       0.190569,
+       0.275215
       ],
       "S2": [
-       -0.027612,
-       0.176909
+       -0.024436,
+       0.18379
       ],
       "S3": [
-       0.18553,
-       0.300322
+       0.180521,
+       0.307516
       ]
      },
      "slopes": {
@@ -2915,20 +2964,20 @@
     "estimate": 0.024355,
     "hypothesis": "H3",
     "p_holm": null,
-    "p_one_sided": 0.29703,
+    "p_one_sided": 0.313843,
     "statement": "Positive monthly logit slope in S1 and in S2, and S1 slope > S3 slope (CIs exclude 0)",
     "supported": false
    },
    {
     "ci": [
-     -0.098845,
-     0.15493
+     -0.091259,
+     0.157388
     ],
     "detail": {},
     "estimate": 0.007712,
     "hypothesis": "H4",
     "p_holm": null,
-    "p_one_sided": 0.435644,
+    "p_one_sided": 0.452274,
     "statement": "Pooled 2026-Q3 share in S2 exceeds that in S1 (CI of the difference excludes 0)",
     "supported": false
    }
@@ -2936,8 +2985,8 @@
   "mirror_removed": [
    {
     "ci": [
-     0.066106,
-     0.189784
+     0.065743,
+     0.185353
     ],
     "detail": {
      "repo_weighted": 0.117326
@@ -2945,14 +2994,14 @@
     "estimate": 0.121975,
     "hypothesis": "H1",
     "p_holm": null,
-    "p_one_sided": 0.019802,
+    "p_one_sided": 0.004498,
     "statement": "Pooled S1 attributed share, 2026-07..09, is at least 5%",
     "supported": true
    },
    {
     "ci": [
-     0.754076,
-     8.873423
+     0.658952,
+     8.116429
     ],
     "detail": {
      "every_month": false,
@@ -2986,28 +3035,28 @@
     "estimate": 1.808316,
     "hypothesis": "H2",
     "p_holm": null,
-    "p_one_sided": 0.138614,
+    "p_one_sided": 0.132434,
     "statement": "S1 > S3 in every month 2026-04..09, and the 2026-Q3 odds ratio S1:S3 is at least 2 (CI excludes 1)",
     "supported": false
    },
    {
     "ci": [
-     -0.074503,
-     0.064568
+     -0.085353,
+     0.071547
     ],
     "detail": {
      "slope_ci": {
       "S1": [
-       0.157373,
-       0.268989
+       0.16823,
+       0.266716
       ],
       "S2": [
-       -0.007483,
-       0.183436
+       -0.021462,
+       0.176941
       ],
       "S3": [
-       0.17076,
-       0.270511
+       0.17423,
+       0.297124
       ]
      },
      "slopes": {
@@ -3019,20 +3068,20 @@
     "estimate": 0.017245,
     "hypothesis": "H3",
     "p_holm": null,
-    "p_one_sided": 0.336634,
+    "p_one_sided": 0.385307,
     "statement": "Positive monthly logit slope in S1 and in S2, and S1 slope > S3 slope (CIs exclude 0)",
     "supported": false
    },
    {
     "ci": [
-     -0.152913,
-     0.112068
+     -0.134016,
+     0.118869
     ],
     "detail": {},
     "estimate": -0.018795,
     "hypothesis": "H4",
     "p_holm": null,
-    "p_one_sided": 0.663366,
+    "p_one_sided": 0.624188,
     "statement": "Pooled 2026-Q3 share in S2 exceeds that in S1 (CI of the difference excludes 0)",
     "supported": false
    }
@@ -3040,8 +3089,8 @@
   "outside_caliper_removed": [
    {
     "ci": [
-     0.039882,
-     0.13721
+     0.038595,
+     0.146712
     ],
     "detail": {
      "repo_weighted": 0.105142
@@ -3049,14 +3098,14 @@
     "estimate": 0.08704,
     "hypothesis": "H1",
     "p_holm": null,
-    "p_one_sided": 0.069307,
+    "p_one_sided": 0.07996,
     "statement": "Pooled S1 attributed share, 2026-07..09, is at least 5%",
     "supported": true
    },
    {
     "ci": [
-     0.542024,
-     5.987033
+     0.42315,
+     5.532868
     ],
     "detail": {
      "every_month": false,
@@ -3090,28 +3139,28 @@
     "estimate": 1.266791,
     "hypothesis": "H2",
     "p_holm": null,
-    "p_one_sided": 0.306931,
+    "p_one_sided": 0.315342,
     "statement": "S1 > S3 in every month 2026-04..09, and the 2026-Q3 odds ratio S1:S3 is at least 2 (CI excludes 1)",
     "supported": false
    },
    {
     "ci": [
-     -0.103212,
-     0.059441
+     -0.099302,
+     0.060567
     ],
     "detail": {
      "slope_ci": {
       "S1": [
-       0.196165,
-       0.279022
+       0.187695,
+       0.276123
       ],
       "S2": [
-       -0.005444,
-       0.162998
+       -0.015802,
+       0.182284
       ],
       "S3": [
-       0.199219,
-       0.329689
+       0.195623,
+       0.324925
       ]
      },
      "slopes": {
@@ -3123,20 +3172,20 @@
     "estimate": 0.013015,
     "hypothesis": "H3",
     "p_holm": null,
-    "p_one_sided": 0.435644,
+    "p_one_sided": 0.483758,
     "statement": "Positive monthly logit slope in S1 and in S2, and S1 slope > S3 slope (CIs exclude 0)",
     "supported": false
    },
    {
     "ci": [
-     -0.083484,
-     0.15297
+     -0.090123,
+     0.158112
     ],
     "detail": {},
     "estimate": 0.01614,
     "hypothesis": "H4",
     "p_holm": null,
-    "p_one_sided": 0.405941,
+    "p_one_sided": 0.403298,
     "statement": "Pooled 2026-Q3 share in S2 exceeds that in S1 (CI of the difference excludes 0)",
     "supported": false
    }
@@ -3144,8 +3193,8 @@
   "strict_trailers": [
    {
     "ci": [
-     0.039045,
-     0.143038
+     0.034192,
+     0.139081
     ],
     "detail": {
      "repo_weighted": 0.09966
@@ -3153,14 +3202,14 @@
     "estimate": 0.080737,
     "hypothesis": "H1",
     "p_holm": null,
-    "p_one_sided": 0.128713,
+    "p_one_sided": 0.137931,
     "statement": "Pooled S1 attributed share, 2026-07..09, is at least 5%",
     "supported": true
    },
    {
     "ci": [
-     0.387917,
-     3.30307
+     0.382617,
+     4.502178
     ],
     "detail": {
      "every_month": false,
@@ -3194,28 +3243,28 @@
     "estimate": 1.149417,
     "hypothesis": "H2",
     "p_holm": null,
-    "p_one_sided": 0.366337,
+    "p_one_sided": 0.382309,
     "statement": "S1 > S3 in every month 2026-04..09, and the 2026-Q3 odds ratio S1:S3 is at least 2 (CI excludes 1)",
     "supported": false
    },
    {
     "ci": [
-     -0.082314,
-     0.064235
+     -0.084646,
+     0.070287
     ],
     "detail": {
      "slope_ci": {
       "S1": [
-       0.188382,
-       0.268476
+       0.186416,
+       0.271281
       ],
       "S2": [
-       -0.018456,
-       0.182784
+       -0.012878,
+       0.180567
       ],
       "S3": [
-       0.185564,
-       0.30092
+       0.180366,
+       0.308179
       ]
      },
      "slopes": {
@@ -3227,20 +3276,20 @@
     "estimate": 0.02099,
     "hypothesis": "H3",
     "p_holm": null,
-    "p_one_sided": 0.326733,
+    "p_one_sided": 0.348326,
     "statement": "Positive monthly logit slope in S1 and in S2, and S1 slope > S3 slope (CIs exclude 0)",
     "supported": false
    },
    {
     "ci": [
-     -0.091634,
-     0.164927
+     -0.083831,
+     0.16456
     ],
     "detail": {},
     "estimate": 0.021857,
     "hypothesis": "H4",
     "p_holm": null,
-    "p_one_sided": 0.376238,
+    "p_one_sided": 0.374313,
     "statement": "Pooled 2026-Q3 share in S2 exceeds that in S1 (CI of the difference excludes 0)",
     "supported": false
    }
@@ -3263,8 +3312,8 @@
    "period": "all",
    "ratio": 3.375,
    "ratio_ci": [
-    2.011411,
-    4.852044
+    1.819078,
+    5.056604
    ],
    "stratum": "S1"
   },
@@ -3284,8 +3333,8 @@
    "period": "all",
    "ratio": 2.980769,
    "ratio_ci": [
-    1.931636,
-    4.421597
+    1.999653,
+    4.500255
    ],
    "stratum": "S2"
   },
@@ -3305,8 +3354,8 @@
    "period": "all",
    "ratio": 3.2,
    "ratio_ci": [
-    2.425272,
-    5.132941
+    2.333036,
+    5.237224
    ],
    "stratum": "S3"
   },
@@ -3326,8 +3375,8 @@
    "period": "2026",
    "ratio": 1.587413,
    "ratio_ci": [
-    0.858909,
-    3.601339
+    0.834972,
+    3.750399
    ],
    "stratum": "S1"
   },
@@ -3347,8 +3396,8 @@
    "period": "2026",
    "ratio": 3.512,
    "ratio_ci": [
-    1.85473,
-    5.369625
+    1.895275,
+    5.702509
    ],
    "stratum": "S2"
   },
@@ -3368,8 +3417,8 @@
    "period": "2026",
    "ratio": 4.03125,
    "ratio_ci": [
-    2.383854,
-    7.760833
+    2.120495,
+    8.125
    ],
    "stratum": "S3"
   }
@@ -3461,8 +3510,8 @@
     "stratum": "S1"
    },
    {
-    "hi": 0.000435,
-    "lo": 0.0,
+    "hi": 0.000462,
+    "lo": 2.9e-05,
     "n": 27914,
     "n_attr": 5,
     "q": "2025-Q1",
@@ -3470,8 +3519,8 @@
     "stratum": "S1"
    },
    {
-    "hi": 0.001939,
-    "lo": 0.000304,
+    "hi": 0.001921,
+    "lo": 0.000326,
     "n": 29750,
     "n_attr": 27,
     "q": "2025-Q2",
@@ -3479,8 +3528,8 @@
     "stratum": "S1"
    },
    {
-    "hi": 0.012133,
-    "lo": 0.001599,
+    "hi": 0.012375,
+    "lo": 0.00173,
     "n": 30223,
     "n_attr": 175,
     "q": "2025-Q3",
@@ -3488,8 +3537,8 @@
     "stratum": "S1"
    },
    {
-    "hi": 0.021989,
-    "lo": 0.004331,
+    "hi": 0.021581,
+    "lo": 0.00474,
     "n": 29524,
     "n_attr": 339,
     "q": "2025-Q4",
@@ -3497,8 +3546,8 @@
     "stratum": "S1"
    },
    {
-    "hi": 0.04176,
-    "lo": 0.01199,
+    "hi": 0.044231,
+    "lo": 0.014199,
     "n": 33355,
     "n_attr": 868,
     "q": "2026-Q1",
@@ -3506,8 +3555,8 @@
     "stratum": "S1"
    },
    {
-    "hi": 0.081241,
-    "lo": 0.025397,
+    "hi": 0.084765,
+    "lo": 0.025118,
     "n": 35046,
     "n_attr": 1739,
     "q": "2026-Q2",
@@ -3515,8 +3564,8 @@
     "stratum": "S1"
    },
    {
-    "hi": 0.153573,
-    "lo": 0.047467,
+    "hi": 0.144732,
+    "lo": 0.040359,
     "n": 41728,
     "n_attr": 3632,
     "q": "2026-Q3",
@@ -3551,7 +3600,7 @@
     "stratum": "S2"
    },
    {
-    "hi": 0.101796,
+    "hi": 0.119215,
     "lo": 0.0,
     "n": 2946,
     "n_attr": 85,
@@ -3560,7 +3609,7 @@
     "stratum": "S2"
    },
    {
-    "hi": 0.184632,
+    "hi": 0.248563,
     "lo": 0.0,
     "n": 3617,
     "n_attr": 174,
@@ -3569,8 +3618,8 @@
     "stratum": "S2"
    },
    {
-    "hi": 0.179861,
-    "lo": 0.000859,
+    "hi": 0.167812,
+    "lo": 0.000734,
     "n": 7340,
     "n_attr": 387,
     "q": "2025-Q2",
@@ -3578,8 +3627,8 @@
     "stratum": "S2"
    },
    {
-    "hi": 0.115267,
-    "lo": 0.010858,
+    "hi": 0.111872,
+    "lo": 0.010478,
     "n": 11117,
     "n_attr": 452,
     "q": "2025-Q3",
@@ -3587,8 +3636,8 @@
     "stratum": "S2"
    },
    {
-    "hi": 0.102124,
-    "lo": 0.01063,
+    "hi": 0.086076,
+    "lo": 0.010536,
     "n": 9345,
     "n_attr": 306,
     "q": "2025-Q4",
@@ -3596,8 +3645,8 @@
     "stratum": "S2"
    },
    {
-    "hi": 0.238588,
-    "lo": 0.035502,
+    "hi": 0.238933,
+    "lo": 0.028995,
     "n": 15756,
     "n_attr": 1370,
     "q": "2026-Q1",
@@ -3605,8 +3654,8 @@
     "stratum": "S2"
    },
    {
-    "hi": 0.324815,
-    "lo": 0.044937,
+    "hi": 0.342267,
+    "lo": 0.030826,
     "n": 16898,
     "n_attr": 2175,
     "q": "2026-Q2",
@@ -3614,8 +3663,8 @@
     "stratum": "S2"
    },
    {
-    "hi": 0.246095,
-    "lo": 0.020988,
+    "hi": 0.237233,
+    "lo": 0.015585,
     "n": 18773,
     "n_attr": 1937,
     "q": "2026-Q3",
@@ -3641,7 +3690,7 @@
     "stratum": "S3"
    },
    {
-    "hi": 0.0007,
+    "hi": 0.000585,
     "lo": 0.0,
     "n": 26132,
     "n_attr": 4,
@@ -3650,7 +3699,7 @@
     "stratum": "S3"
    },
    {
-    "hi": 0.000194,
+    "hi": 0.000156,
     "lo": 0.0,
     "n": 24023,
     "n_attr": 1,
@@ -3659,7 +3708,7 @@
     "stratum": "S3"
    },
    {
-    "hi": 0.000475,
+    "hi": 0.000439,
     "lo": 0.0,
     "n": 23561,
     "n_attr": 3,
@@ -3668,8 +3717,8 @@
     "stratum": "S3"
    },
    {
-    "hi": 0.003685,
-    "lo": 0.000116,
+    "hi": 0.003271,
+    "lo": 9e-05,
     "n": 24587,
     "n_attr": 28,
     "q": "2025-Q2",
@@ -3677,8 +3726,8 @@
     "stratum": "S3"
    },
    {
-    "hi": 0.014258,
-    "lo": 0.000463,
+    "hi": 0.014232,
+    "lo": 0.000338,
     "n": 22565,
     "n_attr": 133,
     "q": "2025-Q3",
@@ -3686,8 +3735,8 @@
     "stratum": "S3"
    },
    {
-    "hi": 0.028528,
-    "lo": 0.000351,
+    "hi": 0.027345,
+    "lo": 0.000443,
     "n": 23786,
     "n_attr": 279,
     "q": "2025-Q4",
@@ -3695,8 +3744,8 @@
     "stratum": "S3"
    },
    {
-    "hi": 0.065828,
-    "lo": 0.008158,
+    "hi": 0.066417,
+    "lo": 0.006776,
     "n": 26412,
     "n_attr": 881,
     "q": "2026-Q1",
@@ -3704,8 +3753,8 @@
     "stratum": "S3"
    },
    {
-    "hi": 0.106644,
-    "lo": 0.02774,
+    "hi": 0.113546,
+    "lo": 0.026025,
     "n": 27697,
     "n_attr": 1898,
     "q": "2026-Q2",
@@ -3713,8 +3762,8 @@
     "stratum": "S3"
    },
    {
-    "hi": 0.12189,
-    "lo": 0.02788,
+    "hi": 0.125532,
+    "lo": 0.022956,
     "n": 27977,
     "n_attr": 1993,
     "q": "2026-Q3",
@@ -3757,6 +3806,11 @@
    "commits_all": 2850951,
    "repositories": 96,
    "seconds": 631.1
+  },
+  "strata": {
+   "S1": 42,
+   "S2": 12,
+   "S3": 42
   },
   "tool_leaders": [
    {

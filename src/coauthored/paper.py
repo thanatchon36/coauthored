@@ -3,10 +3,11 @@
 Placeholders: ``{{dotted.path}}`` or ``{{dotted.path|fmt}}``. List elements are addressed by ``key=value``
 selectors, e.g. ``{{summary.quarterly[stratum=S1,q=2026-Q3].share|pct1}}``, or by index (``ci[0]``).
 ``fmt`` is a Python format spec (``.2f``, ``,``, ``d``) or one of ``pct`` / ``pct1`` / ``pct2``
-(percentages), ``x2`` (ratio as ``1.23×``), ``inv`` (``N`` in "one in N") and ``verdict``. A missing key
-fails the build, and so does a number typed by hand in the prose (``check``): every result in the paper comes
-from numbers.json (MISSION §7.3). A line may opt out with ``<!-- numbers-ok: reason -->``, for pre-registered
-thresholds and design constants. ``<!-- include: path -->`` on its own line inserts a generated table.
+(percentages), ``pp1`` (percentage points), ``x2`` (ratio as ``1.23×``), ``inv`` (``N`` in "one in N") and
+``verdict``; negative numbers get a typographic minus. A missing key fails the build, and so does a number
+typed by hand in the prose (``check``): every result in the paper comes from numbers.json (MISSION §7.3). A
+line may opt out with ``<!-- numbers-ok: reason -->``, for pre-registered thresholds and design constants.
+``<!-- include: path -->`` on its own line inserts a generated table.
 ``@fig:x``, ``@tbl:x`` and ``@sec:x`` become the number of the figure, table or numbered section labelled
 ``{#fig:x}`` etc., counted in order of appearance as Typst numbers them (``crossref``); citeproc would
 otherwise read them as citations. ``reader`` writes the same text as a standalone web page.
@@ -78,11 +79,18 @@ def lookup(data: Any, path: str) -> Any:
 
 
 def fmt(value: Any, spec: str | None) -> str:
+    out = _fmt(value, spec)
+    return "−" + out[1:] if out.startswith("-") else out  # typographic minus
+
+
+def _fmt(value: Any, spec: str | None) -> str:
     if value is None:
         return "n/a"
     if spec in ("pct", "pct1", "pct2"):
         digits = {"pct": 0, "pct1": 1, "pct2": 2}[spec]
         return f"{100 * float(value):.{digits}f}%"
+    if spec == "pp1":  # a difference of shares, in percentage points
+        return f"{100 * float(value):.1f}"
     if spec == "x2":
         return f"{float(value):.2f}×"
     if spec == "inv":  # "one in N"

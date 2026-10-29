@@ -38,6 +38,6 @@ asserts k and n.
 
 ## Consequence for the paper
 
-The merge is a small leak in these repositories. The lower bound is driven mainly by attribution being off by
-default or switched off, and by tools that never attribute, neither of which git metadata can measure. The paper
-says this in §6 and in the discussion.
+Little attribution is lost at the merge in these repositories. The other two leaks (attribution switched off,
+tools that never attribute) cannot be measured from git metadata, so the size of the undercount stays unknown.
+The paper says this in §6 and in the discussion.

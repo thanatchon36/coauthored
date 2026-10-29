@@ -1,0 +1,628 @@
+<!doctype html>
+<html lang="en" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>coauthored — paper</title>
+<meta name="description" content="coauthored — paper">
+<meta name="author" content="Thanatchon Chongmankhong">
+<style>
+/* One reading column (~46rem) with a results strip up top. System font stacks only: the page is a
+   single self-contained file with no third-party requests. Colour tokens on :root, redefined for dark. */
+:root {
+  --paper: #fbfbf9; --ink: #17191c; --ink-2: #4c5058; --rule: #dcdcd6;
+  --accent: #1f5fae; --accent-soft: #e6eef8;
+  --pos: #1d6b52; --pos-soft: #e3f1ea; --null: #6b6f78; --null-soft: #eeeeea;
+  --find: #8a5a12; --find-soft: #f6eedd; --plate: #ffffff; --quote: #f3f3ef;
+  --font-display: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --font-body: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #15171a; --ink: #e8e9ec; --ink-2: #a6abb4; --rule: #30343a;
+    --accent: #7fb0ec; --accent-soft: #1b2a3d; --pos: #7dcfac; --pos-soft: #16302a;
+    --null: #a6abb4; --null-soft: #23262b; --find: #e7bd73; --find-soft: #33291a;
+    --plate: #f4f4f2; --quote: #1d2024; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #15171a; --ink: #e8e9ec; --ink-2: #a6abb4; --rule: #30343a;
+  --accent: #7fb0ec; --accent-soft: #1b2a3d; --pos: #7dcfac; --pos-soft: #16302a;
+  --null: #a6abb4; --null-soft: #23262b; --find: #e7bd73; --find-soft: #33291a;
+  --plate: #f4f4f2; --quote: #1d2024; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 400 17px/1.62 var(--font-body); }
+.page { max-width: 46rem; margin: 0 auto; padding-inline: 16px; padding-block: 48px 72px;
+  display: flex; flex-direction: column; gap: 40px; }
+h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 650; text-wrap: balance; line-height: 1.2; }
+h1 { font-size: clamp(1.7rem, 4.2vw, 2.35rem); margin: 0; letter-spacing: -0.01em; }
+h2 { font-size: 1.4rem; margin: 2.2em 0 0.5em; }
+h3 { font-size: 1.12rem; margin: 1.8em 0 0.4em; }
+a { color: var(--accent); text-underline-offset: 2px; }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+code { font: 500 0.84em var(--font-mono); overflow-wrap: anywhere; }
+pre { background: var(--quote); border: 1px solid var(--rule); border-radius: 6px; padding: 12px 14px;
+  overflow-x: auto; font-size: 0.84rem; line-height: 1.5; }
+pre code { font-weight: 400; font-size: inherit; overflow-wrap: normal; }
+.masthead { display: flex; flex-direction: column; gap: 12px; border-bottom: 1px solid var(--rule); padding-bottom: 28px; }
+.kicker { margin: 0; font: 500 0.78rem var(--font-mono); text-transform: uppercase; letter-spacing: 0.09em; color: var(--accent); }
+.subtitle { margin: 0; font-style: italic; color: var(--ink-2); font-size: 1.05rem; }
+.byline { margin: 0; color: var(--ink-2); }
+.meta { margin: 0; font: 400 0.8rem/1.6 var(--font-mono); color: var(--ink-2); }
+.meta b { font-weight: 500; color: var(--ink); }
+.actions { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 0; padding: 0; list-style: none; }
+.actions a { display: inline-block; padding: 6px 12px; border: 1px solid var(--rule); border-radius: 999px;
+  font: 500 0.78rem var(--font-mono); text-decoration: none; color: var(--ink); }
+.actions a:hover { border-color: var(--accent); color: var(--accent); }
+.abstract h2, .results h2, .toc h2, .cite h2 { margin: 0 0 10px; font-size: 0.82rem; font-family: var(--font-mono);
+  font-weight: 500; text-transform: uppercase; letter-spacing: 0.09em; color: var(--ink-2); }
+.abstract-body p { margin: 0 0 0.8em; font-size: 1.04rem; }
+.abstract-body p:last-child { margin-bottom: 0; }
+.results .note { margin: 0 0 14px; color: var(--ink-2); font-size: 0.95rem; }
+.result-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr)); gap: 8px; }
+.r { display: grid; grid-template-columns: auto 1fr; grid-template-areas: "id tag" "text text"; gap: 2px 10px;
+  padding: 10px 12px; border-radius: 6px; border-left: 3px solid; font-size: 0.9rem; line-height: 1.4; }
+.r-pos { background: var(--pos-soft); border-color: var(--pos); }
+.r-ref { background: var(--find-soft); border-color: var(--find); }
+.r-null, .r-nf { background: var(--null-soft); border-color: var(--null); }
+.r-id { grid-area: id; font: 500 0.85rem var(--font-mono); }
+.r-tag { grid-area: tag; justify-self: end; font: 500 0.72rem var(--font-mono); text-transform: uppercase; letter-spacing: 0.06em; }
+.r-pos .r-tag { color: var(--pos); } .r-ref .r-tag { color: var(--find); } .r-null .r-tag, .r-nf .r-tag { color: var(--null); }
+.r-text { grid-area: text; }
+.r-text small { display: block; color: var(--ink-2); font-size: 0.8rem; margin-top: 2px; }
+.toc ul { margin: 0; padding-left: 1.2em; columns: 2 14rem; column-gap: 32px; }
+.toc li { break-inside: avoid; }
+.toc ul ul { columns: 1; padding-left: 1em; font-size: 0.92em; color: var(--ink-2); }
+.toc a { text-decoration: none; }
+.toc a:hover { text-decoration: underline; }
+.paper h1 { font-size: 1.55rem; margin: 2em 0 0.5em; padding-top: 0.6em; border-top: 1px solid var(--rule); }
+.paper p, .paper li { hyphens: auto; }
+.paper p { margin: 0 0 1em; }
+.paper .header-section-number { color: var(--accent); margin-right: 0.5em; font-family: var(--font-mono); font-size: 0.85em; font-weight: 500; }
+.paper blockquote { margin: 1.2em 0; padding: 10px 16px; border-left: 3px solid var(--rule); background: var(--quote);
+  border-radius: 0 6px 6px 0; font-size: 0.93rem; color: var(--ink-2); }
+figure { margin: 1.6em 0; display: flex; flex-direction: column; gap: 10px; }
+figure img { background: var(--plate); padding: 12px; border-radius: 6px; border: 1px solid var(--rule); max-width: 100%; height: auto; }
+figcaption, caption { font-size: 0.88rem; color: var(--ink-2); line-height: 1.45; text-align: left; }
+.paper table { display: block; overflow-x: auto; border-collapse: collapse; width: 100%; margin: 1.4em 0;
+  font: 400 0.78rem/1.45 var(--font-mono); font-variant-numeric: tabular-nums; }
+th, td { padding: 6px 10px; border-bottom: 1px solid var(--rule); text-align: left; vertical-align: top; }
+th { font-weight: 500; color: var(--ink-2); border-bottom-color: var(--ink-2); }
+#refs { font-size: 0.88rem; line-height: 1.5; display: flex; flex-direction: column; gap: 6px; }
+.csl-entry { display: grid; grid-template-columns: 2.6em 1fr; overflow-wrap: anywhere; }
+.csl-left-margin { color: var(--ink-2); font-family: var(--font-mono); font-size: 0.85em; }
+.cite { min-width: 0; }
+.cite pre, .cite pre code { white-space: pre-wrap; overflow-wrap: anywhere; }
+.colophon { border-top: 1px solid var(--rule); padding-top: 20px; color: var(--ink-2); font-size: 0.85rem; }
+.colophon p { margin: 0 0 0.7em; }
+@media (max-width: 480px) { body { font-size: 16px; } .page { padding-block: 28px 48px; gap: 28px; } }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+<div class="page">
+<header class="masthead">
+  <p class="kicker">Research paper · coauthored</p>
+  <h1>Who Writes the Code That Trains the Models? AI Co-Authorship Trailers in AI Infrastructure Repositories, 2023–2026</h1>
+  <p class="byline">Thanatchon Chongmankhong · October 2026 · <a href="https://github.com/thanatchon36/coauthored">github.com/thanatchon36/coauthored</a></p>
+  <p class="meta"><b>coauthored</b> · 96 repositories · 2,850,951 commits read on 2026-10-28 · pre-registered at tag <code>prereg-v1</code></p>
+  <ul class="actions"><li><a href="paper.pdf">Download PDF</a></li><li><a href="https://github.com/thanatchon36/coauthored">Source code</a></li><li><a href="https://github.com/thanatchon36/coauthored/blob/main/PREREGISTRATION.md">Pre-registration</a></li><li><a href="https://github.com/thanatchon36/coauthored/blob/main/REPRODUCE.md">Reproduce</a></li></ul>
+</header>
+<section class="abstract" aria-label="Abstract">
+  <h2>Abstract</h2>
+  <div class="abstract-body"><p>Coding agents now sign their work: Claude Code, Copilot’s cloud agent, Codex, Cursor, Jules and others leave co-author trailers, agent author accounts or verbatim markers in commit metadata. We use these signatures to measure, month by month from 2023 to 2026, the share of commits to the open-source repositories that train, fine-tune, evaluate and serve AI models that carry an explicit AI attribution, and compare it with matched popular non-AI repositories and with the coding-agent harnesses themselves. The design was pre-registered before any study repository was scanned. Every repository’s full default-branch history was read on one day (96 repositories, 2,850,951 commits), and matched against a published catalogue of 52 signatures for 28 tools, each backed by three public example commits. In July–September 2026, 8.7% of commits to AI-infrastructure repositories were AI-attributed (95% CI 4.0%–14.5%), up from 0.5% over 2025 and none in 2024: about one commit in 11. But matched non-AI repositories rose just as fast, to 7.1%, and the coding-agent harnesses were not clearly ahead (10.3%). Of the four pre-registered hypotheses about level, difference, growth and recursion, only the level hypothesis meets its decision rule, in every sensitivity analysis, and only on its point estimate: the interval reaches below the threshold. Attribution is a lower bound: it can be switched off, lost at merge, or never added. We measure the loss at merge directly: 92% of sampled attributed pull requests keep their attribution on the default branch. We release the scanner so that any organisation can draw the same curve for its own repositories.</p></div>
+</section>
+<section class="results" aria-label="Results at a glance">
+  <h2>Results at a glance</h2>
+  <p class="note">Pre-registered hypotheses and their decisions at the frozen thresholds, generated from <code>results/numbers.json</code>. Shares are of AI-attributed commits, a lower bound.</p>
+  <ul class="result-list"><li class="r r-pos"><span class="r-id">H1</span><span class="r-text">Pooled S1 attributed share, 2026-07..09, is at least 5%<small>estimate 8.7%, 95% CI 4.0% to 14.5%, Holm p 0.407</small></span><span class="r-tag">supported</span></li>
+<li class="r r-ref"><span class="r-id">H2</span><span class="r-text">S1 &gt; S3 in every month 2026-04..09, and the 2026-Q3 odds ratio S1:S3 is at least 2 (CI excludes 1)<small>estimate 1.243, 95% CI 0.451 to 4.749, Holm p 1.000</small></span><span class="r-tag">not supported</span></li>
+<li class="r r-ref"><span class="r-id">H3</span><span class="r-text">Positive monthly logit slope in S1 and in S2, and S1 slope &gt; S3 slope (CIs exclude 0)<small>estimate 0.025, 95% CI −0.080 to 0.077, Holm p 1.000</small></span><span class="r-tag">not supported</span></li>
+<li class="r r-ref"><span class="r-id">H4</span><span class="r-text">Pooled 2026-Q3 share in S2 exceeds that in S1 (CI of the difference excludes 0)<small>estimate 1.6%, 95% CI −9.0% to 15.8%, Holm p 1.000</small></span><span class="r-tag">not supported</span></li>
+<li class="r r-ref"><span class="r-id">H5</span><span class="r-text">Claude Code has the plurality of attributed commits in S1 ∪ S2 every quarter 2025-Q2..2026-Q3<small>estimate −75.8%, 95% CI −96.5% to −41.0%, Holm p 1.000</small></span><span class="r-tag">not supported</span></li>
+<li class="r r-pos"><span class="r-id">H6</span><span class="r-text">At least 80% of sampled merged PRs with an attributed head commit keep the attribution<small>estimate 92.0%, 95% CI 87.4% to 95.0%, Holm p 0.000</small></span><span class="r-tag">supported</span></li>
+<li class="r r-nf"><span class="r-id">H7</span><span class="r-text">Repositories requiring disclosure have a higher attributed share than those banning or silent (exploratory)<small>estimate 3.2%</small></span><span class="r-tag">exploratory</span></li></ul>
+</section>
+<nav class="toc" aria-label="Contents"><h2>Contents</h2>
+<ul>
+<li><a href="#introduction" id="toc-introduction"><span class="toc-section-number">1</span> Introduction</a></li>
+<li><a href="#related-work" id="toc-related-work"><span class="toc-section-number">2</span> Related work</a></li>
+<li><a href="#sec:leaks" id="toc-sec:leaks"><span class="toc-section-number">3</span> What an attribution is, and how it goes missing</a></li>
+<li><a href="#pre-registered-design" id="toc-pre-registered-design"><span class="toc-section-number">4</span> Pre-registered design</a></li>
+<li><a href="#results" id="toc-results"><span class="toc-section-number">5</span> Results</a></li>
+<li><a href="#sec:undercount" id="toc-sec:undercount"><span class="toc-section-number">6</span> How much does the signal miss? (RQ5)</a></li>
+<li><a href="#exploratory-analyses-rq6" id="toc-exploratory-analyses-rq6"><span class="toc-section-number">7</span> Exploratory analyses (RQ6)</a></li>
+<li><a href="#discussion" id="toc-discussion"><span class="toc-section-number">8</span> Discussion</a></li>
+<li><a href="#limitations" id="toc-limitations"><span class="toc-section-number">9</span> Limitations</a></li>
+<li><a href="#ethics" id="toc-ethics"><span class="toc-section-number">10</span> Ethics</a></li>
+<li><a href="#reproducibility" id="toc-reproducibility"><span class="toc-section-number">11</span> Reproducibility</a></li>
+<li><a href="#references" id="toc-references">References</a></li>
+<li><a href="#appendix" id="toc-appendix">Appendix</a></li>
+</ul>
+</nav>
+<article class="paper">
+<h1 data-number="1" id="introduction"><span class="header-section-number">1</span> Introduction</h1>
+<p>Frontier laboratories now say that most of their own code is written with their models. Anthropic reports that more than eighty percent of the code merged into its codebase in May 2026 could be attributed to Claude <span class="citation" data-cites="favaro2026"><a href="#ref-favaro2026" role="doc-biblioref">[1]</a></span>. Such figures come from inside one company and cannot be checked. The question behind them can be asked in public, though: <em>how much of the open-source code that trains and serves AI models is already produced with AI tools?</em> We answer a narrower and checkable version of it: what share of commits to that code <em>declare</em> AI involvement in their metadata?</p>
+<p>We find that the answer in mid-2026 is about one commit in 11 (8.7% in July–September 2026), and almost nothing before 2025 (Figure 1). The more surprising finding is the comparison. Popular repositories with nothing to do with AI, matched on stars, language and activity, carry AI attribution at about the same rate (7.1%) and have followed the same curve since early 2025. The open-source coding-agent harnesses, the tools that produce these attributions, started earlier but are not clearly ahead in 2026. In this population, “AI building AI” is not a special case: it is the same adoption curve that is reaching all of open source.</p>
+<p>The instrument is simple, and the simplicity is deliberate. Many coding agents add a signature to the commits they help write: Claude Code adds a <code>Co-Authored-By</code> trailer by default <span class="citation" data-cites="anthropic2026claudecode"><a href="#ref-anthropic2026claudecode" role="doc-biblioref">[2]</a></span>, GitHub’s cloud agent authors commits under its own account <span class="citation" data-cites="github2026copilotagent"><a href="#ref-github2026copilotagent" role="doc-biblioref">[3]</a></span>, and Cursor, Jules, Aider and Codex have their own conventions <span class="citation" data-cites="cursor2026docs jules2026 aider2026 openai2026codex"><a href="#ref-cursor2026docs" role="doc-biblioref">[4]</a>, <a href="#ref-jules2026" role="doc-biblioref">[5]</a>, <a href="#ref-aider2026" role="doc-biblioref">[6]</a>, <a href="#ref-openai2026codex" role="doc-biblioref">[7]</a></span>. Counting these signatures is not new <span class="citation" data-cites="robbes2026 horikawa2026 kinlan2026"><a href="#ref-robbes2026" role="doc-biblioref">[8]</a>, <a href="#ref-horikawa2026" role="doc-biblioref">[9]</a>, <a href="#ref-kinlan2026" role="doc-biblioref">[10]</a></span>. What this study adds is (i) a pre-registered monthly series for a defined population of AI-infrastructure repositories, with matched controls and the agent harnesses as a third group; (ii) a catalogue in which every signature is backed by three public example commits; (iii) a direct measurement of how often attribution on a pull request’s commits survives the merge to the default branch; and (iv) a link between the measured share and each repository’s stated AI-contribution policy. The scanner, <code>coauthored</code>, is a small open-source command-line tool; it reproduces every number in this paper from a recorded snapshot and draws the same curve for any organisation’s repositories.</p>
+<p>Throughout, the unit is the <strong>AI-attributed commit</strong>, and every share is a <strong>lower bound</strong> on AI involvement. An attributed commit is not a commit “written by AI”: the trailer says a tool took part, not how much of the change it produced. Section 3 explains how attribution goes missing.</p>
+<h1 data-number="2" id="related-work"><span class="header-section-number">2</span> Related work</h1>
+<p><strong>Measuring AI’s share of code.</strong> Daniotti et al. train a classifier to detect AI-written Python functions in GitHub commits and estimate national shares and productivity effects <span class="citation" data-cites="daniotti2026"><a href="#ref-daniotti2026" role="doc-biblioref">[11]</a></span>. Their detector measures code style; we count declarations. The two quantities have different errors and should not be compared one-to-one. Horikawa et al. show that once signatures are masked, the best detector of agent commits loses most of its precision at realistic base rates, and conclude that signature-based studies report a lower bound <span class="citation" data-cites="horikawa2026"><a href="#ref-horikawa2026" role="doc-biblioref">[9]</a></span>.</p>
+<p><strong>Counting signatures.</strong> Robbes et al. estimate project-level coding-agent adoption across a large GitHub sample from co-author trailers, agent accounts, configuration files, branch names and labels <span class="citation" data-cites="robbes2026"><a href="#ref-robbes2026" role="doc-biblioref">[8]</a></span>. AIDev collects agent-authored pull requests from five agents <span class="citation" data-cites="li2026aidev"><a href="#ref-li2026aidev" role="doc-biblioref">[12]</a></span>. Blog-scale and dashboard counts of <code>Co-Authored-By: Claude</code> commits across public GitHub <span class="citation" data-cites="kinlan2026 semianalysis2026 amplifying2026"><a href="#ref-kinlan2026" role="doc-biblioref">[10]</a>, <a href="#ref-semianalysis2026" role="doc-biblioref">[13]</a>, <a href="#ref-amplifying2026" role="doc-biblioref">[14]</a></span> and GitHub’s own telemetry on agent-started pull requests <span class="citation" data-cites="github2026octoverse"><a href="#ref-github2026octoverse" role="doc-biblioref">[15]</a></span> report fast growth; each describes its count as a floor, and none fixes a population, compares it with controls, or measures loss at merge. Our contribution is a narrow, pre-registered and reproducible series rather than a new signal.</p>
+<p><strong>Bots, trailers and merges.</strong> Separating automation from people in commit history has a long history in mining software repositories <span class="citation" data-cites="dey2020"><a href="#ref-dey2020" role="doc-biblioref">[16]</a></span>. Our denominator removes maintenance bots (dependency updates, releases) but keeps AI-agent accounts, which do commit code on someone’s behalf. The <code>Co-authored-by</code> convention <span class="citation" data-cites="githubdocs2026coauthors"><a href="#ref-githubdocs2026coauthors" role="doc-biblioref">[17]</a></span> interacts with squash merging, whose default message may or may not include the individual commits <span class="citation" data-cites="githubdocs2026squash"><a href="#ref-githubdocs2026squash" role="doc-biblioref">[18]</a></span>, and GitHub itself adds co-author trailers for commit authors at squash time <span class="citation" data-cites="github2019squash"><a href="#ref-github2019squash" role="doc-biblioref">[19]</a></span>.</p>
+<p><strong>Policies.</strong> Open-source projects have adopted AI-contribution policies ranging from outright bans <span class="citation" data-cites="gentoo2024 netbsd2024 qemu2025"><a href="#ref-gentoo2024" role="doc-biblioref">[20]</a>, <a href="#ref-netbsd2024" role="doc-biblioref">[21]</a>, <a href="#ref-qemu2025" role="doc-biblioref">[22]</a></span> to disclosure requirements <span class="citation" data-cites="curl2025 ghostty2026"><a href="#ref-curl2025" role="doc-biblioref">[23]</a>, <a href="#ref-ghostty2026" role="doc-biblioref">[24]</a></span> and the Linux kernel’s <code>Assisted-by:</code> tag <span class="citation" data-cites="kerneldocs2026"><a href="#ref-kerneldocs2026" role="doc-biblioref">[25]</a></span>. Hora and Robbes classify the policies of popular repositories <span class="citation" data-cites="hora2026policy"><a href="#ref-hora2026policy" role="doc-biblioref">[26]</a></span>; we relate a similar classification to measured attribution.</p>
+<p><strong>Productivity and usage.</strong> Experiments find that AI assistance changes the speed and volume of programming work, in both directions <span class="citation" data-cites="peng2023 cui2026 becker2025"><a href="#ref-peng2023" role="doc-biblioref">[27]</a>, <a href="#ref-cui2026" role="doc-biblioref">[28]</a>, <a href="#ref-becker2025" role="doc-biblioref">[29]</a></span>, that it raises open-source contributions <span class="citation" data-cites="yeverechyahu2024"><a href="#ref-yeverechyahu2024" role="doc-biblioref">[30]</a></span>, and that agentic tools are used mostly to delegate whole tasks <span class="citation" data-cites="anthropic2025eisoftware"><a href="#ref-anthropic2025eisoftware" role="doc-biblioref">[31]</a></span>. Task-length benchmarks show fast capability growth <span class="citation" data-cites="kwa2025"><a href="#ref-kwa2025" role="doc-biblioref">[32]</a></span>. None of these measures what share of a real repository’s history declares AI involvement.</p>
+<h1 data-number="3" id="sec:leaks"><span class="header-section-number">3</span> What an attribution is, and how it goes missing</h1>
+<p>A commit is <strong>AI-attributed</strong> if (a) a <code>Co-authored-by:</code>, <code>Assisted-by:</code> or <code>Co-developed-by:</code> line in its message names an identity in the signature catalogue, (b) its author or committer is an AI-agent account in the catalogue, or (c) it carries a tool’s verbatim marker such as <code>Generated with Claude Code</code>. Identities are matched in full on e-mail address and/or name; no free-text keyword (“AI”, “GPT”, “Claude”) counts. A <code>Signed-off-by:</code> line never counts, because it is a human’s certification of origin. The Linux kernel’s <code>Assisted-by: AGENT:MODEL</code> format carries no e-mail address and cannot be tied to a catalogue identity; we report it as a separate indicator (140 commits in S1 and 62 in S2 over the window, none in S3).</p>
+<p>The signal is a lower bound for three reasons.</p>
+<ol type="1">
+<li><strong>The trailer is switched off.</strong> Every major tool lets the user disable or change attribution <span class="citation" data-cites="anthropic2026claudecode cursor2026docs jules2026 openai2026codex"><a href="#ref-anthropic2026claudecode" role="doc-biblioref">[2]</a>, <a href="#ref-cursor2026docs" role="doc-biblioref">[4]</a>, <a href="#ref-jules2026" role="doc-biblioref">[5]</a>, <a href="#ref-openai2026codex" role="doc-biblioref">[7]</a></span>. Since February 2026 Jules can commit as the user alone <span class="citation" data-cites="jules2026"><a href="#ref-jules2026" role="doc-biblioref">[5]</a></span>, which leaves no trace at all.</li>
+<li><strong>The trailer is stripped at merge.</strong> A trailer on a pull request’s commits reaches the default branch only if the merge keeps it: a merge commit and a rebase keep the original commits, but a squash commit carries whatever message the repository’s squash setting produces <span class="citation" data-cites="githubdocs2026squash"><a href="#ref-githubdocs2026squash" role="doc-biblioref">[18]</a></span>. We measure this loss in Section 6.</li>
+<li><strong>The tool never attributes.</strong> Autocomplete, chat assistants and copy-paste leave nothing in git, and some agents add no signature by default. Some policies also exempt maintainers from disclosure <span class="citation" data-cites="ghostty2026"><a href="#ref-ghostty2026" role="doc-biblioref">[24]</a></span>.</li>
+</ol>
+<p>The tool mix in the data is therefore partly a property of the instrument: tools that sign by default are over-represented relative to their use. Pre-registered hypothesis H5 tests the instrument as much as the market.</p>
+<h1 data-number="4" id="pre-registered-design"><span class="header-section-number">4</span> Pre-registered design</h1>
+<p>The design, the repository lists, the bot list and the signature catalogue were frozen in a pre-registration tagged <code>prereg-v1</code> (commit <code>27a6847</code>) before any study repository was scanned; three pilot repositories, excluded from every analysis, were used to debug the scanner and discover signatures. Every later clarification is logged with its effect (<code>DEVIATIONS.md</code>).</p>
+<p><strong>Strata.</strong> Inclusion rules were applied to GitHub metadata before scanning. All repositories are public, not archived and not forks, with at least two thousand stars and at least two hundred default-branch commits in the twelve months to October 2026. <strong>S1</strong> (42 repositories) contains model-building infrastructure across seven layers: training frameworks (PyTorch, JAX, Keras), model libraries (Transformers, PEFT, TRL, Diffusers), distributed training (DeepSpeed, Megatron-LM), fine-tuning and reinforcement learning, inference and serving (vLLM, SGLang, llama.cpp, Ollama), kernels and compilers (Triton, FlashAttention), and evaluation and data. <strong>S2</strong> (12) contains open-source coding-agent harnesses whose primary product is a coding agent (e.g. OpenHands, Cline, Gemini CLI, Codex, Qwen Code). <strong>S3</strong> (42) contains one matched control per S1 repository, drawn from popular non-AI repositories by a seeded nearest-neighbour match on stars and recent commit activity within the same language group (caliper ±50%), then screened by hand so that no control has model training or inference at its core. Lists, layers and reasons for every exclusion are in the appendix and the repository.</p>
+<p><strong>Snapshot.</strong> All 96 repositories were cloned on one UTC calendar day, 2026-10-28, with commit objects only, and their full default-branch history was scanned (2,850,951 commits, 631 seconds of clone and scan time, 1.32 GB). Head SHAs are recorded, and all counting is from those SHAs. Author and committer identities are replaced by a salted hash at ingest; no names, e-mail addresses or messages are stored.</p>
+<p><strong>Counting.</strong> The primary unit is a non-merge commit reachable from the default branch, dated by its committer date in UTC, in the window January 2023 to September 2026. Commits authored by maintenance bots are removed from the denominator; AI-agent accounts stay. Shared history (a fork or a vendored copy) is counted once per stratum, in the earliest-created repository. The catalogue has 52 entries for 28 tools (31 co-author identities, 16 agent accounts, 5 markers), each with three public commits as evidence and a passing and a failing test case. On a blind, hand-labelled sample of 200 pilot commits (80 attributed), the scanner’s precision and recall were 1.00 and 1.00.</p>
+<p><strong>Hypotheses.</strong> All shares are pooled over commits; repository-weighted shares are reported alongside. Confidence intervals are percentile intervals from 2,000 cluster-bootstrap resamples of repositories within stratum (seed 20261028).</p>
+<ul>
+<li><strong>H1 (level):</strong> the pooled S1 share in 2026-Q3 is at least 5%.</li>
+<li><strong>H2 (difference):</strong> S1 exceeds S3 in every month from April to September 2026, and the 2026-Q3 odds ratio is at least two with a CI above one.</li>
+<li><strong>H3 (growth):</strong> the monthly logit slope of a binomial model is positive in S1 and in S2, and steeper in S1 than in S3 (CIs exclude zero).</li>
+<li><strong>H4 (recursion):</strong> the 2026-Q3 share in S2 exceeds that in S1 (CI of the difference excludes zero).</li>
+<li><strong>H5 (tools):</strong> Claude Code has the plurality of attributed commits in S1 ∪ S2 in every quarter from 2025-Q2 to 2026-Q3.</li>
+<li><strong>H6 (survival):</strong> at least 80% of sampled merged pull requests with an attributed head commit keep the attribution on the default branch.</li>
+<li><strong>H7 (policy, exploratory):</strong> repositories that require disclosure have a higher share than those that ban AI or are silent.</li>
+</ul>
+<p>Holm’s correction is applied across H1–H6 for a family-wise claim; each hypothesis is also decided on its own rule. Pre-registered sensitivity analyses use author dates, include merges, keep only first-parent commits, require trailers in the final trailer block, include maintenance bots, remove the three largest repositories of each stratum, remove mirror-exported repositories, remove outside-caliper matches, and replace the model in H3 with a mixed model with a random intercept and slope per repository.</p>
+<h1 data-number="5" id="results"><span class="header-section-number">5</span> Results</h1>
+<h2 data-number="5.1" id="the-curve-rq1rq3"><span class="header-section-number">5.1</span> The curve (RQ1–RQ3)</h2>
+<p>Figure 1 shows the monthly attributed share. Before 2025 it is close to zero everywhere: in 2024, 0 of 102,709 S1 commits were attributed, 88 of 8,007 in S2 and 5 of 99,830 in S3. The harnesses move first, from late 2024, driven by one project whose agent commits under its own account. S1 and S3 start rising together in mid-2025 and are almost indistinguishable afterwards: over the 2025 calendar year the pooled share was 0.46% in S1 and 0.47% in S3, and over January–September 2026 5.7% and 5.8%.</p>
+<figure id="fig:f1">
+<img src="figures/f1_monthly_share.svg" style="width:100.0%" alt="Figure 1. Monthly AI-attributed share of commits by stratum, January 2023 – September 2026, pooled over repositories, with 95% cluster-bootstrap bands. AI-attributed commits are a lower bound on AI involvement." />
+<figcaption aria-hidden="true">Figure 1. Monthly AI-attributed share of commits by stratum, January 2023 – September 2026, pooled over repositories, with 95% cluster-bootstrap bands. AI-attributed commits are a lower bound on AI involvement.</figcaption>
+</figure>
+<p>In 2026-Q3 the pooled share was 8.7% in S1 (3,632 of 41,728 commits; 95% CI 4.0%–14.5%; repository-weighted 10.5%), 10.3% in S2 (1.6%–23.7%) and 7.1% in S3 (2.3%–12.6%). The wide intervals reflect how unevenly attribution is spread across repositories (Figure 6): 39 of the 41 S1 repositories active in the quarter had at least one attributed commit, 15 had a share of ten percent or more, and the median repository share was 4.5%. In S3, 26 of 42 had any attributed commit, and the two largest contributors account for 66% of the stratum’s attributed commits.</p>
+<p>Table 1 gives the decisions. <strong>H1 is supported</strong> on its pre-registered rule, which looks at the point estimate: the S1 share in 2026-Q3 is above the 5% floor, but its interval reaches below it, and the one-sided p-value against the threshold is 0.08 (0.41 after Holm’s correction). Of H1–H6, only H6 survives the family-wise correction. <strong>H2 is not supported</strong>: S1 is not above S3 in every month, and the 2026-Q3 odds ratio is 1.24 (95% CI 0.45–4.75). <strong>H3 is not supported</strong>: the monthly logit slope is clearly positive in S1 (0.239) but just as steep in S3 (0.214); the S2 slope (0.078; CI −0.015 to 0.179) includes zero, because the harnesses were already attributing in 2025. <strong>H4 is not supported</strong>: S2 is 1.6 percentage points above S1 in 2026-Q3, with a CI from −9.0 to 15.8 points.</p>
+<p><strong>Table 1.</strong> Pre-registered hypotheses. Estimates and 95% CIs from the cluster bootstrap; one-sided bootstrap p-values (H6: exact binomial test) and Holm-adjusted p-values across H1–H6. H7 is exploratory.</p>
+<table>
+<colgroup>
+<col style="width: 38%" />
+<col style="width: 10%" />
+<col style="width: 14%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 14%" />
+</colgroup>
+<thead>
+<tr>
+<th></th>
+<th style="text-align: right;">Estimate</th>
+<th style="text-align: right;">95% CI</th>
+<th style="text-align: right;">p (one-sided)</th>
+<th style="text-align: right;">p (Holm)</th>
+<th>Decision</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>H1 S1 share, 2026-Q3</td>
+<td style="text-align: right;">8.7%</td>
+<td style="text-align: right;">4.0%–14.5%</td>
+<td style="text-align: right;">0.081</td>
+<td style="text-align: right;">0.407</td>
+<td>supported</td>
+</tr>
+<tr>
+<td>H2 odds ratio S1 : S3</td>
+<td style="text-align: right;">1.24</td>
+<td style="text-align: right;">0.45–4.75</td>
+<td style="text-align: right;">0.316</td>
+<td style="text-align: right;">1.000</td>
+<td>not supported</td>
+</tr>
+<tr>
+<td>H3 slope S1 − S3 (logit/month)</td>
+<td style="text-align: right;">0.025</td>
+<td style="text-align: right;">−0.080 to 0.077</td>
+<td style="text-align: right;">0.317</td>
+<td style="text-align: right;">1.000</td>
+<td>not supported</td>
+</tr>
+<tr>
+<td>H4 share S2 − S1 (points)</td>
+<td style="text-align: right;">1.6</td>
+<td style="text-align: right;">−9.0 to 15.8</td>
+<td style="text-align: right;">0.404</td>
+<td style="text-align: right;">1.000</td>
+<td>not supported</td>
+</tr>
+<tr>
+<td>H5 Claude Code margin, min. (points)</td>
+<td style="text-align: right;">−75.8</td>
+<td style="text-align: right;">−96.5 to −41.0</td>
+<td style="text-align: right;">1.000</td>
+<td style="text-align: right;">1.000</td>
+<td>not supported</td>
+</tr>
+<tr>
+<td>H6 attribution survives merge</td>
+<td style="text-align: right;">92.0%</td>
+<td style="text-align: right;">87.4%–95.0%</td>
+<td style="text-align: right;">0.000</td>
+<td style="text-align: right;">0.000</td>
+<td>supported</td>
+</tr>
+<tr>
+<td>H7 disclosure − (ban ∪ silent) (points)</td>
+<td style="text-align: right;">3.2</td>
+<td style="text-align: right;">–</td>
+<td style="text-align: right;">–</td>
+<td style="text-align: right;">–</td>
+<td>exploratory</td>
+</tr>
+</tbody>
+</table>
+<p>The decisions do not depend on analysis choices (Appendix, Table 2). H1 holds and H2–H4 fail under author dates, with merges, on the first-parent chain, with strict trailer positions, with maintenance bots, without the three largest repositories of each stratum, without mirror-exported repositories and without the outside-caliper matches. The mixed model with a random intercept and slope per repository gives the same answer for H3: the S1 − S3 slope difference is −0.024 logit per month (Wald CI −0.105 to 0.058), while the S1 slope alone is 0.242 (0.193 to 0.290).</p>
+<h2 data-number="5.2" id="which-tools-rq4"><span class="header-section-number">5.2</span> Which tools (RQ4)</h2>
+<p>The tool mix changed quickly (Figure 2). In S1 ∪ S2, OpenHands accounted for most attributed commits through 2025-Q3, almost all of them in its own repository; Gemini Code Assist, a code-review bot that commits suggested changes, led in 2025-Q4 (42%). Claude Code has led since 2026-Q1, with 34%, 42% and 52% of attributed commits in the three quarters of 2026. <strong>H5 is not supported</strong> because the plurality did not hold in 2025; the minimum margin of Claude Code over the next tool is −75.8 percentage points. Because Claude Code signs by default and many tools do not, its share of <em>attributed</em> commits overstates its share of AI-assisted commits by an unknown factor.</p>
+<figure id="fig:f2">
+<img src="figures/f2_tools.svg" style="width:100.0%" alt="Figure 2. Attributed commits by tool, as a share of all commits in each stratum, by quarter, 2025-Q1 to 2026-Q3. Tools with less than one percent of attributions in every panel are grouped as Other. AI-attributed commits are a lower bound." />
+<figcaption aria-hidden="true">Figure 2. Attributed commits by tool, as a share of all commits in each stratum, by quarter, 2025-Q1 to 2026-Q3. Tools with less than one percent of attributions in every panel are grouped as Other. AI-attributed commits are a lower bound.</figcaption>
+</figure>
+<h1 data-number="6" id="sec:undercount"><span class="header-section-number">6</span> How much does the signal miss? (RQ5)</h1>
+<p><strong>Survival through the merge.</strong> We sampled merged pull requests from S1 and S2 repositories (merged June 2025 to September 2026, uniformly at random within repository, repositories visited in turn) and, for each, compared the attribution on its commits with the attribution on the commit that reached the default branch. Of 2,542 pull requests inspected, 200 had at least one attributed commit, and in 184 of them the attribution reached the default branch (92.0%, 95% CI 87.4%–95.0%; H6 supported). Figure 3 splits the result by merge method. Almost all of these pull requests were squash-merged (192 of 200), and every loss happened at a squash merge: 176 of 192 squash merges kept the attribution, which fits GitHub’s default squash message, which lists the messages of the squashed commits, trailers included <span class="citation" data-cites="githubdocs2026squash"><a href="#ref-githubdocs2026squash" role="doc-biblioref">[18]</a></span>. A loss happens when a repository’s squash setting uses the pull request’s title and description instead, or when the maintainer edits the message at merge time. In these repositories, then, little attribution is lost at the merge; the other two paths, trailers switched off and tools that never attribute, cannot be measured from git metadata, and the size of the undercount remains unknown. The 200 pull requests come from 41 repositories, a few of which contribute many; resampling repositories instead of pull requests gives an interval of 87.3%–96.2% (not pre-registered). Losses are spread over 10 repositories rather than concentrated in one.</p>
+<figure id="fig:f5">
+<img src="figures/f5_survival.svg" style="width:60.0%" alt="Figure 3. Share of sampled merged pull requests with an attributed commit whose attribution reached the default branch, by merge method, with Wilson 95% intervals." />
+<figcaption aria-hidden="true">Figure 3. Share of sampled merged pull requests with an attributed commit whose attribution reached the default branch, by merge method, with Wilson 95% intervals.</figcaption>
+</figure>
+<p><strong>Policies.</strong> Of the 96 repositories, 1 bans AI contributions in its contribution guidelines, 20 require disclosure, 16 mention AI without a rule, and 59 are silent; 55 carry a configuration file addressed to coding agents (<code>AGENTS.md</code>, <code>CLAUDE.md</code> or Copilot instructions). In 2026-Q3 the pooled share was 9.6% in repositories that require disclosure, 11.7% where AI is mentioned without a rule and 6.4% where policies are silent (Figure 4). The exploratory H7 difference is positive but small (3.2 percentage points) and confounded by everything else that distinguishes these repositories.</p>
+<figure id="fig:f6">
+<img src="figures/f6_policy.svg" style="width:75.0%" alt="Figure 4. AI-attributed share of commits in 2026-Q3 by the repository’s AI-contribution policy (one dot per repository; bars: pooled share of the class). Policies were read at the snapshot from the contribution guidelines and checked by hand. AI-attributed commits are a lower bound." />
+<figcaption aria-hidden="true">Figure 4. AI-attributed share of commits in 2026-Q3 by the repository’s AI-contribution policy (one dot per repository; bars: pooled share of the class). Policies were read at the snapshot from the contribution guidelines and checked by hand. AI-attributed commits are a lower bound.</figcaption>
+</figure>
+<p><strong>Tools that never attribute</strong> cannot be measured from git metadata. Classifier-based estimates <span class="citation" data-cites="daniotti2026 horikawa2026"><a href="#ref-horikawa2026" role="doc-biblioref">[9]</a>, <a href="#ref-daniotti2026" role="doc-biblioref">[11]</a></span> suggest that unattributed AI involvement is large, but they measure a different quantity, and we make no estimate of it.</p>
+<h1 data-number="7" id="exploratory-analyses-rq6"><span class="header-section-number">7</span> Exploratory analyses (RQ6)</h1>
+<p><strong>Size.</strong> In a stratified random sample of 2,000 window commits the median attributed commit changed 108 lines in S1 against 32 for unattributed commits; the ratios were similar in S2 and S3 (Appendix, Table 3). Part of this is composition: attributed commits cluster in repositories whose commits are large. Within repositories, with repository fixed effects, attributed commits were still larger, by a factor of 1.76 in geometric mean in S1 (1.06–2.95), 1.81 in S2 and 2.33 in S3.</p>
+<p><strong>Reverts.</strong> The crude revert rate of attributed commits is lower than that of other commits in every stratum, but this too is composition and exposure: attributed commits are recent, so they have had less time to be reverted, and they cluster in some repositories. Compared with unattributed commits of the same repository and month (commits to June 2026), attributed commits were reverted 1.17 times as often as expected in S1 (95% CI 0.78–1.68; 29 observed, 24.9 expected). We find no evidence that attributed commits are reverted more or less often.</p>
+<p><strong>Breadth and intensity.</strong> Repositories differ in whether attribution is concentrated in a few contributors or spread across many (Figure 5). In most repositories the share of active authors with at least one attributed commit tracks the share of attributed commits; a few repositories sit far above the diagonal, where a small number of contributors account for most attributed commits.</p>
+<figure id="fig:f8">
+<img src="figures/f8_breadth.svg" style="width:70.0%" alt="Figure 5. Per repository, 2026-Q3: breadth (mean monthly share of active authors with at least one attributed commit) against intensity (share of commits attributed). Dashed line: equality. AI-attributed commits are a lower bound." />
+<figcaption aria-hidden="true">Figure 5. Per repository, 2026-Q3: breadth (mean monthly share of active authors with at least one attributed commit) against intensity (share of commits attributed). Dashed line: equality. AI-attributed commits are a lower bound.</figcaption>
+</figure>
+<h1 data-number="8" id="discussion"><span class="header-section-number">8</span> Discussion</h1>
+<p><strong>What the curve says about “AI building AI”.</strong> In this population, the code that trains and serves AI models declares AI involvement at the same rate as popular software in general. We had expected AI-infrastructure projects, staffed by people who build models, to adopt earlier and further; the data do not show that. The harnesses, built by the vendors and communities of the tools themselves, adopted earliest, but by 2026 the other two groups had caught up. A plausible reading is that agent adoption in mid-2026 is driven less by what a project is about than by which tools its contributors use and whether those tools sign by default.</p>
+<p><strong>Attribution as a provenance artefact.</strong> A co-author trailer is a cheap, machine-readable record of which tool took part in a change, much as a software bill of materials records which components a build includes. The record mostly survives the merge; where it is lost, it is lost to a repository setting, not to a contributor’s choice. Projects and governance frameworks that want to know how their code was produced could ask for two things that cost nothing: keep the tool’s trailer on, and keep commit trailers in squash messages. Neither tells anyone how much of a change a tool wrote, and neither should be read as a quality signal; our exploratory analyses find no difference in revert rates.</p>
+<p><strong>What the curve does not say.</strong> It does not say that one commit in 11 to AI infrastructure was written by AI. An attributed commit may be mostly human work with a small tool contribution, and many AI-assisted commits are not attributed. The curve also does not measure quality, safety or productivity. And it says nothing about model collapse or similar concerns about recursive training <span class="citation" data-cites="shumailov2024"><a href="#ref-shumailov2024" role="doc-biblioref">[33]</a></span>; those would require knowing what the attributed code does.</p>
+<h1 data-number="9" id="limitations"><span class="header-section-number">9</span> Limitations</h1>
+<p><strong>Lower bound.</strong> Attribution undercounts AI involvement by an unknown and probably changing factor; tool defaults, user settings and merge settings all move it. <strong>Attribution is not authorship share.</strong> We count commits, not lines or effort. <strong>Selection.</strong> S1 is a purposive list of prominent projects; S3 is matched on popularity and activity, not on contributor population, and its two largest contributors carry much of its attributed volume. <strong>One snapshot.</strong> Histories were read once, on 2026-10-28; force-pushes and later rewrites are not reflected. <strong>Tool mix.</strong> Default-on signatures dominate the counts, so tool shares describe the instrument as much as the market. <strong>Survival sample frame.</strong> Repositories that land pull requests with a merge bot and close them, rather than merging, contribute few sampled pull requests, and pull requests opened long before the window are outside the frame (<code>DEVIATIONS.md</code>). <strong>Policies</strong> were read from the pre-registered files only; a few repositories state policies elsewhere. <strong>Survivorship.</strong> Only repositories that are popular and active in 2026 are included; projects that declined or were archived are not.</p>
+<h1 data-number="10" id="ethics"><span class="header-section-number">10</span> Ethics</h1>
+<p>The study uses public git metadata and the public GitHub API within its terms. Identities are hashed at ingest with a secret salt; no names, e-mail addresses or commit messages are stored or published, the paper and the dataset report repository-level aggregates only, and no individual developer is named. Repositories are named, because they are public projects and the comparison is between projects. The released per-commit dataset contains no identity fields at all. This is independent personal research using public data only, and it does not represent the views of any employer or institution.</p>
+<h1 data-number="11" id="reproducibility"><span class="header-section-number">11</span> Reproducibility</h1>
+<p>The pre-registration is tagged <code>prereg-v1</code> (commit <code>27a6847</code>); <code>DEVIATIONS.md</code> lists every later clarification. <code>data/manifest.json</code> records the head SHA, default branch, commit count and git version of every repository at the snapshot. <code>coauthored analyze</code> rebuilds every table, figure and number in this paper from the committed aggregates, with no network and byte-identical output, and <code>coauthored paper</code> fills this text from the resulting <code>results/numbers.json</code>; the build fails if a number is typed by hand. <code>coauthored scan</code> re-derives the aggregates from the recorded SHAs. The code is released under Apache-2.0 and the data under CC BY 4.0.</p>
+<h1 class="unnumbered" id="references">References</h1>
+<div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list">
+<div id="ref-favaro2026" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">M. Favaro and J. Clark, <span>“When <span>AI</span> builds itself.”</span> Anthropic Institute, 2026. Available: <a href="https://www.anthropic.com/institute/recursive-self-improvement">https://www.anthropic.com/institute/recursive-self-improvement</a></div>
+</div>
+<div id="ref-anthropic2026claudecode" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[2] </div><div class="csl-right-inline">Anthropic, <span>“All settings – <span>Claude Code</span> docs (<code>attribution</code>, <code>includeCoAuthoredBy</code>).”</span> Claude Code documentation, 2026. Available: <a href="https://code.claude.com/docs/en/settings-reference">https://code.claude.com/docs/en/settings-reference</a></div>
+</div>
+<div id="ref-github2026copilotagent" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[3] </div><div class="csl-right-inline">GitHub, <span>“Risks and mitigations for <span>GitHub Copilot</span> cloud agent.”</span> GitHub Docs, 2026. Available: <a href="https://docs.github.com/en/copilot/concepts/agents/coding-agent/risks-and-mitigations">https://docs.github.com/en/copilot/concepts/agents/coding-agent/risks-and-mitigations</a></div>
+</div>
+<div id="ref-cursor2026docs" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[4] </div><div class="csl-right-inline">Anysphere (Cursor), <span>“Secrets &amp; network (<span>Cloud Agents</span>); <span>Git</span> integration.”</span> Cursor documentation, 2026. Available: <a href="https://cursor.com/docs/cloud-agent/security-network">https://cursor.com/docs/cloud-agent/security-network</a></div>
+</div>
+<div id="ref-jules2026" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[5] </div><div class="csl-right-inline">Google, <span>“Auto-fixing <span>CI</span> failures and configure <span>Jules</span> to commit as you.”</span> Jules changelog, Feb. 2026. Available: <a href="https://jules.google/docs/changelog/2026-02-19">https://jules.google/docs/changelog/2026-02-19</a></div>
+</div>
+<div id="ref-aider2026" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[6] </div><div class="csl-right-inline">Aider, <span>“Git integration.”</span> Aider documentation, 2026. Available: <a href="https://aider.chat/docs/git.html">https://aider.chat/docs/git.html</a></div>
+</div>
+<div id="ref-openai2026codex" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[7] </div><div class="csl-right-inline">OpenAI, <span>“Codex: <code>codex-rs/ext/git-attribution</code> (source code).”</span> GitHub repository openai/codex, 2026. Available: <a href="https://github.com/openai/codex/blob/main/codex-rs/ext/git-attribution/src/world_state.rs">https://github.com/openai/codex/blob/main/codex-rs/ext/git-attribution/src/world_state.rs</a></div>
+</div>
+<div id="ref-robbes2026" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[8] </div><div class="csl-right-inline">R. Robbes, T. Matricon, T. Degueule, A. Hora, and S. Zacchiroli, <span>“Agentic much? <span>Adoption</span> of coding agents on <span>GitHub</span>,”</span> <em>ACM Transactions on Software Engineering and Methodology</em>, 2026, doi: <a href="https://doi.org/10.1145/3822180">10.1145/3822180</a>.</div>
+</div>
+<div id="ref-horikawa2026" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[9] </div><div class="csl-right-inline">K. Horikawa <em>et al.</em>, <span>“Agent or human? <span>Detecting</span> commits by <span>AI</span> coding agents in the absence of authorship signatures.”</span> 2026. doi: <a href="https://doi.org/10.48550/arXiv.2610.36229">10.48550/arXiv.2610.36229</a>.</div>
+</div>
+<div id="ref-kinlan2026" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[10] </div><div class="csl-right-inline">P. Kinlan, <span>“Damn claude, that’s a lot of commits.”</span> aifoc.us (blog), post #024, Mar. 2026. Available: <a href="https://aifoc.us/damn-claude-thats-a-lot-of-commits/">https://aifoc.us/damn-claude-thats-a-lot-of-commits/</a></div>
+</div>
+<div id="ref-daniotti2026" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[11] </div><div class="csl-right-inline">S. Daniotti, J. Wachs, X. Feng, and F. Neffke, <span>“Who is using <span>AI</span> to code? <span>Global</span> diffusion and impact of generative <span>AI</span>,”</span> <em>Science</em>, vol. 391, no. 6787, pp. 831–835, 2026, doi: <a href="https://doi.org/10.1126/science.adz9311">10.1126/science.adz9311</a>.</div>
+</div>
+<div id="ref-li2026aidev" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[12] </div><div class="csl-right-inline">H. Li, H. Zhang, and A. E. Hassan, <span>“<span>AIDev</span>: Studying <span>AI</span> coding agents on <span>GitHub</span>,”</span> in <em>Proceedings of the 23rd international conference on mining software repositories (MSR ’26)</em>, 2026, pp. 1029–1033. doi: <a href="https://doi.org/10.1145/3793302.3797249">10.1145/3793302.3797249</a>.</div>
+</div>
+<div id="ref-semianalysis2026" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[13] </div><div class="csl-right-inline"><span class="nocase">D. O’Laughlin, J. Eliahou Ontiveros, J. Nanos, <em>et al.</em></span>, <span>“Claude code is the inflection point.”</span> SemiAnalysis newsletter, Feb. 2026. Available: <a href="https://newsletter.semianalysis.com/p/claude-code-is-the-inflection-point">https://newsletter.semianalysis.com/p/claude-code-is-the-inflection-point</a></div>
+</div>
+<div id="ref-amplifying2026" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[14] </div><div class="csl-right-inline">Amplifying, <span>“Claude code – coding agents index.”</span> Web dashboard, 2026. Available: <a href="https://amplifying.ai/coding-agents/claude-code">https://amplifying.ai/coding-agents/claude-code</a></div>
+</div>
+<div id="ref-github2026octoverse" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[15] </div><div class="csl-right-inline">GitHub, <span>“Octoverse: Commits, pushes, reach new highs in 2026 as developers build with agents.”</span> GitHub Blog, Oct. 2026. Available: <a href="https://github.blog/news-insights/octoverse/octoverse-commits-pushes-reach-new-highs-in-2026-as-developers-build-with-agents/">https://github.blog/news-insights/octoverse/octoverse-commits-pushes-reach-new-highs-in-2026-as-developers-build-with-agents/</a></div>
+</div>
+<div id="ref-dey2020" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[16] </div><div class="csl-right-inline">T. Dey <em>et al.</em>, <span>“Detecting and characterizing bots that commit code,”</span> in <em>Proceedings of the 17th international conference on mining software repositories (MSR ’20)</em>, 2020, pp. 209–219. doi: <a href="https://doi.org/10.1145/3379597.3387478">10.1145/3379597.3387478</a>.</div>
+</div>
+<div id="ref-githubdocs2026coauthors" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[17] </div><div class="csl-right-inline">GitHub, <span>“Creating a commit with multiple authors.”</span> GitHub Docs, 2026. Available: <a href="https://docs.github.com/en/pull-requests/committing-changes-to-your-project/creating-and-editing-commits/creating-a-commit-with-multiple-authors">https://docs.github.com/en/pull-requests/committing-changes-to-your-project/creating-and-editing-commits/creating-a-commit-with-multiple-authors</a></div>
+</div>
+<div id="ref-githubdocs2026squash" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[18] </div><div class="csl-right-inline">GitHub, <span>“Configuring commit squashing for pull requests.”</span> GitHub Docs, 2026. Available: <a href="https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/configuring-commit-squashing-for-pull-requests">https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/configuring-commit-squashing-for-pull-requests</a></div>
+</div>
+<div id="ref-github2019squash" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[19] </div><div class="csl-right-inline">GitHub, <span>“Improved attribution when squashing commits.”</span> GitHub Changelog, Dec. 2019. Available: <a href="https://github.blog/changelog/2019-12-19-improved-attribution-when-squashing-commits/">https://github.blog/changelog/2019-12-19-improved-attribution-when-squashing-commits/</a></div>
+</div>
+<div id="ref-gentoo2024" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[20] </div><div class="csl-right-inline">Gentoo Council, <span>“Project:council/<span>AI</span> policy.”</span> Gentoo Wiki, 2024. Available: <a href="https://wiki.gentoo.org/wiki/Project:Council/AI_policy">https://wiki.gentoo.org/wiki/Project:Council/AI_policy</a></div>
+</div>
+<div id="ref-netbsd2024" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[21] </div><div class="csl-right-inline">The NetBSD Foundation, <span>“<span>NetBSD</span> commit guidelines.”</span> netbsd.org, 2024. Available: <a href="https://www.netbsd.org/developers/commit-guidelines.html">https://www.netbsd.org/developers/commit-guidelines.html</a></div>
+</div>
+<div id="ref-qemu2025" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[22] </div><div class="csl-right-inline">QEMU Project, <span>“Code provenance.”</span> QEMU developer documentation, 2025. Available: <a href="https://www.qemu.org/docs/master/devel/code-provenance.html">https://www.qemu.org/docs/master/devel/code-provenance.html</a></div>
+</div>
+<div id="ref-curl2025" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[23] </div><div class="csl-right-inline"><span class="nocase">curl project</span>, <span>“Contributing to the curl project: On <span>AI</span> use in curl.”</span> curl.se, 2025. Available: <a href="https://curl.se/dev/contribute.html">https://curl.se/dev/contribute.html</a></div>
+</div>
+<div id="ref-ghostty2026" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[24] </div><div class="csl-right-inline">Ghostty project, <span>“<span>AI</span> usage policy (<code>AI_POLICY.md</code>).”</span> GitHub repository ghostty-org/ghostty, 2026. Available: <a href="https://github.com/ghostty-org/ghostty/blob/main/AI_POLICY.md">https://github.com/ghostty-org/ghostty/blob/main/AI_POLICY.md</a></div>
+</div>
+<div id="ref-kerneldocs2026" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[25] </div><div class="csl-right-inline">The Linux Kernel Documentation, <span>“<span>AI</span> coding assistants (<code>Documentation/process/coding-assistants.rst</code>).”</span> docs.kernel.org, 2026. Available: <a href="https://docs.kernel.org/process/coding-assistants.html">https://docs.kernel.org/process/coding-assistants.html</a></div>
+</div>
+<div id="ref-hora2026policy" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[26] </div><div class="csl-right-inline">A. Hora and R. Robbes, <span>“<span>AI</span> policy, disclosure, and human in the loop: How are contribution guidelines adapting to <span>GenAI</span>?”</span> in <em>Proceedings of the IEEE international conference on software maintenance and evolution (ICSME 2026)</em>, 2026. doi: <a href="https://doi.org/10.48550/arXiv.2605.16706">10.48550/arXiv.2605.16706</a>.</div>
+</div>
+<div id="ref-peng2023" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[27] </div><div class="csl-right-inline">S. Peng, E. Kalliamvakou, P. Cihon, and M. Demirer, <span>“The impact of <span>AI</span> on developer productivity: Evidence from <span>GitHub Copilot</span>.”</span> 2023. doi: <a href="https://doi.org/10.48550/arXiv.2302.06590">10.48550/arXiv.2302.06590</a>.</div>
+</div>
+<div id="ref-cui2026" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[28] </div><div class="csl-right-inline">K. Z. Cui, M. Demirer, S. Jaffe, L. Musolff, S. Peng, and T. Salz, <span>“The effects of generative <span>AI</span> on high-skilled work: Evidence from three field experiments with software developers,”</span> <em>Management Science</em>, 2026, doi: <a href="https://doi.org/10.1287/mnsc.2025.00535">10.1287/mnsc.2025.00535</a>.</div>
+</div>
+<div id="ref-becker2025" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[29] </div><div class="csl-right-inline">J. Becker, N. Rush, E. Barnes, and D. Rein, <span>“Measuring the impact of early-2025 <span>AI</span> on experienced open-source developer productivity.”</span> 2025. doi: <a href="https://doi.org/10.48550/arXiv.2507.09089">10.48550/arXiv.2507.09089</a>.</div>
+</div>
+<div id="ref-yeverechyahu2024" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[30] </div><div class="csl-right-inline">D. Yeverechyahu, R. Mayya, and G. Oestreicher-Singer, <span>“The impact of large language models on open-source innovation: Evidence from <span>GitHub Copilot</span>.”</span> 2024. doi: <a href="https://doi.org/10.48550/arXiv.2409.08379">10.48550/arXiv.2409.08379</a>.</div>
+</div>
+<div id="ref-anthropic2025eisoftware" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[31] </div><div class="csl-right-inline">Anthropic, <span>“Anthropic economic index: <span>AI</span>’s impact on software development.”</span> Anthropic research, Apr. 2025. Available: <a href="https://www.anthropic.com/research/impact-software-development">https://www.anthropic.com/research/impact-software-development</a></div>
+</div>
+<div id="ref-kwa2025" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[32] </div><div class="csl-right-inline">T. Kwa <em>et al.</em>, <span>“Measuring <span>AI</span> ability to complete long software tasks.”</span> 2025. doi: <a href="https://doi.org/10.48550/arXiv.2503.14499">10.48550/arXiv.2503.14499</a>.</div>
+</div>
+<div id="ref-shumailov2024" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[33] </div><div class="csl-right-inline">I. Shumailov, Z. Shumaylov, Y. Zhao, N. Papernot, R. Anderson, and Y. Gal, <span>“<span>AI</span> models collapse when trained on recursively generated data,”</span> <em>Nature</em>, vol. 631, no. 8022, pp. 755–759, 2024, doi: <a href="https://doi.org/10.1038/s41586-024-07566-y">10.1038/s41586-024-07566-y</a>.</div>
+</div>
+</div>
+<h1 class="unnumbered" id="appendix">Appendix</h1>
+<h2 class="unnumbered" id="sensitivity-analyses">Sensitivity analyses</h2>
+<p><strong>Table 2.</strong> Estimates under each pre-registered sensitivity analysis (✓ supported, ✗ not supported). H1: S1 share, 2026-Q3; H2: odds ratio S1 : S3; H3: slope difference S1 − S3; H4: share difference S2 − S1. The GLMM row replaces the model in H3.</p>
+<table>
+<thead>
+<tr>
+<th>analysis</th>
+<th>H1</th>
+<th>H2</th>
+<th>H3</th>
+<th>H4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>primary</td>
+<td>0.087 ✓</td>
+<td>1.243 ✗</td>
+<td>0.025 ✗</td>
+<td>0.016 ✗</td>
+</tr>
+<tr>
+<td>author_date</td>
+<td>0.087 ✓</td>
+<td>1.189 ✗</td>
+<td>0.020 ✗</td>
+<td>0.016 ✗</td>
+</tr>
+<tr>
+<td>bots_included</td>
+<td>0.087 ✓</td>
+<td>1.433 ✗</td>
+<td>0.031 ✗</td>
+<td>0.023 ✗</td>
+</tr>
+<tr>
+<td>first_parent</td>
+<td>0.091 ✓</td>
+<td>1.268 ✗</td>
+<td>0.020 ✗</td>
+<td>0.123 ✗</td>
+</tr>
+<tr>
+<td>merges_included</td>
+<td>0.085 ✓</td>
+<td>1.337 ✗</td>
+<td>0.024 ✗</td>
+<td>0.008 ✗</td>
+</tr>
+<tr>
+<td>strict_trailers</td>
+<td>0.081 ✓</td>
+<td>1.149 ✗</td>
+<td>0.021 ✗</td>
+<td>0.022 ✗</td>
+</tr>
+<tr>
+<td>largest_3_removed</td>
+<td>0.109 ✓</td>
+<td>1.899 ✗</td>
+<td>-0.027 ✗</td>
+<td>0.063 ✗</td>
+</tr>
+<tr>
+<td>mirror_removed</td>
+<td>0.122 ✓</td>
+<td>1.808 ✗</td>
+<td>0.017 ✗</td>
+<td>-0.019 ✗</td>
+</tr>
+<tr>
+<td>outside_caliper_removed</td>
+<td>0.087 ✓</td>
+<td>1.267 ✗</td>
+<td>0.013 ✗</td>
+<td>0.016 ✗</td>
+</tr>
+<tr>
+<td>glmm</td>
+<td></td>
+<td></td>
+<td>-0.024 ✗</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 class="unnumbered" id="commit-size">Commit size</h2>
+<p><strong>Table 3.</strong> Lines changed (insertions plus deletions) in the size sample: median [interquartile range] for attributed and unattributed commits, and the ratio of medians with a bootstrap 95% CI. Rows labelled 2026 restrict both groups to January–September 2026.</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+</colgroup>
+<thead>
+<tr>
+<th>period</th>
+<th>stratum</th>
+<th>n_attr</th>
+<th>n_unattr</th>
+<th>attributed</th>
+<th>unattributed</th>
+<th>ratio (95% CI)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>all</td>
+<td>S1</td>
+<td>334</td>
+<td>334</td>
+<td>108 [22, 359]</td>
+<td>32 [7, 130]</td>
+<td>3.38 [1.82, 5.06]</td>
+</tr>
+<tr>
+<td>all</td>
+<td>S2</td>
+<td>333</td>
+<td>333</td>
+<td>155 [42, 665]</td>
+<td>52 [16, 218]</td>
+<td>2.98 [2.00, 4.50]</td>
+</tr>
+<tr>
+<td>all</td>
+<td>S3</td>
+<td>333</td>
+<td>333</td>
+<td>64 [20, 193]</td>
+<td>20 [6, 84]</td>
+<td>3.20 [2.33, 5.24]</td>
+</tr>
+<tr>
+<td>2026</td>
+<td>S1</td>
+<td>298</td>
+<td>88</td>
+<td>114 [22, 394]</td>
+<td>72 [8, 230]</td>
+<td>1.59 [0.83, 3.75]</td>
+</tr>
+<tr>
+<td>2026</td>
+<td>S2</td>
+<td>256</td>
+<td>186</td>
+<td>220 [45, 932]</td>
+<td>62 [21, 260]</td>
+<td>3.51 [1.90, 5.70]</td>
+</tr>
+<tr>
+<td>2026</td>
+<td>S3</td>
+<td>308</td>
+<td>85</td>
+<td>64 [21, 196]</td>
+<td>16 [4, 84]</td>
+<td>4.03 [2.12, 8.12]</td>
+</tr>
+</tbody>
+</table>
+<p>Within repository (ratio of geometric means of 1 + lines, repository fixed effects, CI clustered by repository):</p>
+<table>
+<thead>
+<tr>
+<th>stratum</th>
+<th>repos</th>
+<th>n</th>
+<th>ratio (95% CI)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S1</td>
+<td>23</td>
+<td>589</td>
+<td>1.76 [1.06, 2.95]</td>
+</tr>
+<tr>
+<td>S2</td>
+<td>9</td>
+<td>639</td>
+<td>1.81 [1.39, 2.35]</td>
+</tr>
+<tr>
+<td>S3</td>
+<td>14</td>
+<td>525</td>
+<td>2.33 [1.41, 3.87]</td>
+</tr>
+</tbody>
+</table>
+<h2 class="unnumbered" id="per-repository-shares">Per-repository shares</h2>
+<figure id="fig:f4">
+<img src="figures/f4_per_repo.svg" style="width:100.0%" alt="Figure 6. AI-attributed share of commits per repository, 2026-Q3, with Wilson 95% intervals. One S1 repository had no commits in the quarter. AI-attributed commits are a lower bound." />
+<figcaption aria-hidden="true">Figure 6. AI-attributed share of commits per repository, 2026-Q3, with Wilson 95% intervals. One S1 repository had no commits in the quarter. AI-attributed commits are a lower bound.</figcaption>
+</figure>
+<figure id="fig:f3">
+<img src="figures/f3_heatmap.svg" style="width:100.0%" alt="Figure 7. AI-attributed share per repository and month, 2025-01 to 2026-09; repository-months with fewer than ten commits in grey. AI-attributed commits are a lower bound." />
+<figcaption aria-hidden="true">Figure 7. AI-attributed share per repository and month, 2025-01 to 2026-09; repository-months with fewer than ten commits in grey. AI-attributed commits are a lower bound.</figcaption>
+</figure>
+</article>
+<section class="cite" aria-label="How to cite"><h2>How to cite</h2><pre><code>@misc{chongmankhong2026coauthored,
+  author = {Chongmankhong, Thanatchon},
+  title  = {Who Writes the Code That Trains the Models? AI Co-Authorship Trailers in AI
+            Infrastructure Repositories, 2023--2026},
+  year   = {2026},
+  url    = {https://github.com/thanatchon36/coauthored}
+}</code></pre></section>
+<footer class="colophon"><p>Code, analysis and manuscript draft by Claude (Anthropic) under the author's specification; the author is responsible for the content. Independent personal research. Public data only. Does not represent the views of any employer or institution.</p><p>Rendered from <code>paper/paper.md</code> by <code>coauthored paper</code>. Every number is filled from <code>results/numbers.json</code>; <code>coauthored analyze</code> regenerates it from the committed aggregates.</p></footer>
+</div>
+</body>
+</html>

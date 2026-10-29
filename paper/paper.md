@@ -29,8 +29,8 @@ abstract: |
   {{summary.quarterly[stratum=S1,q=2026-Q3].share|inv}}. But matched non-AI repositories rose just as fast, to
   {{summary.quarterly[stratum=S3,q=2026-Q3].share|pct1}}, and the coding-agent harnesses were not clearly ahead
   ({{summary.quarterly[stratum=S2,q=2026-Q3].share|pct1}}). Of the four pre-registered hypotheses about level,
-  difference, growth and recursion, only the level hypothesis is supported, and the result holds in every
-  sensitivity analysis. Attribution is a lower bound: it can be switched off, lost at merge, or never added.
+  difference, growth and recursion, only the level hypothesis meets its decision rule, in every sensitivity
+  analysis, and only on its point estimate: the interval reaches below the threshold. Attribution is a lower bound: it can be switched off, lost at merge, or never added.
   We measure the loss at merge directly: {{hypotheses[hypothesis=H6].estimate|pct}} of sampled attributed pull
   requests keep their attribution on the default branch. We release the scanner so that any organisation can draw the same
   curve for its own repositories.
@@ -222,16 +222,19 @@ In S3, {{summary.repos[stratum=S3].with_attributed_q3}} of {{summary.repos[strat
 attributed commit, and the two largest contributors account for
 {{summary.repos[stratum=S3].top2_attr_fraction_q3|pct}} of the stratum's attributed commits.
 
-Table @tbl:hyp gives the decisions. **H1 is {{hypotheses[hypothesis=H1].supported|verdict}}**: the S1 share in 2026-Q3 clears the pre-registered 5% <!-- numbers-ok: threshold -->
-floor. **H2 is {{hypotheses[hypothesis=H2].supported|verdict}}**: S1 is not above S3 in every month, and the 2026-Q3 odds ratio is
+Table @tbl:hyp gives the decisions. **H1 is {{hypotheses[hypothesis=H1].supported|verdict}}** on its pre-registered rule, which looks at the point
+estimate: the S1 share in 2026-Q3 is above the 5% floor, but its interval reaches below it, and the one-sided <!-- numbers-ok: threshold -->
+p-value against the threshold is {{hypotheses[hypothesis=H1].p_one_sided|.2f}} ({{hypotheses[hypothesis=H1].p_holm|.2f}}
+after Holm's correction). Of H1–H6, only H6 survives the family-wise correction. **H2 is {{hypotheses[hypothesis=H2].supported|verdict}}**: S1 is not above S3 in every month, and the 2026-Q3 odds ratio is
 {{hypotheses[hypothesis=H2].estimate|.2f}} (95% CI {{hypotheses[hypothesis=H2].ci[0]|.2f}}–{{hypotheses[hypothesis=H2].ci[1]|.2f}}).
 **H3 is {{hypotheses[hypothesis=H3].supported|verdict}}**: the monthly logit slope is clearly positive in S1
 ({{hypotheses[hypothesis=H3].detail.slopes.S1|.3f}}) but just as steep in S3
 ({{hypotheses[hypothesis=H3].detail.slopes.S3|.3f}}); the S2 slope
-({{hypotheses[hypothesis=H3].detail.slopes.S2|.3f}}) has a CI that includes zero, because the harnesses were
+({{hypotheses[hypothesis=H3].detail.slopes.S2|.3f}}; CI {{hypotheses[hypothesis=H3].detail.slope_ci.S2[0]|.3f}} to
+{{hypotheses[hypothesis=H3].detail.slope_ci.S2[1]|.3f}}) includes zero, because the harnesses were
 already attributing in 2025. **H4 is {{hypotheses[hypothesis=H4].supported|verdict}}**: S2 is
-{{hypotheses[hypothesis=H4].estimate|pct1}} points above S1 in 2026-Q3 with a CI from
-{{hypotheses[hypothesis=H4].ci[0]|pct1}} to {{hypotheses[hypothesis=H4].ci[1]|pct1}} points.
+{{hypotheses[hypothesis=H4].estimate|pp1}} percentage points above S1 in 2026-Q3, with a CI from
+{{hypotheses[hypothesis=H4].ci[0]|pp1}} to {{hypotheses[hypothesis=H4].ci[1]|pp1}} points.
 
 : Pre-registered hypotheses. Estimates and 95% CIs from the cluster bootstrap; one-sided bootstrap p-values (H6: exact binomial test) and Holm-adjusted p-values across H1–H6. H7 is exploratory. {#tbl:hyp}
 
@@ -239,11 +242,11 @@ already attributing in 2025. **H4 is {{hypotheses[hypothesis=H4].supported|verdi
 |------------------------------------|---------:|-------------:|---------:|---------:|--------------|
 | H1 S1 share, 2026-Q3 | {{hypotheses[hypothesis=H1].estimate\|pct1}} | {{hypotheses[hypothesis=H1].ci[0]\|pct1}}–{{hypotheses[hypothesis=H1].ci[1]\|pct1}} | {{hypotheses[hypothesis=H1].p_one_sided\|.3f}} | {{hypotheses[hypothesis=H1].p_holm\|.3f}} | {{hypotheses[hypothesis=H1].supported\|verdict}} |
 | H2 odds ratio S1 : S3 | {{hypotheses[hypothesis=H2].estimate\|.2f}} | {{hypotheses[hypothesis=H2].ci[0]\|.2f}}–{{hypotheses[hypothesis=H2].ci[1]\|.2f}} | {{hypotheses[hypothesis=H2].p_one_sided\|.3f}} | {{hypotheses[hypothesis=H2].p_holm\|.3f}} | {{hypotheses[hypothesis=H2].supported\|verdict}} |
-| H3 slope S1 − S3 (logit/month) | {{hypotheses[hypothesis=H3].estimate\|.3f}} | {{hypotheses[hypothesis=H3].ci[0]\|.3f}}–{{hypotheses[hypothesis=H3].ci[1]\|.3f}} | {{hypotheses[hypothesis=H3].p_one_sided\|.3f}} | {{hypotheses[hypothesis=H3].p_holm\|.3f}} | {{hypotheses[hypothesis=H3].supported\|verdict}} |
-| H4 share S2 − S1 | {{hypotheses[hypothesis=H4].estimate\|pct1}} | {{hypotheses[hypothesis=H4].ci[0]\|pct1}}–{{hypotheses[hypothesis=H4].ci[1]\|pct1}} | {{hypotheses[hypothesis=H4].p_one_sided\|.3f}} | {{hypotheses[hypothesis=H4].p_holm\|.3f}} | {{hypotheses[hypothesis=H4].supported\|verdict}} |
-| H5 Claude Code margin (min.) | {{hypotheses[hypothesis=H5].estimate\|pct1}} | {{hypotheses[hypothesis=H5].ci[0]\|pct1}}–{{hypotheses[hypothesis=H5].ci[1]\|pct1}} | {{hypotheses[hypothesis=H5].p_one_sided\|.3f}} | {{hypotheses[hypothesis=H5].p_holm\|.3f}} | {{hypotheses[hypothesis=H5].supported\|verdict}} |
+| H3 slope S1 − S3 (logit/month) | {{hypotheses[hypothesis=H3].estimate\|.3f}} | {{hypotheses[hypothesis=H3].ci[0]\|.3f}} to {{hypotheses[hypothesis=H3].ci[1]\|.3f}} | {{hypotheses[hypothesis=H3].p_one_sided\|.3f}} | {{hypotheses[hypothesis=H3].p_holm\|.3f}} | {{hypotheses[hypothesis=H3].supported\|verdict}} |
+| H4 share S2 − S1 (points) | {{hypotheses[hypothesis=H4].estimate\|pp1}} | {{hypotheses[hypothesis=H4].ci[0]\|pp1}} to {{hypotheses[hypothesis=H4].ci[1]\|pp1}} | {{hypotheses[hypothesis=H4].p_one_sided\|.3f}} | {{hypotheses[hypothesis=H4].p_holm\|.3f}} | {{hypotheses[hypothesis=H4].supported\|verdict}} |
+| H5 Claude Code margin, min. (points) | {{hypotheses[hypothesis=H5].estimate\|pp1}} | {{hypotheses[hypothesis=H5].ci[0]\|pp1}} to {{hypotheses[hypothesis=H5].ci[1]\|pp1}} | {{hypotheses[hypothesis=H5].p_one_sided\|.3f}} | {{hypotheses[hypothesis=H5].p_holm\|.3f}} | {{hypotheses[hypothesis=H5].supported\|verdict}} |
 | H6 attribution survives merge | {{hypotheses[hypothesis=H6].estimate\|pct1}} | {{hypotheses[hypothesis=H6].ci[0]\|pct1}}–{{hypotheses[hypothesis=H6].ci[1]\|pct1}} | {{hypotheses[hypothesis=H6].p_one_sided\|.3f}} | {{hypotheses[hypothesis=H6].p_holm\|.3f}} | {{hypotheses[hypothesis=H6].supported\|verdict}} |
-| H7 disclosure − (ban ∪ silent) | {{hypotheses[hypothesis=H7].estimate\|pct1}} | – | – | – | exploratory |
+| H7 disclosure − (ban ∪ silent) (points) | {{hypotheses[hypothesis=H7].estimate\|pp1}} | – | – | – | exploratory |
 
 The decisions do not depend on analysis choices (Appendix, Table @tbl:sens). H1 holds and H2–H4 fail under author
 dates, with merges, on the first-parent chain, with strict trailer positions, with maintenance bots, without
@@ -263,7 +266,7 @@ suggested changes, led in 2025-Q4 ({{summary.tool_leaders[q=2025-Q4].share|pct}}
 {{summary.tool_leaders[q=2026-Q2].claude_code|pct}} and {{summary.tool_leaders[q=2026-Q3].claude_code|pct}} of
 attributed commits in the three quarters of 2026. **H5 is {{hypotheses[hypothesis=H5].supported|verdict}}** because the plurality did not hold in
 2025; the minimum margin of Claude Code over the next tool is
-{{hypotheses[hypothesis=H5].estimate|pct1}} points. Because Claude Code signs by default and many tools do not,
+{{hypotheses[hypothesis=H5].estimate|pp1}} percentage points. Because Claude Code signs by default and many tools do not,
 its share of *attributed* commits overstates its share of AI-assisted commits by an unknown factor.
 
 ![Attributed commits by tool, as a share of all commits in each stratum, by quarter, 2025-Q1 to 2026-Q3. Tools with
@@ -283,12 +286,12 @@ H6 {{hypotheses[hypothesis=H6].supported|verdict}}). Figure @fig:f5 splits the r
 Almost all of these pull requests were squash-merged
 ({{hypotheses[hypothesis=H6].detail.by_method.squash[1]}} of {{hypotheses[hypothesis=H6].detail.n}}), and every
 loss happened at a squash merge: {{hypotheses[hypothesis=H6].detail.by_method.squash[0]}} of
-{{hypotheses[hypothesis=H6].detail.by_method.squash[1]}} squash merges kept the attribution, because GitHub's
-default squash message lists the messages of the squashed commits, trailers included [@githubdocs2026squash].
+{{hypotheses[hypothesis=H6].detail.by_method.squash[1]}} squash merges kept the attribution, which fits GitHub's
+default squash message, which lists the messages of the squashed commits, trailers included [@githubdocs2026squash].
 A loss happens when a repository's squash setting uses the pull request's title and description instead, or
 when the maintainer edits the message at merge time. In these
-repositories, then, the merge is a small leak; the undercount comes mainly from the other two paths, which git
-metadata cannot measure. The {{hypotheses[hypothesis=H6].detail.n}} pull requests come from
+repositories, then, little attribution is lost at the merge; the other two paths, trailers switched off and tools
+that never attribute, cannot be measured from git metadata, and the size of the undercount remains unknown. The {{hypotheses[hypothesis=H6].detail.n}} pull requests come from
 {{hypotheses[hypothesis=H6].detail.repos}} repositories, a few of which contribute many; resampling repositories
 instead of pull requests gives an interval of {{hypotheses[hypothesis=H6].detail.ci_cluster_repo[0]|pct1}}–{{hypotheses[hypothesis=H6].detail.ci_cluster_repo[1]|pct1}}
 (not pre-registered). Losses are spread over {{hypotheses[hypothesis=H6].detail.repos_with_loss}} repositories
@@ -305,7 +308,7 @@ Copilot instructions). In 2026-Q3 the pooled share was {{hypotheses[hypothesis=H
 in repositories that require disclosure, {{hypotheses[hypothesis=H7].detail.by_policy.mentions|pct1}} where AI
 is mentioned without a rule and {{hypotheses[hypothesis=H7].detail.by_policy.silent|pct1}} where policies are
 silent (Figure @fig:f6). The exploratory H7 difference is positive but small
-({{hypotheses[hypothesis=H7].estimate|pct1}} points) and confounded by everything else that distinguishes these
+({{hypotheses[hypothesis=H7].estimate|pp1}} percentage points) and confounded by everything else that distinguishes these
 repositories.
 
 ![AI-attributed share of commits in 2026-Q3 by the repository's AI-contribution policy (one dot per repository;
