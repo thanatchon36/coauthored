@@ -35,8 +35,8 @@ Done 2026-10-29: public (history rewritten), aggregates-only Hugging Face datase
 (<https://huggingface.co/datasets/thanatchon36/coauthored>), Claude colophon removed from the web paper,
 retitled *How Much of the Code That Trains the Models Declares AI Help?* (DEVIATIONS 14), personal-account
 repository slugs kept, PyPI 0.1.0 (<https://pypi.org/project/coauthored/>, Trusted Publishing), release v0.1.0
-with the Zenodo concept DOI 10.5281/zenodo.23752989. Open: GitHub Pages (the monthly workflow is disabled and
-the README web-paper and dashboard links are removed until it is on); posting `announce/`.
+with the Zenodo concept DOI 10.5281/zenodo.23752989. GitHub Pages is on (<https://thanatchon36.github.io/coauthored/>), built by the
+monthly workflow. Open: posting `announce/`.
 
 ## Open issues
 - Survival frame excludes PRs landed by merge bots that close instead of merging (pytorch/pytorch), and PRs
