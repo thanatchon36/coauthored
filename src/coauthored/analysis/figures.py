@@ -311,7 +311,7 @@ def f2(tq: pl.DataFrame, nq: pl.DataFrame, out: Path) -> None:
                 fontsize=6,
                 color=MUTED,
             )
-        peak = max(peak, float(bottom.max()) if len(bottom) else 0.0)
+        peak = max(peak, float(np.max(bottom)) if len(bottom) else 0.0)
         ax.set_xticks(range(len(quarters)), _quarter_labels(quarters), fontsize=7)
         ax.tick_params(axis="x", length=0)
         panel(ax, letter, STRATUM_NAME[s])
