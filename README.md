@@ -8,9 +8,8 @@
 [![Status](https://img.shields.io/badge/status-preprint-orange)](STATUS.md)
 [![Pre-registered](https://img.shields.io/badge/pre--registered-27a6847-blue)](PREREGISTRATION.md)
 
-📄 **[Read the paper on the web](https://thanatchon36.github.io/coauthored/paper/)** ·
 ⬇️ **[Download the PDF](paper/coauthored.pdf)** ·
-📈 **[Monthly dashboard](https://thanatchon36.github.io/coauthored/dashboard/)** ·
+🤗 **[Dataset](https://huggingface.co/datasets/thanatchon36/coauthored)** ·
 📊 **[Figures](results/figures/)** · 🧾 **[Pre-registration](PREREGISTRATION.md)** ·
 🔀 **[Deviations](DEVIATIONS.md)** · 🔁 **[Reproduce](REPRODUCE.md)** · ⚖️ **[Responsible use](RESPONSIBLE_USE.md)**
 
@@ -84,7 +83,8 @@ survival sample.
 | `docs/` | phase reports, policy review, label sample, web paper and dashboard |
 
 As pre-registered, only aggregates are released: no per-commit records, and the survival and size samples carry
-no PR numbers or commit SHAs. The Hugging Face dataset is built by `scripts/build_hf_dataset.py`.
+no PR numbers or commit SHAs. The [Hugging Face dataset](https://huggingface.co/datasets/thanatchon36/coauthored) (aggregates only) is built by
+`scripts/build_hf_dataset.py`.
 
 ## Citation
 
