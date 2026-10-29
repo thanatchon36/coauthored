@@ -18,7 +18,8 @@ def main() -> None:
     s1, s3 = q[("S1", "2026-Q3")], q[("S3", "2026-Q3")]
     img = mpimg.imread("results/figures/f1_monthly_share.png")
     card = plt.figure(figsize=(12, 6.27), dpi=100, facecolor="white")
-    card.text(0.04, 0.93, "Who writes the code that trains the models?", fontsize=26, color=fig.INK, va="top")
+    title = "How much of the code that trains the models declares AI help?"
+    card.text(0.04, 0.93, title, fontsize=26, color=fig.INK, va="top")
     card.text(
         0.04,
         0.84,

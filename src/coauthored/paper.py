@@ -240,17 +240,16 @@ def reader(root: Path, filled: str, data: dict[str, Any], pdf: Path) -> Path:
         + html.escape(
             "@misc{chongmankhong2026coauthored,\n"
             "  author = {Chongmankhong, Thanatchon},\n"
-            "  title  = {Who Writes the Code That Trains the Models? AI Co-Authorship Trailers in AI\n"
-            "            Infrastructure Repositories, 2023--2026},\n"
+            "  title  = {How Much of the Code That Trains the Models Declares AI Help? AI Co-Authorship\n"
+            "            Trailers in AI Infrastructure Repositories, 2023--2026},\n"
             "  year   = {2026},\n"
             f"  url    = {{{REPO_URL}}}\n}}"
         )
         + "</code></pre>"
     )
     colophon = (
-        "<p>Code, analysis and manuscript draft by Claude (Anthropic) under the author's specification; the "
-        "author is responsible for the content. Independent personal research. Public data only. Does not "
-        "represent the views of any employer or institution.</p>"
+        "<p>Independent personal research. Public data only. Does not represent the views of any employer or "
+        "institution.</p>"
         "<p>Rendered from <code>paper/paper.md</code> by <code>coauthored paper</code>. Every number is "
         "filled from <code>results/numbers.json</code>; <code>coauthored analyze</code> regenerates it from "
         "the committed aggregates.</p>"

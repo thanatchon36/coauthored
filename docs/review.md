@@ -1,6 +1,6 @@
 # Phase 9 — adversarial review and resolutions (2026-10-29)
 
-The draft (commit `3c3985c`) was reviewed adversarially by an AI subagent briefed to find overclaims, errors and
+The draft (commit `63d2ce9`) was reviewed adversarially by an AI subagent briefed to find overclaims, errors and
 missing caveats, without the author's conclusions. Every claim it made was checked against the data or the code
 before acting on it; checks are noted. Numbers below are from the revised `results/numbers.json`.
 
@@ -10,7 +10,7 @@ before acting on it; checks are noted. Numbers below are from the revised `resul
 |---|---|---|---|
 | 1 | "Matched non-AI repositories rose just as fast", "same curve", "all of open source" claim equivalence that the data cannot support: the H2 odds-ratio CI runs from about half to almost five. | Confirmed; S3 was above S1 in six consecutive months of 2026 (February–July), and one S3 repository holds about half of S3's attributed commits in 2026-Q3. | Abstract, introduction, results and discussion reframed as *inconclusive*: no evidence of a lead, none of its absence. New post-hoc `robustness` block (month-by-month order, S3 without its largest contributor, repository-weighted shares), DEVIATIONS 10. |
 | 2 | Mirror exports from internal monorepos are a fourth leak path, missing from §3, and they dilute S1 (H1 without mirrors 12.2%, CI 6.6–18.5%). | Confirmed: five repositories have mirror-export trailers on at least half their window commits (three in S1). | Added as leak path 3, with the mirror-removed estimate in text and abstract. |
-| 3 | The per-commit Hugging Face dataset contradicts PREREGISTRATION §11 ("only repository-month aggregates are published"); `data/survival.csv` and `data/size_sample.csv` carry PR numbers and SHAs. | Confirmed. | Builder now aggregates-only; samples published without identifiers (cache keeps them); DECISIONS D16 revised; DEVIATIONS 13. The committed history still contains the identified samples — **history rewrite to decide at STOP 2**. |
+| 3 | The per-commit Hugging Face dataset contradicts PREREGISTRATION §11 ("only repository-month aggregates are published"); `data/survival.csv` and `data/size_sample.csv` carry PR numbers and SHAs. | Confirmed. | Builder now aggregates-only; samples published without identifiers (cache keeps them); DECISIONS D16 revised; DEVIATIONS 13. History rewritten at STOP 2, before the repository was made public: earlier versions of both files lost the identifier column. |
 | 4 | Survival mechanism ("GitHub's default squash message lists the messages, trailers included") is not supported by the cited documentation; GitHub also adds `Co-authored-by` for commit authors at squash, an alternative mechanism. | Confirmed against both pages (fetched 2026-10-29): the docs say "title and list of commits" and say nothing about trailers. | Mechanism paragraph rewritten: two candidate mechanisms, not separable here. |
 | 5 | Pooled H6 (184/200) mixes an observed rate (squash) with a scoring rule (merge kept by construction; rebase kept unless the last commit lost attribution). | Confirmed in `survival/classify.py`. | Rule stated in the paper and DEVIATIONS 9; squash-only 176/192 reported as the observed result. |
 | 6 | Reverts and H7 were computed without shared-history deduplication, unlike every other pooled figure. | Confirmed. | `aggregate` and `h7` now deduplicate (DEVIATIONS 12); S2 revert counts change, S1 and S3 do not. |
@@ -30,7 +30,7 @@ before acting on it; checks are noted. Numbers below are from the revised `resul
 | 15 | Unlogged post-hoc analyses (revert standardisation, size fixed effects, 2026 restriction). | DEVIATIONS 10; "(post hoc)" in text and sensitivity table. |
 | 16 | Survival estimand undefined; PRs truncated at 100 commits. | Estimand defined; truncation stated. |
 | 17 | Policy coding checked by Claude after the shares were known (not blind); H7 called "small" while the "mentions" class exceeds "requires disclosure". | Stated in text and the F6 caption; H7 wording changed. |
-| 18 | Personal-account repository slugs effectively name a person. | Ethics paragraph; no per-person figures. Raised at STOP 2. |
+| 18 | Personal-account repository slugs effectively name a person. | Ethics paragraph; no per-person figures. At STOP 2 the slugs were kept: they are the public names of the projects, needed to reproduce the study, and no figure is reported per person. |
 | 19 | Pre-registration timestamp is self-hosted (git tag in the author's repository). | Raise at STOP 2: a Zenodo release of the tag gives an independent timestamp. |
 
 ## Minor
@@ -48,7 +48,7 @@ before acting on it; checks are noted. Numbers below are from the revised `resul
 | 28 | F3 never referenced. | Referenced in §5.1. |
 | 29 | The ≥100 commits in 2024 inclusion rule (S1, S3) is not stated. | Stated. |
 | 30 | Citation nuances: favaro2026 counts lines at one laboratory; horikawa2026 stated too strongly; robbes2026 uses several signals at project level; semianalysis2026 not described as a "floor". | Each reworded. |
-| 31 | The title ("Who Writes the Code…") invites the reading the paper disclaims. | Title is the author's choice; raised at STOP 2. |
+| 31 | The title ("Who Writes the Code…") invites the reading the paper disclaims. | Retitled at STOP 2: *How Much of the Code That Trains the Models Declares AI Help?* (DEVIATIONS 14). |
 
 ## Not changed
 

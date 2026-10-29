@@ -1,5 +1,5 @@
 ---
-title: "Who Writes the Code That Trains the Models? AI Co-Authorship Trailers in AI Infrastructure Repositories, 2023–2026"
+title: "How Much of the Code That Trains the Models Declares AI Help? AI Co-Authorship Trailers in AI Infrastructure Repositories, 2023–2026"
 author: "Thanatchon Chongmankhong"
 date: "October 2026"
 bibliography: paper/refs.bib

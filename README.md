@@ -14,8 +14,8 @@
 📊 **[Figures](results/figures/)** · 🧾 **[Pre-registration](PREREGISTRATION.md)** ·
 🔀 **[Deviations](DEVIATIONS.md)** · 🔁 **[Reproduce](REPRODUCE.md)** · ⚖️ **[Responsible use](RESPONSIBLE_USE.md)**
 
-**Who Writes the Code That Trains the Models? AI Co-Authorship Trailers in AI Infrastructure Repositories,
-2023–2026.** `coauthored` counts the commits in a git history that carry an explicit AI attribution: a
+**How Much of the Code That Trains the Models Declares AI Help? AI Co-Authorship Trailers in AI Infrastructure
+Repositories, 2023–2026.** `coauthored` counts the commits in a git history that carry an explicit AI attribution: a
 `Co-authored-by:` trailer naming an AI tool, a commit by an AI-agent account, or a tool's generated-with marker.
 The pre-registered study in this repository measures that share month by month in 42 open-source repositories that
 train, fine-tune, evaluate and serve AI models (S1), 12 open-source coding-agent harnesses (S2), and 42 popular

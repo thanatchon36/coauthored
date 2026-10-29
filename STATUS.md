@@ -1,7 +1,6 @@
 # Status
 
-**STOP 2 — waiting for the author (2026-10-29).** Phases 9–11 done: review resolved, paper rebuilt, announcement
-drafts written. Nothing is public yet.
+**STOP 2 — partly decided (2026-10-29).** Phases 9–11 done; decisions below.
 
 ## Done
 - Phase 0 — scoping (2026-10-28): environment, names, skeleton, private repository.
@@ -32,10 +31,11 @@ drafts written. Nothing is public yet.
   `.github/workflows/monthly.yml` (runs only once the repository is public).
 
 ## Next — STOP 2 (the author decides)
-Make the repository public (after rewriting history to drop the identified survival/size samples, which
-carry PR numbers and SHAs in earlier commits), cut a release and mint the Zenodo DOI (also an independent timestamp for
-`prereg-v1`), push the aggregates-only Hugging Face dataset, enable Pages, publish to PyPI, keep or change the
-Claude colophon on the web paper, keep or change the title.
+Decided 2026-10-29: public (history rewritten), aggregates-only Hugging Face dataset, Claude colophon removed from
+the web paper, retitled *How Much of the Code That Trains the Models Declares AI Help?* (DEVIATIONS 14),
+personal-account repository slugs kept. Open: a release with a Zenodo DOI (also an independent timestamp for
+`prereg-v1`), Pages (the monthly workflow is disabled until then), PyPI (not needed: `pip install` works from
+the git URL).
 
 ## Open issues
 - Survival frame excludes PRs landed by merge bots that close instead of merging (pytorch/pytorch), and PRs

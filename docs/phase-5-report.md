@@ -34,7 +34,7 @@ like per-merge message edits or title-and-description squash settings rather tha
 
 The first full analysis reported H6 as 0 of 200: `load_survival` compared polars' lowercase booleans with
 `"True"`/`"False"` and turned every flag into null. The synthetic test had written the CSV with polars, which
-hid the bug. Fixed in `41c39d5`; the fixture now writes the CSV the way the sampler does and the smoke test
+hid the bug. Fixed in `6e4f085`; the fixture now writes the CSV the way the sampler does and the smoke test
 asserts k and n.
 
 ## Consequence for the paper
