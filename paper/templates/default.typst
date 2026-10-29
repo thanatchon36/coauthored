@@ -20,6 +20,9 @@
   kind: table
 ): set figure.caption(position: $if(table-caption-position)$$table-caption-position$$else$top$endif$)
 
+// long tables (the appendix repository list) continue on the next page instead of leaving a blank one
+#show figure.where(kind: table): set block(breakable: true)
+
 #show figure.where(
   kind: image
 ): set figure.caption(position: $if(figure-caption-position)$$figure-caption-position$$else$bottom$endif$)

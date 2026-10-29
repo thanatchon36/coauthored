@@ -32,6 +32,12 @@ signature catalogue (`configs/signatures.yaml`, three public evidence URLs per e
 **lower bound** on AI involvement: tools can be configured not to attribute, attribution can be lost at merge,
 and some tools never attribute. An attributed commit is not a commit "written by AI".
 
+Paper: *How Much of the Code That Trains the Models Declares AI Help?*
+([PDF](https://github.com/thanatchon36/coauthored/blob/main/paper/coauthored.pdf)).
+Code: <https://github.com/thanatchon36/coauthored>.
+
+*Independent personal research. Public data only. Does not represent the views of any employer or institution.*
+
 ## Privacy
 
 As pre-registered (§11), only aggregates are released: **no per-commit records, no names, no e-mail
@@ -44,7 +50,6 @@ this dataset to profile individual developers.
 
 | path | content |
 |---|---|
-| `commits/s{1,2,3}.parquet` | one row per commit on the default branch at the snapshot head (fields below) |
 | `aggregated/repo_month.parquet` | commits, attributed commits, active and attributing authors per repository-month, six specifications, with and without shared-history deduplication |
 | `aggregated/repo_month_tool.parquet` | attributed commits per repository-month and tool |
 | `aggregated/reverts.parquet` | window commits and later reverts per repository-month and attribution status |
