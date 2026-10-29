@@ -53,7 +53,8 @@ We find that the answer in mid-2026 is about one commit in {{summary.quarterly[s
 (Figure @fig:f1). The comparison is the part we expected to be different. Popular repositories with nothing to
 do with AI, matched on stars, language and activity, carry AI attribution at a similar rate
 ({{summary.quarterly[stratum=S3,q=2026-Q3].share|pct1}}), and in {{robustness.s1_below_s3_2026.count}} of the
-{{robustness.s1_below_s3_2026.of}} months of 2026 the controls were *above* the AI-infrastructure repositories.
+{{robustness.s1_below_s3_2026.of}} months of 2026 the controls were *above* the AI-infrastructure repositories
+(Figure @fig:f1, panel b).
 The open-source coding-agent harnesses, the tools that produce these attributions, started earlier but are not
 clearly ahead in 2026. We read this as inconclusive rather than as equality: the intervals are wide, one control
 repository supplies {{robustness.s3_top_repo.fraction_of_attributed|pct}} of the controls' attributed commits in
@@ -224,9 +225,10 @@ close afterwards: over the 2025 calendar year the pooled share was
 in S3, and over January–September 2026 {{summary.year[stratum=S1,year=2026].share|pct1}} and
 {{summary.year[stratum=S3,year=2026].share|pct1}}.
 
-![Monthly AI-attributed share of commits by stratum, January 2023 – September 2026, pooled over repositories,
-with 95% cluster-bootstrap bands. AI-attributed commits are a lower bound on AI
-involvement.](results/figures/f1_monthly_share.svg){#fig:f1 width=100%}
+![Monthly AI-attributed share of commits, pooled over repositories, with 95% cluster-bootstrap bands.
+(a) The three strata, January 2023 – September 2026. (b) S1 against S3 over 2026 on its own scale; the dotted
+line is the pre-registered H1 threshold. Shaded columns: 2026-Q3, the quarter of the level and difference
+tests. AI-attributed commits are a lower bound on AI involvement.](results/figures/f1_monthly_share.svg){#fig:f1 width=100%}
 
 In 2026-Q3 the pooled share was {{summary.quarterly[stratum=S1,q=2026-Q3].share|pct1}} in S1
 ({{summary.quarterly[stratum=S1,q=2026-Q3].n_attr|,}} of {{summary.quarterly[stratum=S1,q=2026-Q3].n|,}}
@@ -311,8 +313,9 @@ attributed commits in the three quarters of 2026. **H5 is {{hypotheses[hypothesi
 its share of *attributed* commits probably overstates its share of AI-assisted commits, by an unknown factor.
 
 ![Attributed commits by tool, as a share of all commits in each stratum, by quarter, 2025-Q1 to 2026-Q3. The nine
-tools with the most attributed commits over 2025–2026 are shown; all others are grouped as Other. AI-attributed
-commits are a lower bound.](results/figures/f2_tools.svg){#fig:f2 width=100%}
+tools with the most attributed commits over 2025–2026 are shown; all others are grouped as Other. The label above
+each bar is the stratum's total attributed share. AI-attributed commits are a lower
+bound.](results/figures/f2_tools.svg){#fig:f2 width=100%}
 
 # How much does the signal miss? (RQ5) {#sec:undercount}
 
@@ -367,7 +370,7 @@ interval, and with everything else that distinguishes these repositories, we rea
 attributed shares had been computed, so the check was not blind.
 
 ![AI-attributed share of commits in 2026-Q3 by the repository's AI-contribution policy (one dot per repository;
-bars: pooled share of the class). Policies were read at the snapshot from the contribution guidelines,
+bars and labels: pooled share of the class). Policies were read at the snapshot from the contribution guidelines,
 classified by rule and checked by an AI assistant after the shares were known. AI-attributed commits are a lower
 bound.](results/figures/f6_policy.svg){#fig:f6 width=75%}
 
@@ -406,8 +409,8 @@ below it have attribution spread thinly over many authors. The line is a visual 
 two shares have different denominators.
 
 ![Per repository, 2026-Q3: intensity (share of commits attributed) against breadth (mean monthly share of active
-authors with at least one attributed commit). Dashed line: equal shares. AI-attributed commits are a lower
-bound.](results/figures/f8_breadth.svg){#fig:f8 width=70%}
+authors with at least one attributed commit). Dashed line: equal shares; the repositories with the highest
+shares are named. AI-attributed commits are a lower bound.](results/figures/f8_breadth.svg){#fig:f8 width=70%}
 
 # Discussion
 
@@ -501,8 +504,10 @@ aggregates from the recorded SHAs. The code is released under Apache-2.0 and the
 
 ## Per-repository shares {-}
 
-![AI-attributed share of commits per repository, 2026-Q3, with Wilson 95% intervals. One S1 repository had no commits
-in the quarter. AI-attributed commits are a lower bound.](results/figures/f4_per_repo.svg){#fig:f4 width=100%}
+![AI-attributed share of commits per repository, 2026-Q3, with Wilson 95% intervals; dashed line: the stratum's
+pooled share. One S1 repository had no commits in the quarter. AI-attributed commits are a lower
+bound.](results/figures/f4_per_repo.svg){#fig:f4 width=100%}
 
-![AI-attributed share per repository and month, 2025-01 to 2026-09; repository-months with fewer than ten commits
-in grey. AI-attributed commits are a lower bound.](results/figures/f3_heatmap.svg){#fig:f3 width=100%}
+![AI-attributed share per repository and month, 2025-01 to 2026-09; within each stratum, repositories are ordered
+by their 2026-Q3 share, as in Figure @fig:f4. Repository-months with fewer than ten commits in grey.
+AI-attributed commits are a lower bound.](results/figures/f3_heatmap.svg){#fig:f3 width=100%}

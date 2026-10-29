@@ -358,6 +358,23 @@ def _per_repo_q3(df: pl.DataFrame) -> pl.DataFrame:
     )
 
 
+def heatmap_order(cfg: dict[str, Any], per_repo: pl.DataFrame) -> list[tuple[str, str]]:
+    """Rows of F3: strata in order, and within each the repositories by 2026-Q3 share, highest first (as in
+    F4); repositories without commits in the quarter come last, in configuration order."""
+    share = {r["repo"]: r["share"] for r in per_repo.iter_rows(named=True)}
+    out: list[tuple[str, str]] = []
+    for s in ("S1", "S2", "S3"):
+        repos = [r["repo"] for r in cfg[s.lower()]]
+        out += [(s, r) for r in sorted(repos, key=lambda r: (-share.get(r, -1.0), repos.index(r)))]
+    return out
+
+
+def pooled_q3(pool: pl.DataFrame) -> dict[str, float]:
+    """Pooled 2026-Q3 share per stratum (deduplicated history), the reference lines of F4."""
+    q = h._between(pool, *h.Q3_2026).group_by("stratum").agg(pl.col("n").sum(), pl.col("n_attr").sum())
+    return {r["stratum"]: r["n_attr"] / r["n"] for r in q.iter_rows(named=True) if r["n"]}
+
+
 def _md_table(rows: list[dict[str, Any]], cols: list[str]) -> str:
     out = ["| " + " | ".join(cols) + " |", "|" + "|".join("---" for _ in cols) + "|"]
     out += ["| " + " | ".join(str(r.get(c, "")) for c in cols) + " |" for r in rows]
@@ -399,9 +416,8 @@ def analyze(b: int = h.B, out: Path = RESULTS) -> dict[str, Any]:
     t = _quarter_col(tools.filter((pl.col("spec") == "primary") & pl.col("dedup")))
     nq = _quarter_col(pool).group_by("stratum", "q").agg(pl.col("n").sum())
     fig.f2(t.group_by("stratum", "q", "tool").agg(pl.col("n_attr").sum()), nq, figs)
-    order = [(s, r["repo"]) for s in ("S1", "S2", "S3") for r in cfg[s.lower()]]
-    fig.f3(full, order, figs)
-    fig.f4(per_repo, figs)
+    fig.f3(full, heatmap_order(cfg, per_repo), figs)
+    fig.f4(per_repo, figs, pooled=pooled_q3(pool))
     h6 = next((r for r in results if r.hypothesis == "H6"), None)
     if h6 is not None and h6.detail["n"]:
         fig.f5(h6.detail["by_method"], (h6.detail["k"], h6.detail["n"]), figs)

@@ -3,10 +3,12 @@
 from __future__ import annotations
 
 import json
+import tempfile
 from pathlib import Path
 
 import matplotlib.image as mpimg
 import matplotlib.pyplot as plt
+import polars as pl
 
 from coauthored.analysis import figures as fig
 
@@ -16,7 +18,11 @@ def main() -> None:
     n = json.loads(Path("results/numbers.json").read_text())
     q = {(r["stratum"], r["q"]): r["share"] for r in n["summary"]["quarterly"]}
     s1, s3 = q[("S1", "2026-Q3")], q[("S3", "2026-Q3")]
-    img = mpimg.imread("results/figures/f1_monthly_share.png")
+    # the single-panel F1 (the paper's F1 adds a 2026 detail panel, too busy for a card)
+    series = pl.DataFrame(n["monthly"]).select("stratum", "month", "share", "lo", "hi")
+    with tempfile.TemporaryDirectory() as tmp:
+        fig.f1(series, Path(tmp), detail=False, name="card")
+        img = mpimg.imread(Path(tmp) / "card.png")
     card = plt.figure(figsize=(12, 6.27), dpi=100, facecolor="white")
     title = "How much of the code that trains the models declares AI help?"
     card.text(0.04, 0.93, title, fontsize=26, color=fig.INK, va="top")

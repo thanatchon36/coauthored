@@ -159,11 +159,18 @@ def test_analyze_writes_every_output(tmp_path: Path, monkeypatch: pytest.MonkeyP
     assert policy["s1org/repo0"] == "mentions"  # override applied
 
 
-def test_spread_separates_close_labels() -> None:
-    from coauthored.analysis.figures import _spread
+def test_legend_reads_row_by_row_and_quarter_labels() -> None:
+    from coauthored.analysis.figures import _quarter_labels, _row_major
 
-    out = _spread({"a": 0.10, "b": 0.105, "c": 0.5}, gap=0.02)
-    assert out["b"] - out["a"] >= 0.02 and out["c"] == 0.5
+    handles, labels = _row_major(list(range(10)), [str(i) for i in range(10)], ncol=5)
+    assert handles == [0, 5, 1, 6, 2, 7, 3, 8, 4, 9] and labels[1] == "5"  # matplotlib fills columns first
+    assert _quarter_labels(["2025-Q3", "2025-Q4", "2026-Q1"]) == ["Q3\n2025", "Q4", "Q1\n2026"]
+
+
+def test_heatmap_order_sorts_within_stratum() -> None:
+    cfg = {"s1": [{"repo": "a"}, {"repo": "b"}, {"repo": "c"}], "s2": [{"repo": "d"}], "s3": []}
+    per_repo = pl.DataFrame({"repo": ["a", "b", "d"], "share": [0.1, 0.3, 0.2]})
+    assert run.heatmap_order(cfg, per_repo) == [("S1", "b"), ("S1", "a"), ("S1", "c"), ("S2", "d")]
 
 
 def test_clean_handles_nan_and_numpy() -> None:
