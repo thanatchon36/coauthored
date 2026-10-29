@@ -3,6 +3,7 @@
 <h1 align="center">coauthored</h1>
 
 [![CI](https://github.com/thanatchon36/coauthored/actions/workflows/ci.yml/badge.svg)](https://github.com/thanatchon36/coauthored/actions/workflows/ci.yml)
+[![PyPI](https://img.shields.io/pypi/v/coauthored)](https://pypi.org/project/coauthored/)
 [![License](https://img.shields.io/badge/license-Apache--2.0-green)](LICENSE)
 [![Data](https://img.shields.io/badge/data-CC--BY--4.0-blue)](LICENSE-DATA)
 [![Status](https://img.shields.io/badge/status-preprint-orange)](STATUS.md)
@@ -51,7 +52,7 @@ monorepo, or never added. The review of the draft and how each point was handled
 ## Run it on your own organisation
 
 ```bash
-uv tool install git+https://github.com/thanatchon36/coauthored   # or: pip install git+https://github.com/thanatchon36/coauthored
+pip install coauthored            # or: uv tool install coauthored
 coauthored report --org <your-org>        # monthly AI-attributed share of every public repository since 2024-01
 ```
 
