@@ -52,7 +52,7 @@ monorepo, or never added. The review of the draft and how each point was handled
 ## Run it on your own organisation
 
 ```bash
-uv tool install git+https://github.com/thanatchon36/coauthored
+uv tool install git+https://github.com/thanatchon36/coauthored   # or: pip install git+https://github.com/thanatchon36/coauthored
 coauthored report --org <your-org>        # monthly AI-attributed share of every public repository since 2024-01
 ```
 
