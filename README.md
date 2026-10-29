@@ -28,10 +28,10 @@ non-AI repositories matched on stars, language and activity (S3), from the full 
 <p align="center"><img src="results/figures/f1_monthly_share.png" alt="Monthly AI-attributed share of commits by stratum, 2023 to September 2026" width="860"></p>
 
 In July–September 2026, **8.7% of commits to AI-infrastructure repositories were AI-attributed** (95% CI
-4.0–14.5%), about one in 11, up from 0.5% over 2025 and none in 2024. **Matched non-AI repositories rose just as
-fast**, to 7.1% (2.3–12.6%), and the coding-agent harnesses, which started earlier, were not clearly ahead in
-2026 (10.3%, 1.6–23.7%). In this population, "AI building AI" is not a special case: it follows the same curve
-as the rest of popular open source.
+4.0–14.5%), about one in 11, up from 0.5% over 2025 and almost none in 2024. **Matched non-AI repositories were
+at a similar level**, 7.1% (2.3–12.6%), and the coding-agent harnesses, which started earlier, were not clearly
+ahead (10.3%, 1.6–23.7%). The intervals are too wide to tell the groups apart: there is no evidence that "AI
+building AI" runs ahead of popular open source, and no proof that it does not.
 
 | pre-registered hypothesis | result |
 |---|---|
@@ -41,11 +41,13 @@ as the rest of popular open source.
 | H4 harnesses above S1 | not supported (+1.6 points, CI −9.0 to 15.8) |
 | H5 Claude Code the top tool every quarter from 2025-Q2 | not supported (it leads only from 2026-Q1) |
 | H6 ≥ 80% of attributed pull requests keep attribution after merge | **supported** (184 of 200, 92%) |
-| H7 disclosure policies, higher share (exploratory) | positive, small (+3.2 points) |
+| H7 disclosure policies, higher share (exploratory) | positive (+2.9 points), confounded |
 
 Every share is a **lower bound** on AI involvement, and an attributed commit is not a commit "written by AI":
-the trailer says a tool took part, not how much of the change it produced. Attribution can be switched off,
-lost at merge (rarely, in this sample), or never added.
+the trailer says a tool took part, not how much of the change it produced. Attribution is not adoption either:
+it can be switched off, lost at merge (rarely, in this sample), dropped when code is exported from an internal
+monorepo, or never added. The review of the draft and how each point was handled are in
+[docs/review.md](docs/review.md).
 
 ## Run it on your own organisation
 
@@ -81,8 +83,8 @@ survival sample.
 | `paper/` | paper source, PDF, template |
 | `docs/` | phase reports, policy review, label sample, web paper and dashboard |
 
-The per-commit dataset (no names, no e-mail addresses, no messages, no identity hashes) is prepared for
-release separately.
+As pre-registered, only aggregates are released: no per-commit records, and the survival and size samples carry
+no PR numbers or commit SHAs. The Hugging Face dataset is built by `scripts/build_hf_dataset.py`.
 
 ## Citation
 

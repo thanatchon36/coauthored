@@ -1,7 +1,7 @@
 # Status
 
-**Phase 9 — adversarial review: in progress (2026-10-29).** Paper drafted and built; final analysis done.
-STOP 2 follows Phases 9–11: nothing is public yet.
+**STOP 2 — waiting for the author (2026-10-29).** Phases 9–11 done: review resolved, paper rebuilt, announcement
+drafts written. Nothing is public yet.
 
 ## Done
 - Phase 0 — scoping (2026-10-28): environment, names, skeleton, private repository.
@@ -24,13 +24,18 @@ STOP 2 follows Phases 9–11: nothing is public yet.
   H1 supported (point estimate; CI reaches below 5%), H2–H5 not supported, H6 supported, H7 exploratory positive.
 - Phase 8 — `paper/paper.md` → `paper/coauthored.pdf` (8 pages + references and appendix) and
   `docs/site/paper/index.html`; every number filled from `numbers.json`, hand-typed numbers fail the build.
+- Phase 9 — adversarial review (`docs/review.md`): 31 findings, each checked and resolved; S1 vs S3 reframed as
+  inconclusive, mirror exports added as a leak path, aggregates-only release, survival scoring rule stated,
+  deduplicated reverts and H7, post-hoc robustness block; DEVIATIONS 9–13.
+- Phase 11 — `announce/`: three LinkedIn drafts, 150-word abstract, figure card (drafts only, not posted).
 - Phase 10 (partial) — `REPRODUCE.md`, `RESPONSIBLE_USE.md`, README with results, `coauthored dashboard` and
   `.github/workflows/monthly.yml` (runs only once the repository is public).
 
-## Next
-Phase 9 review → `docs/review.md`, fix blocking items; Phase 11 announcement drafts in `announce/`; CI green on
-the private repository. Then **STOP 2**: ask before making the repository public, cutting a release / minting the
-DOI, pushing the Hugging Face dataset, enabling Pages, or publishing to PyPI.
+## Next — STOP 2 (the author decides)
+Make the repository public (after rewriting history to drop the identified survival/size samples, which
+carry PR numbers and SHAs in earlier commits), cut a release and mint the Zenodo DOI (also an independent timestamp for
+`prereg-v1`), push the aggregates-only Hugging Face dataset, enable Pages, publish to PyPI, keep or change the
+Claude colophon on the web paper, keep or change the title.
 
 ## Open issues
 - Survival frame excludes PRs landed by merge bots that close instead of merging (pytorch/pytorch), and PRs

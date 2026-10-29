@@ -5,7 +5,7 @@
 2. Shuffle each repository's list with the frozen seed; visit repositories round-robin, one PR per visit.
 3. For each PR fetch its head commits (first 100) and its landed commit, classify with
    `coauthored.survival.classify`, and stop at 200 PRs with an attributed head commit or 4,000 inspected.
-Writes data/survival.csv (repository, PR number, method, flags, tools; no messages or identities).
+Writes data/survival.csv (repository, method, flags, tools; no messages or identities).
 """
 
 from __future__ import annotations
@@ -150,7 +150,8 @@ def main() -> None:
             i += BATCH
             print(f"inspected {len(done)}  attributed-head {n_attr}", file=sys.stderr)
     with open("data/survival.csv", "w", newline="") as out:
-        w = csv.DictWriter(out, fieldnames=list(done[0]))
+        # the published file carries no PR number (PREREGISTRATION §11); cache/ keeps the identified rows
+        w = csv.DictWriter(out, fieldnames=[k for k in done[0] if k != "number"], extrasaction="ignore")
         w.writeheader()
         w.writerows(done)
     print(f"done: inspected {len(done)}, attributed head {n_attr}", file=sys.stderr)

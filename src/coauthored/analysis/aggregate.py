@@ -24,6 +24,7 @@ class Spec:
     drop_maint_bots: bool = True
     start: str = "2023-01"
     end: str = "2026-09"
+    exclude_signatures: tuple[str, ...] = ()  # catalogue ids that do not count (post-hoc analyses only)
 
 
 SENSITIVITY = [
@@ -34,6 +35,11 @@ SENSITIVITY = [
     Spec(name="strict_trailers", strict=True),
     Spec(name="bots_included", drop_maint_bots=False),
 ]
+
+# Not pre-registered (DEVIATIONS 11): applied review suggestions, where a person clicks "commit suggestion"
+# on a review bot's comment and GitHub adds the bot as co-author, are not a coding agent writing the change.
+REVIEW_SUGGESTIONS = ("copilot-coauthor", "gemini-code-assist-coauthor")
+POST_HOC = [Spec(name="no_review_suggestions", exclude_signatures=REVIEW_SUGGESTIONS)]
 
 
 def load_commits(path: Path, repo: str) -> pl.DataFrame:
@@ -60,11 +66,13 @@ def mark_shared(frames: list[pl.DataFrame]) -> list[pl.DataFrame]:
     return out
 
 
-def reverts(df: pl.DataFrame, spec: Spec) -> pl.DataFrame:
+def reverts(df: pl.DataFrame, spec: Spec, reverted_sha: pl.Series | None = None) -> pl.DataFrame:
     """Per repository, month and attribution status: window commits and how many were later reverted (RQ6).
 
-    By month so that attributed and unattributed commits can be compared at equal exposure time."""
-    reverted = {r for r in df["reverted_sha"].to_list() if r}
+    By month so that attributed and unattributed commits can be compared at equal exposure time.
+    ``reverted_sha``: the revert targets to look up (default: those in ``df``)."""
+    targets = df["reverted_sha"] if reverted_sha is None else reverted_sha
+    reverted = {r for r in targets.to_list() if r}
     prefixes = {r[:7] for r in reverted}
     c = filter_commits(df, spec).with_columns(
         pl.col("sha")
@@ -102,10 +110,14 @@ def filter_commits(df: pl.DataFrame, spec: Spec) -> pl.DataFrame:
         out = out.filter(pl.col("first_parent"))
     if spec.drop_maint_bots:
         out = out.filter(~pl.col("author_maint_bot"))
-    flag = "attributed_strict" if spec.strict else "attributed"
+    flag = pl.col("attributed_strict" if spec.strict else "attributed")
+    if spec.exclude_signatures:
+        ids = pl.col("signature_ids").cast(pl.List(pl.String))  # list[null] in repositories with no signature
+        others = ids.list.set_difference(list(spec.exclude_signatures)).list.len() > 0
+        flag = flag & others
     return out.filter(pl.col("month").is_between(pl.lit(spec.start), pl.lit(spec.end))).with_columns(
-        pl.col(flag).alias("attr"),
-        pl.when(pl.col(flag)).then(pl.col("tool")).otherwise(None).alias("attr_tool"),
+        flag.alias("attr"),
+        pl.when(flag).then(pl.col("tool")).otherwise(None).alias("attr_tool"),
     )
 
 

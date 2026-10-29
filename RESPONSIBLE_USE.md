@@ -18,7 +18,7 @@ organisations**, not people.
 - **Do not rank, assess, monitor or discipline individual developers** with this tool or its data. An
   attributed commit says a tool took part, not how much, and an unattributed one says nothing at all. Who
   enables attribution is a matter of settings and habit, so per-person counts measure disclosure, not use.
-- Do not try to recover identities from the hashes. The per-commit dataset contains none; the scanner's hashes
+- Do not try to recover identities from the hashes. The released dataset holds aggregates only; the scanner's hashes
   are salted with a secret that stays on the machine that ran the scan (`.env`, git-ignored).
 - Do not describe attributed commits as "written by AI", or the share as the fraction of code produced by AI.
 - Do not read a high or low share as a sign of quality, safety or productivity. The paper finds no difference

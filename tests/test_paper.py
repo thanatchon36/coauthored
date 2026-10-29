@@ -112,3 +112,4 @@ def test_results_strip_kinds() -> None:
 
 def test_fmt_percentage_points() -> None:
     assert fmt(0.01614, "pp1") == "1.6" and fmt(-0.758, "pp1") == "−75.8"
+    assert fmt(2e-6, "p") == "<0.001" and fmt(0.0812, "p") == "0.081"

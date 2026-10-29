@@ -5,6 +5,7 @@
 | bots_included | 0.087 ✓ | 1.433 ✗ | 0.031 ✗ | 0.023 ✗ |
 | first_parent | 0.091 ✓ | 1.268 ✗ | 0.020 ✗ | 0.123 ✗ |
 | merges_included | 0.085 ✓ | 1.337 ✗ | 0.024 ✗ | 0.008 ✗ |
+| no_review_suggestions (post hoc) | 0.085 ✓ | 1.498 ✗ | 0.065 ✗ | 0.018 ✗ |
 | strict_trailers | 0.081 ✓ | 1.149 ✗ | 0.021 ✗ | 0.022 ✗ |
 | largest_3_removed | 0.109 ✓ | 1.899 ✗ | -0.027 ✗ | 0.063 ✗ |
 | mirror_removed | 0.122 ✓ | 1.808 ✗ | 0.017 ✗ | -0.019 ✗ |

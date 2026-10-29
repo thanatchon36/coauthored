@@ -10,8 +10,9 @@ commit had been found (cap 4,000 inspected). It stopped after **2,542 inspected*
 **200 attributed** (S1 120, S2 80) from 41 repositories. 15 pull requests had more than 100 commits; only their first 100
 were read (`head_truncated`), which can only miss attribution, not add it.
 
-Only flags are kept: `data/survival.csv` and `cache/survival/` hold repository, PR number, merge method,
-attribution flags, tool names and commit counts. Commit authors and messages are read in memory by the
+Only flags are kept: `cache/survival/` (git-ignored) holds repository, PR number, merge method, attribution
+flags, tool names and commit counts; the published `data/survival.csv` has the same columns without the PR
+number (DEVIATIONS 13). Commit authors and messages are read in memory by the
 pre-registered matcher and never written.
 
 | merge method | inspected | attributed head | attribution survived |

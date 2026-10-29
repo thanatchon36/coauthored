@@ -310,13 +310,24 @@ def h6(survival: pl.DataFrame, b: int = B) -> Result:
             "repos": per.height,
             "repos_with_loss": int((per["k"] < per["n"]).sum()),
             "ci_cluster_repo": cluster,
+            "repo_weighted": float((per["k"] / per["n"]).mean()) if n else float("nan"),  # type: ignore[arg-type]
+            "by_tool": _survival_by_tool(a),
         },
     )
 
 
+def _survival_by_tool(a: pl.DataFrame) -> dict[str, tuple[int, int]]:
+    """(kept, pull requests) per tool named on the head commits; a pull request can count for several."""
+    tools = pl.col("head_tools").cast(pl.String).fill_null("").str.split(";")
+    t = a.with_columns(tools).explode("head_tools").filter(pl.col("head_tools") != "")
+    g = t.group_by("head_tools").agg(pl.col("survived").cast(pl.Int64).sum().alias("k"), pl.len().alias("n"))
+    rows = g.sort("head_tools").iter_rows(named=True)
+    return {str(r["head_tools"]): (int(r["k"]), int(r["n"])) for r in rows}
+
+
 # --- H7 (exploratory) -------------------------------------------------------------------------------------
-def h7(full: pl.DataFrame, policy: pl.DataFrame) -> Result:
-    q = _between(full, *Q3_2026).join(policy.select("repo", "policy"), on="repo", how="left")
+def h7(pool: pl.DataFrame, policy: pl.DataFrame) -> Result:
+    q = _between(pool, *Q3_2026).join(policy.select("repo", "policy"), on="repo", how="left")
     shares = {str(c): pooled(g) for (c,), g in q.group_by(["policy"]) if c is not None}
     disc = shares.get("requires_disclosure", float("nan"))
     rest = pooled(q.filter(pl.col("policy").is_in(["bans", "silent"])))
@@ -360,7 +371,7 @@ def run_all(
         out.append(h6(survival, b))
     holm(out)
     if policy is not None:
-        out.append(h7(full, policy))
+        out.append(h7(pool, policy))
     return out
 
 

@@ -95,6 +95,8 @@ def _fmt(value: Any, spec: str | None) -> str:
         return f"{float(value):.2f}×"
     if spec == "inv":  # "one in N"
         return f"{1 / float(value):.0f}"
+    if spec == "p":  # p-value, three decimals, floored at the precision shown
+        return "<0.001" if float(value) < 0.001 else f"{float(value):.3f}"
     if spec == "verdict":
         return "supported" if value else "not supported"
     if spec:

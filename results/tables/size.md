@@ -7,10 +7,10 @@
 | 2026 | S2 | 256 | 186 | 220 [45, 932] | 62 [21, 260] | 3.51 [1.90, 5.70] |
 | 2026 | S3 | 308 | 85 | 64 [21, 196] | 16 [4, 84] | 4.03 [2.12, 8.12] |
 
-Within repository (ratio of geometric means of 1 + lines, repository fixed effects, CI clustered by repository):
+Within repository, post hoc (ratio of geometric means of 1 + lines, repository and calendar-year fixed effects, CI clustered by repository):
 
 | stratum | repos | n | ratio (95% CI) |
 |---|---|---|---|
-| S1 | 23 | 589 | 1.76 [1.06, 2.95] |
-| S2 | 9 | 639 | 1.81 [1.39, 2.35] |
-| S3 | 14 | 525 | 2.33 [1.41, 3.87] |
+| S1 | 23 | 589 | 1.38 [0.82, 2.31] |
+| S2 | 9 | 639 | 1.78 [1.33, 2.37] |
+| S3 | 14 | 525 | 2.41 [1.21, 4.81] |

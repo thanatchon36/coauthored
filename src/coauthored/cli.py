@@ -12,6 +12,7 @@ import yaml
 from coauthored import __version__, guard
 from coauthored import bots as bots_mod
 from coauthored.analysis.aggregate import (
+    POST_HOC,
     SENSITIVITY,
     Spec,
     load_commits,
@@ -110,12 +111,14 @@ def aggregate(
         for df in mark_shared(frames):
             if df.is_empty():
                 continue
-            for spec in SENSITIVITY:
-                for dedup, part in ((False, df), (True, df.filter(~pl.col("shared")))):
+            own = df.filter(~pl.col("shared"))
+            for spec in [*SENSITIVITY, *POST_HOC]:
+                for dedup, part in ((False, df), (True, own)):
                     tag = {"dedup": pl.lit(dedup), "stratum": pl.lit(stratum)}
                     rm.append(repo_month(part, spec).with_columns(**tag))
                     tools.append(repo_month_tool(part, spec).with_columns(**tag))
-            rev.append(reverts(df, SENSITIVITY[0]).with_columns(stratum=pl.lit(stratum)))
+            # shared history counted once, like every pooled figure; reverts may point into the shared part
+            rev.append(reverts(own, SENSITIVITY[0], df["reverted_sha"]).with_columns(stratum=pl.lit(stratum)))
     pl.concat(rm).write_parquet(out / "repo_month.parquet")
     pl.concat(tools).write_parquet(out / "repo_month_tool.parquet")
     pl.concat(rev).write_parquet(out / "reverts.parquet")

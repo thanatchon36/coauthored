@@ -32,15 +32,17 @@ STRATUM_NAME = {
     "S2": "S2 coding-agent harnesses",
     "S3": "S3 matched controls",
 }
+# the nine tools with the most attributed commits in 2025-01..2026-09 (all strata); the rest are "Other"
 TOOL = {
     "Claude Code": "#D55E00",
     "GitHub Copilot": "#0072B2",
-    "OpenAI Codex": "#009E73",
-    "Cursor": "#CC79A7",
-    "Gemini Code Assist": "#E69F00",
-    "Gemini CLI": "#F0E442",
     "OpenHands": "#56B4E9",
     "Qwen Code": "#8C564B",
+    "OpenAI Codex": "#009E73",
+    "Gemini Code Assist": "#E69F00",
+    "Warp": "#F0E442",
+    "Cursor": "#CC79A7",
+    "OpenCode": "#332288",
 }
 OTHER = "#bdbdbd"
 WIDTH = 16.0 / 2.54

@@ -4,7 +4,7 @@ A random sample of 2,000 window commits (primary specification, shared history r
 (S1, S2, S3) and attribution, 333 or 334 per cell, seed 20261028. Lines changed come from
 `git show --shortstat` in the snapshot clones; the clones are treeless, so git fetches the trees and blobs
 each diff needs from GitHub on demand (the same objects a `--filter=blob:none` clone holds).
-Writes data/size_sample.csv (stratum, repository, commit SHA, month, attributed, files, insertions,
+Writes data/size_sample.csv (stratum, repository, month, attributed, files, insertions,
 deletions).
 Resumable: results are cached in cache/size/results.jsonl.
 """
@@ -100,7 +100,8 @@ def main() -> None:
                 done[(row["repo"], row["sha"])] = row
             fh.flush()
             print(f"repositories done {n}/{len(by_repo)}", file=sys.stderr)
-    fields = ["stratum", "repo", "sha", "month", "attr", "files", "insertions", "deletions"]
+    # the published file carries no commit SHA (PREREGISTRATION §11); cache/ keeps the identified rows
+    fields = ["stratum", "repo", "month", "attr", "files", "insertions", "deletions"]
     with open("data/size_sample.csv", "w", newline="") as out:
         w = csv.DictWriter(out, fieldnames=fields, extrasaction="ignore")
         w.writeheader()

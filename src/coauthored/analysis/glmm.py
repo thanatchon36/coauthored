@@ -141,7 +141,14 @@ def fit(d: pl.DataFrame, month_index: dict[str, int]) -> Fit:
         return -_laplace(data, x[:6], x[6:])
 
     res = minimize(nll, x0, method="L-BFGS-B", options={"maxiter": 2000})
-    hess = _hessian(nll, res.x)
+    nll(res.x)  # random effects at the optimum, not at the optimiser's last trial point
+    mode = data.u.copy()
+
+    def nll_at_mode(x: np.ndarray) -> float:
+        data.u = mode.copy()  # every Hessian evaluation starts from the same random effects: path-independent
+        return nll(x)
+
+    hess = _hessian(nll_at_mode, res.x)
     try:
         cov = np.linalg.inv(hess)[:6, :6]
     except np.linalg.LinAlgError:

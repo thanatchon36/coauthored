@@ -77,7 +77,6 @@ def _inputs(root: Path) -> None:
     survival = [
         {
             "repo": "s1org/repo0",
-            "number": i,
             "stratum": "S1",
             "method": ["squash", "merge"][i % 2],
             "head_attributed": True,
@@ -89,7 +88,7 @@ def _inputs(root: Path) -> None:
         }
         for i in range(30)
     ]
-    survival.append({**survival[0], "number": 99, "head_attributed": False, "survived": None})
+    survival.append({**survival[0], "head_attributed": False, "survived": None})
     # as scripts/survival_sample.py writes it: Python's csv module, True/False and empty cells
     with (root / "data" / "survival.csv").open("w", newline="") as f:
         w = csv.DictWriter(f, fieldnames=list(survival[0]))
@@ -99,7 +98,6 @@ def _inputs(root: Path) -> None:
         {
             "stratum": st,
             "repo": f"{st.lower()}org/repo0",
-            "sha": f"{st}{i:04d}",
             "month": ["2025-06", "2026-03"][i % 2],
             "attr": i % 2 == 0,
             "files": 1,
@@ -145,7 +143,12 @@ def test_analyze_writes_every_output(tmp_path: Path, monkeypatch: pytest.MonkeyP
     assert "NaN" not in Path("results/numbers.json").read_text()
     assert {r["stratum"] for r in saved["size"]} == {"S1", "S2", "S3"}
     assert all(r["repos"] == 3 for r in saved["size_within_repo"])
-    assert saved["summary"]["validation"] == {"n": 3, "positives": 2, "precision": 1.0, "recall": 0.5}
+    v = saved["summary"]["validation"]
+    assert (v["n"], v["positives"], v["precision"], v["recall"]) == (3, 2, 1.0, 0.5)
+    assert 0 < v["precision_lo"] < 1 and 0 < v["recall_lo"] < 0.5
+    rb = saved["robustness"]
+    assert set(rb["repo_weighted_q3"]) == {"S1", "S2", "S3"}
+    assert 0 <= rb["s3_top_repo"]["fraction_of_attributed"] <= 1
     assert saved["summary"]["catalogue"]["entries"] > 0
     h6 = next(r for r in saved["hypotheses"] if r["hypothesis"] == "H6")
     assert (h6["detail"]["k"], h6["detail"]["n"], h6["detail"]["inspected"]) == (20, 30, 31)

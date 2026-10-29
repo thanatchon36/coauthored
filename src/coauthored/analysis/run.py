@@ -19,6 +19,7 @@ from scipy.stats import chi2
 
 from coauthored.analysis import figures as fig
 from coauthored.analysis import hypotheses as h
+from coauthored.analysis.aggregate import POST_HOC
 
 DATA, CONFIGS, RESULTS = Path("data"), Path("configs"), Path("results")
 
@@ -138,9 +139,10 @@ def revert_standardised(reverts: pl.DataFrame, end: str = "2026-06") -> list[dic
 
 
 def size_within(size: pl.DataFrame) -> list[dict[str, Any]]:
-    """Within-repository size ratio: OLS of log(1 + lines) on attribution with repository fixed effects,
-    repositories with both kinds of commit in the sample, CI clustered by repository. exp(β) is the ratio of
-    geometric means; it removes the composition effect that attributed commits sit in some repositories."""
+    """Within-repository size ratio: OLS of log(1 + lines) on attribution with repository and calendar-year
+    fixed effects, repositories with both kinds of commit in the sample, CI clustered by repository. exp(β) is
+    the ratio of geometric means; it removes the composition effects that attributed commits sit in some
+    repositories and are recent. Not pre-registered (DEVIATIONS 10)."""
     import statsmodels.api as sm
 
     out = []
@@ -148,12 +150,15 @@ def size_within(size: pl.DataFrame) -> list[dict[str, Any]]:
         d = size.filter(pl.col("stratum") == stratum)
         mixed = d.group_by("repo").agg(pl.col("attr").any().alias("a"), (~pl.col("attr")).any().alias("u"))
         keep = sorted(mixed.filter(pl.col("a") & pl.col("u"))["repo"].to_list())
-        d = d.filter(pl.col("repo").is_in(keep)).sort("repo", "sha")
+        d = d.filter(pl.col("repo").is_in(keep)).sort("repo", maintain_order=True)
         if len(keep) < 2:
             continue
         codes = np.asarray([keep.index(r) for r in d["repo"].to_list()])
         dummies = (codes[:, None] == np.arange(1, len(keep))[None, :]).astype(float)
-        x = np.column_stack([np.ones(d.height), d["attr"].cast(pl.Float64).to_numpy(), dummies])
+        year = d["month"].cast(pl.String).str.slice(0, 4).to_numpy()
+        years = sorted(set(year))
+        ydum = (year[:, None] == np.asarray(years[1:])[None, :]).astype(float)
+        x = np.column_stack([np.ones(d.height), d["attr"].cast(pl.Float64).to_numpy(), dummies, ydum])
         y = np.log1p(d["lines"].to_numpy().astype(float))
         fit = sm.OLS(y, x).fit(cov_type="cluster", cov_kwds={"groups": codes})
         lo, hi = fit.conf_int()[1]
@@ -167,6 +172,37 @@ def size_within(size: pl.DataFrame) -> list[dict[str, Any]]:
             }
         )
     return out
+
+
+def robustness(pool: pl.DataFrame, full: pl.DataFrame) -> dict[str, Any]:
+    """Post-hoc checks asked for in review (not pre-registered; DEVIATIONS 10): month-by-month order of S1 and
+    S3, the S3 share without its largest contributor, and the repository-weighted share of every stratum."""
+
+    def monthly(stratum: str) -> dict[str, float]:
+        d = h._between(pool.filter(pl.col("stratum") == stratum), "2026-01", "2026-09")
+        g = d.group_by("month").agg(pl.col("n").sum(), pl.col("n_attr").sum())
+        return {r["month"]: r["n_attr"] / r["n"] for r in g.iter_rows(named=True)}
+
+    s1, s3 = monthly("S1"), monthly("S3")
+    months = sorted(set(s1) & set(s3))
+    below = [m for m in months if s1[m] < s3[m]]
+    q3 = h._between(pool, *h.Q3_2026)
+    s3q = q3.filter(pl.col("stratum") == "S3").group_by("repo").agg(pl.col("n").sum(), pl.col("n_attr").sum())
+    top = s3q.sort(["n_attr", "repo"], descending=[True, False]).row(0, named=True)
+    rest = s3q.filter(pl.col("repo") != top["repo"])
+    fq3 = h._between(full, *h.Q3_2026)
+    return {
+        "s1_below_s3_2026": {"months": below, "count": len(below), "of": len(months)},
+        "s1_below_s3_h2_window": sum(1 for m in below if m >= "2026-04"),
+        "s3_top_repo": {
+            "repo": top["repo"],
+            "fraction_of_attributed": top["n_attr"] / float(s3q["n_attr"].sum()),
+            "s3_share_without": float(rest["n_attr"].sum()) / float(rest["n"].sum()),
+        },
+        "repo_weighted_q3": {
+            st: h.repo_weighted(fq3.filter(pl.col("stratum") == st)) for st in ("S1", "S2", "S3")
+        },
+    }
 
 
 def summary(
@@ -266,6 +302,9 @@ def summary(
             "positives": tp + fn,
             "precision": tp / (tp + fp) if tp + fp else None,
             "recall": tp / (tp + fn) if tp + fn else None,
+            # Wilson 95% lower bounds: with no errors in the sample the point estimates alone say little
+            "precision_lo": h.wilson(tp, tp + fp)[0] if tp + fp else None,
+            "recall_lo": h.wilson(tp, tp + fn)[0] if tp + fn else None,
         }
     if policy is not None:
         out["policy"] = {
@@ -375,8 +414,12 @@ def analyze(b: int = h.B, out: Path = RESULTS) -> dict[str, Any]:
     (tables / "hypotheses.md").write_text(
         _md_table([_fmt(r) for r in results], list(_fmt(results[0]))), encoding="utf-8"
     )
+    post_hoc = {s.name for s in POST_HOC}
     srows = [
-        {"analysis": name, **{r.hypothesis: f"{r.estimate:.3f} {'✓' if r.supported else '✗'}" for r in res}}
+        {
+            "analysis": name + (" (post hoc)" if name in post_hoc else ""),
+            **{r.hypothesis: f"{r.estimate:.3f} {'✓' if r.supported else '✗'}" for r in res},
+        }
         for name, res in [("primary", results[:4]), *sens.items()]
     ]
     (tables / "sensitivity.md").write_text(
@@ -424,8 +467,8 @@ def analyze(b: int = h.B, out: Path = RESULTS) -> dict[str, Any]:
             ],
             ["period", "stratum", "n_attr", "n_unattr", "attributed", "unattributed", "ratio (95% CI)"],
         )
-        + "\nWithin repository (ratio of geometric means of 1 + lines, repository fixed effects,"
-        " CI clustered by repository):\n\n"
+        + "\nWithin repository, post hoc (ratio of geometric means of 1 + lines, repository and calendar-year"
+        " fixed effects, CI clustered by repository):\n\n"
         + _md_table(
             [
                 {**r, "ratio (95% CI)": f"{r['ratio']:.2f} [{r['ratio_ci'][0]:.2f}, {r['ratio_ci'][1]:.2f}]"}
@@ -458,6 +501,7 @@ def analyze(b: int = h.B, out: Path = RESULTS) -> dict[str, Any]:
         "reverts_standardised": std,
         "size": sizes,
         "size_within_repo": within,
+        "robustness": robustness(pool, full),
     }
     numbers = _clean(numbers)
     (out / "numbers.json").write_text(
