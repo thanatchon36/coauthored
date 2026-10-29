@@ -11,7 +11,7 @@
 [![Pre-registered](https://img.shields.io/badge/pre--registered-27a6847-blue)](PREREGISTRATION.md)
 
 📄 **[Read the paper on the web](https://thanatchon36.github.io/coauthored/paper/)** ·
-⬇️ **[Download the PDF](paper/coauthored.pdf)** ·
+⬇️ **[Download the PDF](https://raw.githubusercontent.com/thanatchon36/coauthored/main/paper/coauthored.pdf)** ·
 🤗 **[Dataset](https://huggingface.co/datasets/thanatchon36/coauthored)** ·
 📈 **[Monthly dashboard](https://thanatchon36.github.io/coauthored/dashboard/)** ·
 📊 **[Figures](results/figures/)** · 🧾 **[Pre-registration](PREREGISTRATION.md)** ·
